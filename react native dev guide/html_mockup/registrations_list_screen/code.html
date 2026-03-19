@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between max-w-5xl mx-auto w-full">
+<div class="flex items-center gap-4">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</div>
+<h1 class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-tight tracking-tight">My Registrations</h1>
+</div>
+<div class="flex gap-2">
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-1 max-w-5xl mx-auto w-full px-4 py-6 space-y-6">
+<!-- Search Bar -->
+<div class="w-full">
+<label class="flex flex-col w-full group">
+<div class="flex w-full items-stretch rounded-xl h-12 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary transition-all">
+<div class="text-slate-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="w-full border-none bg-transparent focus:ring-0 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 px-3 text-base font-normal" placeholder="Search registrations by ID or title..." value=""/>
+</div>
+</label>
+</div>
+<!-- Summary Strip -->
+<div class="grid grid-cols-2 gap-4">
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-primary/10 border border-primary/20">
+<p class="text-primary text-sm font-semibold uppercase tracking-wider">Active</p>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold">3</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-1">Registrations</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl p-5 bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30">
+<p class="text-amber-600 dark:text-amber-500 text-sm font-semibold uppercase tracking-wider">Attention</p>
+<div class="flex items-end gap-2">
+<p class="text-slate-900 dark:text-white text-3xl font-bold">1</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm mb-1">Unpaid</p>
+</div>
+</div>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-5 text-sm font-semibold">
+                All
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 px-5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
+                Draft
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 px-5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
+                Submitted
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 px-5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
+                Awaiting Payment
+            </button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 px-5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800">
+                Confirmed
+            </button>
+</div>
+<!-- List of Cards -->
+<div class="space-y-4">
+<!-- Card 1: Confirmed -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 uppercase tracking-wide">Confirmed</span>
+<span class="text-slate-400 text-xs font-mono">#REG-88219</span>
+</div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Global Infrastructure Summit 2024</h3>
+</div>
+</div>
+<div class="flex items-center gap-4 text-slate-500 dark:text-slate-400 text-sm mb-6">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Oct 12, 2024</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">location_on</span>
+<span>Singapore</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="size-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200 overflow-hidden">
+<img class="size-full object-cover" data-alt="User profile thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZdeLoFw_vjfppY6cMs3xaZyQX5EC0Q2krUZ6boj8g3CMTDOXHrCPyDd7pPPEKuzaD2GSDgkQ6yF8uW6qV5mVLfJ7woAqOfwLm5svW50Kp7x--B1VmvQPSlnBBhm-joDgBqrVbqBo8j6MjrKS5tSef99rzSbO1oORDPQpJ96FCRcXYeZGtT8lU1BXe4GfjbskJN0c7oH9rXozqURfnj2WzcMziQKST1oOTu8rliPrvNlC4Gm4PjDtBG1cJVOhgw6Yx6Pe712TbXSA"/>
+</div>
+<div class="size-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-300 flex items-center justify-center text-[10px] font-bold text-slate-600">
+                            +2
+                        </div>
+</div>
+<button class="px-6 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold rounded-lg transition-colors">
+                        View Details
+                    </button>
+</div>
+</div>
+<!-- Card 2: Awaiting Payment -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 border-l-4 border-l-amber-500 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400 uppercase tracking-wide">Awaiting Payment</span>
+<span class="text-slate-400 text-xs font-mono">#REG-88402</span>
+</div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Renewable Energy Forum</h3>
+</div>
+</div>
+<div class="flex items-center gap-4 text-slate-500 dark:text-slate-400 text-sm mb-6">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Nov 05, 2024</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">payments</span>
+<span class="font-semibold text-amber-600 dark:text-amber-500">$450.00 Due</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<p class="text-xs text-slate-400">Expires in 2 days</p>
+<button class="px-6 py-2 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg shadow-sm shadow-primary/20 transition-all">
+                        Pay Now
+                    </button>
+</div>
+</div>
+<!-- Card 3: Submitted -->
+<div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-5 hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 uppercase tracking-wide">Submitted</span>
+<span class="text-slate-400 text-xs font-mono">#REG-88510</span>
+</div>
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Digital Transformation Workshop</h3>
+</div>
+</div>
+<div class="flex items-center gap-4 text-slate-500 dark:text-slate-400 text-sm mb-6">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">calendar_today</span>
+<span>Dec 15, 2024</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-base">info</span>
+<span>Under Review</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="size-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200 overflow-hidden">
+<img class="size-full object-cover" data-alt="User profile thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8FBnY5izEhbuB64kIauRknhKTybvaXqsy-e42zjvuTMEv22Z0Yff8uoYFbxAK49A4nIWPYoH-SGhW245ZStPGySXcMgi0FamNLlFCmTJjUOfIqrRyAcx7ZQkmIbggBVbk5VrHW1VZ_25wutcgxHX84V5WXccoPdGz_UfssfQMcfd9izRADnLYPhTRBkHtmPeFS4YHr3pRXMlzLaS7shXkCJB8ZDqDfnxPcCP4bqUP3tJ9B_mP88XRnQcQCxoV_WvfX8pjiU68ECU"/>
+</div>
+</div>
+<button class="px-6 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-900 dark:text-slate-100 text-sm font-bold rounded-lg transition-colors">
+                        View Progress
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="sticky bottom-0 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 pb-safe">
+<div class="flex max-w-lg mx-auto px-4 py-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-semibold leading-normal uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<p class="text-[10px] font-semibold leading-normal uppercase tracking-wider">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined font-variation-fill-1">receipt_long</span>
+<p class="text-[10px] font-bold leading-normal uppercase tracking-wider">Registrations</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-semibold leading-normal uppercase tracking-wider">Profile</p>
+</a>
+</div>
+</nav>
+<style>
+        .font-variation-fill-1 { font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+    </style>
+</body></html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>PKN Portal - Event Documents (Guest)</title>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="max-w-md mx-auto min-h-screen flex flex-col bg-white dark:bg-slate-900 shadow-xl overflow-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between">
+<button class="text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Event Documents</h1>
+</div>
+<!-- Search Bar -->
+<div class="px-4 pb-4">
+<div class="relative group">
+<div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400 group-focus-within:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="block w-full pl-10 pr-4 py-2.5 bg-slate-100 dark:bg-slate-800 border-transparent focus:border-primary focus:ring-1 focus:ring-primary rounded-lg text-sm text-slate-900 dark:text-slate-100 placeholder:text-slate-500" placeholder="Search specific files..." type="text"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto">
+<!-- Guest Banner -->
+<div class="mx-4 mt-4 p-4 rounded-xl bg-primary/10 border border-primary/20 flex flex-col gap-3">
+<div class="flex gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">info</span>
+<p class="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Sign in to download documents. Get full access to all event resources by logging into your PKN Portal account.
+                </p>
+</div>
+<button class="w-full py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg text-sm font-bold transition-all shadow-sm">
+                Sign In
+            </button>
+</div>
+<!-- Event Summary Card -->
+<div class="m-4 p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center gap-4">
+<div class="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Event thumbnail" class="w-full h-full object-cover" data-alt="Modern tech conference stage with lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHcB25GLkcFbU_bZoyhogSS-9J9fixH-s4Wnr2Bj9fdiCfTjMb2glgUDe4z4WbittlUYdSuaE5bI0a38kkqwQIQ0lgEXJnTHodputtOPk6JEt0qXdgq9N7X6IxCVQxhFyirUs_AxNwTtdR1w8-USNdmr7WDZDPeZqor8ZeaAo6v6rOmO5vSPLU5RQX1Ky1cAj4Un0fuWd102MfebzmDFjj01QR-K5UYi2Uy7fo60oKHEtX0fsJfGgXGvXqMZwEuozlGLwXkZY98ZQ"/>
+</div>
+<div class="flex flex-col">
+<h2 class="text-slate-900 dark:text-white font-bold text-base leading-tight">Global Tech Summit 2024</h2>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                    October 24-26, 2024
+                </p>
+</div>
+</div>
+<!-- Categories Tabs -->
+<div class="px-4">
+<div class="flex border-b border-slate-200 dark:border-slate-800 gap-6 overflow-x-auto no-scrollbar">
+<button class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 whitespace-nowrap">
+<span class="text-sm font-bold tracking-tight">General Info</span>
+</button>
+<button class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-3 whitespace-nowrap">
+<span class="text-sm font-medium tracking-tight">Session Materials</span>
+</button>
+<button class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:hover:text-slate-300 pb-3 whitespace-nowrap">
+<span class="text-sm font-medium tracking-tight">Sponsorship Guides</span>
+</button>
+</div>
+</div>
+<!-- Document List -->
+<div class="p-4 space-y-3">
+<!-- PDF Document -->
+<div class="group flex items-center p-3 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 opacity-80 transition-colors">
+<div class="size-12 rounded-lg bg-red-100/50 dark:bg-red-900/20 flex items-center justify-center text-red-600/60 dark:text-red-400/60 shrink-0">
+<span class="material-symbols-outlined text-2xl">picture_as_pdf</span>
+</div>
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<h3 class="text-sm font-semibold text-slate-900/70 dark:text-slate-100/70 truncate">Summit_Agenda_Final.pdf</h3>
+<span class="px-2 py-0.5 rounded-full bg-primary/5 text-primary/60 text-[10px] font-bold uppercase tracking-wider">New</span>
+</div>
+<p class="text-xs text-slate-500/70 dark:text-slate-400/70 mt-0.5">2.4 MB • Updated 2h ago</p>
+</div>
+<div class="ml-2 p-2 text-slate-400 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter">Sign In</span>
+</div>
+</div>
+<!-- DOCX Document -->
+<div class="group flex items-center p-3 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 opacity-80 transition-colors">
+<div class="size-12 rounded-lg bg-blue-100/50 dark:bg-blue-900/20 flex items-center justify-center text-blue-600/60 dark:text-blue-400/60 shrink-0">
+<span class="material-symbols-outlined text-2xl">description</span>
+</div>
+<div class="ml-4 flex-1 min-w-0">
+<div class="flex items-center gap-2">
+<h3 class="text-sm font-semibold text-slate-900/70 dark:text-slate-100/70 truncate">Speaker_Guidelines.docx</h3>
+<span class="px-2 py-0.5 rounded-full bg-emerald-100/50 dark:bg-emerald-900/20 text-emerald-600/60 dark:text-emerald-400/60 text-[10px] font-bold uppercase tracking-wider">Updated</span>
+</div>
+<p class="text-xs text-slate-500/70 dark:text-slate-400/70 mt-0.5">1.1 MB • Updated Sep 20</p>
+</div>
+<div class="ml-2 p-2 text-slate-400 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter">Sign In</span>
+</div>
+</div>
+<!-- PPTX Document -->
+<div class="group flex items-center p-3 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 opacity-80 transition-colors">
+<div class="size-12 rounded-lg bg-orange-100/50 dark:bg-orange-900/20 flex items-center justify-center text-orange-600/60 dark:text-orange-400/60 shrink-0">
+<span class="material-symbols-outlined text-2xl">present_to_all</span>
+</div>
+<div class="ml-4 flex-1 min-w-0">
+<h3 class="text-sm font-semibold text-slate-900/70 dark:text-slate-100/70 truncate">Sponsorship_Deck_v2.pptx</h3>
+<p class="text-xs text-slate-500/70 dark:text-slate-400/70 mt-0.5">15.8 MB • Updated Aug 15</p>
+</div>
+<div class="ml-2 p-2 text-slate-400 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter">Sign In</span>
+</div>
+</div>
+<!-- CSV/Sheet Document -->
+<div class="group flex items-center p-3 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 opacity-80 transition-colors">
+<div class="size-12 rounded-lg bg-emerald-100/50 dark:bg-emerald-900/20 flex items-center justify-center text-emerald-600/60 dark:text-emerald-400/60 shrink-0">
+<span class="material-symbols-outlined text-2xl">table_chart</span>
+</div>
+<div class="ml-4 flex-1 min-w-0">
+<h3 class="text-sm font-semibold text-slate-900/70 dark:text-slate-100/70 truncate">Attendee_List_PreEvent.csv</h3>
+<p class="text-xs text-slate-500/70 dark:text-slate-400/70 mt-0.5">450 KB • Updated Yesterday</p>
+</div>
+<div class="ml-2 p-2 text-slate-400 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter">Sign In</span>
+</div>
+</div>
+<!-- Zip Archive -->
+<div class="group flex items-center p-3 rounded-xl bg-slate-50/50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 opacity-80 transition-colors">
+<div class="size-12 rounded-lg bg-slate-100/50 dark:bg-slate-800/20 flex items-center justify-center text-slate-600/60 dark:text-slate-400/60 shrink-0">
+<span class="material-symbols-outlined text-2xl">folder_zip</span>
+</div>
+<div class="ml-4 flex-1 min-w-0">
+<h3 class="text-sm font-semibold text-slate-900/70 dark:text-slate-100/70 truncate">Branding_Assets.zip</h3>
+<p class="text-xs text-slate-500/70 dark:text-slate-400/70 mt-0.5">142.5 MB • Updated Aug 01</p>
+</div>
+<div class="ml-2 p-2 text-slate-400 flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-xl">lock</span>
+<span class="text-[8px] font-bold uppercase tracking-tighter">Sign In</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-4 pb-6 pt-2">
+<div class="flex justify-between items-center">
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Home</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-[10px] font-medium">Events</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">description</span>
+<span class="text-[10px] font-medium">Documents</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Profile</span>
+</a>
+</div>
+</nav>
+</div>
+</body></html>

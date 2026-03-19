@@ -1,0 +1,123 @@
+# PKN Portal App - Feature Implementation Roadmap (MVP First)
+
+This roadmap prioritizes a "Public Access First" strategy, allowing users to browse events and news without logging in. The implementation follows the "Read Native, Write Hybrid" approach.
+
+---
+
+## Phase 1: Public Core (No-Login MVP)
+**Goal:** Enable users to immediately browse PKN content without authentication.
+
+- [ ] **Project Setup**
+  - [ ] Initialize directory structure (`src/components`, `src/services`, `src/store`, `src/hooks`, `src/types`, `src/theme`).
+  - [ ] Install core dependencies: `axios`, `zustand`, `react-native-mmkv`, `@shopify/flash-list`, `expo-image`, `expo-blur`.
+  - [ ] **Form & Validation**: Install `react-hook-form` and `zod`.
+  - [ ] **i18n Setup**: Install `i18next` and `react-i18next`; configure `src/utils/i18n/index.ts`.
+  - [ ] **Theming Engine**: Install `react-native-paper` and `@material/material-color-utilities`.
+  - [ ] **Quality Control**: Set up Sentry, Jest, and `eslint-plugin-react-native-a11y`.
+  - [ ] **CI/CD**: Configure EAS Build and set up GitHub Actions for automated deployments.
+  - [ ] Set up `axios` instance for public APIs with proper environment variable handling.
+
+
+- [ ] **Welcome & Onboarding**
+  - [ ] Implement `src/app/index.tsx` as the high-fidelity Welcome Screen from mockups.
+  - [ ] Handle "Get Started" (Guest access) and "Sign In" (Hybrid Login) transitions.
+- [ ] **Native Public Dashboard (Guest Mode)**
+  - [ ] Implement `GET /api/v1/mobile-dashboard` (Public version/endpoint).
+  - [ ] Build Guest Dashboard UI (`guest_dashboard_fresh_variant_2` mockup).
+  - [ ] Implement skeleton loaders for a smooth first-load experience.
+- [ ] **Events & News Discovery**
+  - [ ] Implement Events List and News List screens (Native).
+  - [ ] Build Event Detail screen (`src/app/events/[id].tsx`) with native content layout.
+  - [ ] Build News Detail screen.
+- [ ] **Document Browsing (Public)**
+  - [ ] Implement `src/app/documents/index.tsx` (Public document browser mockup).
+  - [ ] Build "Featured Documents" carousel and "All Documents" list.
+  - [ ] Implement file search and basic download/viewing functionality.
+
+---
+
+## Phase 2: Hybrid Login & Identity
+**Goal:** Introduce authentication to allow personalized features.
+
+- [ ] **Authentication Infrastructure**
+  - [ ] Configure `axios` interceptors for Sanctum tokens.
+  - [ ] Create `useAuthStore` using Zustand + MMKV for persistent token storage.
+  - [ ] **Deep Linking**: Configure `app.json` for `pknportal://` scheme and universal links.
+
+- [ ] **Hybrid Login Strategy**
+  - [ ] Implement `src/app/auth/hybrid-login.tsx` (WebView wrapper for `/user/login`).
+  - [ ] Implement token extraction logic from `/api/v1/auth/token-handoff`.
+  - [ ] Handle logout and token revocation logic.
+- [ ] **Profile & Protected States**
+  - [ ] Implement conditional UI for "Log In" prompts on restricted features (e.g., Register button).
+  - [ ] **Refined Private Dashboard**: Implement the authenticated dashboard view (`refined_dashboard_screen` mockup) with user-specific alerts and action grid.
+- [ ] **Contextual Document Browsing**
+  - [ ] Implement document browser both as a separate menu item and integrated within Event detail screens.
+- [ ] **Native Look & Feel Audit (Auth)**
+  - [ ] Apply `android_ripple`, `Pressable` opacity, and `formSheet` presentation to all new screens.
+
+
+
+---
+
+## Phase 3: Native Registration & Participant Management
+**Goal:** Enable users to natively create and manage event registrations, with a fallback for complex edge cases.
+
+- [ ] **Native Registration Flows**
+  - [ ] Implement `POST /api/v1/registrations` for creating new registrations natively.
+  - [ ] Build Native Registration Management screen (Change package, Cancel registration).
+  - [ ] Implement Participant Management (Add/Edit/Remove participants natively).
+- [ ] **Infrastructure & Invoices**
+  - [ ] Implement Native Invoice preview and status tracking within the registration flow.
+  - [ ] Build detail views for linked participants and their metadata.
+- [ ] **Hybrid Fallback Mechanism**
+  - [ ] Implement `src/app/webview/bridge.tsx` as a reusable modal shell.
+  - [ ] Add "Open in Web Portal" fallback button on all registration screens.
+  - [ ] Detect success redirects from WebView and refresh native registration state.
+
+---
+
+## Phase 4: Invoices & Payments (Midtrans)
+**Goal:** Allow users to pay for their registrations.
+
+- [ ] **Invoice Tracking**
+  - [ ] Implement Invoices List and Invoice Detail screens (Native).
+  - [ ] Show payment status badges (Unpaid, Pending, Paid).
+- [ ] **Midtrans Integration**
+  - [ ] Implement "Pay Now" flow: fetch Snap token from backend.
+  - [ ] Integrate Midtrans Snap (WebView or SDK bridge).
+  - [ ] Implement automatic status refresh after payment.
+
+---
+
+## Phase 5: Notifications & Account Management
+**Goal:** Finalize the user's personal context.
+
+- [ ] **Notifications System**
+  - [ ] Implement Notifications List screen.
+  - [ ] Implement deep-linking for system alerts (e.g., tap payment reminder -> open Invoice).
+- [ ] **Internationalization (i18n)**
+  - [ ] Implement language switcher in Profile/Settings.
+  - [ ] Audit all hardcoded strings and move to translation JSONs.
+
+- [ ] **Organization Management**
+  - [ ] Build Profile screen with organization context.
+  - [ ] Implement "Edit Profile" and "Manage Org" via WebView Bridge.
+
+---
+
+## Phase 6: Performance, Polishing & SEO
+**Goal:** Ensure a premium, production-ready experience.
+
+- [ ] **Advanced Optimization**
+  - [ ] Ensure all lists use `FlashList` with `estimatedItemSize`.
+  - [ ] Finalize "Stale-While-Revalidate" caching using Zustand + MMKV.
+  - [ ] **UI Polish**: Implement high-fidelity "Glassmorphism" wrappers (iOS) and Material You dynamic tonal palettes (Android).
+  - [ ] Add micro-animations using `react-native-reanimated`.
+- [ ] **Polish & Launch Prep**
+  - [ ] **Native Audit Checklist**: Verify hardware back button handling, swipe-back on iOS, and native scroll behaviors.
+  - [ ] **Accessibility Audit**: Final check for `accessibilityRole`, `accessibilityState`, and screen reader labels.
+  - [ ] Refine dark mode and visual aesthetics based on `html_mockup` patterns.
+  - [ ] Update README with final deployment and maintenance steps.
+
+

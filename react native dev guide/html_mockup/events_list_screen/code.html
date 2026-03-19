@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PKN Portal - Events</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-slate-900 shadow-xl overflow-x-hidden">
+<!-- Header -->
+<header class="flex items-center bg-white dark:bg-slate-900 p-4 sticky top-0 z-10 border-b border-slate-100 dark:border-slate-800">
+<div class="text-slate-900 dark:text-slate-100 flex size-10 shrink-0 items-center justify-center">
+<span class="material-symbols-outlined">menu</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center">PKN Events</h2>
+<div class="flex w-10 items-center justify-end">
+<button class="flex cursor-pointer items-center justify-center rounded-lg h-10 w-10 bg-transparent text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</header>
+<!-- Search Bar -->
+<div class="px-4 py-4 bg-white dark:bg-slate-900">
+<label class="flex flex-col w-full h-11">
+<div class="flex w-full flex-1 items-stretch rounded-xl h-full bg-slate-100 dark:bg-slate-800 border border-transparent focus-within:border-primary/50 transition-colors">
+<div class="text-slate-500 dark:text-slate-400 flex items-center justify-center pl-4">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-slate-500 text-slate-900 dark:text-slate-100 px-3 text-sm font-medium" placeholder="Search campus events..." value=""/>
+</div>
+</label>
+</div>
+<!-- Filter Chips -->
+<div class="flex gap-2 px-4 pb-4 overflow-x-auto no-scrollbar bg-white dark:bg-slate-900">
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-4 shadow-sm">
+<span class="text-sm font-semibold">All Events</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 border border-slate-200 dark:border-slate-700">
+<span class="text-sm font-medium">Category</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 border border-slate-200 dark:border-slate-700">
+<span class="text-sm font-medium">Date</span>
+<span class="material-symbols-outlined text-[18px]">calendar_today</span>
+</button>
+<button class="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 border border-slate-200 dark:border-slate-700">
+<span class="text-sm font-medium">Status</span>
+<span class="material-symbols-outlined text-[18px]">tune</span>
+</button>
+</div>
+<!-- Scrollable Event List -->
+<div class="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark p-4 space-y-4">
+<!-- Event Card 1 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<div class="relative w-full aspect-[21/9] bg-center bg-cover" data-alt="Modern conference hall with large digital screen" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHgA_BVP2uodLjcslss-T_LugoY1SxZqGoKIEmOHzQ9qNPf1QlYnUOEURrHou019HqhOF3XCFangNuSZgOh7qiKP-FT-SJ5WCMpaeK_7aYdGEfORyL5HmrAuBf1JOL5OpM9CNyuteejC4K0GoQn3Du4VpNK28FkVi8sV3Wed_Kq9D-tDYV_n5f2mKaihxtZ9wWvTxU1JNUTxTmpBP1YwIziK_eC8w9WI0koyiZdpIKQe6g7Al9sydZ9FyZ7cG27Z1g1mjEbvb1PXk");'>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center rounded-full bg-green-100 dark:bg-green-900/30 px-2.5 py-1 text-xs font-bold text-green-700 dark:text-green-400 uppercase tracking-wider">
+                            Open
+                        </span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Annual Research Symposium 2024</h3>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span class="text-sm font-medium">Oct 15 - Oct 17, 2024</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-sm font-medium">Grand Hall, Academic Block</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mt-1 line-clamp-2">
+                            A three-day symposium showcasing breakthrough research in PKN disciplines featuring global speakers.
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="flex -space-x-2">
+<div class="size-7 rounded-full border-2 border-white dark:border-slate-900 bg-slate-200 flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="size-7 rounded-full border-2 border-white dark:border-slate-900 bg-primary/20 flex items-center justify-center text-[10px] font-bold text-primary italic">PKN</div>
+<div class="size-7 rounded-full border-2 border-white dark:border-slate-900 bg-slate-300 flex items-center justify-center text-[10px] font-bold">+42</div>
+</div>
+<button class="flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-white text-sm font-bold transition-opacity hover:opacity-90">
+                            Register Now
+                        </button>
+</div>
+</div>
+</div>
+<!-- Event Card 2 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<div class="relative w-full aspect-[21/9] bg-center bg-cover" data-alt="Students collaborating in a bright modern workshop space" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6_YzlFzpV7SoGfejkE81gbCHeL0MZFFiWzk45dGULKo9NsW0D-nO1ISLzCEs9zBZ_3lZvHR4cJOMiVb8LhN4QOBRSEHUQ5b3FctF_j7A87IC--kGAzYPy09SksFNy_PwoaM6pb7VrEnirgC2iksBY0VriYm65VisBVz7eK3WWc3U9hMq8fGImBKxpikkpLA9Hwzq5yoVKd5F-wdmrP1KVMUlzBWgP8ChVXP_PfVxsMCGSeynO8py1LMqDnE-Leaws7Y5VsJo0lfM");'>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center rounded-full bg-orange-100 dark:bg-orange-900/30 px-2.5 py-1 text-xs font-bold text-orange-700 dark:text-orange-400 uppercase tracking-wider">
+                            Closing Soon
+                        </span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Innovation &amp; Design Workshop</h3>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span class="text-sm font-medium">Sept 28, 09:00 AM</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-sm font-medium">Innovation Lab, Level 4</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mt-1 line-clamp-2">
+                            Learn design thinking principles and apply them to real-world campus challenges in this hands-on workshop.
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-1 text-primary text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">group</span>
+<span>12 Spots Left</span>
+</div>
+<button class="flex h-9 items-center justify-center rounded-lg bg-primary px-4 text-white text-sm font-bold transition-opacity hover:opacity-90">
+                            View Details
+                        </button>
+</div>
+</div>
+</div>
+<!-- Event Card 3 -->
+<div class="flex flex-col overflow-hidden rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm">
+<div class="relative w-full aspect-[21/9] bg-center bg-cover" data-alt="Outdoor festival lights at night during campus event" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBtqkjPImJyBRWxFsFbbLjr05KDDeNH4Roqg0RrfLBG9HeuuBTAzHYbtgIHCrmGVVimARgVr-z2wrx7gYsm79I8BAC30dKbRJunfZLDvT0k3qcK61NGgEMgFHhVg6Z2KcL3ceImI8kut41QUSTZqdtD0ewJ1GMwvBJIV8nOjcwRj0uErhQLVHFyOK8yefABC4Cji1aEzpi1v1M5jubCwIr0UGCKokHMvhETLn5COhj3LzcMaAy4MOgDE3iXb_Y7OS13Nf3KUN20T48");'>
+<div class="absolute top-3 right-3">
+<span class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2.5 py-1 text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">
+                            Planning
+                        </span>
+</div>
+</div>
+<div class="flex flex-col p-4 gap-2">
+<h3 class="text-slate-900 dark:text-white text-lg font-bold leading-tight">Winter Gala &amp; Networking</h3>
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">calendar_month</span>
+<span class="text-sm font-medium">Dec 12, 06:00 PM</span>
+</div>
+<div class="flex items-center gap-2 text-slate-500 dark:text-slate-400">
+<span class="material-symbols-outlined text-[18px]">location_on</span>
+<span class="text-sm font-medium">Central Plaza</span>
+</div>
+<p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mt-1 line-clamp-2">
+                            End of year celebration for faculty and postgraduate students. RSVP opens in November.
+                        </p>
+</div>
+<div class="flex items-center justify-between mt-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-1 text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span>Not yet open</span>
+</div>
+<button class="flex h-9 items-center justify-center rounded-lg bg-slate-200 dark:bg-slate-800 px-4 text-slate-700 dark:text-slate-300 text-sm font-bold">
+                            Remind Me
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation -->
+<nav class="flex border-t border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 pb-6 pt-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">calendar_today</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">newspaper</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">News</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Profile</p>
+</a>
+</nav>
+</div>
+</body></html>

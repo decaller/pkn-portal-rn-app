@@ -1,56 +1,80 @@
-# Welcome to your Expo app 👋
+# PKN Portal Mobile App 📱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bismillah. Welcome to the official React Native companion for the **PKN Portal**. This app is designed to provide a high-performance, native mobile experience for members of the PKN (Perkumpulan Konsultan Nusantara) portal.
 
-## Get started
+---
 
-1. Install dependencies
+## 🏛️ Architecture: "Read Native, Write Hybrid"
 
-   ```bash
-   npm install
-   ```
+Following a core UX strategy to maximize development speed without sacrificing performance:
 
-2. Start the app
+- **Read-Heavy Surfaces (Native):** Dashboard, Event Lists, News, Notifications, Registration status, and Invoices.
+- **Write-Heavy / Complex Logic (Hybrid):** Login, Event Registration, Profile Edits, and Organization Management are handled via an **authenticated WebView bridge** to the existing Laravel + Filament portal.
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🚀 Technical Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **Framework:** [Expo SDK 55](https://expo.dev) + [React Native](https://reactnative.dev)
+- **Theming & UI:** [react-native-paper](https://reactnativepaper.com/) (Material 3) + [expo-blur](https://docs.expo.dev/versions/latest/sdk/blur-view/) (Glassmorphism).
+- **Form Validation:** `react-hook-form` + `zod` for strictly-typed, high-performance forms.
+- **Micro-Animations:** [React Native Reanimated](https://docs.swmansion.com/react-native-reanimated/) & [Expo Image](https://docs.expo.dev/versions/latest/sdk/image/).
+- **Quality & CI/CD:** [EAS Build](https://expo.dev/eas) + GitHub Actions for automated, secret-safe cloud builds.
+- **A11y:** `eslint-plugin-react-native-a11y` enforced accessibility auditing.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🗺️ Implementation Roadmap
 
-When you're ready, run:
+A detailed breakdown of the development phases can be found in:
+👉 [**FEATURE_ROADMAP.md**](./FEATURE_ROADMAP.md)
 
+---
+
+## 📚 Development Guides
+
+We maintain a comprehensive internal developer guide:
+- [PKN Portal AI Agent Context](./react%20native%20dev%20guide/PKN%20Portal%20AI%20Agent%20Context.md)
+- [UX Flow Guide](./react%20native%20dev%20guide/UX%20Flow%20Guide.md)
+- [API Specification](./react%20native%20dev%20guide/API%20Specification.md)
+- [Performance Optimization](./react%20native%20dev%20guide/Performance%20Optimization%20(Simon%20Grimm).md)
+- [React Native & Expo UI Tips](./react%20native%20dev%20guide/React%20Native%20&%20Expo%20UI%20Tips%20(Code%20with%20Beto).md)
+- [Native Look and Feel Guide](./react%20native%20dev%20guide/Native%20Look%20and%20Feel%20Guide.md)
+- [Internationalization (i18n) Guide](./react%20native%20dev%20guide/Internationalization%20(i18n)%20Guide.md)
+
+
+
+
+---
+
+## 🛠️ Getting Started
+
+### 1. Install Dependencies
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Configure Environment
+Create a `.env` file (if not already present) and set your API base URL:
+```env
+EXPO_PUBLIC_API_URL=https://your-portal-domain.com/api/v1
+```
 
-### Other setup steps
+### 3. Start Development
+```bash
+npx expo start
+```
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+---
 
-## Learn more
+## 📦 Build & Deployment
 
-To learn more about developing your project with Expo, look at the following resources:
+This project uses **EAS (Expo Application Services)** for cloud builds and updates.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Check Updates:** `eas update --branch production`
+- **Build Android:** `eas build --platform android`
+- **Build iOS:** `eas build --platform ios`
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Alhamdulillah. Developed with ❤️ for PKN.

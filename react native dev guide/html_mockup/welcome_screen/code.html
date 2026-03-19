@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "edu-blue": "#0A2647",
+                        "growth-green": "#22C55E",
+                        "accent-blue": "#1E40AF",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>PKN Portal - Welcome</title>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .no-scrollbar::-webkit-scrollbar {
+                display: none;
+            }
+            .no-scrollbar {
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+        }
+        body {
+            background-color: #0A2647;
+            height: 100dvh;
+            overflow: hidden;
+        }
+        .bg-illustration {
+            background-image: linear-gradient(rgba(10, 38, 71, 0.7), rgba(10, 38, 71, 0.95)), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAp9-IZKKgwNHqLxtSCCjq4i-LluD1dc5DWrPKP2e98d83ic_8Kyw9UsrmqS1jj4fLeK7TzqLR8NbGt9k5lcIdoCTf7TaqrOCBhnd7ETPksdMROi7tsVk0AvajVbFsQv98ojs2dEZn4W0ycit6TPoL2faEqKkJteQXKGl1lXBsrOqy6gGhi867VABe3V4OtpcqIrg1FpJi4S9BMlneu8X09ohrQVcp8HOQcqqTVtJ3o-TKuMEBzVAM-K66fcfjJLtnIKXzvoZvkwQA");
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-display text-white">
+<div class="relative h-full w-full bg-illustration flex flex-col">
+<header class="flex items-center p-6 justify-between z-20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-growth-green text-3xl">school</span>
+<h2 class="text-white text-xl font-bold leading-tight tracking-tight">PKN Portal</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-sm font-medium text-white/70">Help</button>
+<button class="text-sm font-medium text-white bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">Language</button>
+</div>
+</header>
+<main class="flex-1 flex flex-col justify-end pb-12 px-6 max-w-lg mx-auto w-full z-10">
+<div class="space-y-6">
+<div class="text-center md:text-left">
+<h1 class="text-white tracking-tight text-3xl md:text-4xl font-bold leading-tight mb-3">
+                        Connect, Learn, and Grow with PKN Portal
+                    </h1>
+<p class="text-white/80 text-base font-normal leading-relaxed">
+                        The central hub for all PKN academic events, news, and registrations. Join a thriving community of researchers and students.
+                    </p>
+</div>
+<div class="flex gap-4 overflow-x-auto no-scrollbar py-2 -mx-2 px-2">
+<div class="flex-none w-[200px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-growth-green/20 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-growth-green text-xl">event_note</span>
+</div>
+<h3 class="font-bold text-sm text-white mb-1">Academic Events</h3>
+<p class="text-[10px] leading-tight text-white/60">Discover and register for conferences and seminars.</p>
+</div>
+<div class="flex-none w-[200px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-primary text-xl">newspaper</span>
+</div>
+<h3 class="font-bold text-sm text-white mb-1">Latest News</h3>
+<p class="text-[10px] leading-tight text-white/60">Stay updated with research breakthroughs.</p>
+</div>
+<div class="flex-none w-[200px] bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-4 flex flex-col items-center text-center">
+<div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-white text-xl">groups</span>
+</div>
+<h3 class="font-bold text-sm text-white mb-1">Global Network</h3>
+<p class="text-[10px] leading-tight text-white/60">Connect with mentors and industry experts.</p>
+</div>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full flex cursor-pointer items-center justify-center rounded-xl h-14 bg-growth-green text-edu-blue text-base font-bold transition-transform active:scale-95 shadow-lg shadow-growth-green/20">
+                        Get Started
+                    </button>
+<button class="w-full flex cursor-pointer items-center justify-center rounded-xl h-14 bg-white text-edu-blue text-base font-bold transition-transform active:scale-95 border border-white/20">
+                        Sign In
+                    </button>
+</div>
+</div>
+</main>
+<footer class="w-full py-4 text-center z-20">
+<p class="text-[10px] text-white/40 uppercase tracking-widest">
+                © 2024 PKN Portal. All academic rights reserved.
+            </p>
+</footer>
+<div class="absolute top-1/4 right-[-10%] w-64 h-64 bg-growth-green/20 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-1/4 left-[-10%] w-64 h-64 bg-primary/20 blur-[100px] rounded-full pointer-events-none"></div>
+</div>
+
+</body></html>

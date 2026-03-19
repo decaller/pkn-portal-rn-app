@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f8fafc",
+                        "background-dark": "#0f172a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.5rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            min-height: 100dvh;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .glass-effect {
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .dark .glass-effect {
+            background: rgba(15, 23, 42, 0.8);
+        }
+        .carousel-snap {
+            scroll-snap-type: x mandatory;
+        }
+        .carousel-item-snap {
+            scroll-snap-align: start;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col max-w-md mx-auto bg-white dark:bg-slate-900 shadow-2xl">
+<header class="flex items-center bg-white/80 dark:bg-slate-900/80 backdrop-blur-md p-4 pb-4 justify-between sticky top-0 z-30">
+<div class="flex items-center gap-3">
+<div class="bg-primary/10 p-2 rounded-xl">
+<span class="material-symbols-outlined text-primary text-2xl">grid_view</span>
+</div>
+<div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">PKN Portal</h2>
+<p class="text-[10px] font-medium text-slate-500 uppercase tracking-widest">Guest Access</p>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="flex size-10 items-center justify-center rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-[22px]">notifications</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-32">
+<div class="px-5 pt-6 pb-2">
+<h1 class="text-slate-900 dark:text-slate-100 text-2xl font-extrabold leading-tight tracking-tight">Welcome to PKN Portal</h1>
+<p class="text-slate-500 dark:text-slate-400 text-sm mt-1.5">Discover the latest industry events and updates.</p>
+</div>
+<section class="py-6 overflow-hidden">
+<div class="px-5 flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Featured Events</h3>
+<button class="text-primary text-sm font-bold bg-primary/5 px-3 py-1.5 rounded-full">View All</button>
+</div>
+<div class="flex overflow-x-auto gap-4 no-scrollbar px-5 carousel-snap">
+<div class="min-w-[85%] sm:min-w-[90%] flex-shrink-0 carousel-item-snap bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm transition-transform active:scale-[0.98]">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDt8mM8gMZbmkWrh9GdHkxjvutX8ceDPxljYFCvNWOhc1fvBcmb_S-0qOaIgFWeS8VQzErtSzwWasQw9a3-XoDpOMxNO3KhfLAHxKtvhMt3PjUsuwg900ZjbrLBozeyDUaggN1kFEQvi4qEiwLh7Uto5nB5cNfJfCh4VJXXJY0HQmC5BWqRGsNE-Cv5U_a5-KeHCN-7XSJ5ztr-7qPGVrV3CkdomL0VZd8q2lk0qMnvQiCpLwFHQv3fO004ioukLZhseLsBZh5xYPY')">
+<div class="p-3">
+<span class="text-[10px] font-bold uppercase tracking-widest text-white bg-primary px-3 py-1 rounded-full shadow-lg">Conference</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 leading-snug">Global Tech Summit 2024</h4>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm text-primary">calendar_month</span>
+<span>Oct 15 - 17, 2024</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span>San Francisco, CA</span>
+</div>
+</div>
+</div>
+</div>
+<div class="min-w-[85%] sm:min-w-[90%] flex-shrink-0 carousel-item-snap bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm transition-transform active:scale-[0.98]">
+<div class="h-48 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBhcMj-20FgReaRfKy1sXafe8MxFb7lEF9K7TvJFrihdyj_ej7gNXLxnldcdGYrl1bRmLf_Qo11lH0DaFvdxSCbLNSPRbsRTGpenvz2HGICURcMvA6xuBF-2NYg80Pbd2x7To-Ci0apD-8-c-Ivji47URRDWN87UVLVrqEFowcWrquF_iEhp5pxZFD2MhhR5ADgcZn6u6LbFdDRUG76ReG0kwkPeSsBQ88B1LaokK-ueNVlZjc1J-mV-6S-8pv5yKb1UseLkjr92BU')">
+<div class="p-3">
+<span class="text-[10px] font-bold uppercase tracking-widest text-white bg-primary px-3 py-1 rounded-full shadow-lg">Networking</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 leading-snug">Corporate Leaders Meetup</h4>
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-3">
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm text-primary">calendar_month</span>
+<span>Nov 2, 2024</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs font-medium">
+<span class="material-symbols-outlined text-sm text-primary">location_on</span>
+<span>Virtual Event</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-center gap-1.5 mt-4">
+<div class="size-1.5 rounded-full bg-primary"></div>
+<div class="size-1.5 rounded-full bg-slate-300 dark:bg-slate-700"></div>
+</div>
+</section>
+<section class="py-4">
+<div class="px-5 mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Featured Documents</h3>
+</div>
+<div class="flex overflow-x-auto gap-3 no-scrollbar px-5 pb-2">
+<div class="min-w-[160px] p-4 bg-slate-100/50 dark:bg-slate-800/30 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-start gap-3 opacity-60">
+<div class="size-10 rounded-xl bg-slate-200/50 dark:bg-slate-700/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">picture_as_pdf</span>
+</div>
+<div class="flex-1">
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 block leading-tight">Annual Industry Report 2023</span>
+<span class="text-[10px] text-slate-500 mt-1 block">PDF • 4.2 MB</span>
+</div>
+<div class="flex items-center gap-1 text-[9px] font-bold text-slate-500 uppercase tracking-tight">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                        Sign In to View
+                    </div>
+</div>
+<div class="min-w-[160px] p-4 bg-slate-100/50 dark:bg-slate-800/30 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-start gap-3 opacity-60">
+<div class="size-10 rounded-xl bg-slate-200/50 dark:bg-slate-700/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">description</span>
+</div>
+<div class="flex-1">
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 block leading-tight">Policy Guidelines v2.0</span>
+<span class="text-[10px] text-slate-500 mt-1 block">DOCX • 1.1 MB</span>
+</div>
+<div class="flex items-center gap-1 text-[9px] font-bold text-slate-500 uppercase tracking-tight">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                        Sign In to View
+                    </div>
+</div>
+<div class="min-w-[160px] p-4 bg-slate-100/50 dark:bg-slate-800/30 rounded-2xl border border-dashed border-slate-200 dark:border-slate-700 flex flex-col items-start gap-3 opacity-60">
+<div class="size-10 rounded-xl bg-slate-200/50 dark:bg-slate-700/50 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">table_chart</span>
+</div>
+<div class="flex-1">
+<span class="text-xs font-bold text-slate-700 dark:text-slate-300 block leading-tight">Q4 Market Statistics</span>
+<span class="text-[10px] text-slate-500 mt-1 block">XLSX • 2.8 MB</span>
+</div>
+<div class="flex items-center gap-1 text-[9px] font-bold text-slate-500 uppercase tracking-tight">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                        Sign In to View
+                    </div>
+</div>
+</div>
+<div class="flex justify-center gap-1 mt-4">
+<div class="w-1.5 h-1.5 rounded-full bg-slate-400 dark:bg-slate-600"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-slate-200 dark:bg-slate-800"></div>
+</div>
+</section>
+<section class="py-6">
+<div class="px-5 flex items-center justify-between mb-4">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold">Latest News</h3>
+<button class="text-primary text-sm font-bold bg-primary/5 px-3 py-1.5 rounded-full">Read More</button>
+</div>
+<div class="flex overflow-x-auto gap-4 no-scrollbar px-5 pb-4 carousel-snap">
+<div class="min-w-[280px] carousel-item-snap bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col">
+<div class="h-36 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCLM-osUg3JLGqMo1GRjH8_YIP8-pwWO81FXYAnADaJAALnsYhqwhgZBRPxOLNAGV0LpR8_Umz-hriadvUgSI-cP5dyXwtG3S80NfjPwaOzn5zdBinO7YjhKALjR3A7PVkUNQk4P-polhiUZ74i2AuGDIualfZTBrscQ1dXLmIlNMTURsd9aAiTlz9qsJTnjy1uMwPJVnbgG95GzQTfLQyhWeHQtV4tkl0WposqYUnbrkpCxHqY-6y9ozG_Xky2ewjXEcIN9xIIu7k')"></div>
+<div class="p-4 flex flex-col flex-1">
+<h4 class="font-bold text-slate-900 dark:text-slate-100 text-sm leading-snug line-clamp-2">New Digital Services Portal Launched for PKN Members</h4>
+<p class="text-slate-500 dark:text-slate-400 text-[11px] mt-2 line-clamp-2">The portal offers seamless access to all member benefits, including specialized technical documentation.</p>
+<div class="flex items-center gap-2 mt-auto pt-3">
+<span class="bg-primary/10 text-primary text-[9px] font-bold px-2 py-0.5 rounded">Update</span>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-medium">2 hours ago</p>
+</div>
+</div>
+</div>
+<div class="min-w-[280px] carousel-item-snap bg-slate-50 dark:bg-slate-800/50 rounded-2xl overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm flex flex-col">
+<div class="h-36 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDLSZJd9vp2cfJlIsoUSWT1fLXD5YAweSL2SeYFwrx-dpev5N9quIkd2mPx5MxD0HloSF1E-v4X7Vcgt5uWj84Wp32VsXIEevhveyZ1JuKYCrpEH0Qyj1iDtTeY72NulyphmIwbebzP7kkHCTKUQBeivKbpSD0U_YjzDUBekPgNkY3wfV1WRYU4VJoHkdcE8FW0oW0S2yplakc-cDeEWndBa8Eurha5TfeRyTDi70HSpHxnyNa7kER-uZCnZTsK8SzQQj2bDkMQ44M')"></div>
+<div class="p-4 flex flex-col flex-1">
+<h4 class="font-bold text-slate-900 dark:text-slate-100 text-sm leading-snug line-clamp-2">Quarterly Industry Trends Report: Autumn Edition</h4>
+<p class="text-slate-500 dark:text-slate-400 text-[11px] mt-2 line-clamp-2">Detailed analysis of the latest shifts in global manufacturing and distribution strategies.</p>
+<div class="flex items-center gap-2 mt-auto pt-3">
+<span class="bg-primary/10 text-primary text-[9px] font-bold px-2 py-0.5 rounded">Reports</span>
+<p class="text-slate-400 dark:text-slate-500 text-[10px] font-medium">Yesterday</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<div class="px-5 mt-4 mb-10">
+<div class="relative overflow-hidden flex flex-col rounded-3xl bg-primary text-white p-7 shadow-xl shadow-primary/20">
+<div class="relative z-10">
+<h3 class="text-xl font-extrabold mb-2">Get the full experience</h3>
+<p class="text-white/80 text-sm mb-6 leading-relaxed">Sign in to track registrations, view exclusive documents, and manage your profile.</p>
+<button class="w-full bg-white text-primary font-bold py-3.5 px-4 rounded-xl hover:bg-slate-100 transition-colors flex items-center justify-center gap-2 shadow-lg">
+<span>Sign In Now</span>
+<span class="material-symbols-outlined text-[20px]">login</span>
+</button>
+</div>
+<div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+<div class="absolute bottom-0 left-0 w-24 h-24 bg-black/10 rounded-full -ml-12 -mb-12 blur-xl"></div>
+</div>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto flex gap-2 border-t border-slate-100 dark:border-slate-800 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md px-5 pb-7 pt-3 z-40">
+<a class="flex flex-1 flex-col items-center justify-center gap-1.5 text-primary" href="#">
+<span class="material-symbols-outlined text-[26px]" style="font-variation-settings: 'FILL' 1">home</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Home</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1.5 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">event</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Events</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1.5 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">article</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">News</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1.5 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">description</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Docs</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1.5 text-slate-400 dark:text-slate-500" href="#">
+<span class="material-symbols-outlined text-[26px]">person</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Sign In</p>
+</a>
+</nav>
+</div>
+
+</body></html>
