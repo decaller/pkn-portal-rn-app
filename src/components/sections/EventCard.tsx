@@ -6,7 +6,9 @@ import React from 'react';
 import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/Badge';
+
 import { colors, spacing, borderRadius, shadows, typography } from '@/theme';
 import type { EventItem } from '@/types';
 
@@ -16,20 +18,13 @@ interface EventCardProps {
   variant?: 'full' | 'compact' | 'horizontal';
 }
 
-function getStatusBadgeVariant(status: EventItem['status']) {
-  switch (status) {
-    case 'upcoming':
-      return 'info';
-    case 'ongoing':
-      return 'success';
-    case 'past':
-      return 'neutral';
-    case 'cancelled':
-      return 'danger';
-    default:
-      return 'neutral';
-  }
+function getStatusBadge(event: EventItem) {
+  if (!event.is_published) return { label: 'Draft', variant: 'neutral' as const };
+  if (event.is_full) return { label: 'Full', variant: 'danger' as const };
+  if (event.allow_registration) return { label: 'Open', variant: 'success' as const };
+  return { label: 'Closed', variant: 'neutral' as const };
 }
+
 
 function formatDate(dateStr: string) {
   const date = new Date(dateStr);
@@ -41,6 +36,8 @@ function formatDate(dateStr: string) {
 }
 
 export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) {
+  const { t } = useTranslation();
+
   if (variant === 'horizontal') {
     return (
       <Pressable
@@ -55,14 +52,14 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
         accessibilityLabel={event.title}
       >
         <Image
-          source={{ uri: event.image?.url }}
+          source={{ uri: event.cover_image ?? undefined }}
           style={styles.horizontalImage}
           contentFit="cover"
           placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
           transition={300}
         />
         <View style={styles.horizontalContent}>
-          <Badge label={event.status} variant={getStatusBadgeVariant(event.status)} />
+          <Badge label={getStatusBadge(event).label} variant={getStatusBadge(event).variant} />
           <Text style={styles.horizontalTitle} numberOfLines={2}>
             {event.title}
           </Text>
@@ -71,6 +68,7 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
             <Text style={styles.metaText}>{formatDate(event.event_date)}</Text>
           </View>
         </View>
+
       </Pressable>
     );
   }
@@ -88,7 +86,7 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
       accessibilityLabel={event.title}
     >
       <Image
-        source={{ uri: event.image?.url }}
+        source={{ uri: event.cover_image ?? undefined }}
         style={styles.image}
         contentFit="cover"
         placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
@@ -96,10 +94,10 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
       />
       <View style={styles.content}>
         <View style={styles.headerRow}>
-          <Badge label={event.status} variant={getStatusBadgeVariant(event.status)} />
+          <Badge label={getStatusBadge(event).label} variant={getStatusBadge(event).variant} />
           {event.available_spots !== null && event.available_spots > 0 && (
             <Text style={styles.spotsText}>
-              {event.available_spots} spots left
+              {event.available_spots} {t?.('common.spotsLeft') ?? 'spots left'}
             </Text>
           )}
         </View>
@@ -117,11 +115,12 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
           <View style={styles.metaRow}>
             <Ionicons name="location-outline" size={14} color={colors.text.tertiary} />
             <Text style={styles.metaText} numberOfLines={1}>
-              {event.location}
+              {event.city || event.nation || 'TBA'}
             </Text>
           </View>
         </View>
       </View>
+
     </Pressable>
   );
 }

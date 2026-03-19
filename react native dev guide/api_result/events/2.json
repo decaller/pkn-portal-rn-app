@@ -1,0 +1,63 @@
+{
+  "data": {
+    "id": 2,
+    "title": "PKN Regional Workshop 2026",
+    "slug": "pkn-regional-workshop-2026",
+    "summary": null,
+    "description": "<p>Regional offline workshop and networking session.<\/p>",
+    "event_date": "2026-09-04",
+    "city": null,
+    "province": null,
+    "nation": null,
+    "duration_days": null,
+    "google_maps_url": null,
+    "cover_image": "http:\/\/localhost\/storage\/event-covers\/01KK1AQ3RZ1WHA58XT29YTGGBT.png",
+    "photos": [],
+    "files": [],
+    "documentation": [],
+    "is_published": true,
+    "allow_registration": true,
+    "max_capacity": null,
+    "available_spots": null,
+    "is_full": false,
+    "registration_packages": [
+      { "name": "Regular", "price": 75000, "max_quota": null },
+      { "name": "VIP", "price": 200000, "max_quota": null }
+    ],
+    "rundown": [
+      {
+        "type": "advanced",
+        "data": {
+          "title": "Tes",
+          "date": "0001-01-01",
+          "place": null,
+          "start_time": "-",
+          "end_time": "-",
+          "speaker": null,
+          "description": "<p><\/p>",
+          "session_files": [
+            "events\/pkn-regional-workshop-2026\/sessions\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+            "events\/pkn-regional-workshop-2026\/sessions\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/2. BAKAT - TB - 40.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/2. BAKAT - TB - 40.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/6. Implementasi Kurikulum PKN Pada  Persekolahan.pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/6. Implementasi Kurikulum PKN Pada  Persekolahan.pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pdf",
+            "events\/pkn-regional-workshop-2026\/sessions\/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pptx",
+            "events\/pkn-regional-workshop-2026\/sessions\/PROGRAM PEMBELAJARAN 40 PILAR KARAKTER NABAWIYAH (1)-digabungkan.pdf"
+          ],
+          "links": []
+        }
+      }
+    ],
+    "tags": [],
+    "testimonials": []
+  }
+}

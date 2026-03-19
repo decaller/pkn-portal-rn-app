@@ -10,8 +10,19 @@ import { StatusBar } from 'expo-status-bar';
 
 import { useAppStore } from '@/store/appStore';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      retry: 2,
+    },
+  },
+});
 
 // Prevent splash screen from auto-hiding
+
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
@@ -29,28 +40,31 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen
-          name="events/[id]"
-          options={{ headerShown: false, animation: 'slide_from_right' }}
-        />
-        <Stack.Screen
-          name="news/index"
-          options={{
-            headerShown: true,
-            title: 'News & Articles',
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="news/[id]"
-          options={{ headerShown: false, animation: 'slide_from_right' }}
-        />
-      </Stack>
-    </GestureHandlerRootView>
+    <QueryClientProvider client={queryClient}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <StatusBar style="auto" />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen
+            name="events/[id]"
+            options={{ headerShown: false, animation: 'slide_from_right' }}
+          />
+          <Stack.Screen
+            name="news/index"
+            options={{
+              headerShown: true,
+              title: 'News & Articles',
+              animation: 'slide_from_right',
+            }}
+          />
+          <Stack.Screen
+            name="news/[id]"
+            options={{ headerShown: false, animation: 'slide_from_right' }}
+          />
+        </Stack>
+      </GestureHandlerRootView>
+    </QueryClientProvider>
   );
 }
+

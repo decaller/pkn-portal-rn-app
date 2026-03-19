@@ -1,0 +1,235 @@
+{
+  "data": [
+    {
+      "id": 2,
+      "title": "PKN Regional Workshop 2026",
+      "slug": "pkn-regional-workshop-2026",
+      "summary": null,
+      "description": "<p>Regional offline workshop and networking session.<\/p>",
+      "event_date": "2026-09-04",
+      "city": null,
+      "province": null,
+      "nation": null,
+      "duration_days": null,
+      "google_maps_url": null,
+      "cover_image": "http:\/\/localhost\/storage\/event-covers\/01KK1AQ3RZ1WHA58XT29YTGGBT.png",
+      "photos": [],
+      "files": [],
+      "documentation": [],
+      "is_published": true,
+      "allow_registration": true,
+      "max_capacity": null,
+      "available_spots": null,
+      "is_full": false,
+      "registration_packages": [
+        { "name": "Regular", "price": 75000, "max_quota": null },
+        { "name": "VIP", "price": 200000, "max_quota": null }
+      ],
+      "rundown": [
+        {
+          "type": "advanced",
+          "data": {
+            "title": "Tes",
+            "date": "0001-01-01",
+            "place": null,
+            "start_time": "-",
+            "end_time": "-",
+            "speaker": null,
+            "description": "<p><\/p>",
+            "session_files": [
+              "events\/pkn-regional-workshop-2026\/sessions\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+              "events\/pkn-regional-workshop-2026\/sessions\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/2. BAKAT - TB - 40.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/2. BAKAT - TB - 40.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/6. Implementasi Kurikulum PKN Pada  Persekolahan.pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/6. Implementasi Kurikulum PKN Pada  Persekolahan.pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pdf",
+              "events\/pkn-regional-workshop-2026\/sessions\/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pptx",
+              "events\/pkn-regional-workshop-2026\/sessions\/PROGRAM PEMBELAJARAN 40 PILAR KARAKTER NABAWIYAH (1)-digabungkan.pdf"
+            ],
+            "links": []
+          }
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": 1,
+      "title": "PKN National Conference 2026",
+      "slug": "pkn-national-conference-2026",
+      "summary": null,
+      "description": "<p>Annual national offline conference by PKN.<\/p>",
+      "event_date": "2026-06-04",
+      "city": null,
+      "province": null,
+      "nation": null,
+      "duration_days": null,
+      "google_maps_url": null,
+      "cover_image": null,
+      "photos": [],
+      "files": [],
+      "documentation": [],
+      "is_published": true,
+      "allow_registration": true,
+      "max_capacity": null,
+      "available_spots": null,
+      "is_full": false,
+      "registration_packages": [
+        { "name": "Regular", "price": 100000, "max_quota": null },
+        { "name": "VIP", "price": 250000, "max_quota": null }
+      ],
+      "rundown": [
+        {
+          "type": "advanced",
+          "data": {
+            "title": "Ju",
+            "date": null,
+            "place": null,
+            "start_time": null,
+            "end_time": null,
+            "speaker": null,
+            "description": "<p><\/p>",
+            "session_files": [
+              "events\/pkn-national-conference-2026\/sessions\/1. Mengembalikan Pendidikan ke asalnya.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/1. Mengembalikan Pendidikan ke asalnya.pptx",
+              "events\/pkn-national-conference-2026\/sessions\/2. Menangani anak yang bermasalah.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/2. Menangani anak yang bermasalah.pptx",
+              "events\/pkn-national-conference-2026\/sessions\/3. Pembelajaran Alamiyah.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/3. Pembelajaran Alamiyah.pptx",
+              "events\/pkn-national-conference-2026\/sessions\/4. BAKAT - TB - 40.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/4. BAKAT - TB - 40.pptx",
+              "events\/pkn-national-conference-2026\/sessions\/6. Tambal Sulam Pembelajaran.pptx",
+              "events\/pkn-national-conference-2026\/sessions\/6. Tambal Sulam Pembelajaran.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/a. Lembar RENCANA PEMBELAJARAN KARAKTER (RPP).pdf",
+              "events\/pkn-national-conference-2026\/sessions\/b. Lembar PELAKSANAAN PEMBELAJARAN KARAKTER.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/c.2. lembar OBSERVASI PERTUMBUHAN KARAKTER.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/c.1. Lembar OBSERVASI PEMETAAN KARAKTER.pdf",
+              "events\/pkn-national-conference-2026\/sessions\/d. 40 DAFTAR KARAKTER - DEFINISI (ANAK).pdf"
+            ],
+            "links": []
+          }
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": 4,
+      "title": "PKN Mini Summit 2024",
+      "slug": "pkn-mini-summit-2024",
+      "summary": null,
+      "description": "<p>Past mini summit used for testing.<\/p>",
+      "event_date": "2025-07-04",
+      "city": null,
+      "province": null,
+      "nation": null,
+      "duration_days": null,
+      "google_maps_url": null,
+      "cover_image": null,
+      "photos": [],
+      "files": [],
+      "documentation": [],
+      "is_published": true,
+      "allow_registration": false,
+      "max_capacity": null,
+      "available_spots": null,
+      "is_full": false,
+      "registration_packages": [
+        { "name": "Regular", "price": 75000, "max_quota": null },
+        { "name": "VIP", "price": 200000, "max_quota": null }
+      ],
+      "rundown": [
+        {
+          "type": "advanced",
+          "data": {
+            "title": "hh",
+            "date": null,
+            "place": null,
+            "start_time": null,
+            "end_time": null,
+            "speaker": null,
+            "description": "<p><\/p>",
+            "session_files": [
+              "events\/pkn-mini-summit-2024\/sessions\/0. Konsep PKN.pptx",
+              "events\/pkn-mini-summit-2024\/sessions\/1. Jiwa dan Metode Mendidiknya.pptx",
+              "events\/pkn-mini-summit-2024\/sessions\/2. Mendidik Sesuai Fase Perkembangan Anak.pptx",
+              "events\/pkn-mini-summit-2024\/sessions\/3. TAFSIR BAKAT TB-40.pptx",
+              "events\/pkn-mini-summit-2024\/sessions\/4. Pembelajaran Alamiah.pptx"
+            ],
+            "links": []
+          }
+        }
+      ],
+      "tags": []
+    },
+    {
+      "id": 3,
+      "title": "PKN Recap 2023",
+      "slug": "pkn-recap-2023",
+      "summary": null,
+      "description": "Past recap event used for tests.",
+      "event_date": "2025-03-04",
+      "city": null,
+      "province": null,
+      "nation": null,
+      "duration_days": null,
+      "google_maps_url": null,
+      "cover_image": null,
+      "photos": [],
+      "files": [],
+      "documentation": [],
+      "is_published": true,
+      "allow_registration": false,
+      "max_capacity": null,
+      "available_spots": null,
+      "is_full": false,
+      "registration_packages": [
+        { "name": "Regular", "price": 100000 },
+        { "name": "VIP", "price": 250000 }
+      ],
+      "rundown": null,
+      "tags": null
+    }
+  ],
+  "links": {
+    "first": "http:\/\/localhost\/api\/v1\/events?page=1",
+    "last": "http:\/\/localhost\/api\/v1\/events?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "links": [
+      {
+        "url": null,
+        "label": "&laquo; Sebelumnya",
+        "page": null,
+        "active": false
+      },
+      {
+        "url": "http:\/\/localhost\/api\/v1\/events?page=1",
+        "label": "1",
+        "page": 1,
+        "active": true
+      },
+      {
+        "url": null,
+        "label": "Berikutnya &raquo;",
+        "page": null,
+        "active": false
+      }
+    ],
+    "path": "http:\/\/localhost\/api\/v1\/events",
+    "per_page": 15,
+    "to": 4,
+    "total": 4
+  }
+}

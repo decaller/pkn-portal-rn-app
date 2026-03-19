@@ -20,29 +20,51 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
 import { colors, spacing } from '@/theme';
 import { MOCK_EVENTS } from '@/services/mockData';
-import type { EventItem } from '@/types';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/services/api';
+import type { EventItem, EventsResponse } from '@/types';
 
-const FILTERS = ['all', 'upcoming', 'ongoing', 'past'] as const;
+const FILTERS = ['all', 'upcoming', 'past'] as const;
 
 export function EventsListScreen() {
   const { t } = useTranslation();
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [refreshing, setRefreshing] = useState(false);
-  const [loading] = useState(false);
 
-  const filteredEvents = MOCK_EVENTS.filter((event) => {
+  const {
+    data: eventsData,
+    isLoading,
+    refetch,
+  } = useQuery<EventsResponse>({
+    queryKey: ['events'],
+    queryFn: async () => {
+      const resp = await api.get('/events');
+      return resp.data;
+    },
+  });
+
+  const allEvents = eventsData?.data || [];
+
+  const filteredEvents = allEvents.filter((event) => {
     const matchesSearch =
       !search || event.title.toLowerCase().includes(search.toLowerCase());
+
+    const isPast = new Date(event.event_date) < new Date();
     const matchesFilter =
-      activeFilter === 'all' || event.status === activeFilter;
+      activeFilter === 'all' ||
+      (activeFilter === 'upcoming' && !isPast) ||
+      (activeFilter === 'past' && isPast);
+
     return matchesSearch && matchesFilter;
   });
 
-  const onRefresh = useCallback(() => {
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    setTimeout(() => setRefreshing(false), 1500);
-  }, []);
+    await refetch();
+    setRefreshing(false);
+  }, [refetch]);
+
 
   const handleEventPress = (event: EventItem) => {
     router.push(`/events/${event.id}`);
@@ -53,9 +75,10 @@ export function EventsListScreen() {
     setActiveFilter('all');
   };
 
-  if (loading) {
+  if (isLoading && !eventsData) {
     return (
       <View style={styles.container}>
+
         <View style={styles.searchSection}>
           <SearchBar
             value=""

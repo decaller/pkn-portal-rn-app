@@ -1,0 +1,57 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Registration Open: PKN National Conference 2026",
+      "content": "<p>Registration is now open for <strong>PKN National Conference 2026<\/strong> on 04 Jun 2026.<\/p><p><a href=\"http:\/\/localhost\/user\/event-registrations\/create?tenant=ybit&event_id=1\">Click here to register now<\/a>.<\/p>",
+      "thumbnail": null,
+      "is_published": true,
+      "event_id": null,
+      "created_at": "2026-03-04T22:41:56+00:00"
+    },
+    {
+      "id": 2,
+      "title": "Registration Open: PKN Regional Workshop 2026",
+      "content": "<p>Registration is now open for <strong>PKN Regional Workshop 2026<\/strong> on 04 Sep 2026.<\/p><p><a href=\"http:\/\/localhost\/user\/event-registrations\/create?tenant=ybit&event_id=2\">Click here to register now<\/a>.<\/p>",
+      "thumbnail": null,
+      "is_published": true,
+      "event_id": null,
+      "created_at": "2026-03-04T22:41:56+00:00"
+    }
+  ],
+  "links": {
+    "first": "http:\/\/localhost\/api\/v1\/news?page=1",
+    "last": "http:\/\/localhost\/api\/v1\/news?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "links": [
+      {
+        "url": null,
+        "label": "&laquo; Sebelumnya",
+        "page": null,
+        "active": false
+      },
+      {
+        "url": "http:\/\/localhost\/api\/v1\/news?page=1",
+        "label": "1",
+        "page": 1,
+        "active": true
+      },
+      {
+        "url": null,
+        "label": "Berikutnya &raquo;",
+        "page": null,
+        "active": false
+      }
+    ],
+    "path": "http:\/\/localhost\/api\/v1\/news",
+    "per_page": 15,
+    "to": 2,
+    "total": 2
+  }
+}

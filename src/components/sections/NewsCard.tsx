@@ -23,6 +23,8 @@ function formatDate(dateStr: string) {
 }
 
 export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProps) {
+  const imageUrl = article.thumbnail;
+
   if (variant === 'featured') {
     return (
       <Pressable
@@ -37,22 +39,17 @@ export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProp
         accessibilityLabel={article.title}
       >
         <Image
-          source={{ uri: article.image?.url }}
+          source={{ uri: imageUrl ?? undefined }}
           style={styles.featuredImage}
           contentFit="cover"
           placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
           transition={300}
         />
         <View style={styles.featuredOverlay}>
-          {article.category && (
-            <View style={styles.categoryBadge}>
-              <Text style={styles.categoryText}>{article.category}</Text>
-            </View>
-          )}
           <Text style={styles.featuredTitle} numberOfLines={2}>
             {article.title}
           </Text>
-          <Text style={styles.featuredDate}>{formatDate(article.published_at)}</Text>
+          <Text style={styles.featuredDate}>{formatDate(article.created_at)}</Text>
         </View>
       </Pressable>
     );
@@ -69,9 +66,9 @@ export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProp
       accessibilityRole="button"
       accessibilityLabel={article.title}
     >
-      {article.image && (
+      {imageUrl && (
         <Image
-          source={{ uri: article.image.url }}
+          source={{ uri: imageUrl }}
           style={styles.compactImage}
           contentFit="cover"
           placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
@@ -83,13 +80,15 @@ export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProp
           {article.title}
         </Text>
         <Text style={styles.compactExcerpt} numberOfLines={2}>
-          {article.excerpt}
+          {(article.content || '').replace(/<[^>]*>?/gm, '').trim()}
         </Text>
-        <Text style={styles.compactDate}>{formatDate(article.published_at)}</Text>
+
+        <Text style={styles.compactDate}>{formatDate(article.created_at)}</Text>
       </View>
     </Pressable>
   );
 }
+
 
 const styles = StyleSheet.create({
   // Featured variant

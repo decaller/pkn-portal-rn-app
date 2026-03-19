@@ -46,14 +46,38 @@ function MetaTile({
   );
 }
 
+import { useQuery } from '@tanstack/react-query';
+import api from '@/services/api';
+import type { EventItem } from '@/types';
+import { ActivityIndicator } from 'react-native';
+
+import { useAppStore } from '@/store/appStore';
+
 export function EventDetailScreen() {
   const { t } = useTranslation();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const event = MOCK_EVENTS.find((e) => e.id === Number(id)) ?? MOCK_EVENTS[0];
+  const { isAuthenticated } = useAppStore();
 
-  const similarEvents = MOCK_EVENTS.filter((e) => e.id !== event.id).slice(0, 3);
+  const { data: eventResp, isLoading } = useQuery<{ data: EventItem }>({
 
-  const formatDate = (dateStr: string) => {
+    queryKey: ['event', id],
+    queryFn: async () => {
+      const resp = await api.get(`/events/${id}`);
+      return resp.data;
+    },
+  });
+
+  const event = eventResp?.data;
+
+  const getStatusBadge = (e: EventItem) => {
+    if (!e.is_published) return { label: 'Draft', variant: 'neutral' as const };
+    if (e.is_full) return { label: 'Full', variant: 'danger' as const };
+    if (e.allow_registration) return { label: 'Open', variant: 'success' as const };
+    return { label: 'Closed', variant: 'neutral' as const };
+  };
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return '';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', {
       weekday: 'long',
@@ -63,16 +87,39 @@ export function EventDetailScreen() {
     });
   };
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
+
   const handleShare = async () => {
+    if (!event) return;
     try {
       await Share.share({
         message: `Check out: ${event.title}`,
         title: event.title,
       });
-    } catch (error) {
-      // Intentionally empty
-    }
+    } catch (error) {}
   };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color={colors.brand.primary} />
+      </View>
+    );
+  }
+
+  if (!event) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={typography.headline}>{t('events.notFound')}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -84,7 +131,7 @@ export function EventDetailScreen() {
         {/* Hero Image */}
         <View style={styles.heroSection}>
           <Image
-            source={{ uri: event.image?.url }}
+            source={{ uri: event.cover_image ?? undefined }}
             style={styles.heroImage}
             contentFit="cover"
             placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
@@ -113,24 +160,15 @@ export function EventDetailScreen() {
         <View style={styles.contentSection}>
           {/* Status & Title */}
           <Badge
-            label={event.status}
-            variant={
-              event.status === 'upcoming'
-                ? 'info'
-                : event.status === 'ongoing'
-                  ? 'success'
-                  : 'neutral'
-            }
+            label={getStatusBadge(event).label}
+            variant={getStatusBadge(event).variant}
           />
           <Text style={styles.title}>{event.title}</Text>
-          {event.category && (
-            <Text style={styles.category}>{event.category}</Text>
-          )}
 
           {/* Metadata Tiles */}
           <View style={styles.metaGrid}>
             <MetaTile icon="calendar" label="Date" value={formatDate(event.event_date)} />
-            <MetaTile icon="location" label="Location" value={event.location} />
+            <MetaTile icon="location" label="Location" value={event.city || 'TBA'} />
             <MetaTile
               icon="people"
               label="Spots"
@@ -143,7 +181,7 @@ export function EventDetailScreen() {
             <MetaTile
               icon="clipboard"
               label="Registration"
-              value={event.registration_open ? 'Open' : 'Closed'}
+              value={event.allow_registration ? 'Open' : 'Closed'}
             />
           </View>
 
@@ -151,56 +189,80 @@ export function EventDetailScreen() {
           <View style={styles.descriptionSection}>
             <Text style={styles.sectionTitle}>{t('events.eventDetails')}</Text>
             <Text style={styles.description}>
-              {event.summary}
-              {'\n\n'}
-              Join us for this exceptional event featuring world-class speakers,
-              interactive workshops, and networking opportunities. This event brings
-              together professionals from various fields to share knowledge and best
-              practices.
-              {'\n\n'}
-              The event includes keynote presentations, panel discussions, breakout
-              sessions, and a networking dinner. All participants will receive a
-              certificate of attendance and access to event materials.
+              {(event.description || '').replace(/<[^>]*>?/gm, '').trim()}
             </Text>
           </View>
 
-          {/* Packages Preview */}
-          <View style={styles.packagesSection}>
-            <Text style={styles.sectionTitle}>{t('events.packages')}</Text>
-            <View style={[styles.packageCard, shadows.sm]}>
-              <Text style={styles.packageName}>Standard Package</Text>
-              <Text style={styles.packagePrice}>IDR 1,500,000</Text>
-              <Text style={styles.packageDesc}>
-                Full access to all sessions, materials, and networking dinner.
-              </Text>
-            </View>
-            <View style={[styles.packageCard, shadows.sm]}>
-              <Text style={styles.packageName}>Premium Package</Text>
-              <Text style={styles.packagePrice}>IDR 2,500,000</Text>
-              <Text style={styles.packageDesc}>
-                Everything in Standard plus VIP seating, 1-on-1 mentoring session, and exclusive gift bag.
-              </Text>
-            </View>
-          </View>
+          {/* Rundown / Agenda */}
+          {event.rundown && event.rundown.length > 0 && (
+            <View style={styles.packagesSection}>
+              <Text style={styles.sectionTitle}>Agenda</Text>
+              {event.rundown.map((item, idx) => (
+                <View key={idx} style={[styles.packageCard, { padding: spacing.md }]}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                    <Text style={styles.packageName}>{item.data.title}</Text>
+                    <Text style={styles.packageDesc}>{item.data.start_time || item.data.date || '-'}</Text>
+                  </View>
+                  
+                  {item.data.speaker && (
+                    <Text style={[styles.packageDesc, { marginTop: 4, fontStyle: 'italic' }]}>
+                      Speaker: {item.data.speaker}
+                    </Text>
+                  )}
 
-          {/* Similar Events */}
-          {similarEvents.length > 0 && (
-            <>
-              <SectionHeader title={t('events.similarEvents')} />
-              <FlatList
-                data={similarEvents}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                  <EventCard
-                    event={item}
-                    onPress={() => router.push(`/events/${item.id}`)}
-                    variant="horizontal"
-                  />
-                )}
-              />
-            </>
+                  {/* Session Files */}
+                  {item.data.session_files && item.data.session_files.length > 0 && (
+                    <View style={{ marginTop: spacing.md, gap: spacing.xs }}>
+                      <Text style={[typography.caption1, { fontWeight: '600', color: colors.text.secondary }]}>
+                        Materials:
+                      </Text>
+                      {item.data.session_files.map((file, fIdx) => {
+                        const fileName = file.split('/').pop() || 'Untitled';
+                        const isPDF = file.toLowerCase().endsWith('.pdf');
+                        const isXLS = file.toLowerCase().endsWith('.xlsx') || file.toLowerCase().endsWith('.xls');
+
+                        return (
+                          <View key={fIdx} style={{ flexDirection: 'row', alignItems: 'center', gap: 8, paddingVertical: 4 }}>
+                            <Ionicons 
+                              name={isPDF ? 'document-text' : isXLS ? 'grid' : 'document'} 
+                              size={16} 
+                              color={colors.text.tertiary} 
+                            />
+                            <Text style={[typography.caption2, { flex: 1 }]} numberOfLines={1}>
+                              {fileName}
+                            </Text>
+                            {!isAuthenticated ? (
+                              <Ionicons name="lock-closed" size={14} color={colors.status.warning} />
+                            ) : (
+                              <Ionicons name="download-outline" size={14} color={colors.brand.primary} />
+                            )}
+                          </View>
+                        );
+                      })}
+                      {!isAuthenticated && (
+                        <Text style={[typography.caption2, { color: colors.text.tertiary, fontStyle: 'italic', marginTop: 4 }]}>
+                          {t('events.loginToAccessFiles')}
+                        </Text>
+                      )}
+                    </View>
+                  )}
+                </View>
+              ))}
+            </View>
+          )}
+
+
+          {/* Packages Preview */}
+          {event.registration_packages && event.registration_packages.length > 0 && (
+            <View style={styles.packagesSection}>
+              <Text style={styles.sectionTitle}>{t('events.packages')}</Text>
+              {event.registration_packages.map((pkg, idx) => (
+                <View key={idx} style={[styles.packageCard, shadows.sm]}>
+                  <Text style={styles.packageName}>{pkg.name}</Text>
+                  <Text style={styles.packagePrice}>{formatCurrency(pkg.price)}</Text>
+                </View>
+              ))}
+            </View>
           )}
 
           <View style={{ height: 120 }} />
@@ -209,11 +271,13 @@ export function EventDetailScreen() {
 
       {/* Sticky CTA */}
       <View style={[styles.stickyBar, shadows.lg]}>
-        {event.registration_open ? (
+        {event.allow_registration ? (
           <View style={styles.stickyContent}>
             <View>
               <Text style={styles.stickyLabel}>{t('events.startingFrom')}</Text>
-              <Text style={styles.stickyPrice}>IDR 1,500,000</Text>
+              <Text style={styles.stickyPrice}>
+                {event.registration_packages?.[0] ? formatCurrency(event.registration_packages[0].price) : '-'}
+              </Text>
             </View>
             <Pressable
               onPress={() => {}}
@@ -239,6 +303,7 @@ export function EventDetailScreen() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

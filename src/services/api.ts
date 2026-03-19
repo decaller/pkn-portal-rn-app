@@ -5,8 +5,9 @@
  */
 import axios from 'axios';
 
-// TODO: Move to environment variable in production
-const API_BASE_URL = 'https://portal.pkn.or.id/api/v1';
+// Base URL configured via environment variables (.env files)
+const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'https://portal.pkn.or.id/api/v1';
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,

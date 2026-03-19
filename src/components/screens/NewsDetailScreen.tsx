@@ -11,15 +11,29 @@ import { useTranslation } from 'react-i18next';
 import { NewsCard } from '@/components/sections/NewsCard';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { colors, spacing, borderRadius, typography } from '@/theme';
-import { MOCK_NEWS } from '@/services/mockData';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/services/api';
+import type { NewsItem, NewsResponse } from '@/types';
+import { ActivityIndicator } from 'react-native';
 
 export function NewsDetailScreen() {
   const { t } = useTranslation();
   const { id } = useLocalSearchParams<{ id: string }>();
-  const article = MOCK_NEWS.find((a) => a.id === Number(id)) ?? MOCK_NEWS[0];
-  const related = MOCK_NEWS.filter((a) => a.id !== article.id).slice(0, 2);
 
-  const formatDate = (dateStr: string) => {
+  const { data: newsData, isLoading } = useQuery<NewsResponse>({
+    queryKey: ['news'],
+    queryFn: async () => {
+      const resp = await api.get('/news');
+      return resp.data;
+    },
+  });
+
+  const allNews = newsData?.data || [];
+  const article = allNews.find((a) => a.id === Number(id));
+  const related = allNews.filter((a) => a.id !== article?.id).slice(0, 2);
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return '';
     const date = new Date(dateStr);
     return date.toLocaleDateString('en-US', {
       day: 'numeric',
@@ -29,10 +43,27 @@ export function NewsDetailScreen() {
   };
 
   const handleShare = async () => {
+    if (!article) return;
     try {
       await Share.share({ message: article.title, title: article.title });
     } catch (_) {}
   };
+
+  if (isLoading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color={colors.brand.primary} />
+      </View>
+    );
+  }
+
+  if (!article) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <Text style={typography.headline}>{t('news.notFound')}</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
@@ -43,7 +74,7 @@ export function NewsDetailScreen() {
         {/* Hero Image */}
         <View style={styles.heroSection}>
           <Image
-            source={{ uri: article.image?.url }}
+            source={{ uri: article.thumbnail ?? undefined }}
             style={styles.heroImage}
             contentFit="cover"
             transition={300}
@@ -61,36 +92,16 @@ export function NewsDetailScreen() {
 
         {/* Content */}
         <View style={styles.content}>
-          {article.category && (
-            <View style={styles.categoryBadge}>
-              <Text style={styles.categoryText}>{article.category}</Text>
-            </View>
-          )}
           <Text style={styles.title}>{article.title}</Text>
           <View style={styles.meta}>
-            {article.author && (
-              <Text style={styles.author}>By {article.author}</Text>
-            )}
-            <Text style={styles.date}>{formatDate(article.published_at)}</Text>
+            <Text style={styles.date}>{formatDate(article.created_at)}</Text>
           </View>
 
           {/* Article Body */}
           <Text style={styles.body}>
-            {article.excerpt}
-            {'\n\n'}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Ut vel
-            eleifend ante. Donec sit amet sapien mollis, hendrerit tortor nec,
-            viverra dui. Praesent vitae ligula eu eros condimentum elementum.
-            {'\n\n'}
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque laudantium. Nemo enim ipsam voluptatem quia
-            voluptas sit aspernatur aut odit aut fugit.
-            {'\n\n'}
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui
-            blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-            et quas molestias excepturi sint occaecati cupiditate non provident.
+            {article.content.replace(/<[^>]*>?/gm, '').trim()}
           </Text>
+
 
           {/* Related Articles */}
           {related.length > 0 && (

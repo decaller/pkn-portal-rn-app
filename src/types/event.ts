@@ -1,53 +1,70 @@
 /**
  * TypeScript interfaces for Event-related API responses.
+ * Refined based on api_result/events.json
  */
 
-export interface EventImage {
-  url: string;
-  alt?: string;
-}
-
 export interface EventPackage {
-  id: number;
   name: string;
   price: number;
-  currency: string;
-  participant_limit?: number;
-  description?: string;
+  max_quota: number | null;
+}
+
+export interface RundownItem {
+  type: 'advanced' | string;
+  data: {
+    title: string;
+    date: string | null;
+    place: string | null;
+    start_time: string | null;
+    end_time: string | null;
+    speaker: string | null;
+    description: string;
+    session_files: string[];
+    links: string[];
+  };
 }
 
 export interface EventItem {
   id: number;
   title: string;
   slug: string;
-  summary: string;
-  description?: string;
-  event_date: string;
-  event_end_date?: string;
-  location: string;
-  available_spots: number | null;
-  registration_open: boolean;
-  registration_start?: string;
-  registration_end?: string;
-  image: EventImage | null;
-  packages?: EventPackage[];
-  category?: string;
-  status: 'upcoming' | 'ongoing' | 'past' | 'cancelled';
-}
-
-export interface EventDetail extends EventItem {
+  summary: string | null;
   description: string;
-  packages: EventPackage[];
-  similar_events: EventItem[];
-  organizer?: string;
+  event_date: string;
+  city: string | null;
+  province: string | null;
+  nation: string | null;
+  duration_days: number | null;
+  google_maps_url: string | null;
+  cover_image: string | null;
+  photos: string[];
+  files: string[];
+  documentation: string[];
+  is_published: boolean;
+  allow_registration: boolean;
+  max_capacity: number | null;
+  available_spots: number | null;
+  is_full: boolean;
+  registration_packages: EventPackage[];
+  rundown: RundownItem[] | null;
+  tags: string[] | null;
 }
 
 export interface EventsResponse {
   data: EventItem[];
+  links: {
+    first: string;
+    last: string;
+    prev: string | null;
+    next: string | null;
+  };
   meta: {
     current_page: number;
+    from: number;
     last_page: number;
     per_page: number;
+    to: number;
     total: number;
+    path: string;
   };
 }

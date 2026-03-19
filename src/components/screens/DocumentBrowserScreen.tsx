@@ -3,7 +3,7 @@
  * In Phase 1, shows a sign-in prompt since documents require auth.
  * Reference: event_documents_guest_view mockup, UX Flow Guide § 4.G
  */
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -11,76 +11,100 @@ import {
   Pressable,
   StyleSheet,
   Platform,
+  RefreshControl,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@tanstack/react-query';
+import api from '@/services/api';
+
 import { SearchBar } from '@/components/ui/SearchBar';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
-import { MOCK_DOCUMENTS } from '@/services/mockData';
+import { SkeletonCard } from '@/components/ui/SkeletonLoader';
+import { EmptyState } from '@/components/ui/EmptyState';
 
-function DocumentCard({ doc }: { doc: typeof MOCK_DOCUMENTS[0] }) {
-  const fileIcons: Record<string, keyof typeof Ionicons.glyphMap> = {
-    PDF: 'document-text',
-    DOCX: 'document',
-    XLSX: 'grid',
-    ZIP: 'archive',
+import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
+import type { DocumentItem, DocumentsResponse } from '@/types';
+
+import { useAppStore } from '@/store/appStore';
+
+function DocumentCard({ doc }: { doc: DocumentItem }) {
+  const { isAuthenticated } = useAppStore();
+  const getFileInfo = (mime: string) => {
+
+    if (mime.includes('pdf')) return { icon: 'document-text' as const, color: '#E74C3C', label: 'PDF' };
+    if (mime.includes('spreadsheet') || mime.includes('excel')) return { icon: 'grid' as const, color: '#27AE60', label: 'XLSX' };
+    if (mime.includes('presentation') || mime.includes('powerpoint')) return { icon: 'play-circle' as const, color: '#D35400', label: 'PPTX' };
+    if (mime.includes('word') || mime.includes('document')) return { icon: 'document' as const, color: '#2980B9', label: 'DOCX' };
+    if (mime.includes('zip') || mime.includes('compressed')) return { icon: 'archive' as const, color: '#F39C12', label: 'ZIP' };
+    return { icon: 'document' as const, color: colors.text.tertiary, label: 'FILE' };
   };
+
+  const info = getFileInfo(doc.mime_type);
 
   return (
     <View style={[styles.docCard, shadows.sm]}>
-      <View style={[styles.docIcon, { backgroundColor: getFileColor(doc.file_type) }]}>
-        <Ionicons
-          name={fileIcons[doc.file_type] ?? 'document'}
-          size={22}
-          color={colors.text.inverse}
-        />
+      <View style={[styles.docIcon, { backgroundColor: info.color }]}>
+        <Ionicons name={info.icon} size={22} color={colors.text.inverse} />
       </View>
       <View style={styles.docContent}>
         <Text style={styles.docTitle} numberOfLines={2}>
           {doc.title}
         </Text>
         <Text style={styles.docDesc} numberOfLines={1}>
-          {doc.description}
+          {doc.description || doc.original_filename}
         </Text>
         <View style={styles.docMeta}>
-          <Text style={styles.docMetaText}>{doc.file_type}</Text>
+          <Text style={styles.docMetaText}>{info.label}</Text>
           <Text style={styles.docMetaDot}>•</Text>
-          <Text style={styles.docMetaText}>{doc.file_size}</Text>
+          <Text style={styles.docMetaText}>{doc.tags && doc.tags.length > 0 ? doc.tags[0] : 'Public'}</Text>
         </View>
       </View>
-      <Pressable
-        style={({ pressed }) => [
-          styles.downloadButton,
-          Platform.OS === 'ios' && pressed ? { opacity: 0.7 } : {},
-        ]}
-        android_ripple={{ color: 'rgba(32, 138, 239, 0.15)' }}
-        accessibilityLabel="Download document"
-      >
-        <Ionicons name="download-outline" size={20} color={colors.brand.primary} />
-      </Pressable>
+      {isAuthenticated && (
+        <Pressable
+          style={({ pressed }) => [
+            styles.downloadButton,
+            Platform.OS === 'ios' && pressed ? { opacity: 0.7 } : {},
+          ]}
+          android_ripple={{ color: 'rgba(32, 138, 239, 0.15)' }}
+          accessibilityLabel="Download document"
+        >
+          <Ionicons name="download-outline" size={20} color={colors.brand.primary} />
+        </Pressable>
+      )}
+
     </View>
   );
 }
 
-function getFileColor(type: string): string {
-  switch (type) {
-    case 'PDF':
-      return '#E74C3C';
-    case 'DOCX':
-      return '#2980B9';
-    case 'XLSX':
-      return '#27AE60';
-    case 'ZIP':
-      return '#F39C12';
-    default:
-      return colors.text.tertiary;
-  }
-}
-
 export function DocumentBrowserScreen() {
   const { t } = useTranslation();
-  const [search, setSearch] = React.useState('');
+  const [search, setSearch] = useState('');
+  const [refreshing, setRefreshing] = useState(false);
+
+  const {
+    data: docsData,
+    isLoading,
+    refetch,
+  } = useQuery<DocumentsResponse>({
+    queryKey: ['documents'],
+    queryFn: async () => {
+      const resp = await api.get('/documents');
+      return resp.data;
+    },
+  });
+
+  const allDocs = docsData?.data || [];
+  const filteredDocs = allDocs.filter((doc) =>
+    doc.title.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
 
   return (
     <View style={styles.container}>
@@ -117,12 +141,31 @@ export function DocumentBrowserScreen() {
       <SectionHeader title={t('documents.allDocuments')} />
 
       <FlatList
-        data={MOCK_DOCUMENTS}
+        data={filteredDocs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <DocumentCard doc={item} />}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+        ListEmptyComponent={
+          isLoading ? (
+            <View style={{ gap: spacing.md }}>
+              <SkeletonCard style={{ height: 80 }} />
+              <SkeletonCard style={{ height: 80 }} />
+              <SkeletonCard style={{ height: 80 }} />
+            </View>
+          ) : (
+            <EmptyState
+              icon="document-outline"
+              title={t('documents.noDocs')}
+              message={t('documents.noDocsDesc')}
+            />
+          )
+        }
       />
+
     </View>
   );
 }

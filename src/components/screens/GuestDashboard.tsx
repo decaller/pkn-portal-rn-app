@@ -13,29 +13,52 @@ import {
   Platform,
   Pressable,
 } from 'react-native';
-import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { Image } from 'expo-image';
+import { useQuery } from '@tanstack/react-query';
+
 import { EventCard } from '@/components/sections/EventCard';
 import { NewsCard } from '@/components/sections/NewsCard';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
-import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
 import { MOCK_DASHBOARD } from '@/services/mockData';
-import type { EventItem, NewsItem } from '@/types';
+import api from '@/services/api';
+import type { EventItem, NewsItem, DashboardResponse as DashboardData } from '@/types';
+import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
 
 export function GuestDashboard() {
   const { t } = useTranslation();
-  const [refreshing, setRefreshing] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const data = MOCK_DASHBOARD;
+  const router = useRouter();
 
-  const onRefresh = useCallback(() => {
+  const {
+    data: dashboardData,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery<DashboardData>({
+    queryKey: ['dashboard'],
+    queryFn: async () => {
+      const resp = await api.get('/mobile-dashboard');
+      return resp.data;
+    },
+  });
+
+  const [refreshing, setRefreshing] = useState(false);
+  const data: DashboardData = dashboardData || (MOCK_DASHBOARD as unknown as DashboardData);
+
+  const onRefresh = useCallback(async () => {
     setRefreshing(true);
-    // Simulate API refresh
-    setTimeout(() => setRefreshing(false), 1500);
-  }, []);
+    try {
+      await refetch();
+    } catch (e) {
+      console.error('Refresh failed', e);
+    } finally {
+      setRefreshing(false);
+    }
+  }, [refetch]);
+
 
   const handleEventPress = (event: EventItem) => {
     router.push(`/events/${event.id}`);
@@ -44,6 +67,51 @@ export function GuestDashboard() {
   const handleNewsPress = (article: NewsItem) => {
     router.push(`/news/${article.id}`);
   };
+
+  if (isLoading && !dashboardData) {
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+        <View style={styles.banner}>
+          <View style={styles.bannerContent}>
+            <Text style={styles.greeting}>{t('dashboard.guestGreeting')}</Text>
+            <Text style={styles.subtitle}>{t('dashboard.guestSubtitle')}</Text>
+          </View>
+        </View>
+        <SectionHeader title={t('dashboard.featuredEvents')} />
+        <View style={{ paddingLeft: spacing.lg, flexDirection: 'row', gap: spacing.md }}>
+          <SkeletonCard style={{ width: 280 }} />
+          <SkeletonCard style={{ width: 280 }} />
+        </View>
+        <SectionHeader title={t('dashboard.latestNews')} />
+        <View style={{ marginHorizontal: spacing.lg }}>
+          <SkeletonCard style={{ width: '100%', marginBottom: spacing.md }} />
+          <SkeletonCard style={{ width: '100%' }} />
+        </View>
+      </ScrollView>
+    );
+  }
+
+  if (isError && !dashboardData) {
+    return (
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.content}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        <View style={{ padding: spacing.xl, alignItems: 'center' }}>
+          <Ionicons name="cloud-offline" size={64} color={colors.text.tertiary} />
+          <Text style={[typography.headline, { marginTop: spacing.md }]}>
+            {t('common.error')}
+          </Text>
+          <Pressable onPress={() => refetch()} style={{ marginTop: spacing.md }}>
+            <Text style={{ color: colors.brand.primary }}>{t('common.retry')}</Text>
+          </Pressable>
+        </View>
+      </ScrollView>
+    );
+  }
 
   return (
     <ScrollView
@@ -79,10 +147,10 @@ export function GuestDashboard() {
         actionLabel={t('dashboard.viewAll')}
         onAction={() => router.push('/(tabs)/events')}
       />
-      {loading ? (
+      {isLoading ? (
         <View style={styles.horizontalList}>
           {[1, 2].map((i) => (
-            <SkeletonCard key={i} style={{ width: 260, marginRight: 12 }} />
+            <SkeletonCard key={i} style={{ width: 260, marginRight: spacing.md }} />
           ))}
         </View>
       ) : (
