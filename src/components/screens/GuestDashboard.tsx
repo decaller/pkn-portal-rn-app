@@ -71,6 +71,8 @@ export function GuestDashboard() {
         </View>
       </View>
 
+
+
       {/* Featured Events Carousel */}
       <SectionHeader
         title={t('dashboard.featuredEvents')}

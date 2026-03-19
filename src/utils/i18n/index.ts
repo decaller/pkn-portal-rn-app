@@ -4,12 +4,21 @@
  */
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-// import { getLocales } from 'expo-localization/build/Localization';
+import { getLocales } from 'expo-localization/build/Localization';
 import en from './locales/en.json';
 import id from './locales/id.json';
 
-// Detect device language (temporarily hardcoded for debugging Phase 1 setup)
-const deviceLanguage = 'en';
+// Detect device language with safe fallback
+let deviceLanguage = 'en';
+try {
+  const locales = getLocales();
+  if (locales && locales.length > 0) {
+    deviceLanguage = locales[0].languageCode ?? 'en';
+  }
+} catch {
+  deviceLanguage = 'en';
+}
+
 
 
 i18n.use(initReactI18next).init({

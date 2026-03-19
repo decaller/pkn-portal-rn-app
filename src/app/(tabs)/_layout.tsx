@@ -9,6 +9,7 @@ import { Platform, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { colors } from '@/theme';
+import { LanguageToggle } from '@/components/ui/LanguageToggle';
 
 export default function TabLayout() {
   const { t } = useTranslation();
@@ -18,9 +19,11 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors.brand.primary,
         tabBarInactiveTintColor: colors.text.tertiary,
+        headerRight: () => <LanguageToggle />,
         headerStyle: {
           backgroundColor: colors.background.primary,
         },
+
         headerTitleStyle: {
           fontWeight: '600',
           color: colors.text.primary,
