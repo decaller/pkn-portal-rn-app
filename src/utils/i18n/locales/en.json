@@ -1,0 +1,85 @@
+{
+  "welcome": {
+    "title": "PKN Portal",
+    "subtitle": "Your gateway to professional knowledge and networking",
+    "getStarted": "Get Started",
+    "signIn": "Sign In",
+    "features": {
+      "events": "Academic Events",
+      "eventsDesc": "Discover conferences, seminars, and workshops",
+      "news": "Latest News",
+      "newsDesc": "Stay updated with the latest articles and announcements",
+      "network": "Global Network",
+      "networkDesc": "Connect with professionals worldwide"
+    }
+  },
+  "tabs": {
+    "dashboard": "Dashboard",
+    "events": "Events",
+    "documents": "Documents",
+    "registrations": "Registrations",
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "guestGreeting": "Welcome to PKN Portal",
+    "guestSubtitle": "Discover events, news, and professional resources",
+    "featuredEvents": "Featured Events",
+    "latestNews": "Latest News",
+    "testimonials": "What People Say",
+    "viewAll": "View All",
+    "whyJoin": "Why Join PKN?",
+    "whyJoinDesc": "Access exclusive events, resources, and a professional community"
+  },
+  "events": {
+    "title": "Events",
+    "searchPlaceholder": "Search events...",
+    "filters": {
+      "all": "All",
+      "upcoming": "Upcoming",
+      "ongoing": "Ongoing",
+      "past": "Past"
+    },
+    "noEvents": "No events found",
+    "noEventsDesc": "Try adjusting your search or filters",
+    "resetFilters": "Reset Filters",
+    "registerNow": "Register Now",
+    "registrationClosed": "Registration Closed",
+    "loginToRegister": "Sign in to register",
+    "spotsLeft": "{{count}} spots left",
+    "similarEvents": "Similar Events",
+    "eventDetails": "Event Details",
+    "packages": "Packages",
+    "startingFrom": "Starting from"
+  },
+  "news": {
+    "title": "News & Articles",
+    "featured": "Featured",
+    "relatedArticles": "Related Articles",
+    "readMore": "Read More",
+    "publishedOn": "Published on {{date}}"
+  },
+  "documents": {
+    "title": "Documents",
+    "searchPlaceholder": "Search documents...",
+    "featured": "Featured Documents",
+    "allDocuments": "All Documents",
+    "download": "Download",
+    "signInPrompt": "Sign in to access documents",
+    "signInDesc": "Browse and download event materials, reports, and more",
+    "noDocuments": "No documents available"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "pullToRefresh": "Pull to refresh",
+    "seeAll": "See All",
+    "share": "Share",
+    "back": "Back",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "signIn": "Sign In",
+    "offline": "You are offline",
+    "offlineAction": "Internet connection is required for this action"
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "welcome": {
+    "title": "PKN Portal",
+    "subtitle": "Gerbang menuju pengetahuan dan jaringan profesional Anda",
+    "getStarted": "Mulai Sekarang",
+    "signIn": "Masuk",
+    "features": {
+      "events": "Acara Akademik",
+      "eventsDesc": "Temukan konferensi, seminar, dan lokakarya",
+      "news": "Berita Terbaru",
+      "newsDesc": "Ikuti berita dan pengumuman terbaru",
+      "network": "Jaringan Global",
+      "networkDesc": "Terhubung dengan profesional di seluruh dunia"
+    }
+  },
+  "tabs": {
+    "dashboard": "Beranda",
+    "events": "Acara",
+    "documents": "Dokumen",
+    "registrations": "Pendaftaran",
+    "profile": "Profil"
+  },
+  "dashboard": {
+    "guestGreeting": "Selamat Datang di PKN Portal",
+    "guestSubtitle": "Temukan acara, berita, dan sumber daya profesional",
+    "featuredEvents": "Acara Unggulan",
+    "latestNews": "Berita Terbaru",
+    "testimonials": "Kata Mereka",
+    "viewAll": "Lihat Semua",
+    "whyJoin": "Mengapa Bergabung PKN?",
+    "whyJoinDesc": "Akses acara eksklusif, sumber daya, dan komunitas profesional"
+  },
+  "events": {
+    "title": "Acara",
+    "searchPlaceholder": "Cari acara...",
+    "filters": {
+      "all": "Semua",
+      "upcoming": "Akan Datang",
+      "ongoing": "Berlangsung",
+      "past": "Selesai"
+    },
+    "noEvents": "Tidak ada acara ditemukan",
+    "noEventsDesc": "Coba sesuaikan pencarian atau filter Anda",
+    "resetFilters": "Reset Filter",
+    "registerNow": "Daftar Sekarang",
+    "registrationClosed": "Pendaftaran Ditutup",
+    "loginToRegister": "Masuk untuk mendaftar",
+    "spotsLeft": "{{count}} tempat tersisa",
+    "similarEvents": "Acara Serupa",
+    "eventDetails": "Detail Acara",
+    "packages": "Paket",
+    "startingFrom": "Mulai dari"
+  },
+  "news": {
+    "title": "Berita & Artikel",
+    "featured": "Unggulan",
+    "relatedArticles": "Artikel Terkait",
+    "readMore": "Baca Selengkapnya",
+    "publishedOn": "Dipublikasikan pada {{date}}"
+  },
+  "documents": {
+    "title": "Dokumen",
+    "searchPlaceholder": "Cari dokumen...",
+    "featured": "Dokumen Unggulan",
+    "allDocuments": "Semua Dokumen",
+    "download": "Unduh",
+    "signInPrompt": "Masuk untuk mengakses dokumen",
+    "signInDesc": "Jelajahi dan unduh materi acara, laporan, dan lainnya",
+    "noDocuments": "Tidak ada dokumen tersedia"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "retry": "Coba Lagi",
+    "pullToRefresh": "Tarik untuk memperbarui",
+    "seeAll": "Lihat Semua",
+    "share": "Bagikan",
+    "back": "Kembali",
+    "cancel": "Batal",
+    "confirm": "Konfirmasi",
+    "signIn": "Masuk",
+    "offline": "Anda sedang offline",
+    "offlineAction": "Koneksi internet diperlukan untuk tindakan ini"
+  }
+}
