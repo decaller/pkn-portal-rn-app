@@ -49,7 +49,32 @@
     "similarEvents": "Acara Serupa",
     "eventDetails": "Detail Acara",
     "packages": "Paket",
-    "startingFrom": "Mulai dari"
+    "startingFrom": "Mulai dari",
+    "viewFullImage": "Lihat Gambar Penuh",
+    "date": "Tanggal",
+    "location": "Lokasi",
+    "spots": "Tempat",
+    "remaining": "tersisa",
+    "unlimited": "Tak Terbatas",
+    "registration": "Pendaftaran",
+    "open": "Buka",
+    "closed": "Tutup",
+    "draft": "Draf",
+    "full": "Penuh",
+    "downloadProposal": "Unduh Proposal Acara",
+    "proposalNotAvailable": "Proposal Tidak Tersedia",
+    "proposalDetailedPdf": "PDF detail dengan syarat dan jadwal",
+    "proposalComingSoon": "Dokumen resmi akan segera hadir",
+    "eventDuration": "Durasi Acara",
+    "totalStartingFrom": "total dimulai dari",
+    "googleMaps": "Petunjuk ke Google Map",
+    "agenda": "Agenda",
+    "speaker": "Pembicara",
+    "materials": "Materi",
+    "loginToAccessFiles": "Masuk untuk mengakses file",
+    "documentation": "Dokumentasi",
+    "testimonials": "Testimoni",
+    "notFound": "Acara tidak ditemukan"
   },
   "news": {
     "title": "Berita & Artikel",
@@ -80,6 +105,7 @@
     "confirm": "Konfirmasi",
     "signIn": "Masuk",
     "offline": "Anda sedang offline",
-    "offlineAction": "Koneksi internet diperlukan untuk tindakan ini"
+    "offlineAction": "Koneksi internet diperlukan untuk tindakan ini",
+    "days": "hari"
   }
 }

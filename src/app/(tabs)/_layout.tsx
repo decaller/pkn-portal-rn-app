@@ -4,7 +4,7 @@
  * Reference: Expo SDK 55 Features.md, UX Flow Guide § 3
  */
 import { Tabs } from 'expo-router';
-// import { BlurView } from 'expo-blur';
+import { BlurView } from 'expo-blur';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -31,12 +31,11 @@ export default function TabLayout() {
         tabBarStyle: Platform.select({
           ios: {
             position: 'absolute',
-            backgroundColor: 'transparent',
             borderTopWidth: 0,
             elevation: 0,
           },
           android: {
-            backgroundColor: colors.background.card,
+            backgroundColor: colors.background.card, // Fallback to card if "surface" not natively handled yet
             borderTopColor: colors.border.light,
             elevation: 8,
             height: 64,
@@ -44,7 +43,10 @@ export default function TabLayout() {
             paddingTop: 4,
           },
         }),
-        tabBarBackground: () => undefined,
+        tabBarBackground: () => 
+          Platform.OS === 'ios' ? (
+            <BlurView intensity={80} tint="light" style={StyleSheet.absoluteFill} />
+          ) : undefined,
       }}
     >
 

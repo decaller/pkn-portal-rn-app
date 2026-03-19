@@ -3,10 +3,13 @@
  * Refined based on api_result/events.json
  */
 
+import { Testimonial } from './dashboard';
+
 export interface EventPackage {
   name: string;
   price: number;
   max_quota: number | null;
+  description: string | null;
 }
 
 export interface RundownItem {
@@ -48,6 +51,12 @@ export interface EventItem {
   registration_packages: EventPackage[];
   rundown: RundownItem[] | null;
   tags: string[] | null;
+  proposal?: string;
+  testimonials?: Testimonial[];
+}
+
+export interface SingleEventResponse {
+  data: EventItem;
 }
 
 export interface EventsResponse {

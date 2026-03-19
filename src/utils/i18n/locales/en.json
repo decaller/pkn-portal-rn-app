@@ -49,7 +49,32 @@
     "similarEvents": "Similar Events",
     "eventDetails": "Event Details",
     "packages": "Packages",
-    "startingFrom": "Starting from"
+    "startingFrom": "Starting from",
+    "viewFullImage": "View Full Image",
+    "date": "Date",
+    "location": "Location",
+    "spots": "Spots",
+    "remaining": "remaining",
+    "unlimited": "Unlimited",
+    "registration": "Registration",
+    "open": "Open",
+    "closed": "Closed",
+    "draft": "Draft",
+    "full": "Full",
+    "downloadProposal": "Download Event Proposal",
+    "proposalNotAvailable": "Proposal Not Available",
+    "proposalDetailedPdf": "Detailed PDF with terms and schedule",
+    "proposalComingSoon": "Official document is coming soon",
+    "eventDuration": "Event Duration",
+    "totalStartingFrom": "total starting from",
+    "googleMaps": "Direct to Google Map",
+    "agenda": "Agenda",
+    "speaker": "Speaker",
+    "materials": "Materials",
+    "loginToAccessFiles": "Sign in to access files",
+    "documentation": "Documentation",
+    "testimonials": "Testimonials",
+    "notFound": "Event not found"
   },
   "news": {
     "title": "News & Articles",
@@ -80,6 +105,7 @@
     "confirm": "Confirm",
     "signIn": "Sign In",
     "offline": "You are offline",
-    "offlineAction": "Internet connection is required for this action"
+    "offlineAction": "Internet connection is required for this action",
+    "days": "days"
   }
 }

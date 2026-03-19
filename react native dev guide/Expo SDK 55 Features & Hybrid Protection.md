@@ -26,7 +26,22 @@ Critical for our Hybrid Architecture.
 * **What it means for PKN:** When users tab away, the WebView is visually hidden but remains frozen in memory. Tabbing back instantly restores it exactly where they left off.
 
 ## 📦 5. Byte-Code OTA Updates (EAS Updates)
-Push fixes instantly without waiting for App Store reviews using "Byte Code Diffing." Expo only sends the exact bytes that changed.
+Push fixes instantly without waiting for App Store reviews using "Byte Code Diffing." Expo only sends the exact bytes that changed, shrinking update downloads to about 25% of their original size.
+*   **The Implementation:** Turn this on manually in `app.json` by adding the `bytecodeDiffPatchSupport` flag inside the `updates` object.
+
+## 🛠️ 6. New Arch & Cleanup (SDK 55)
+*   **Package Versioning:** Ensure all Expo packages (like `expo-image`, `expo-router`) start with version `55` to guarantee compatibility.
+*   **Architecture Cleanup:** The legacy architecture is officially retired. You can safely remove the `newArch` flag from `app.json` if it's still there.
+*   **Hermes v1 Opt-in:** Use the `expo-build-properties` plugin to enable Hermes v1 for better ES6 support and performance. This requires building from source and may require overriding `react-native-worklets-core` version if using Reanimated.
+
+## 🎨 7. Material 3 & Android UI (SDK 55)
+*   **Native Colors:** Leverage the new Expo Router colors API. Setting a color to `"surface"` will automatically adapt to the user's system wallpaper and dark/light modes on Android.
+*   **Stable Android Blur:** Use `<BlurTargetView>` from `expo-blur` for a stable and efficient blur effect on Android devices.
+
+## 🚀 8. Advanced Native Integration
+*   **Brownfield Adoption:** For existing native apps, use `expo-brownfield-target` to package React Native features into a native iOS/Android library.
+*   **Native Widgets & Live Activities:** Use the `expo-widgets` alpha to build iOS Live Activities and widgets using Expo UI components—no Swift code required.
+*   **Share Extensions:** Use the experimental config plugin to add share extension targets (iOS) and intent filters (Android) to receive data from system share sheets.
 
 ---
 
