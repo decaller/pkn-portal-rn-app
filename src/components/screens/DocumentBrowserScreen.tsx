@@ -30,14 +30,16 @@ import { useAppStore } from '@/store/appStore';
 
 function DocumentCard({ doc }: { doc: DocumentItem }) {
   const { isAuthenticated } = useAppStore();
-  const getFileInfo = (mime: string) => {
+  const getFileInfo = (mime: string | null | undefined) => {
+    const defaultInfo = { icon: 'document' as const, color: colors.text.tertiary, label: 'FILE' };
+    if (!mime) return defaultInfo;
 
     if (mime.includes('pdf')) return { icon: 'document-text' as const, color: '#E74C3C', label: 'PDF' };
     if (mime.includes('spreadsheet') || mime.includes('excel')) return { icon: 'grid' as const, color: '#27AE60', label: 'XLSX' };
     if (mime.includes('presentation') || mime.includes('powerpoint')) return { icon: 'play-circle' as const, color: '#D35400', label: 'PPTX' };
     if (mime.includes('word') || mime.includes('document')) return { icon: 'document' as const, color: '#2980B9', label: 'DOCX' };
     if (mime.includes('zip') || mime.includes('compressed')) return { icon: 'archive' as const, color: '#F39C12', label: 'ZIP' };
-    return { icon: 'document' as const, color: colors.text.tertiary, label: 'FILE' };
+    return defaultInfo;
   };
 
   const info = getFileInfo(doc.mime_type);

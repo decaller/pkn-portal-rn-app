@@ -91,7 +91,9 @@
     "download": "Unduh",
     "signInPrompt": "Masuk untuk mengakses dokumen",
     "signInDesc": "Jelajahi dan unduh materi acara, laporan, dan lainnya",
-    "noDocuments": "Tidak ada dokumen tersedia"
+    "noDocuments": "Tidak ada dokumen tersedia",
+    "noDocs": "Dokumen tidak ditemukan",
+    "noDocsDesc": "Coba sesuaikan pencarian Anda"
   },
   "common": {
     "loading": "Memuat...",

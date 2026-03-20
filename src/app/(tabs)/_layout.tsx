@@ -19,6 +19,7 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: colors.brand.primary,
         tabBarInactiveTintColor: colors.text.tertiary,
+        tabBarShowLabel: false,
         headerRight: () => <LanguageToggle />,
         headerStyle: {
           backgroundColor: colors.background.primary,

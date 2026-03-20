@@ -91,7 +91,9 @@
     "download": "Download",
     "signInPrompt": "Sign in to access documents",
     "signInDesc": "Browse and download event materials, reports, and more",
-    "noDocuments": "No documents available"
+    "noDocuments": "No documents available",
+    "noDocs": "No documents found",
+    "noDocsDesc": "Try adjusting your search query"
   },
   "common": {
     "loading": "Loading...",
