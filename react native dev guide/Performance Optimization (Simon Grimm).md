@@ -9,15 +9,31 @@ Simon Grimm's masterclass on React Native performance highlights key areas where
     * *Our Solution:* Because we designed the **BFF (Backend-For-Frontend) Dashboard Endpoint** combined with **Zustand `persist`**, our app boots instantly from local memory. We aren't blocking the startup screen waiting for the network.
 * **Tip 5: Don't abuse React Context**
     * *Simon's Warning:* Putting everything in Context causes the whole app to re-render constantly.
-    * *Our Solution:* We completely bypassed Context and are using **Zustand**, exactly as he recommends. 
+    * *Our Solution:* We completely bypassed Context and are using **Zustand**, exactly as he recommends.
+
+## 💾 Offline Strategy: Persistence & Hydration
+
+Simon emphasizes that a premium app feels fast because it never shows an empty state if it doesn't have to. We achieve this through a dual-persistence strategy:
+
+1. **App State (Zustand Persist)**:
+1.  **App State (Zustand Persist)**:
+    *   **What**: Language, onboarding status, and auth session.
+    *   **Why**: To prevent the app from "forgetting" the user when they are offline.
+    *   **Implementation**: Use `persist` middleware with `AsyncStorage`.
+
+2.  **Data Cache (TanStack Query Persist)**:
+    *   **What**: News, Events, and Dashboard results.
+    *   **FlashList**: Use Shopify's `<FlashList>` for the **Events Discovery** tab to prevent memory crashes and frame drops.
+    *   **Persistence Layer**: While the app currently uses `AsyncStorage` (compatible with Expo Go), we should aim for **MMKV** as the project matures.
+    *   **Hydration Wait**: Always check for `_hasHydrated` in the root layout before rendering protected routes to avoid race conditions.
 
 ## 🚨 The 3 Action Items We Must Implement Now
 
 Based on the performance tips, we need to apply these three optimizations:
 
 ### 1. Kill `FlatList` and use `FlashList` (Tip 4)
-Simon explicitly states: *"Lists are where React Native performance goes to die."* In our previous Dashboard example, we used the default React Native `<FlatList>`. If you have an event list with 50+ items and images, `FlatList` will stutter. 
-* **The Fix:** Use `@shopify/flash-list`. It is a drop-in replacement that is 5x faster and recycles views under the hood.
+Simon explicitly states: *"Lists are where React Native performance goes to die."* In our previous Dashboard example, we used the default React Native `<FlatList>`. If you have an event list with 50+ items and images, `FlatList` will stutter.
+*   **The Fix:** Use `@shopify/flash-list`. It is a drop-in replacement that is 5x faster and recycles views under the hood.
 
 ### 2. Prevent WebView/Deep Link Memory Leaks (Tip 6)
 Mobile apps stay in memory much longer than websites. Our authentication relies on `expo-linking` listening for `pknportal://`. If we don't clean up that listener when the app closes, the app will leak memory and crash.

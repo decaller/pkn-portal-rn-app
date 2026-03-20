@@ -1,12 +1,16 @@
 /**
  * Root Layout — App entry point.
  * Configures i18n, fonts, splash screen, and root navigation.
+ *
+ * Persistence is native-only. Web (dev only) skips it to avoid Metro bundler
+ * incompatibility with Zustand/TanStack ESM packages (import.meta.env).
  */
 import '@/utils/i18n';
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
+import { Platform } from 'react-native';
 
 import { useAppStore } from '@/store/appStore';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -17,20 +21,45 @@ const queryClient = new QueryClient({
     queries: {
       staleTime: 1000 * 60 * 5, // 5 minutes
       retry: 2,
+      gcTime: 1000 * 60 * 60 * 24, // 24 hours (for native cache)
     },
   },
 });
 
 // Prevent splash screen from auto-hiding
-
 SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
+// Lazy-load the native persist provider at module level to avoid
+// Metro bundling ESM packages (import.meta.env) when targeting Web.
+const NativePersistentLayout = Platform.OS !== 'web'
+  ? (() => {
+      const { PersistQueryClientProvider } = require('@tanstack/react-query-persist-client');
+      const { createAsyncStoragePersister } = require('@tanstack/query-async-storage-persister');
+      const AsyncStorage = require('@react-native-async-storage/async-storage').default;
+      const persister = createAsyncStoragePersister({ storage: AsyncStorage });
+
+      return function NativePersistWrapper({ children }: { children: React.ReactNode }) {
+        return (
+          <PersistQueryClientProvider client={queryClient} persistOptions={{ persister }}>
+            {children}
+          </PersistQueryClientProvider>
+        );
+      };
+    })()
+  : null;
+
+function AppShell() {
   const _hasHydrated = useAppStore((s) => s._hasHydrated);
 
   useEffect(() => {
+    // On native, manually trigger Zustand hydration after mount
+    if (Platform.OS !== 'web') {
+      (useAppStore as any).persist?.rehydrate();
+    }
+  }, []);
+
+  useEffect(() => {
     if (_hasHydrated) {
-      // Hide splash after hydration is complete
       SplashScreen.hideAsync();
     }
   }, [_hasHydrated]);
@@ -40,31 +69,46 @@ export default function RootLayout() {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <StatusBar style="auto" />
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen
-            name="events/[id]"
-            options={{ headerShown: false, animation: 'slide_from_right' }}
-          />
-          <Stack.Screen
-            name="news/index"
-            options={{
-              headerShown: true,
-              title: 'News & Articles',
-              animation: 'slide_from_right',
-            }}
-          />
-          <Stack.Screen
-            name="news/[id]"
-            options={{ headerShown: false, animation: 'slide_from_right' }}
-          />
-        </Stack>
-      </GestureHandlerRootView>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <StatusBar style="auto" />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" />
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="events/[id]"
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+        <Stack.Screen
+          name="news/index"
+          options={{
+            headerShown: true,
+            title: 'News & Articles',
+            animation: 'slide_from_right',
+          }}
+        />
+        <Stack.Screen
+          name="news/[id]"
+          options={{ headerShown: false, animation: 'slide_from_right' }}
+        />
+      </Stack>
+    </GestureHandlerRootView>
   );
 }
 
+export default function RootLayout() {
+  if (Platform.OS === 'web' || !NativePersistentLayout) {
+    // Web: no persistence — plain QueryClientProvider only
+    return (
+      <QueryClientProvider client={queryClient}>
+        <AppShell />
+      </QueryClientProvider>
+    );
+  }
+
+  // Native: full TanStack Query persistence via AsyncStorage
+  return (
+    <NativePersistentLayout>
+      <AppShell />
+    </NativePersistentLayout>
+  );
+}

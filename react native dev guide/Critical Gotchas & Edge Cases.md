@@ -58,14 +58,14 @@ Do not assume a WebView payment flow is automatically acceptable for every event
 
 ## 8. Offline support should be selective
 
-Cache read-heavy data:
+Cache read-heavy data using **TanStack Query Persistence**:
 
 - dashboard
 - events
 - news
 - invoices summary
 
-Do not cache mutable workflow state in ways that allow users to submit stale registration or payment data.
+Do not cache mutable workflow state (like active form inputs) in ways that allow users to submit stale registration or payment data unless using optimistic updates.
 
 ## 9. Keep docs and routes aligned
 
