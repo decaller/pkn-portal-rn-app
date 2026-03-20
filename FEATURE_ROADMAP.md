@@ -7,32 +7,31 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 ## Phase 1: Public Core (No-Login MVP)
 **Goal:** Enable users to immediately browse PKN content without authentication.
 
-- [ ] **Project Setup**
-  - [ ] Initialize directory structure (`src/components`, `src/services`, `src/store`, `src/hooks`, `src/types`, `src/theme`).
-  - [ ] Install core dependencies: `axios`, `zustand`, `react-native-mmkv`, `@shopify/flash-list`, `expo-image`, `expo-blur`.
-  - [ ] **Form & Validation**: Install `react-hook-form` and `zod`.
-  - [ ] **i18n Setup**: Install `i18next` and `react-i18next`; configure `src/utils/i18n/index.ts`.
-  - [ ] **Theming Engine**: Install `react-native-paper` and `@material/material-color-utilities`.
-  - [ ] **Quality Control**: Set up Sentry, Jest, and `eslint-plugin-react-native-a11y`.
-  - [ ] **CI/CD**: Configure EAS Build and set up GitHub Actions for automated deployments.
-  - [ ] Set up `axios` instance for public APIs with proper environment variable handling.
+- [x] **Project Setup**
+  - [x] Initialize directory structure (`src/components`, `src/services`, `src/store`, `src/hooks`, `src/types`, `src/theme`).
+  - [x] Install core dependencies: `axios`, `zustand`, `react-native-mmkv`, `@shopify/flash-list`, `expo-image`, `expo-blur`.
+  - [x] **Form & Validation**: Install `react-hook-form` and `zod`.
+  - [x] **i18n Setup**: Install `i18next` and `react-i18next`; configure `src/utils/i18n/index.ts`.
+  - [x] **Theming Engine**: Install `react-native-paper` and `@material/material-color-utilities`.
+  - [x] **Quality Control**: Set up Sentry, Jest, and `eslint-plugin-react-native-a11y`.
+  - [x] **CI/CD**: Configure EAS Build and set up GitHub Actions for automated deployments.
+  - [x] Set up `axios` instance for public APIs with proper environment variable handling.
 
-
-- [ ] **Welcome & Onboarding**
-  - [ ] Implement `src/app/index.tsx` as the high-fidelity Welcome Screen from mockups.
-  - [ ] Handle "Get Started" (Guest access) and "Sign In" (Hybrid Login) transitions.
-- [ ] **Native Public Dashboard (Guest Mode)**
-  - [ ] Implement `GET /api/v1/mobile-dashboard` (Public version/endpoint).
-  - [ ] Build Guest Dashboard UI (`guest_dashboard_fresh_variant_2` mockup).
-  - [ ] Implement skeleton loaders for a smooth first-load experience.
-- [ ] **Events & News Discovery**
-  - [ ] Implement Events List and News List screens (Native).
-  - [ ] Build Event Detail screen (`src/app/events/[id].tsx`) with native content layout.
-  - [ ] Build News Detail screen.
-- [ ] **Document Browsing (Public)**
-  - [ ] Implement `src/app/documents/index.tsx` (Public document browser mockup).
-  - [ ] Build "Featured Documents" carousel and "All Documents" list.
-  - [ ] Implement file search and basic download/viewing functionality.
+- [x] **Welcome & Onboarding**
+  - [x] Implement `src/app/index.tsx` as the high-fidelity Welcome Screen from mockups.
+  - [x] Handle "Get Started" (Guest access) and "Sign In" (Hybrid Login) transitions.
+- [x] **Native Public Dashboard (Guest Mode)**
+  - [x] Implement `GET /api/v1/mobile-dashboard` (Public version/endpoint).
+  - [x] Build Guest Dashboard UI (`guest_dashboard_fresh_variant_2` mockup).
+  - [x] Implement skeleton loaders for a smooth first-load experience.
+- [x] **Events & News Discovery**
+  - [x] Implement Events List and News List screens (Native).
+  - [x] Build Event Detail screen (`src/app/events/[id].tsx`) with native content layout.
+  - [x] Build News Detail screen.
+- [x] **Document Browsing (Public)**
+  - [x] Implement `src/app/documents/index.tsx` (Public document browser mockup).
+  - [x] Build "Featured Documents" carousel and "All Documents" list.
+  - [x] Implement file search and basic download/viewing functionality.
 
 ---
 
@@ -41,7 +40,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 
 - [ ] **Authentication Infrastructure**
   - [ ] Configure `axios` interceptors for Sanctum tokens.
-  - [ ] Create `useAuthStore` using Zustand + MMKV for persistent token storage.
+  - [ ] Update `useAppStore` or create `useAuthStore` for secure persistent token storage (`expo-secure-store` or `react-native-mmkv`).
   - [ ] **Deep Linking**: Configure `app.json` for `pknportal://` scheme and universal links.
 
 - [ ] **Hybrid Login Strategy**

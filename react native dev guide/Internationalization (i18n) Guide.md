@@ -20,8 +20,6 @@ Create a configuration file at `src/utils/i18n/index.ts`.
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import { getLocales } from 'expo-localization';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { I18nManager } from 'react-native';
 
 import en from './locales/en.json';
 import id from './locales/id.json';
@@ -41,32 +39,28 @@ declare module 'i18next' {
   }
 }
 
-const initI18n = async () => {
-  // 3. Persist User Preference
-  let savedLanguage = await AsyncStorage.getItem('user-language');
-  
-  // 4. Detect Device Language (Fallback)
-  if (!savedLanguage) {
-    const locales = getLocales();
-    savedLanguage = locales?.[0]?.languageCode === 'id' ? 'id' : 'en';
+// 3. Detect Device Language Safely
+let deviceLanguage = 'en';
+try {
+  const locales = getLocales();
+  if (locales && locales.length > 0) {
+    deviceLanguage = locales[0].languageCode === 'id' ? 'id' : 'en';
   }
+} catch {
+  deviceLanguage = 'en';
+}
 
-  // 5. Handle RTL Support (if applicable)
-  const isRTL = getLocales()?.[0]?.textDirection === 'rtl';
-  I18nManager.allowRTL(isRTL);
-  I18nManager.forceRTL(isRTL);
-
-  await i18n.use(initReactI18next).init({
-    resources,
-    lng: savedLanguage,
-    fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
-  });
-};
-
-initI18n();
+i18n.use(initReactI18next).init({
+  resources,
+  lng: deviceLanguage,
+  fallbackLng: 'en',
+  interpolation: {
+    escapeValue: false, // React Native already protects from XSS
+  },
+  react: {
+    useSuspense: false,
+  },
+});
 
 export default i18n;
 ```

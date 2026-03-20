@@ -106,8 +106,8 @@ Frontend work required for this architecture:
 
 Recommended delivery order:
 
-1. Native auth
-2. Native dashboard and events
+1. Native dashboard and events (Public/Guest)
+2. Native auth & Identity integration
 3. Native invoices and notifications
 4. WebView registration bridge
 5. WebView payment proof flow
