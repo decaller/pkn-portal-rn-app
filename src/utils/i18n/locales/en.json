@@ -74,7 +74,10 @@
     "loginToAccessFiles": "Sign in to access files",
     "documentation": "Documentation",
     "testimonials": "Testimonials",
-    "notFound": "Event not found"
+    "notFound": "Event not found",
+    "helpTitle": "Need help?",
+    "helpQuestion": "Any questions or need custom quotation?",
+    "contactWhatsApp": "Chat via WhatsApp"
   },
   "news": {
     "title": "News & Articles",
@@ -108,6 +111,16 @@
     "signIn": "Sign In",
     "offline": "You are offline",
     "offlineAction": "Internet connection is required for this action",
-    "days": "days"
+    "days": "days",
+    "contact": "Contact"
+  },
+  "menu": {
+    "language": "Language",
+    "theme": "Appearance"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "Auto"
   }
 }

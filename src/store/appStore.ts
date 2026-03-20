@@ -13,8 +13,10 @@ interface AppState {
   hasSeenWelcome: boolean;
   isAuthenticated: boolean;
   language: 'en' | 'id';
+  theme: 'light' | 'dark' | 'system';
   setHasSeenWelcome: (value: boolean) => void;
   setLanguage: (lang: 'en' | 'id') => void;
+  setTheme: (theme: 'light' | 'dark' | 'system') => void;
   setAuthenticated: (value: boolean) => void;
   _hasHydrated: boolean;
 }
@@ -23,6 +25,7 @@ const initialState = {
   hasSeenWelcome: false,
   isAuthenticated: false,
   language: 'en' as const,
+  theme: 'system' as const,
 };
 
 function createStore() {
@@ -33,6 +36,7 @@ function createStore() {
       _hasHydrated: true, // immediately ready on web
       setHasSeenWelcome: (value) => set({ hasSeenWelcome: value }),
       setLanguage: (lang) => set({ language: lang }),
+      setTheme: (theme) => set({ theme }),
       setAuthenticated: (value) => set({ isAuthenticated: value }),
     }));
   }
@@ -48,6 +52,7 @@ function createStore() {
         _hasHydrated: false,
         setHasSeenWelcome: (value: boolean) => set({ hasSeenWelcome: value }),
         setLanguage: (lang: 'en' | 'id') => set({ language: lang }),
+        setTheme: (theme: 'light' | 'dark' | 'system') => set({ theme }),
         setAuthenticated: (value: boolean) => set({ isAuthenticated: value }),
       }),
       {
@@ -63,6 +68,7 @@ function createStore() {
           hasSeenWelcome: state.hasSeenWelcome,
           isAuthenticated: state.isAuthenticated,
           language: state.language,
+          theme: state.theme,
         }),
       }
     )

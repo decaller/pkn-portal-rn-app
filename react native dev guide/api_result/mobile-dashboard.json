@@ -5,45 +5,80 @@
       "title": "PKN Regional Workshop 2026",
       "slug": "pkn-regional-workshop-2026",
       "summary": null,
-      "description": "<p>Regional offline workshop and networking session.</p>",
+      "description": "\u003Cp\u003EDengan terus menghadirkan rasa syukur kepada \u003Cstrong\u003ERabbunal Karim\u003C/strong\u003E, animo para pendidik muslim—khususnya di Indonesia—secara perlahan mulai bertambah dan meluas.\u003C/p\u003E\u003Cp\u003ESemangat tersebut terefleksi dari hadirnya beragam kajian pendidikan yang berupaya untuk mengembalikan pola pendidikan sesuai dengan keteladanan \u003Cstrong\u003ENabiyurrahman\u003C/strong\u003E.\u003C/p\u003E\u003Ch3\u003EIkhtiar Amal Sholih\u003C/h3\u003E\u003Cp\u003ESebagai bagian dari harapan untuk menjadikannya amal sholih, kami berikhtiar kembali menyelenggarakan forum workshop pendidikan bagi para pendidik:\u003C/p\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cstrong\u003EAkademi Guru Pendidikan Karakter Nabawiyah (AKG – PKN)\u003C/strong\u003E\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EBatch V\u003C/strong\u003E\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EBatch VI\u003C/strong\u003E\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E\u003C/blockquote\u003E",
       "event_date": "2026-09-04",
-      "city": null,
-      "province": null,
-      "nation": null,
-      "duration_days": null,
-      "google_maps_url": null,
+      "city": "Kabupaten Cikarang",
+      "province": "Jawa Barat",
+      "nation": "Indonesia",
+      "duration_days": 5,
+      "google_maps_url": "https://maps.app.goo.gl/xbW37bh5HdmLzjfX7",
       "cover_image": "http://localhost/storage/event-covers/01KK1AQ3RZ1WHA58XT29YTGGBT.png",
       "photos": [],
       "files": [],
-      "documentation": [],
+      "documentation": [
+        "http://localhost/storage/event-documentation/01KM3C2DQ1YVAC2QRWZ78F4B5B.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ3K51NV8QKE04QG0BB.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R2.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R3.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ5959T798ETGJH7QHV.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MS.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MT.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MV.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E22.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E23.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VT.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VV.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQ9NYZM7DMTC3N5EWQP.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q84.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q85.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYD.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYE.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK19.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK1A.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CJ.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CK.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBX.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBY.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQF565Q7X136VYW012A.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC2.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC3.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC4.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDR.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDS.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6B.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6C.jpeg",
+        "http://localhost/storage/event-documentation/01KM3C2DQK9E0N9GVKMR6CCPDG.jpeg"
+      ],
       "is_published": true,
       "allow_registration": true,
-      "max_capacity": null,
-      "available_spots": null,
+      "max_capacity": 50,
+      "available_spots": 50,
       "is_full": false,
       "registration_packages": [
         {
           "name": "Regular",
           "price": 75000,
-          "max_quota": null
+          "max_quota": 30,
+          "description": "Penginapan bersama di kelas yang diubah menjadi tempat menginap dengan fasilitas 1 kasur dan 1 bantal."
         },
         {
           "name": "VIP",
           "price": 200000,
-          "max_quota": null
+          "max_quota": 20,
+          "description": "Penginapan khusus berdua di hotel terdekat."
         }
       ],
       "rundown": [
         {
           "type": "advanced",
           "data": {
-            "title": "Tes",
-            "date": "0001-01-01",
-            "place": null,
-            "start_time": "-",
-            "end_time": "-",
-            "speaker": null,
-            "description": "<p></p>",
+            "title": "Materi Sesi 1",
+            "date": "2026-01-02",
+            "place": "Kelas SMP IT Insan Taqwa",
+            "start_time": "08:00",
+            "end_time": "12:00",
+            "speaker": "Ustad Abdul Kholiq",
+            "description": "\u003Cp\u003EMateri Hari 1\u003C/p\u003E",
             "session_files": [
               "events/pkn-regional-workshop-2026/sessions/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
               "events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
@@ -64,16 +99,31 @@
             ],
             "links": []
           }
+        },
+        {
+          "type": "advanced",
+          "data": {
+            "title": "Materi Sesi 2",
+            "date": "2026-03-27",
+            "place": "Lapangan SMP IT Insan Taqwa",
+            "start_time": null,
+            "end_time": null,
+            "speaker": "Ust. Bayu",
+            "description": "\u003Cp\u003EAcara Implementasi\u003C/p\u003E",
+            "session_files": [],
+            "links": []
+          }
         }
       ],
-      "tags": []
+      "tags": ["Akademi Guru"],
+      "proposal": "http://localhost/storage/event-proposals/01KKTMY5S0JMW99YD51YWK3YB7.pdf"
     },
     {
       "id": 1,
       "title": "PKN National Conference 2026",
       "slug": "pkn-national-conference-2026",
       "summary": null,
-      "description": "<p>Annual national offline conference by PKN.</p>",
+      "description": "\u003Cp\u003EAnnual national offline conference by PKN.\u003C/p\u003E",
       "event_date": "2026-06-04",
       "city": null,
       "province": null,
@@ -111,7 +161,7 @@
             "start_time": null,
             "end_time": null,
             "speaker": null,
-            "description": "<p></p>",
+            "description": "\u003Cp\u003E\u003C/p\u003E",
             "session_files": [
               "events/pkn-national-conference-2026/sessions/1. Mengembalikan Pendidikan ke asalnya.pdf",
               "events/pkn-national-conference-2026/sessions/1. Mengembalikan Pendidikan ke asalnya.pptx",
@@ -133,19 +183,20 @@
           }
         }
       ],
-      "tags": []
+      "tags": [],
+      "proposal": null
     },
     {
       "id": 4,
       "title": "PKN Mini Summit 2024",
       "slug": "pkn-mini-summit-2024",
       "summary": null,
-      "description": "<p>Past mini summit used for testing.</p>",
+      "description": "\u003Cp\u003EPast mini summit used for testing.\u003C/p\u003E",
       "event_date": "2025-07-04",
-      "city": null,
-      "province": null,
-      "nation": null,
-      "duration_days": null,
+      "city": "Bandung",
+      "province": "Jawa Barat",
+      "nation": "Indonesia",
+      "duration_days": 10,
       "google_maps_url": null,
       "cover_image": null,
       "photos": [],
@@ -153,19 +204,21 @@
       "documentation": [],
       "is_published": true,
       "allow_registration": false,
-      "max_capacity": null,
-      "available_spots": null,
+      "max_capacity": 90,
+      "available_spots": 90,
       "is_full": false,
       "registration_packages": [
         {
           "name": "Regular",
           "price": 75000,
-          "max_quota": null
+          "max_quota": 50,
+          "description": "Biasa aja"
         },
         {
           "name": "VIP",
           "price": 200000,
-          "max_quota": null
+          "max_quota": null,
+          "description": null
         }
       ],
       "rundown": [
@@ -178,7 +231,7 @@
             "start_time": null,
             "end_time": null,
             "speaker": null,
-            "description": "<p></p>",
+            "description": "\u003Cp\u003E\u003C/p\u003E",
             "session_files": [
               "events/pkn-mini-summit-2024/sessions/0. Konsep PKN.pptx",
               "events/pkn-mini-summit-2024/sessions/1. Jiwa dan Metode Mendidiknya.pptx",
@@ -190,16 +243,17 @@
           }
         }
       ],
-      "tags": []
+      "tags": [],
+      "proposal": null
     },
     {
       "id": 3,
       "title": "PKN Recap 2023",
       "slug": "pkn-recap-2023",
       "summary": null,
-      "description": "Past recap event used for tests.",
+      "description": "\u003Cp\u003EPast recap event used for tests.\u003C/p\u003E",
       "event_date": "2025-03-04",
-      "city": null,
+      "city": "Cikarang",
       "province": null,
       "nation": null,
       "duration_days": null,
@@ -210,42 +264,51 @@
       "documentation": [],
       "is_published": true,
       "allow_registration": false,
-      "max_capacity": null,
-      "available_spots": null,
+      "max_capacity": 101,
+      "available_spots": 101,
       "is_full": false,
       "registration_packages": [
         {
           "name": "Regular",
-          "price": 100000
+          "price": 100000,
+          "max_quota": null,
+          "description": null
         },
         {
           "name": "VIP",
-          "price": 250000
+          "price": 250000,
+          "max_quota": null,
+          "description": null
         }
       ],
-      "rundown": null,
-      "tags": null
+      "rundown": [],
+      "tags": [],
+      "proposal": null
     }
   ],
   "latest_news": [
     {
-      "id": 1,
-      "title": "Registration Open: PKN National Conference 2026",
-      "content": "<p>Registration is now open for <strong>PKN National Conference 2026</strong> on 04 Jun 2026.</p><p><a href=\"http://localhost/user/event-registrations/create?tenant=ybit&event_id=1\">Click here to register now</a>.</p>",
-      "thumbnail": null,
+      "id": 2,
+      "title": "Registration Open: PKN Regional Workshop 2026",
+      "content": "\u003Cp\u003ERegistration is now open for \u003Cstrong\u003EPKN Regional Workshop 2026\u003C/strong\u003E on 04 Sep 2026.\u003C/p\u003E\u003Cp\u003E\u003Ca target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://localhost/user/event-registrations/create?tenant=ybit&amp;event_id=2\"\u003EClick here to register now\u003C/a\u003E.\u003C/p\u003E",
+      "thumbnail": "http://localhost/storage/news-thumbnails/01KM45HK2J39N2Q8WCWZHK0YG9.jpeg",
       "is_published": true,
       "event_id": null,
       "created_at": "2026-03-04T22:41:56+00:00"
     },
     {
-      "id": 2,
-      "title": "Registration Open: PKN Regional Workshop 2026",
-      "content": "<p>Registration is now open for <strong>PKN Regional Workshop 2026</strong> on 04 Sep 2026.</p><p><a href=\"http://localhost/user/event-registrations/create?tenant=ybit&event_id=2\">Click here to register now</a>.</p>",
-      "thumbnail": null,
+      "id": 1,
+      "title": "Registration Open: PKN National Conference 2026",
+      "content": "\u003Cp\u003ERegistration is now open for \u003Cstrong\u003EPKN National Conference 2026\u003C/strong\u003E on 04 Jun 2026.\u003C/p\u003E\u003Cp\u003E\u003Ca target=\"_blank\" rel=\"noopener noreferrer nofollow\" href=\"http://localhost/user/event-registrations/create?tenant=ybit&amp;event_id=1\"\u003EClick here to register now\u003C/a\u003E.\u003C/p\u003E",
+      "thumbnail": "http://localhost/storage/news-thumbnails/01KM45J44AWQPSN1WMXWPA07H2.jpeg",
       "is_published": true,
       "event_id": null,
       "created_at": "2026-03-04T22:41:56+00:00"
     }
   ],
-  "testimonials": []
+  "testimonials": [],
+  "contact_info": {
+    "phone": "628111729896",
+    "whatsapp_url": "https://wa.me/628111729896"
+  }
 }

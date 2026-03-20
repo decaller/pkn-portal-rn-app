@@ -23,13 +23,16 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
 import { EmptyState } from '@/components/ui/EmptyState';
 
-import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius, typography, shadows } from '@/theme';
 import type { DocumentItem, DocumentsResponse } from '@/types';
 
 import { useAppStore } from '@/store/appStore';
 
 function DocumentCard({ doc }: { doc: DocumentItem }) {
   const { isAuthenticated } = useAppStore();
+  const { colors, isDark } = useAppTheme();
+  
   const getFileInfo = (mime: string | null | undefined) => {
     const defaultInfo = { icon: 'document' as const, color: colors.text.tertiary, label: 'FILE' };
     if (!mime) return defaultInfo;
@@ -43,6 +46,7 @@ function DocumentCard({ doc }: { doc: DocumentItem }) {
   };
 
   const info = getFileInfo(doc.mime_type);
+  const styles = createCardStyles(colors, isDark);
 
   return (
     <View style={[styles.docCard, shadows.sm]}>
@@ -81,6 +85,8 @@ function DocumentCard({ doc }: { doc: DocumentItem }) {
 
 export function DocumentBrowserScreen() {
   const { t } = useTranslation();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
 
@@ -149,7 +155,12 @@ export function DocumentBrowserScreen() {
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+             refreshing={refreshing}
+             onRefresh={onRefresh}
+             tintColor={colors.brand.primary}
+             colors={[colors.brand.primary]}
+          />
         }
         ListEmptyComponent={
           isLoading ? (
@@ -172,7 +183,62 @@ export function DocumentBrowserScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createCardStyles = (colors: any, isDark: boolean) => StyleSheet.create({
+  docCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.lg,
+    padding: spacing.md,
+    marginBottom: spacing.sm,
+    gap: spacing.md,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
+  },
+  docIcon: {
+    width: 44,
+    height: 44,
+    borderRadius: borderRadius.md,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  docContent: {
+    flex: 1,
+    gap: 2,
+  },
+  docTitle: {
+    ...typography.callout,
+    fontWeight: '600',
+    color: colors.text.primary,
+  },
+  docDesc: {
+    ...typography.caption1,
+    color: colors.text.secondary,
+  },
+  docMeta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
+  docMetaText: {
+    ...typography.caption2,
+    color: colors.text.tertiary,
+  },
+  docMetaDot: {
+    fontSize: 8,
+    color: colors.text.tertiary,
+  },
+  downloadButton: {
+    width: 40,
+    height: 40,
+    borderRadius: borderRadius.md,
+    backgroundColor: isDark ? colors.background.tertiary : colors.status.infoLight,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
+
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.secondary,
@@ -191,7 +257,7 @@ const styles = StyleSheet.create({
     width: 56,
     height: 56,
     borderRadius: borderRadius.full,
-    backgroundColor: colors.status.infoLight,
+    backgroundColor: isDark ? colors.background.secondary : colors.status.infoLight,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: spacing.sm,
@@ -234,55 +300,5 @@ const styles = StyleSheet.create({
   listContent: {
     paddingHorizontal: spacing.lg,
     paddingBottom: Platform.OS === 'ios' ? 100 : 80,
-  },
-  docCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.background.card,
-    borderRadius: borderRadius.lg,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-    gap: spacing.md,
-  },
-  docIcon: {
-    width: 44,
-    height: 44,
-    borderRadius: borderRadius.md,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  docContent: {
-    flex: 1,
-    gap: 2,
-  },
-  docTitle: {
-    ...typography.callout,
-    fontWeight: '600',
-    color: colors.text.primary,
-  },
-  docDesc: {
-    ...typography.caption1,
-    color: colors.text.secondary,
-  },
-  docMeta: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.xs,
-  },
-  docMetaText: {
-    ...typography.caption2,
-    color: colors.text.tertiary,
-  },
-  docMetaDot: {
-    fontSize: 8,
-    color: colors.text.tertiary,
-  },
-  downloadButton: {
-    width: 40,
-    height: 40,
-    borderRadius: borderRadius.md,
-    backgroundColor: colors.status.infoLight,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });

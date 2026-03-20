@@ -4,7 +4,8 @@
  */
 import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet, ViewStyle } from 'react-native';
-import { colors, borderRadius } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { borderRadius } from '@/theme';
 
 interface SkeletonLoaderProps {
   width?: number | string;
@@ -19,6 +20,7 @@ export function SkeletonLoader({
   borderRadiusSize = borderRadius.md,
   style,
 }: SkeletonLoaderProps) {
+  const { colors, isDark } = useAppTheme();
   const animatedValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -42,15 +44,15 @@ export function SkeletonLoader({
 
   const opacity = animatedValue.interpolate({
     inputRange: [0, 1],
-    outputRange: [0.3, 0.7],
+    outputRange: [isDark ? 0.1 : 0.3, isDark ? 0.3 : 0.7],
   });
 
   return (
     <Animated.View
       style={[
-        styles.skeleton,
         {
-          width: width as number,
+          backgroundColor: isDark ? colors.background.tertiary : colors.border.light,
+          width: width as any,
           height,
           borderRadius: borderRadiusSize,
           opacity,
@@ -62,10 +64,20 @@ export function SkeletonLoader({
 }
 
 export function SkeletonCard({ style }: { style?: ViewStyle }) {
+  const { colors, isDark } = useAppTheme();
+  
   return (
-    <View style={[styles.card, style]}>
+    <View style={[
+      {
+        backgroundColor: colors.background.card,
+        borderRadius: borderRadius.lg,
+        overflow: 'hidden',
+        marginBottom: 16,
+      },
+      style
+    ]}>
       <SkeletonLoader height={160} borderRadiusSize={borderRadius.lg} />
-      <View style={styles.cardContent}>
+      <View style={{ padding: 12, gap: 4 }}>
         <SkeletonLoader width="80%" height={18} />
         <SkeletonLoader width="60%" height={14} style={{ marginTop: 8 }} />
         <SkeletonLoader width="40%" height={12} style={{ marginTop: 8 }} />
@@ -73,19 +85,3 @@ export function SkeletonCard({ style }: { style?: ViewStyle }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  skeleton: {
-    backgroundColor: colors.border.light,
-  },
-  card: {
-    backgroundColor: colors.background.card,
-    borderRadius: borderRadius.lg,
-    overflow: 'hidden',
-    marginBottom: 16,
-  },
-  cardContent: {
-    padding: 12,
-    gap: 4,
-  },
-});

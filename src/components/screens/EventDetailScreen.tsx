@@ -3,13 +3,14 @@
  * Reference: event_detail_screen mockup, UX Flow Guide § 4.D
  */
 import { Badge } from "@/components/ui/Badge";
-import { borderRadius, colors, shadows, spacing, typography } from "@/theme";
+import { borderRadius, spacing, typography, shadows } from "@/theme";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import {
+  ActivityIndicator,
   Dimensions,
   Linking,
   Modal,
@@ -22,6 +23,7 @@ import {
   View,
 } from "react-native";
 import { BlurView } from "expo-blur";
+import { useAppTheme } from "@/hooks/useAppTheme";
 
 const { width } = Dimensions.get("window");
 
@@ -29,10 +31,14 @@ function MetaTile({
   icon,
   label,
   value,
+  colors,
+  styles
 }: {
   icon: keyof typeof Ionicons.glyphMap;
   label: string;
   value: string;
+  colors: any;
+  styles: any;
 }) {
   return (
     <View style={styles.metaTile}>
@@ -46,14 +52,15 @@ function MetaTile({
 }
 
 import api from "@/services/api";
-import type { EventItem, SingleEventResponse } from "@/types";
+import type { EventItem, SingleEventResponse, DashboardResponse } from "@/types";
 import { useQuery } from "@tanstack/react-query";
-import { ActivityIndicator } from "react-native";
 
 import { useAppStore } from "@/store/appStore";
 
 export function EventDetailScreen() {
   const { t, i18n } = useTranslation();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
   const { id } = useLocalSearchParams<{ id: string }>();
   const { isAuthenticated } = useAppStore();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
@@ -66,7 +73,22 @@ export function EventDetailScreen() {
     },
   });
 
+  const { data: dashboardData } = useQuery<DashboardResponse>({
+    queryKey: ["dashboard"],
+    queryFn: async () => {
+      const resp = await api.get("/mobile-dashboard");
+      return resp.data;
+    },
+  });
+
   const event = eventResp?.data;
+  const whatsappUrl = dashboardData?.contact_info?.whatsapp_url;
+
+  const handleContact = () => {
+    if (whatsappUrl) {
+      Linking.openURL(whatsappUrl);
+    }
+  };
 
   const getStatusBadge = (e: EventItem) => {
     if (!e.is_published)
@@ -168,22 +190,42 @@ export function EventDetailScreen() {
                 color={colors.text.inverse}
               />
             </Pressable>
-            <Pressable
-              onPress={handleShare}
-              style={styles.heroButton}
-              accessibilityLabel={t("common.share")}
-            >
-              <BlurView
-                intensity={40}
-                tint="dark"
-                style={StyleSheet.absoluteFill}
-              />
-              <Ionicons
-                name="share-outline"
-                size={22}
-                color={colors.text.inverse}
-              />
-            </Pressable>
+            <View style={{ flexDirection: "row", gap: spacing.sm }}>
+              <Pressable
+                onPress={handleShare}
+                style={styles.heroButton}
+                accessibilityLabel={t("common.share")}
+              >
+                <BlurView
+                  intensity={40}
+                  tint="dark"
+                  style={StyleSheet.absoluteFill}
+                />
+                <Ionicons
+                  name="share-outline"
+                  size={22}
+                  color={colors.text.inverse}
+                />
+              </Pressable>
+              {whatsappUrl && (
+                <Pressable
+                  onPress={handleContact}
+                  style={styles.heroButton}
+                  accessibilityLabel={t("common.contact")}
+                >
+                  <BlurView
+                    intensity={40}
+                    tint="dark"
+                    style={StyleSheet.absoluteFill}
+                  />
+                  <Ionicons
+                    name="logo-whatsapp"
+                    size={22}
+                    color="#25D366"
+                  />
+                </Pressable>
+              )}
+            </View>
           </View>
 
           <Pressable
@@ -215,11 +257,15 @@ export function EventDetailScreen() {
               icon="calendar"
               label={t("events.date")}
               value={formatDate(event.event_date)}
+              colors={colors}
+              styles={styles}
             />
             <MetaTile
               icon="location"
               label={t("events.location")}
               value={event.city || t("events.location")}
+              colors={colors}
+              styles={styles}
             />
             <MetaTile
               icon="people"
@@ -229,6 +275,8 @@ export function EventDetailScreen() {
                   ? `${event.available_spots} ${t("events.remaining")}`
                   : t("events.unlimited")
               }
+              colors={colors}
+              styles={styles}
             />
             <MetaTile
               icon="clipboard"
@@ -236,6 +284,8 @@ export function EventDetailScreen() {
               value={
                 event.allow_registration ? t("events.open") : t("events.closed")
               }
+              colors={colors}
+              styles={styles}
             />
           </View>
 
@@ -266,7 +316,7 @@ export function EventDetailScreen() {
                   ? t("events.downloadProposal")
                   : t("events.proposalNotAvailable")}
               </Text>
-              <Text style={typography.caption1}>
+              <Text style={[typography.caption1, { color: colors.text.secondary }]}>
                 {event.proposal
                   ? t("events.proposalDetailedPdf")
                   : t("events.proposalComingSoon")}
@@ -287,7 +337,7 @@ export function EventDetailScreen() {
             <View style={styles.calendarGrid}>
               {Array.from({ length: 14 }).map((_, i) => {
                 const d = new Date(event.event_date);
-                d.setDate(d.getDate() - 3 + i); // showing 3 days before and 11 days after/during
+                d.setDate(d.getDate() - 3 + i); 
                 const isEventDay = (day: Date) => {
                   const dayTime = new Date(day.toDateString()).getTime();
                   const eventStart = new Date(
@@ -353,10 +403,10 @@ export function EventDetailScreen() {
                   color={colors.status.info}
                 />
                 <View style={{ flex: 1 }}>
-                  <Text style={typography.headline}>
+                  <Text style={[typography.headline, { color: colors.text.primary }]}>
                     {event.city || t("events.location")}
                   </Text>
-                  <Text style={typography.subhead}>
+                  <Text style={[typography.subhead, { color: colors.text.secondary }]}>
                     {event.province}, {event.nation}
                   </Text>
                 </View>
@@ -397,7 +447,7 @@ export function EventDetailScreen() {
                     }}
                   >
                     <Text style={styles.packageName}>{item.data.title}</Text>
-                    <Text style={styles.packageDesc}>
+                    <Text style={[styles.packageDesc, { marginTop: 0 }]}>
                       {item.data.start_time || item.data.date || "-"}
                     </Text>
                   </View>
@@ -454,7 +504,7 @@ export function EventDetailScreen() {
                                 color={colors.text.tertiary}
                               />
                               <Text
-                                style={[typography.caption2, { flex: 1 }]}
+                                style={[typography.caption2, { flex: 1, color: colors.text.primary }]}
                                 numberOfLines={1}
                               >
                                 {fileName}
@@ -577,6 +627,30 @@ export function EventDetailScreen() {
                 ))}
               </View>
             )}
+          {/* Help Panel */}
+          {whatsappUrl && (
+            <View style={styles.helpSection}>
+              <View style={styles.helpContent}>
+                <View style={styles.helpIconBg}>
+                  <Ionicons name="help-circle" size={24} color={colors.brand.primary} />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={styles.helpTitle}>{t("events.helpTitle")}</Text>
+                  <Text style={styles.helpQuestion}>{t("events.helpQuestion")}</Text>
+                </View>
+              </View>
+              <Pressable
+                onPress={handleContact}
+                style={({ pressed }) => [
+                  styles.helpWhatsAppButton,
+                  pressed && { opacity: 0.9, transform: [{ scale: 0.98 }] },
+                ]}
+              >
+                <Ionicons name="logo-whatsapp" size={20} color={colors.text.inverse} />
+                <Text style={styles.helpWhatsAppText}>{t("events.contactWhatsApp")}</Text>
+              </Pressable>
+            </View>
+          )}
 
           <View style={{ height: 120 }} />
         </View>
@@ -649,7 +723,7 @@ export function EventDetailScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.primary,
@@ -682,7 +756,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: borderRadius.full,
-    overflow: "hidden", // Ensure blur stays within bounds
+    overflow: "hidden", 
     justifyContent: "center",
     alignItems: "center",
   },
@@ -953,7 +1027,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     gap: 4,
-    overflow: "hidden", // Ensure blur stays within bounds
+    overflow: "hidden", 
     paddingHorizontal: spacing.sm,
     paddingVertical: 4,
     borderRadius: borderRadius.sm,
@@ -1011,5 +1085,66 @@ const styles = StyleSheet.create({
     backgroundColor: colors.brand.primary,
     justifyContent: "center",
     alignItems: "center",
+  },
+  whatsappStickyButton: {
+    width: 48,
+    height: 48,
+    borderRadius: borderRadius.md,
+    backgroundColor: colors.background.secondary,
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: colors.border.light,
+  },
+  stickyActionArea: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  helpSection: {
+    marginTop: spacing["2xl"],
+    padding: spacing.lg,
+    backgroundColor: isDark ? colors.background.secondary : colors.brand.primary + "10", 
+    borderRadius: borderRadius.lg,
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderColor: isDark ? colors.border.light : colors.brand.primary + "40",
+    gap: spacing.md,
+  },
+  helpContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: spacing.md,
+  },
+  helpIconBg: {
+    width: 44,
+    height: 44,
+    borderRadius: borderRadius.full,
+    backgroundColor: isDark ? colors.background.tertiary : colors.brand.primary + "15",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  helpTitle: {
+    ...typography.headline,
+    color: colors.text.primary,
+  },
+  helpQuestion: {
+    ...typography.subhead,
+    color: colors.text.secondary,
+  },
+  helpWhatsAppButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#25D366",
+    paddingVertical: spacing.md,
+    borderRadius: borderRadius.md,
+    gap: spacing.sm,
+    ...shadows.sm,
+  },
+  helpWhatsAppText: {
+    color: colors.text.inverse,
+    fontWeight: "600",
+    fontSize: 15,
   },
 });

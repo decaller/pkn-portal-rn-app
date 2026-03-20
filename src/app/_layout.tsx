@@ -9,10 +9,12 @@ import '@/utils/i18n';
 import { useEffect } from 'react';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
 import { Platform } from 'react-native';
+import { ThemeProvider, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
 
 import { useAppStore } from '@/store/appStore';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -50,6 +52,7 @@ const NativePersistentLayout = Platform.OS !== 'web'
 
 function AppShell() {
   const _hasHydrated = useAppStore((s) => s._hasHydrated);
+  const { colors, isDark } = useAppTheme();
 
   useEffect(() => {
     // On native, manually trigger Zustand hydration after mount
@@ -68,29 +71,46 @@ function AppShell() {
     return null;
   }
 
+  const navigationTheme = {
+    ...(isDark ? DarkTheme : DefaultTheme),
+    colors: {
+      ...(isDark ? DarkTheme.colors : DefaultTheme.colors),
+      primary: colors.brand.primary,
+      background: colors.background.primary,
+      card: colors.background.card,
+      text: colors.text.primary,
+      border: colors.border.light,
+      notification: colors.brand.accent,
+    },
+  };
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <StatusBar style="auto" />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen
-          name="events/[id]"
-          options={{ headerShown: false, animation: 'slide_from_right' }}
-        />
-        <Stack.Screen
-          name="news/index"
-          options={{
-            headerShown: true,
-            title: 'News & Articles',
-            animation: 'slide_from_right',
-          }}
-        />
-        <Stack.Screen
-          name="news/[id]"
-          options={{ headerShown: false, animation: 'slide_from_right' }}
-        />
-      </Stack>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: colors.background.primary }}>
+      <StatusBar style={isDark ? 'light' : 'dark'} />
+      <ThemeProvider value={navigationTheme}>
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="(tabs)" />
+          <Stack.Screen
+            name="events/[id]"
+            options={{ headerShown: false, animation: 'slide_from_right' }}
+          />
+          <Stack.Screen
+            name="news/index"
+            options={{
+              headerShown: true,
+              title: 'News & Articles',
+              animation: 'slide_from_right',
+              headerTintColor: colors.text.primary,
+              headerStyle: { backgroundColor: colors.background.primary },
+            }}
+          />
+          <Stack.Screen
+            name="news/[id]"
+            options={{ headerShown: false, animation: 'slide_from_right' }}
+          />
+        </Stack>
+      </ThemeProvider>
     </GestureHandlerRootView>
   );
 }

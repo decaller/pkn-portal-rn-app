@@ -4,7 +4,8 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import { Image } from 'expo-image';
-import { colors, spacing, borderRadius, shadows, typography } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius, shadows, typography } from '@/theme';
 import type { NewsItem } from '@/types';
 
 interface NewsCardProps {
@@ -23,6 +24,8 @@ function formatDate(dateStr: string) {
 }
 
 export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProps) {
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
   const imageUrl = article.thumbnail;
 
   if (variant === 'featured') {
@@ -90,13 +93,15 @@ export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProp
 }
 
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   // Featured variant
   featured: {
     backgroundColor: colors.background.card,
     borderRadius: borderRadius.lg,
     overflow: 'hidden',
     height: 220,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   featuredImage: {
     width: '100%',
@@ -109,7 +114,7 @@ const styles = StyleSheet.create({
     right: 0,
     padding: spacing.lg,
     paddingTop: spacing['4xl'],
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.65)',
   },
   categoryBadge: {
     backgroundColor: colors.brand.primary,
@@ -127,11 +132,11 @@ const styles = StyleSheet.create({
   },
   featuredTitle: {
     ...typography.title3,
-    color: colors.text.inverse,
+    color: '#FFFFFF', // Always white on dark overlay
   },
   featuredDate: {
     ...typography.caption1,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.85)',
     marginTop: spacing.xs,
   },
 

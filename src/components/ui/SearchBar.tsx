@@ -4,7 +4,8 @@
 import React from 'react';
 import { View, TextInput, Pressable, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, borderRadius } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius } from '@/theme';
 
 interface SearchBarProps {
   value: string;
@@ -14,6 +15,9 @@ interface SearchBarProps {
 }
 
 export function SearchBar({ value, onChangeText, placeholder, onSubmit }: SearchBarProps) {
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
+
   return (
     <View style={styles.container}>
       <Ionicons name="search" size={18} color={colors.text.tertiary} style={styles.icon} />
@@ -37,11 +41,11 @@ export function SearchBar({ value, onChangeText, placeholder, onSubmit }: Search
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.background.secondary,
+    backgroundColor: isDark ? colors.background.tertiary : colors.background.secondary,
     borderRadius: borderRadius.md,
     paddingHorizontal: spacing.md,
     height: 44,

@@ -8,11 +8,15 @@ import { BlurView } from 'expo-blur';
 import { Platform, StyleSheet, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
-import { colors } from '@/theme';
-import { LanguageToggle } from '@/components/ui/LanguageToggle';
+import { spacing } from '@/theme';
+import { HeaderMenu } from '@/components/ui/HeaderMenu';
+import { HeaderReloadButton } from '@/components/ui/HeaderReloadButton';
+import { HeaderContactButton } from '@/components/ui/HeaderContactButton';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 export default function TabLayout() {
   const { t } = useTranslation();
+  const { colors, isDark } = useAppTheme();
 
   return (
     <Tabs
@@ -20,7 +24,13 @@ export default function TabLayout() {
         tabBarActiveTintColor: colors.brand.primary,
         tabBarInactiveTintColor: colors.text.tertiary,
         tabBarShowLabel: false,
-        headerRight: () => <LanguageToggle />,
+        headerRight: () => (
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: spacing.md, gap: spacing.sm }}>
+            <HeaderReloadButton />
+            <HeaderContactButton />
+            <HeaderMenu />
+          </View>
+        ),
         headerStyle: {
           backgroundColor: colors.background.primary,
         },
@@ -36,7 +46,7 @@ export default function TabLayout() {
             elevation: 0,
           },
           android: {
-            backgroundColor: colors.background.card, // Fallback to card if "surface" not natively handled yet
+            backgroundColor: isDark ? colors.background.secondary : colors.background.card, 
             borderTopColor: colors.border.light,
             elevation: 8,
             height: 64,
@@ -46,7 +56,7 @@ export default function TabLayout() {
         }),
         tabBarBackground: () => 
           Platform.OS === 'ios' ? (
-            <BlurView intensity={80} tint="light" style={StyleSheet.absoluteFill} />
+            <BlurView intensity={80} tint={isDark ? 'dark' : 'light'} style={StyleSheet.absoluteFill} />
           ) : undefined,
       }}
     >

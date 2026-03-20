@@ -26,11 +26,14 @@ import { SkeletonCard } from '@/components/ui/SkeletonLoader';
 import { MOCK_DASHBOARD } from '@/services/mockData';
 import api from '@/services/api';
 import type { EventItem, NewsItem, DashboardResponse as DashboardData } from '@/types';
-import { colors, spacing, borderRadius, typography, shadows } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius, typography, shadows } from '@/theme';
 
 export function GuestDashboard() {
   const { t } = useTranslation();
   const router = useRouter();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
 
   const {
     data: dashboardData,
@@ -70,7 +73,18 @@ export function GuestDashboard() {
 
   if (isLoading && !dashboardData) {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <ScrollView
+        style={styles.container}
+        contentContainerStyle={styles.content}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.brand.primary}
+            colors={[colors.brand.primary]}
+          />
+        }
+      >
         <View style={styles.banner}>
           <View style={styles.bannerContent}>
             <Text style={styles.greeting}>{t('dashboard.guestGreeting')}</Text>
@@ -102,7 +116,7 @@ export function GuestDashboard() {
       >
         <View style={{ padding: spacing.xl, alignItems: 'center' }}>
           <Ionicons name="cloud-offline" size={64} color={colors.text.tertiary} />
-          <Text style={[typography.headline, { marginTop: spacing.md }]}>
+          <Text style={[typography.headline, { marginTop: spacing.md, color: colors.text.primary }]}>
             {t('common.error')}
           </Text>
           <Pressable onPress={() => refetch()} style={{ marginTop: spacing.md }}>
@@ -244,7 +258,7 @@ export function GuestDashboard() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.secondary,
@@ -256,11 +270,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: colors.brand.primary,
+    backgroundColor: isDark ? colors.background.tertiary : colors.brand.primary,
     marginHorizontal: spacing.lg,
     borderRadius: borderRadius.xl,
     padding: spacing.xl,
     marginBottom: spacing.lg,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   bannerContent: {
     flex: 1,
@@ -268,18 +284,18 @@ const styles = StyleSheet.create({
   },
   greeting: {
     ...typography.title2,
-    color: colors.text.inverse,
+    color: isDark ? colors.text.primary : colors.text.inverse,
     marginBottom: spacing.xs,
   },
   subtitle: {
     ...typography.subhead,
-    color: 'rgba(255,255,255,0.8)',
+    color: isDark ? colors.text.secondary : 'rgba(255,255,255,0.8)',
   },
   bannerIcon: {
     width: 64,
     height: 64,
     borderRadius: borderRadius.lg,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    backgroundColor: isDark ? colors.background.secondary : 'rgba(255,255,255,0.2)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -296,6 +312,8 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     gap: spacing.md,
     marginVertical: spacing.sm,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   whyJoinContent: {
     flex: 1,
@@ -326,6 +344,8 @@ const styles = StyleSheet.create({
     borderRadius: borderRadius.lg,
     overflow: 'hidden',
     marginBottom: spacing.sm,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   testimonialCard: {
     width: 280,
@@ -334,6 +354,8 @@ const styles = StyleSheet.create({
     padding: spacing.lg,
     marginRight: spacing.md,
     justifyContent: 'space-between',
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   testimonialQuote: {
     ...typography.subhead,
@@ -373,3 +395,4 @@ const styles = StyleSheet.create({
     height: Platform.OS === 'ios' ? 100 : 80,
   },
 });
+

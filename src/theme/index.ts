@@ -1,7 +1,7 @@
 /**
  * PKN Portal Design System — Unified Theme Export
  */
-export { colors } from './colors';
+export { colors, light, dark } from './colors';
 export type { Colors } from './colors';
 
 export { spacing, borderRadius } from './spacing';

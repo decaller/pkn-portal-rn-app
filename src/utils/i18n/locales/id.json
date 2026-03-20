@@ -74,7 +74,10 @@
     "loginToAccessFiles": "Masuk untuk mengakses file",
     "documentation": "Dokumentasi",
     "testimonials": "Testimoni",
-    "notFound": "Acara tidak ditemukan"
+    "notFound": "Acara tidak ditemukan",
+    "helpTitle": "Butuh bantuan?",
+    "helpQuestion": "Ada pertanyaan atau butuh penawaran khusus?",
+    "contactWhatsApp": "Hubungi via WhatsApp"
   },
   "news": {
     "title": "Berita & Artikel",
@@ -108,6 +111,16 @@
     "signIn": "Masuk",
     "offline": "Anda sedang offline",
     "offlineAction": "Koneksi internet diperlukan untuk tindakan ini",
-    "days": "hari"
+    "days": "hari",
+    "contact": "Hubungi"
+  },
+  "menu": {
+    "language": "Bahasa",
+    "theme": "Tampilan"
+  },
+  "theme": {
+    "light": "Terang",
+    "dark": "Gelap",
+    "system": "Otomatis"
   }
 }

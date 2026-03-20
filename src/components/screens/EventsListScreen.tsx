@@ -18,16 +18,18 @@ import { SearchBar } from '@/components/ui/SearchBar';
 import { FilterChip } from '@/components/ui/FilterChip';
 import { EmptyState } from '@/components/ui/EmptyState';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
-import { colors, spacing } from '@/theme';
-import { MOCK_EVENTS } from '@/services/mockData';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/services/api';
 import type { EventItem, EventsResponse } from '@/types';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing } from '@/theme';
 
 const FILTERS = ['all', 'upcoming', 'past'] as const;
 
 export function EventsListScreen() {
   const { t } = useTranslation();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
   const [search, setSearch] = useState('');
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [refreshing, setRefreshing] = useState(false);
@@ -46,7 +48,7 @@ export function EventsListScreen() {
 
   const allEvents = eventsData?.data || [];
 
-  const filteredEvents = allEvents.filter((event) => {
+  const filteredEvents = allEvents.filter((event: EventItem) => {
     const matchesSearch =
       !search || event.title.toLowerCase().includes(search.toLowerCase());
 
@@ -77,8 +79,17 @@ export function EventsListScreen() {
 
   if (isLoading && !eventsData) {
     return (
-      <View style={styles.container}>
-
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            tintColor={colors.brand.primary}
+            colors={[colors.brand.primary]}
+          />
+        }
+      >
         <View style={styles.searchSection}>
           <SearchBar
             value=""
@@ -91,7 +102,7 @@ export function EventsListScreen() {
             <SkeletonCard key={i} />
           ))}
         </View>
-      </View>
+      </ScrollView>
     );
   }
 
@@ -113,7 +124,7 @@ export function EventsListScreen() {
           {FILTERS.map((filter) => (
             <FilterChip
               key={filter}
-              label={t(`events.filters.${filter}`)}
+              label={t(`events.filters.${filter}` as any)}
               isActive={activeFilter === filter}
               onPress={() => setActiveFilter(filter)}
             />
@@ -153,7 +164,7 @@ export function EventsListScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.secondary,

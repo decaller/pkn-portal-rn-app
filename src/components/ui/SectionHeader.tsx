@@ -4,7 +4,8 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { colors, spacing, typography } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, typography } from '@/theme';
 
 interface SectionHeaderProps {
   title: string;
@@ -13,6 +14,9 @@ interface SectionHeaderProps {
 }
 
 export function SectionHeader({ title, actionLabel, onAction }: SectionHeaderProps) {
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
+  
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{title}</Text>
@@ -34,7 +38,7 @@ export function SectionHeader({ title, actionLabel, onAction }: SectionHeaderPro
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',

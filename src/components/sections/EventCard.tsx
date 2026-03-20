@@ -8,8 +8,8 @@ import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { Badge } from '@/components/ui/Badge';
-
-import { colors, spacing, borderRadius, shadows, typography } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius, shadows, typography } from '@/theme';
 import type { EventItem } from '@/types';
 
 interface EventCardProps {
@@ -37,6 +37,8 @@ function formatDate(dateStr: string) {
 
 export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) {
   const { t } = useTranslation();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
 
   if (variant === 'horizontal') {
     return (
@@ -97,7 +99,7 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
           <Badge label={getStatusBadge(event).label} variant={getStatusBadge(event).variant} />
           {event.available_spots !== null && event.available_spots > 0 && (
             <Text style={styles.spotsText}>
-              {event.available_spots} {t?.('common.spotsLeft') ?? 'spots left'}
+              {t('events.spotsLeft', { count: event.available_spots })}
             </Text>
           )}
         </View>
@@ -125,12 +127,14 @@ export function EventCard({ event, onPress, variant = 'full' }: EventCardProps) 
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   card: {
     backgroundColor: colors.background.card,
     borderRadius: borderRadius.lg,
     overflow: 'hidden',
     marginBottom: spacing.lg,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   image: {
     width: '100%',
@@ -179,6 +183,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     width: 260,
     marginRight: spacing.md,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
   },
   horizontalImage: {
     width: '100%',

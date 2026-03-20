@@ -42,7 +42,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
     paddingVertical: 5,
     borderRadius: borderRadius.full,
-    marginRight: spacing.lg,
     borderWidth: 1,
     borderColor: colors.border.light,
   },

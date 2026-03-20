@@ -10,7 +10,8 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { NewsCard } from '@/components/sections/NewsCard';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { colors, spacing, borderRadius, typography } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius, typography } from '@/theme';
 import { useQuery } from '@tanstack/react-query';
 import api from '@/services/api';
 import type { NewsItem, NewsResponse } from '@/types';
@@ -18,6 +19,8 @@ import { ActivityIndicator } from 'react-native';
 
 export function NewsDetailScreen() {
   const { t } = useTranslation();
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
   const { id } = useLocalSearchParams<{ id: string }>();
 
   const { data: newsData, isLoading } = useQuery<NewsResponse>({
@@ -81,10 +84,10 @@ export function NewsDetailScreen() {
           />
           <View style={styles.heroOverlay} />
           <View style={styles.heroActions}>
-            <Pressable onPress={() => router.back()} style={styles.heroButton}>
+            <Pressable onPress={() => router.back()} style={styles.heroButton} accessibilityLabel={t('common.back')}>
               <Ionicons name="arrow-back" size={22} color={colors.text.inverse} />
             </Pressable>
-            <Pressable onPress={handleShare} style={styles.heroButton}>
+            <Pressable onPress={handleShare} style={styles.heroButton} accessibilityLabel={t('common.share')}>
               <Ionicons name="share-outline" size={22} color={colors.text.inverse} />
             </Pressable>
           </View>
@@ -124,7 +127,7 @@ export function NewsDetailScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.primary,
@@ -164,20 +167,6 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: borderRadius.xl,
     borderTopRightRadius: borderRadius.xl,
   },
-  categoryBadge: {
-    backgroundColor: colors.brand.primary,
-    paddingHorizontal: spacing.sm,
-    paddingVertical: 3,
-    borderRadius: borderRadius.sm,
-    alignSelf: 'flex-start',
-    marginBottom: spacing.md,
-  },
-  categoryText: {
-    fontSize: 11,
-    fontWeight: '600',
-    color: colors.text.inverse,
-    textTransform: 'uppercase',
-  },
   title: {
     ...typography.title1,
     color: colors.text.primary,
@@ -188,11 +177,6 @@ const styles = StyleSheet.create({
     gap: spacing.md,
     marginTop: spacing.sm,
     marginBottom: spacing.xl,
-  },
-  author: {
-    ...typography.footnote,
-    color: colors.text.secondary,
-    fontWeight: '500',
   },
   date: {
     ...typography.footnote,

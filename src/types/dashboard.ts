@@ -16,4 +16,8 @@ export interface DashboardResponse {
   featured_events: EventItem[];
   latest_news: NewsItem[];
   testimonials: Testimonial[];
+  contact_info: {
+    phone: string;
+    whatsapp_url: string;
+  };
 }

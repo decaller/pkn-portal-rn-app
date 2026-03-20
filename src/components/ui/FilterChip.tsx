@@ -4,7 +4,8 @@
  */
 import React from 'react';
 import { Pressable, Text, StyleSheet, Platform } from 'react-native';
-import { colors, spacing, borderRadius } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
+import { spacing, borderRadius } from '@/theme';
 
 interface FilterChipProps {
   label: string;
@@ -13,6 +14,9 @@ interface FilterChipProps {
 }
 
 export function FilterChip({ label, isActive, onPress }: FilterChipProps) {
+  const { colors, isDark } = useAppTheme();
+  const styles = createStyles(colors, isDark);
+
   return (
     <Pressable
       onPress={onPress}
@@ -32,7 +36,7 @@ export function FilterChip({ label, isActive, onPress }: FilterChipProps) {
   );
 }
 
-const styles = StyleSheet.create({
+const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   chip: {
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
@@ -45,7 +49,7 @@ const styles = StyleSheet.create({
     borderColor: colors.brand.primary,
   },
   inactive: {
-    backgroundColor: colors.background.card,
+    backgroundColor: isDark ? colors.background.tertiary : colors.background.card,
     borderColor: colors.border.light,
   },
   label: {
