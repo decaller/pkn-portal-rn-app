@@ -27,10 +27,10 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, borderRadius, typography, shadows } from '@/theme';
 import type { DocumentItem, DocumentsResponse } from '@/types';
 
-import { useAppStore } from '@/store/appStore';
+import { useAuthStore } from '@/store/authStore';
 
 function DocumentCard({ doc }: { doc: DocumentItem }) {
-  const { isAuthenticated } = useAppStore();
+  const { isAuthenticated } = useAuthStore();
   const { colors, isDark } = useAppTheme();
   
   const getFileInfo = (mime: string | null | undefined) => {

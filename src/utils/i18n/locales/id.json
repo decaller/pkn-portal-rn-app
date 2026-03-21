@@ -28,7 +28,15 @@
     "testimonials": "Kata Mereka",
     "viewAll": "Lihat Semua",
     "whyJoin": "Mengapa Bergabung PKN?",
-    "whyJoinDesc": "Akses acara eksklusif, sumber daya, dan komunitas profesional"
+    "whyJoinDesc": "Akses acara eksklusif, sumber daya, dan komunitas profesional",
+    "myEvents": "Acara Saya",
+    "myDocuments": "Dokumen Saya",
+    "profile": "Profil",
+    "settings": "Pengaturan",
+    "userGreeting": "Hai, {{name}}!",
+    "userSubtitle": "Siap untuk pencapaian profesional Anda berikutnya?",
+    "activeEvents": "Acara Aktif",
+    "pendingPayments": "Pembayaran Tertunda"
   },
   "events": {
     "title": "Acara",
@@ -112,7 +120,8 @@
     "offline": "Anda sedang offline",
     "offlineAction": "Koneksi internet diperlukan untuk tindakan ini",
     "days": "hari",
-    "contact": "Hubungi"
+    "contact": "Hubungi",
+    "user": "Pengguna"
   },
   "menu": {
     "language": "Bahasa",

@@ -2,11 +2,13 @@ import React from 'react';
 import { Pressable, StyleSheet, Linking } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useQuery } from '@tanstack/react-query';
-import { colors, borderRadius, spacing } from '@/theme';
+import { borderRadius } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
 import api from '@/services/api';
 import type { DashboardResponse } from '@/types';
 
 export function HeaderContactButton() {
+  const { colors } = useAppTheme();
   const { data: dashboardData } = useQuery<DashboardResponse>({
     queryKey: ['dashboard'],
     queryFn: async () => {
@@ -30,7 +32,11 @@ export function HeaderContactButton() {
       onPress={handlePress}
       style={({ pressed }) => [
         styles.container,
-        pressed && styles.pressed
+        {
+          backgroundColor: colors.background.secondary,
+          borderColor: colors.border.light,
+        },
+        pressed && { backgroundColor: colors.border.light, opacity: 0.7 }
       ]}
       hitSlop={12}
     >
@@ -44,14 +50,8 @@ const styles = StyleSheet.create({
     width: 36,
     height: 36,
     borderRadius: borderRadius.full,
-    backgroundColor: colors.background.secondary,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: colors.border.light,
-  },
-  pressed: {
-    opacity: 0.7,
-    backgroundColor: colors.border.light,
   },
 });

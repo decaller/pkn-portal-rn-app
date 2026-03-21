@@ -13,10 +13,12 @@ import { HeaderMenu } from '@/components/ui/HeaderMenu';
 import { HeaderReloadButton } from '@/components/ui/HeaderReloadButton';
 import { HeaderContactButton } from '@/components/ui/HeaderContactButton';
 import { useAppTheme } from '@/hooks/useAppTheme';
+import { useAuthStore } from '@/store/authStore';
 
 export default function TabLayout() {
   const { t } = useTranslation();
   const { colors, isDark } = useAppTheme();
+  const { isAuthenticated } = useAuthStore();
 
   return (
     <Tabs
@@ -86,6 +88,16 @@ export default function TabLayout() {
           title: t('tabs.documents'),
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="documents" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="registrations"
+        options={{
+          href: isAuthenticated ? '/registrations' : null,
+          title: t('tabs.registrations'),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="list-circle" size={size} color={color} />
           ),
         }}
       />

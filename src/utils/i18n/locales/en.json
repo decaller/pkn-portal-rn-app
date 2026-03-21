@@ -28,7 +28,15 @@
     "testimonials": "What People Say",
     "viewAll": "View All",
     "whyJoin": "Why Join PKN?",
-    "whyJoinDesc": "Access exclusive events, resources, and a professional community"
+    "whyJoinDesc": "Access exclusive events, resources, and a professional community",
+    "myEvents": "My Events",
+    "myDocuments": "My Documents",
+    "profile": "Profile",
+    "settings": "Settings",
+    "userGreeting": "Hi, {{name}}!",
+    "userSubtitle": "Ready for your next professional milestone?",
+    "activeEvents": "Active Events",
+    "pendingPayments": "Pending Payments"
   },
   "events": {
     "title": "Events",
@@ -112,7 +120,8 @@
     "offline": "You are offline",
     "offlineAction": "Internet connection is required for this action",
     "days": "days",
-    "contact": "Contact"
+    "contact": "Contact",
+    "user": "User"
   },
   "menu": {
     "language": "Language",

@@ -11,19 +11,16 @@ import { create } from 'zustand';
 
 interface AppState {
   hasSeenWelcome: boolean;
-  isAuthenticated: boolean;
   language: 'en' | 'id';
   theme: 'light' | 'dark' | 'system';
   setHasSeenWelcome: (value: boolean) => void;
   setLanguage: (lang: 'en' | 'id') => void;
   setTheme: (theme: 'light' | 'dark' | 'system') => void;
-  setAuthenticated: (value: boolean) => void;
   _hasHydrated: boolean;
 }
 
 const initialState = {
   hasSeenWelcome: false,
-  isAuthenticated: false,
   language: 'en' as const,
   theme: 'system' as const,
 };
@@ -37,7 +34,6 @@ function createStore() {
       setHasSeenWelcome: (value) => set({ hasSeenWelcome: value }),
       setLanguage: (lang) => set({ language: lang }),
       setTheme: (theme) => set({ theme }),
-      setAuthenticated: (value) => set({ isAuthenticated: value }),
     }));
   }
 
@@ -53,7 +49,6 @@ function createStore() {
         setHasSeenWelcome: (value: boolean) => set({ hasSeenWelcome: value }),
         setLanguage: (lang: 'en' | 'id') => set({ language: lang }),
         setTheme: (theme: 'light' | 'dark' | 'system') => set({ theme }),
-        setAuthenticated: (value: boolean) => set({ isAuthenticated: value }),
       }),
       {
         name: 'pkn-app-storage',
@@ -66,7 +61,6 @@ function createStore() {
         },
         partialize: (state: AppState) => ({
           hasSeenWelcome: state.hasSeenWelcome,
-          isAuthenticated: state.isAuthenticated,
           language: state.language,
           theme: state.theme,
         }),

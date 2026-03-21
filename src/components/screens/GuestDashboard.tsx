@@ -192,7 +192,7 @@ export function GuestDashboard() {
           <Text style={styles.whyJoinDesc}>{t('dashboard.whyJoinDesc')}</Text>
         </View>
         <Pressable
-          onPress={() => {}}
+          onPress={() => router.push('/auth/hybrid-login')}
           android_ripple={{ color: 'rgba(32, 138, 239, 0.15)' }}
           style={({ pressed }) => [
             styles.whyJoinButton,

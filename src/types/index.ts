@@ -5,3 +5,4 @@ export * from './event';
 export * from './news';
 export * from './document';
 export * from './dashboard';
+export * from './auth';

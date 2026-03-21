@@ -52,6 +52,7 @@ export interface EventItem {
   rundown: RundownItem[] | null;
   tags: string[] | null;
   proposal?: string;
+  registration_url?: string;
   testimonials?: Testimonial[];
 }
 

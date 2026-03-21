@@ -56,13 +56,14 @@ import type { EventItem, SingleEventResponse, DashboardResponse } from "@/types"
 import { useQuery } from "@tanstack/react-query";
 
 import { useAppStore } from "@/store/appStore";
+import { useAuthStore } from "@/store/authStore";
 
 export function EventDetailScreen() {
   const { t, i18n } = useTranslation();
   const { colors, isDark } = useAppTheme();
   const styles = createStyles(colors, isDark);
   const { id } = useLocalSearchParams<{ id: string }>();
-  const { isAuthenticated } = useAppStore();
+  const { isAuthenticated } = useAuthStore();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   const { data: eventResp, isLoading } = useQuery<SingleEventResponse>({
@@ -669,7 +670,17 @@ export function EventDetailScreen() {
               </Text>
             </View>
             <Pressable
-              onPress={() => {}}
+              onPress={() => {
+                if (!isAuthenticated) {
+                  router.push('/auth/hybrid-login');
+                } else {
+                  // TODO: Navigate to registration form/webview
+                  // For now, redirect to event website or show coming soon
+                  if (event.registration_url) {
+                    Linking.openURL(event.registration_url);
+                  }
+                }
+              }}
               android_ripple={{ color: "rgba(255,255,255,0.2)" }}
               style={({ pressed }) => [
                 styles.registerButton,
@@ -679,7 +690,7 @@ export function EventDetailScreen() {
             >
               <Ionicons name="ticket" size={18} color={colors.text.inverse} />
               <Text style={styles.registerText}>
-                {t("events.loginToRegister")}
+                {isAuthenticated ? t("events.registerNow") : t("events.loginToRegister")}
               </Text>
             </Pressable>
           </View>

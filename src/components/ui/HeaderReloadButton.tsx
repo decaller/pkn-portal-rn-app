@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View, Animated } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useQueryClient, useQuery } from '@tanstack/react-query';
-import { colors, spacing } from '@/theme';
+import { spacing } from '@/theme';
+import { useAppTheme } from '@/hooks/useAppTheme';
 
 const STALE_THRESHOLD = 1000 * 60 * 60; // 1 hour
 
 export function HeaderReloadButton() {
+  const { colors } = useAppTheme();
   const queryClient = useQueryClient();
   const [isStale, setIsStale] = useState(false);
   const opacity = React.useRef(new Animated.Value(0)).current;
@@ -66,7 +68,9 @@ export function HeaderReloadButton() {
         onPress={handlePress}
         style={({ pressed }) => [
           styles.button,
-          pressed && styles.pressed
+          {
+            backgroundColor: colors.brand.primary + (pressed ? '33' : '1A'), // 20% or 10% opacity
+          }
         ]}
       >
         <Ionicons name="refresh-outline" size={22} color={colors.brand.primary} />
@@ -79,10 +83,5 @@ const styles = StyleSheet.create({
   button: {
     padding: spacing.sm,
     borderRadius: 20,
-    backgroundColor: 'rgba(32, 138, 239, 0.1)',
-  },
-  pressed: {
-    opacity: 0.7,
-    backgroundColor: 'rgba(32, 138, 239, 0.2)',
   },
 });
