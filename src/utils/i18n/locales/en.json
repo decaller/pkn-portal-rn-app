@@ -107,7 +107,10 @@
     "signInDesc": "Browse and download event materials, reports, and more",
     "noDocuments": "No documents available",
     "noDocs": "No documents found",
-    "noDocsDesc": "Try adjusting your search query"
+    "noDocsDesc": "Try adjusting your search query",
+    "notFound": "Document not found",
+    "description": "Description",
+    "noDescription": "No description available for this document."
   },
   "registrations": {
     "title": "My Registrations",

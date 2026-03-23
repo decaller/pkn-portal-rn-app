@@ -107,7 +107,10 @@
     "signInDesc": "Jelajahi dan unduh materi acara, laporan, dan lainnya",
     "noDocuments": "Tidak ada dokumen tersedia",
     "noDocs": "Dokumen tidak ditemukan",
-    "noDocsDesc": "Coba sesuaikan pencarian Anda"
+    "noDocsDesc": "Coba sesuaikan kata kunci pencarian Anda",
+    "notFound": "Dokumen tidak ditemukan",
+    "description": "Deskripsi",
+    "noDescription": "Tidak ada deskripsi tersedia untuk dokumen ini."
   },
   "registrations": {
     "title": "Pendaftaran Saya",

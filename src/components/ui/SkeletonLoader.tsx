@@ -3,7 +3,7 @@
  * Per UX Flow Guide § 7: use skeleton blocks for first-load states.
  */
 import React, { useEffect, useRef } from 'react';
-import { View, Animated, StyleSheet, ViewStyle } from 'react-native';
+import { View, Animated, ViewStyle } from 'react-native';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { borderRadius } from '@/theme';
 
@@ -63,8 +63,8 @@ export function SkeletonLoader({
   );
 }
 
-export function SkeletonCard({ style }: { style?: ViewStyle }) {
-  const { colors, isDark } = useAppTheme();
+export function SkeletonCard({ style, headerHeight = 160 }: { style?: ViewStyle, headerHeight?: number }) {
+  const { colors } = useAppTheme();
   
   return (
     <View style={[
@@ -76,7 +76,7 @@ export function SkeletonCard({ style }: { style?: ViewStyle }) {
       },
       style
     ]}>
-      <SkeletonLoader height={160} borderRadiusSize={borderRadius.lg} />
+      <SkeletonLoader height={headerHeight} borderRadiusSize={borderRadius.lg} />
       <View style={{ padding: 12, gap: 4 }}>
         <SkeletonLoader width="80%" height={18} />
         <SkeletonLoader width="60%" height={14} style={{ marginTop: 8 }} />

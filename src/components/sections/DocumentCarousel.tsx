@@ -22,7 +22,7 @@ export function DocumentCarousel({ documents }: DocumentCarouselProps) {
 
   const renderItem = ({ item }: { item: DocumentItem }) => (
     <Pressable
-      onPress={() => router.push('/(tabs)/documents')}
+      onPress={() => router.push(`/documents/${item.id}`)}
       style={({ pressed }) => [
         styles.card,
         shadows.md,

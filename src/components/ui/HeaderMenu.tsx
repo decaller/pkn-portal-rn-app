@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'expo-router';
 import { useAppStore } from '@/store/appStore';
 import { useAuthStore } from '@/store/authStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
@@ -36,6 +37,7 @@ export function HeaderMenu() {
   const { colors, themeSetting, isDark } = useAppTheme();
   const { language, setLanguage, setTheme } = useAppStore();
   const { isAuthenticated, signOut } = useAuthStore();
+  const router = useRouter();
   const [visible, setVisible] = useState(false);
 
   const toggleModal = () => setVisible(!visible);
@@ -61,7 +63,10 @@ export function HeaderMenu() {
         { 
           text: t('auth.logoutAction', 'Sign Out'), 
           style: 'destructive',
-          onPress: () => signOut() 
+          onPress: async () => {
+            await signOut();
+            router.replace('/(tabs)');
+          }
         },
       ]
     );

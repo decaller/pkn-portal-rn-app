@@ -97,7 +97,7 @@ export default function TabLayout() {
           href: isAuthenticated ? '/registrations' : null,
           title: t('tabs.registrations'),
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="list-circle" size={size} color={color} />
+            <Ionicons name="ticket" size={size} color={color} />
           ),
         }}
       />

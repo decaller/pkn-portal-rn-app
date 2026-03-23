@@ -4,7 +4,7 @@ This document outlines the API endpoints and features that need to be implemente
 
 ## Phase 1: Public Content & Read-only APIs
 
-- [ ] **Dashboard API**
+- [x] **Dashboard API**
     - Implement `GET /api/v1/mobile-dashboard` to aggregate content for the home screen.
     - Response should include:
         - `featured_events`: Array of published events.
@@ -15,12 +15,12 @@ This document outlines the API endpoints and features that need to be implemente
         - `alerts`: Array of system alerts `{ id, type, title, message, action_route }`.
         - `stats`: `{ active_registrations, pending_payments }` (filtered for authenticated user if token present).
 
-- [ ] **Events Discovery API**
+- [x] **Events Discovery API**
     - Implement `GET /api/v1/events` with pagination, search, category, and status filtering.
     - Implement `GET /api/v1/events/{id}` for full event details (including registration packages).
     - Implement `GET /api/v1/events/{id}/similar` to return related events.
 
-- [ ] **News/Articles API**
+- [x] **News/Articles API**
     - Implement `GET /api/v1/news` for paginated news list with absolute thumbnail URLs.
     - Implement `GET /api/v1/news/{id}` for full article content.
 
@@ -40,12 +40,12 @@ _The mobile app is now using a fully native login flow instead of a WebView brid
     - Implement `GET /api/v1/user/profile` to fetch profile summary and linked organizations.
     - Implement `PUT /api/v1/user/profile` for lightweight profile edits.
 
-- [ ] **Notifications API**
+- [x] **Notifications API**
     - Implement `GET /api/v1/notifications` to list database notifications.
     - Implement `POST /api/v1/notifications/{id}/mark-read`.
     - Implement `POST /api/v1/notifications/mark-all-read`.
 
-- [ ] **Documents API (Authenticated)**
+- [x] **Documents API (Authenticated)**
     - Implement `GET /api/v1/documents` with pagination, search, and category filtering.
     - **Requirement**: Return a `featured` array (most recent/flagged) alongside the paginated `documents` object.
     - Implement `GET /api/v1/documents/{id}` to fetch document details.
@@ -56,9 +56,17 @@ _The mobile app is now using a fully native login flow instead of a WebView brid
 _Registration flows will be handled natively via API rather than redirecting to a web view._
 
 - [x] **Registrations API**
+    - Implement `GET /api/v1/registrations` to list event registrations for the authenticated user.
     - Implement `POST /api/v1/registrations` to create a new registration (event_id, package_id, participants).
     - Implement `PUT /api/v1/registrations/{id}` to update registration details.
     - Implement `DELETE /api/v1/registrations/{id}` to cancel draft/unpaid registrations.
+    - > [!IMPORTANT]
+    - > **Debugging "Empty Registrations" (Checklist):**
+    - > 1. **Auth Scoping**: Ensure the `Registrations` query is filtered by `auth()->id()`.
+    - > 2. **Token Validity**: The mobile app sends the token in the `Authorization: Bearer <token>` header. Verify Sanctum is correctly identifying the user.
+    - > 3. **Data Presence**: Check the database for entries in the `registrations` table linked to the test user's ID.
+    - > 4. **Response Format**: Ensure the API returns a JSON array: `[]` for no data, or `[{...}]` for existing data. Avoid wrapping it in an extra object unless using `data` key (standard Laravel Resource).
+    - > 5. **Relationships**: The app expects `event` and `participants` to be included in the response. Check if Eager Loading is implemented.
 
 - [x] **Participants CRUD**
     - Implement `GET /api/v1/registrations/{id}/participants` to list participants.
@@ -75,7 +83,7 @@ _Registration flows will be handled natively via API rather than redirecting to 
 
 _The mobile app will use a native WebView to display the Midtrans Snap payment page. The backend is responsible for creating transactions and handling payment webhooks._
 
-- [ ] **Midtrans PHP Library**
+- [x] **Midtrans PHP Library**
     - Install the official Midtrans PHP library: `composer require midtrans/midtrans-php`
     - Add Midtrans config to `config/midtrans.php` (or use `services.php`):
         - `server_key` — from Midtrans MAP dashboard
@@ -84,12 +92,12 @@ _The mobile app will use a native WebView to display the Midtrans Snap payment p
         - `is_sanitized` — `true`
         - `is_3ds` — `true`
 
-- [ ] **Invoice API (Enhanced for Mobile)**
+- [x] **Invoice API (Enhanced for Mobile)**
     - Verify `GET /api/v1/invoices` returns paginated invoices with `status` field (`unpaid`, `pending`, `paid`, `expired`, `cancelled`).
     - Verify `GET /api/v1/invoices/{id}` returns full detail including line items and `gross_amount`.
     - Verify `GET /api/v1/invoices/{id}/download` returns a `download_url` to a temporary PDF.
 
-- [ ] **Payment Charge Endpoint**
+- [x] **Payment Charge Endpoint**
     - Create `app/Http/Controllers/Api/PaymentController.php` with a `charge()` method.
     - Register route: `POST /api/v1/payments/charge` (protected by `auth:sanctum`).
     - Logic:
@@ -99,7 +107,7 @@ _The mobile app will use a native WebView to display the Midtrans Snap payment p
         4. Call `\Midtrans\Snap::createTransaction($payload)` to get `redirect_url` and `token`.
         5. Return `{ success: true, redirect_url, token }`.
 
-- [ ] **Payment Webhook Endpoint**
+- [x] **Payment Webhook Endpoint**
     - Register route: `POST /api/v1/payments/webhook` (unauthenticated, excluded from CSRF protection in `VerifyCsrfToken`).
     - Logic:
         1. Receive Midtrans notification payload.
@@ -108,7 +116,7 @@ _The mobile app will use a native WebView to display the Midtrans Snap payment p
         4. Return `200 OK` always.
     - Register this URL in MAP: `Settings > Configuration > Payment Notification URL`.
 
-- [ ] **Environment Variables**
+- [x] **Environment Variables**
     - Add to `.env` and `.env.example`:
         ```
         MIDTRANS_SERVER_KEY=

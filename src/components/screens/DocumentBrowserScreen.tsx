@@ -12,6 +12,7 @@ import {
   StyleSheet,
   Platform,
   RefreshControl,
+  ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
@@ -36,6 +37,7 @@ function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (ur
   const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const { colors, isDark } = useAppTheme();
+  const router = useRouter();
   
   const getFileInfo = (mime: string | null | undefined) => {
     const defaultInfo = { icon: 'document' as const, color: colors.text.tertiary, label: 'FILE' };
@@ -53,7 +55,14 @@ function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (ur
   const styles = createCardStyles(colors, isDark);
 
   return (
-    <View style={[styles.docCard, shadows.sm]}>
+    <Pressable 
+      onPress={() => router.push(`/documents/${doc.id}`)}
+      style={({ pressed }) => [
+        styles.docCard, 
+        shadows.sm,
+        pressed && { opacity: 0.8, transform: [{ scale: 0.99 }] }
+      ]}
+    >
       <View style={[styles.docIcon, { backgroundColor: info.color }]}>
         <Ionicons name={info.icon} size={22} color={colors.text.inverse} />
       </View>
@@ -92,7 +101,7 @@ function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (ur
         </Pressable>
       )}
 
-    </View>
+    </Pressable>
   );
 }
 
@@ -137,48 +146,6 @@ export function DocumentBrowserScreen() {
 
   return (
     <View style={styles.container}>
-      {/* Sign-In Prompt Banner — Only show if not authenticated */}
-      {!isAuthenticated && (
-        <View style={styles.signInBanner}>
-          <View style={styles.signInIcon}>
-            <Ionicons name="lock-closed" size={28} color={colors.brand.primary} />
-          </View>
-          <Text style={styles.signInTitle}>{t('documents.signInPrompt')}</Text>
-          <Text style={styles.signInDesc}>{t('documents.signInDesc')}</Text>
-          <Pressable
-            onPress={() => router.push('/auth/login')}
-            style={({ pressed }) => [
-              styles.signInButton,
-              Platform.OS === 'ios' && pressed ? { opacity: 0.85 } : {},
-            ]}
-            android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
-            accessibilityRole="button"
-          >
-            <Ionicons name="log-in-outline" size={18} color={colors.text.inverse} />
-            <Text style={styles.signInButtonText}>{t('common.signIn')}</Text>
-          </Pressable>
-        </View>
-      )}
-
-      {/* Search Bar section */}
-      <View style={styles.searchSection}>
-        <SearchBar
-          value={search}
-          onChangeText={setSearch}
-          placeholder={t('documents.searchPlaceholder')}
-        />
-      </View>
-
-      {/* Featured Documents Carousel */}
-      {featuredDocs.length > 0 && !search && (
-        <>
-          <SectionHeader title={t('documents.featured')} />
-          <DocumentCarousel documents={featuredDocs} />
-        </>
-      )}
-
-      <SectionHeader title={t('documents.allDocuments')} />
-
       <FlatList
         data={search ? filteredDocs : regularDocs}
         keyExtractor={(item) => item.id.toString()}
@@ -198,6 +165,63 @@ export function DocumentBrowserScreen() {
              colors={[colors.brand.primary]}
           />
         }
+        ListHeaderComponent={
+          <>
+            {/* Sign-In Prompt Banner — Only show if not authenticated */}
+            {!isAuthenticated && (
+              <View style={styles.signInBanner}>
+                <View style={styles.signInIcon}>
+                  <Ionicons name="lock-closed" size={28} color={colors.brand.primary} />
+                </View>
+                <Text style={styles.signInTitle}>{t('documents.signInPrompt')}</Text>
+                <Text style={styles.signInDesc}>{t('documents.signInDesc')}</Text>
+                <Pressable
+                  onPress={() => router.push('/auth/login')}
+                  style={({ pressed }) => [
+                    styles.signInButton,
+                    Platform.OS === 'ios' && pressed ? { opacity: 0.85 } : {},
+                  ]}
+                  android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
+                  accessibilityRole="button"
+                >
+                  <Ionicons name="log-in-outline" size={18} color={colors.text.inverse} />
+                  <Text style={styles.signInButtonText}>{t('common.signIn')}</Text>
+                </Pressable>
+              </View>
+            )}
+
+            {/* Search Bar section */}
+            <View style={styles.searchSection}>
+              <SearchBar
+                value={search}
+                onChangeText={setSearch}
+                placeholder={t('documents.searchPlaceholder')}
+              />
+            </View>
+
+            {/* Featured Documents Carousel */}
+            {!search && (isLoading || featuredDocs.length > 0) && (
+              <View style={{ marginBottom: spacing.lg }}>
+                <SectionHeader title={t('documents.featured')} />
+                {isLoading ? (
+                  <ScrollView 
+                    horizontal 
+                    showsHorizontalScrollIndicator={false}
+                    contentContainerStyle={styles.horizontalLoadingList}
+                  >
+                    {[1, 2].map((i) => (
+                      <SkeletonCard key={i} style={{ width: 260 }} headerHeight={130} />
+                    ))}
+                  </ScrollView>
+                ) : (
+                  <DocumentCarousel documents={featuredDocs} />
+                )}
+              </View>
+            )}
+
+            <SectionHeader title={t('documents.allDocuments')} style={{ marginTop: spacing.sm }} />
+          </>
+        }
         ListEmptyComponent={
           isLoading ? (
             <View style={{ gap: spacing.md }}>
@@ -214,7 +238,6 @@ export function DocumentBrowserScreen() {
           )
         }
       />
-
     </View>
   );
 }
@@ -343,6 +366,12 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   searchSection: {
     paddingHorizontal: spacing.lg,
     gap: spacing.sm,
+  },
+  horizontalLoadingList: {
+    flexDirection: 'row',
+    paddingHorizontal: spacing.lg,
+    paddingBottom: spacing.md,
+    gap: spacing.md,
   },
   previewLabel: {
     ...typography.caption1,
