@@ -13,6 +13,12 @@ export interface Participant {
   metadata?: Record<string, any>;
 }
 
+export interface RegistrationPackageBreakdown {
+  package_name: string;
+  participant_count: number;
+  unit_price: number;
+}
+
 export interface Invoice {
   id: number;
   invoice_number: string;
@@ -33,6 +39,8 @@ export interface Registration {
   event?: EventItem;
   package_id?: number | null;
   package_name?: string | null;
+  participant_count: number;
+  package_breakdown: RegistrationPackageBreakdown[];
   status: 'draft' | 'submitted' | 'confirmed' | 'cancelled' | 'awaiting_payment';
   total_amount: number;
   created_at: string;
@@ -51,6 +59,18 @@ export const normalizeRegistration = (value: unknown): Registration | null => {
   if (!isObject(value)) return null;
 
   const packageBreakdown = Array.isArray(value.package_breakdown) ? value.package_breakdown : [];
+  const normalizedPackageBreakdown = packageBreakdown
+    .filter((item) => isObject(item))
+    .map((item) => ({
+      package_name: typeof item.package_name === 'string' ? item.package_name : '',
+      participant_count: Number(item.participant_count ?? 0),
+      unit_price: Number(item.unit_price ?? 0),
+    }));
+  const participants = Array.isArray(value.participants) ? value.participants : [];
+  const participantCount =
+    Number(value.participant_count ?? 0) ||
+    normalizedPackageBreakdown.reduce((sum, item) => sum + item.participant_count, 0) ||
+    participants.length;
   const derivedPackageName =
     typeof value.package_name === 'string' && value.package_name.trim().length > 0
       ? value.package_name
@@ -66,10 +86,12 @@ export const normalizeRegistration = (value: unknown): Registration | null => {
     event: value.event,
     package_id: value.package_id == null ? null : Number(value.package_id),
     package_name: derivedPackageName,
+    participant_count: participantCount,
+    package_breakdown: normalizedPackageBreakdown,
     status: (value.status ?? 'draft') as Registration['status'],
     total_amount: Number(value.total_amount ?? 0),
     created_at: typeof value.created_at === 'string' ? value.created_at : '',
-    participants: Array.isArray(value.participants) ? value.participants : [],
+    participants,
     invoice: isObject(value.invoice) ? value.invoice as Invoice : undefined,
   };
 };

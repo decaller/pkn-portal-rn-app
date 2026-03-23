@@ -187,6 +187,12 @@ export function RegistrationDetailScreen() {
     );
   }
 
+  const packageSummary = registration.package_breakdown.length > 0
+    ? registration.package_breakdown
+        .map((item) => `${item.package_name} x${item.participant_count}`)
+        .join(', ')
+    : registration.package_name;
+
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: t('registrations.detailTitle', 'Registration Detail') }} />
@@ -225,11 +231,11 @@ export function RegistrationDetailScreen() {
           <View style={styles.packageRow}>
             <View style={styles.packageInfo}>
               <Text style={styles.label}>{t('registrations.package', 'Package')}</Text>
-              <Text style={styles.packageName}>{registration.package_name}</Text>
+              <Text style={styles.packageName}>{packageSummary || '-'}</Text>
             </View>
             {registration.status !== 'cancelled' && (
               <Pressable 
-                onPress={() => router.push(`/events/${registration.event_id}/register?step=2&regId=${id}`)}
+                onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
                 style={styles.changePackageBtn}
               >
                 <Text style={styles.changePackageText}>{t('registrations.changePackage', 'Change')}</Text>
@@ -242,7 +248,7 @@ export function RegistrationDetailScreen() {
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Text style={styles.sectionTitle}>
-              {t('registrations.participants', 'Participants')} ({registration.participants.length})
+              {t('registrations.participants', 'Participants')} ({registration.participant_count})
             </Text>
             {registration.status !== 'cancelled' && (
               <Pressable 
@@ -257,6 +263,11 @@ export function RegistrationDetailScreen() {
               </Pressable>
             )}
           </View>
+          {registration.participants.length === 0 && (
+            <Text style={styles.emptyParticipantText}>
+              {t('registrations.noParticipantDetailsYet', 'Participant details have not been added yet.')}
+            </Text>
+          )}
           {registration.participants.map((p, index) => (
             <View key={p.id} style={[styles.participantItem, index === 0 && { borderTopWidth: 0 }]}>
               <View style={styles.participantInfo}>
@@ -338,7 +349,7 @@ export function RegistrationDetailScreen() {
             
             {registration.status === 'draft' ? (
               <Pressable 
-                onPress={() => router.push(`/events/${registration.event_id}/register?step=3&regId=${id}`)}
+                onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
                 style={({ pressed }) => [styles.primaryAction, pressed && { opacity: 0.8 }]}
               >
                 <Text style={styles.primaryActionText}>{t('registrations.completeRegistration', 'Complete')}</Text>
@@ -522,6 +533,11 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     paddingVertical: spacing.md,
     borderTopWidth: 1,
     borderTopColor: colors.border.light,
+  },
+  emptyParticipantText: {
+    ...typography.body,
+    color: colors.text.secondary,
+    marginTop: spacing.xs,
   },
   participantInfo: {
     flex: 1,

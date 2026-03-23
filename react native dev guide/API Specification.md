@@ -186,6 +186,7 @@ Return article content plus absolute banner URLs.
 - **Auth required**: yes
 - **Purpose**: Create a new event registration natively.
 - **Payload**: `{ event_id, package_id, participants: [ { name, category, ... } ] }`
+- **Contract note**: `GET /events/{id}` must include a stable identifier for each `registration_packages` item if `package_id` is required here. If package IDs are not exposed, document and support an alternative create payload such as `package_name` or `package_breakdown`.
 
 ### `PUT /registrations/{id}`
 

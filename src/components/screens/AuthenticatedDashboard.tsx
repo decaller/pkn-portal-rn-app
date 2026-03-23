@@ -12,7 +12,6 @@ import {
   StyleSheet,
   Platform,
   Pressable,
-  Dimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -29,7 +28,7 @@ import api from '@/services/api';
 import type { EventItem, NewsItem, DashboardResponse as DashboardData } from '@/types';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAuthStore } from '@/store/authStore';
-import { spacing, borderRadius, typography, shadows } from '@/theme';
+import { spacing, borderRadius, typography } from '@/theme';
 
 import { AlertBanner } from '@/components/ui/AlertBanner';
 
@@ -43,7 +42,6 @@ export function AuthenticatedDashboard() {
   const {
     data: dashboardData,
     isLoading,
-    isError,
     refetch,
   } = useQuery<DashboardData>({
     queryKey: ['dashboard', user?.id],
@@ -76,10 +74,8 @@ export function AuthenticatedDashboard() {
     router.push(`/news/${article.id}`);
   };
 
-  const actions = [
-    { id: 'events', icon: 'calendar', label: t('dashboard.myEvents'), route: '/(tabs)/events' },
-    { id: 'registrations', icon: 'ticket', label: t('dashboard.myRegistrations'), route: '/(tabs)/registrations' },
-  ];
+  const activeRegistrations = data.stats?.active_registrations ?? 0;
+  const pendingPayments = data.stats?.pending_payments ?? 0;
 
   return (
     <ScrollView
@@ -121,42 +117,31 @@ export function AuthenticatedDashboard() {
         </View>
       )}
 
-      {/* Quick Action Grid */}
-      <View style={styles.actionGrid}>
-        {actions.map((action) => (
-          <Pressable
-            key={action.id}
-            onPress={() => router.push(action.route as any)}
-            style={({ pressed }) => [
-              styles.actionItem,
-              shadows.sm,
-              pressed && { opacity: 0.8, transform: [{ scale: 0.98 }] },
-            ]}
-          >
-            <View style={[styles.actionIcon, { backgroundColor: colors.background.secondary }]}>
-              <Ionicons name={action.icon as any} size={24} color={colors.brand.primary} />
-            </View>
-            <Text style={styles.actionLabel}>{action.label as string}</Text>
-          </Pressable>
-        ))}
-      </View>
+      <Pressable
+        onPress={() => router.push('/(tabs)/registrations')}
+        style={({ pressed }) => [
+          styles.registrationButton,
+          pressed && { opacity: 0.92, transform: [{ scale: 0.99 }] },
+        ]}
+      >
+        <View style={styles.registrationButtonContent}>
+          <View style={styles.registrationIcon}>
+            <Ionicons name="ticket-outline" size={24} color={colors.brand.primary} />
+          </View>
 
-      {/* Stats/Summary Section */}
-      <View style={[styles.statsCard, shadows.md]}>
-        <View style={styles.statItem}>
-          <Text style={styles.statValue}>
-            {data.stats?.active_registrations ?? 0}
-          </Text>
-          <Text style={styles.statLabel}>{t('dashboard.activeEvents')}</Text>
+          <View style={styles.registrationCopy}>
+            <Text style={styles.registrationTitle}>{t('dashboard.myRegistrations')}</Text>
+            <Text style={styles.registrationSubtitle}>
+              {activeRegistrations} {t('dashboard.activeEvents')}
+            </Text>
+          </View>
+
+          <View style={styles.pendingBadge}>
+            <Text style={styles.pendingBadgeValue}>{pendingPayments}</Text>
+            <Text style={styles.pendingBadgeLabel}>{t('dashboard.pendingPayments')}</Text>
+          </View>
         </View>
-        <View style={styles.divider} />
-        <View style={styles.statItem}>
-          <Text style={styles.statValue}>
-            {data.stats?.pending_payments ?? 0}
-          </Text>
-          <Text style={styles.statLabel}>{t('dashboard.pendingPayments')}</Text>
-        </View>
-      </View>
+      </Pressable>
 
       {/* Featured Document Carousel */}
       {(() => {
@@ -262,62 +247,61 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     color: colors.text.secondary,
     marginTop: 2,
   },
-  actionGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+  registrationButton: {
     paddingHorizontal: spacing.lg,
-    gap: spacing.md,
     marginBottom: spacing.xl,
   },
-  actionItem: {
-    width: (Dimensions.get('window').width - spacing.lg * 2 - spacing.md) / 2,
+  registrationButtonContent: {
     backgroundColor: colors.background.card,
     borderRadius: borderRadius.lg,
     padding: spacing.lg,
+    flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.sm,
+    gap: spacing.md,
     borderWidth: isDark ? 1 : 0,
     borderColor: colors.border.light,
+    boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
   },
-  actionIcon: {
+  registrationIcon: {
     width: 48,
     height: 48,
     borderRadius: borderRadius.md,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: colors.background.secondary,
   },
-  actionLabel: {
-    ...typography.footnote,
-    fontWeight: '600',
+  registrationCopy: {
+    flex: 1,
+    gap: 2,
+  },
+  registrationTitle: {
+    ...typography.body,
+    fontWeight: '700',
     color: colors.text.primary,
   },
-  statsCard: {
-    flexDirection: 'row',
+  registrationSubtitle: {
+    ...typography.footnote,
+    color: colors.text.secondary,
+  },
+  pendingBadge: {
+    minWidth: 84,
+    borderRadius: borderRadius.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    alignItems: 'center',
     backgroundColor: colors.brand.primary,
-    marginHorizontal: spacing.lg,
-    borderRadius: borderRadius.xl,
-    padding: spacing.xl,
-    marginBottom: spacing.xl,
-    alignItems: 'center',
   },
-  statItem: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  statValue: {
-    ...typography.title1,
+  pendingBadgeValue: {
+    ...typography.title3,
     color: colors.text.inverse,
-    fontWeight: '800',
+    fontWeight: '700',
+    fontVariant: ['tabular-nums'],
   },
-  statLabel: {
+  pendingBadgeLabel: {
     ...typography.caption2,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.85)',
     marginTop: 2,
-  },
-  divider: {
-    width: 1,
-    height: 40,
-    backgroundColor: 'rgba(255,255,255,0.2)',
+    textAlign: 'center',
   },
   horizontalList: {
     paddingHorizontal: spacing.lg,

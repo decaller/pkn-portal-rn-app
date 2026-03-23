@@ -64,6 +64,7 @@ _Registration flows will be handled natively via API rather than redirecting to 
     - Implement `POST /api/v1/registrations/{id}/cancel` because the mobile detail screen uses this explicit cancel action.
     - **Requirement**: `GET /api/v1/registrations` may return a Laravel API Resource collection (`{ data: [...] }`), but each item must include at least `id`, `registration_number`, `event_id`, `status`, `total_amount`, `created_at`, `event`, and `participants`.
     - **Requirement**: `GET /api/v1/registrations/{id}` should match the shape used in [`9.json`](api_result/registrations/9.json), wrapped as `{ data: {...} }`, including `event`, `participants`, `participant_count`, `package_name` or `package_breakdown`, and payment-related fields when available.
+    - **Requirement**: `GET /api/v1/events/{id}` must expose a stable `id` for every `registration_packages` entry, or `POST /api/v1/registrations` must explicitly support an alternative payload keyed by `package_name`/`package_breakdown`. Right now the event payload examples omit package IDs, which prevents the native app from submitting a valid documented `package_id`.
     - > [!IMPORTANT]
     - > **Debugging "Empty Registrations" (Checklist):**
     - > 1. **Auth Scoping**: Ensure the `Registrations` query is filtered by `auth()->id()`.

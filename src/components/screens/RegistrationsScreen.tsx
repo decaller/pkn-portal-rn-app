@@ -102,7 +102,7 @@ export function RegistrationsScreen() {
         <View style={styles.infoRow}>
           <Ionicons name="people-outline" size={14} color={colors.text.tertiary} />
           <Text style={styles.infoText}>
-            {item.participants.length} {t('registrations.participants')}
+            {item.participant_count} {t('registrations.participants')}
           </Text>
         </View>
       </View>

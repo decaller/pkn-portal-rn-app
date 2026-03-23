@@ -66,11 +66,19 @@ export function EventDetailScreen() {
   const { isAuthenticated } = useAuthStore();
   const [isModalVisible, setIsModalVisible] = React.useState(false);
 
-  const { data: eventResp, isLoading } = useQuery<SingleEventResponse>({
+  const { data: event, isLoading } = useQuery<EventItem>({
     queryKey: ["event", id],
     queryFn: async () => {
       const resp = await api.get(`/events/${id}`);
-      return resp.data;
+      const payload = resp.data as EventItem | SingleEventResponse;
+      const eventData = "data" in payload ? payload.data : payload;
+
+      return {
+        ...eventData,
+        registration_packages: Array.isArray(eventData.registration_packages)
+          ? eventData.registration_packages
+          : [],
+      };
     },
   });
 
@@ -82,7 +90,6 @@ export function EventDetailScreen() {
     },
   });
 
-  const event = eventResp?.data;
   const whatsappUrl = dashboardData?.contact_info?.whatsapp_url;
 
   const handleContact = () => {
