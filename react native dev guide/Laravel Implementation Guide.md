@@ -1,29 +1,25 @@
-# Laravel Filament Side: API & Hybrid Implementation Plan
+# Laravel Filament Side: API & Native Implementation Plan
 
 This document outlines the necessary changes and additions needed in the Laravel backend to support the PKN Portal Mobile Application (React Native).
 
-## 1. Authentication & Token Handoff
+## 1. Authentication
 
-Since the mobile app uses a **Hybrid Login** strategy:
+Since the mobile app uses a **Native Login** strategy:
 
-1.  **Handoff Endpoint**: Implement `GET /api/v1/auth/token-handoff`.
-    *   This endpoint must be wrapped in `web` middleware first (to detect the session cookie) and then return a Sanctum token.
+1.  **Login Endpoint**: Implement `POST /api/v1/auth/login`.
+    *   This endpoint must accept phone number and password, and return a Sanctum token.
     *   **Logic**: 
         ```php
-        $user = auth()->user();
-        $token = $user->createToken('mobile-app')->plainTextToken;
-        return response()->json(['token' => $token, 'user' => $user]);
+        if (Auth::attempt($credentials)) {
+            $user = auth()->user();
+            $token = $user->createToken('mobile-app')->plainTextToken;
+            return response()->json(['token' => $token, 'user' => $user]);
+        }
         ```
-2.  **Redirect Rule**: In the web login logic (Filament's `Login` page), if a `source=mobile` query parameter is present, redirect to the token handoff endpoint after successful login.
 
-## 2. WebView Bridge (Magic Link)
+## 2. Deprecated (WebView Bridge)
 
-To handle the transition from native (Bearer) to web (Cookie) for complex actions:
-
-1.  **Magic Link Generator**: Implement `GET /api/v1/webview/magic-link`.
-    *   Auth: `auth:sanctum`.
-    *   **Logic**: Generate a temporary signed URL to a web route that automatically logs the user in via session and redirects to the desired path.
-2.  **Web Bridge Controller**: A controller to handle the signed URL, call `auth()->login($user)`, and redirect.
+*(WebView bridge has been removed in favor of fully native implementations.)*
 
 ## 3. Resource API implementation
 
@@ -41,10 +37,10 @@ Expose the following resources using `rupadana/filament-api-service`:
 ### c. Invoices & Registrations
 - **Read-only** access via native API.
 - **Payment Initiation**: 
-    - Implement `GET /api/v1/invoices/{invoice}/snap-token`.
+    - Implement `POST /api/v1/invoices/{invoice}/snap-token`.
     - Auth: `auth:sanctum`.
     - Logic: Call `InvoicePaymentService::createOrReuseSnapPayment($invoice)` and return just the `snap_token`.
-- **Hybrid Fallback**: Creation and payment can also be triggered via WebView (using Magic Link).
+- **Native Creation**: Creation of registrations is done completely via Native forms calling `POST /api/v1/registrations`.
 
 ## 4. Global API Refinements
 

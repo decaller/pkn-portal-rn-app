@@ -14,23 +14,24 @@ Response rules:
 - use absolute URLs for images and files
 - return `null` for missing optional values
 
-## 1. Authentication (Hybrid Flow)
+## 1. Authentication (Native Flow)
 
-The mobile app uses a **Hybrid Login Strategy**. Instead of a native login form, the app opens a WebView to the portal's web login page.
+The mobile app uses a **Native Login Strategy**. The app sends credentials directly to the authentication endpoint and saves the returned token.
 
-### Login Flow:
-1. Native app opens WebView to `https://your-domain.com/user/login`.
-2. User authenticates via the standard web form (Phone + Password).
-3. Upon success, the web session is established.
-4. The app redirects/navigates to the **Token Handoff** endpoint below.
-5. The native app intercepts the JSON response or URL, extracts the `token`, and closes the WebView.
+### `POST /auth/login`
 
-### `GET /auth/token-handoff`
-
-**Auth required:** yes (via web session/cookie)
+**Auth required:** no
 
 **Purpose:**
-- Convert a successful web session into a Sanctum Bearer Token for native API calls.
+- Authenticate a user via their phone number and password to receive a Sanctum Bearer Token.
+
+**Request Payload:**
+```json
+{
+    "phone_number": "08123456789",
+    "password": "secretpassword"
+}
+```
 
 **Response:**
 ```json
@@ -44,6 +45,7 @@ The mobile app uses a **Hybrid Login Strategy**. Instead of a native login form,
     }
 }
 ```
+
 
 ### `POST /auth/logout`
 
@@ -59,28 +61,9 @@ The mobile app uses a **Hybrid Login Strategy**. Instead of a native login form,
 **Purpose:**
 - Return the currently authenticated mobile user profile.
 
-## 2. WebView bridge
+## 2. Deprecated (WebView bridge)
 
-### `GET /webview/magic-link`
-
-Auth required: yes
-
-Query params:
-
-- `redirect`: target Filament path, for example `/user/event-registrations/create?event_id=5`
-- `source`: should be `mobile`
-
-Response:
-
-```json
-{
-    "url": "https://your-domain.com/mobile/webview-login?...signed..."
-}
-```
-
-Purpose:
-
-- convert bearer-authenticated app state into a one-time web session entry point for Filament pages
+*(The WebView bridge has been removed, as the app is fully native now.)*
 
 ## 3. Home dashboard
 
@@ -258,7 +241,7 @@ Purpose:
 
 - support lightweight native profile edits if needed
 
-If profile editing remains complex, keep updates in WebView for v1 and expose this endpoint later.
+If profile editing is needed, make sure to implement standard API updates.
 
 ## 10. Documents
 
@@ -291,9 +274,9 @@ If profile editing remains complex, keep updates in WebView for v1 and expose th
 }
 ```
 
-## 11. Organization Management (Hybrid Flow)
+## 11. Organization Management (Native API)
 
-Organization creation, member management, and profile editing remain **WebView-based** to preserve the complex validation logic.
+Organization creation, member management, and profile editing will be implemented natively using backend APIs.
 
 ### `GET /organizations`
 
@@ -302,9 +285,8 @@ Organization creation, member management, and profile editing remain **WebView-b
 **Purpose:**
 - List organizations the current user belongs to.
 
-### Native -> Web Transitions:
-1.  **Create Organization**: Native app uses `GET /webview/magic-link?redirect=/user/organizations/create` then opens result in WebView.
-2.  **Edit Profile**: Native app uses `GET /webview/magic-link?redirect=/user/{slug}/edit` then opens in WebView.
+### Native Updates:
+Native app uses standard REST API calls to fetch from, create, edit, or delete organizations instead of web views.
 
 ## 12. Formatting and safety rules
 

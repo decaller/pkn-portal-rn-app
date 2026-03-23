@@ -30,16 +30,14 @@ Use a **Public-First Native** model:
   - Invoices (List and Detail)
   - Profile & Membership
   - Notifications
-- **Hybrid Bridge (WebView Fallback):**
-  - Initial Login (Hybrid)
-  - Organization Management
-  - Profile/Org Editing (Complex cases)
-  - **Manual Fallback**: Any registration flow can fallback to WebView if needed via a dedicated "Manage in Web" button.
-
+- **Additional Native Screens:**
+  - Login (Native)
+  - Organization Management (Native API)
+  - Profile/Org Editing (Native API)
+  
 The key distinction is:
 - **Core Experience** (dashboard, news, events, registrations) is **NATIVE**.
-- **Complex Setup/Auth** (login, org management) is **HYBRID (WebView)**.
-- **Robustness**: WebView serves as a safety fallback for native mutation screens.
+- **Setup/Auth** (login, org management) is also **NATIVE**.
 
 ## Build stack
 
@@ -62,27 +60,24 @@ Rules:
 2. Prefer packages that work with standard Expo workflows.
 3. Do not use `react-navigation` directly; use Expo Router patterns.
 
-## Authentication rule (Hybrid)
+## Authentication rule (Native Focus)
 
-Use a **Hybrid Login Strategy** for v1.
+Use a **Native Login Strategy**.
 
 ### Login Flow:
-1. Native app opens a WebView to `/user/login`.
-2. User authenticates via the portal's web form.
-3. Native app detects success by observing a redirect to `/api/v1/auth/token-handoff`.
-4. Native app extracts the `token` from the JSON response and closes the WebView.
+1. Native app provides a typical Login form.
+2. User authenticates via API Call.
+3. Native app extracts the `token` from the JSON response.
 
 This ensures:
 - The app has a **Sanctum Bearer Token** for native API calls.
-- The WebView has a **Session Cookie** for web-backed flows (registrations, profile edits).
 
-## WebView bridge rule
+## APIs Only rule
 
-When navigating from a native screen to a web-backed flow (e.g., event registration):
+There is no WebView bridge. When navigating from a native screen to a mutation flow (e.g., event registration):
 
-1. Call `GET /api/v1/webview/magic-link?redirect=...`.
-2. Open the resulting one-time signed URL in a WebView.
-3. Observe completion via redirect to `pknportal://action-success`.
+1. Call the required API endpoint directly using the Sanctum Bearer token.
+2. Update local state.
 
 ## Data loading rule
 
@@ -103,7 +98,7 @@ pkn-portal-app/
 │   │   ├── invoices.tsx
 │   │   └── profile.tsx
 │   ├── auth/
-│   │   └── hybrid-login.tsx (WebView wrapper)
+│   │   └── login.tsx
 │   ├── events/
 │   │   └── [id].tsx
 │   ├── news/
@@ -111,7 +106,7 @@ pkn-portal-app/
 │   ├── invoices/
 │   │   └── [id].tsx
 │   └── webview/
-│       └── bridge.tsx (For magic-link flows)
+│   │   └── bridge.tsx (For optional magic-link fallbacks)
 ├── src/
 │   ├── components/
 │   ├── services/
@@ -135,8 +130,8 @@ pkn-portal-app/
 
 When generating code for this app:
 
-1. **Auth**: Do not build native login forms. Use the hybrid WebView bridge for initial authentication.
+1. **Auth**: Use the native login form. Do not build WebViews for this.
 2. **Types**: Use TypeScript interfaces for all API contracts.
 3. **BFF**: Use `GET /api/v1/mobile-dashboard` for the home screen to minimize round-trips.
 4. **URLs**: Ensure all image and file paths are absolute URLs returned by the API.
-5. **Flows**: Treat WebView flows as isolated wrappers, not mixed into normal screen logic.
+5. **Flows**: Treat all flows as standard React Native stacks interacting with decoupled APIs.

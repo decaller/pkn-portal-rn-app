@@ -23,11 +23,10 @@ The app prioritizes instant accessibility for public content and a seamless nati
   - Notifications
   - Profile Summary
   - Private Document Access
-- **WEB FALLBACK / COMPLEX FLOWS (Hybrid WebView):**
+- **COMPLEX FLOWS (Native):**
   - Initial Login
   - Organization Management
-  - Profile/Org Editing (Complex cases)
-  - **Fallback CTA**: A "Manage in Web Portal" button is present on all native registration/invoice screens for robustness.
+  - Profile/Org Editing
 
 ---
 
@@ -47,7 +46,7 @@ The app prioritizes instant accessibility for public content and a seamless nati
 ### Interaction model
 - Tabs are for top-level destinations only.
 - Details, articles, and drill-down records use stack navigation.
-- WebView flows open as modal sessions so users understand they are entering a contained workflow.
+- Secondary screens open as full-screen modals for complex workflows.
 
 ---
 
@@ -70,16 +69,9 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 - Invoice Detail
 - Notifications
 - Registration Detail
-- WebView Bridge Modal
-- Hybrid Login Modal
-
-### Global Header Rules
-- Top-level tabs use a contextual header title and optional right-side action.
-- Detail screens use a back button, title, and share/bookmark/download actions where relevant.
-- WebView modals always include:
+- Modals and forms always include:
   - left: close button
   - center: flow title
-  - right: overflow/help if needed
 
 ---
 
@@ -92,43 +84,29 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 - High-quality background illustration
 - Glassmorphism feature cards: `Academic Events`, `Latest News`, `Global Network`
 - Clear primary CTA: `Get Started` (leads to Guest Dashboard)
-- Secondary CTA: `Sign In` (leads to Hybrid Login)
+- Secondary CTA: `Sign In` (leads to Native Login)
 - Language picker and Help shortcut in header
 
 **Behavior:**
 - Opens on first launch if no token is found.
 - Uses smooth transitions to the dashboard or login gate.
 
-### B. Hybrid Login Screen (WebView)
-**Purpose:** Authenticate without rebuilding the existing portal login flow.
+### B. Login Screen (Native)
+**Purpose:** Authenticate user.
 
 **Core elements:**
-- Full-screen WebView container
-- Safe-area header with:
-  - close button
-  - title: `Login`
-  - loading indicator during page transitions
-- Optional connection error state with:
-  - illustration or icon
-  - short explanation
-  - `Retry` button
-- Web login form rendered by portal:
-  - phone number field
-  - password field
-  - submit button
-  - validation feedback
+- Native form container
+- Language picker and theme toggle
+- Phone number input
+- Password input
+- Submit button
 
 **Behavior:**
-- App opens `/user/login`.
-- App watches for redirect to `/api/v1/auth/token-handoff`.
+- App provides a secure login form
 - On success:
   - extract token
   - persist token in secure storage
-  - close modal
   - route user to Dashboard
-- On manual close before completion:
-  - confirm if login is mid-process
-  - return user to previous native state or exit gate
 
 #### C. Dashboard Screen (Dual State)
 **Purpose:** Give immediate value and show the most relevant state (Guest or Member).
@@ -473,10 +451,10 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 3. If token exists and is valid:
    - route to Dashboard tab
 4. If token is missing or invalid:
-   - open Hybrid Login modal
-5. User completes login in WebView.
-6. App receives token handoff.
-7. Modal closes.
+   - open Login screen
+5. User inputs phone number and password.
+6. App receives token payload.
+7. Login screen closes.
 8. Dashboard loads with native content.
 
 ### B. Dashboard Entry Flow
@@ -494,7 +472,7 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 2. User taps event card.
 3. Event Detail opens (Public).
 4. User taps `Register Now`.
-5. If unauthenticated, prompts Hybrid Login modal.
+5. If unauthenticated, prompts Native Login screen.
 6. Once logged in, app opens Native Registration wizard:
     - Step 1: Participant selection (Native list).
     - Step 2: Package selection (Native list).
@@ -537,7 +515,7 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 2. Confirm dialog appears.
 3. App calls logout endpoint and clears token/store.
 4. User returns to unauthenticated gate.
-5. Hybrid Login modal is shown again when needed.
+5. Login screen is shown again when needed.
 
 ---
 
@@ -645,7 +623,7 @@ Recommended examples:
 1. Public Dashboard (Native)
 2. Events & News (Native)
 3. Event Detail (Native)
-4. Hybrid Login (WebView)
+4. Native Login Screen
 5. Registrations List & Detail (Native)
 6. Registration Management (Native CRUD)
 7. Participant Management (Native CRUD)
@@ -653,4 +631,4 @@ Recommended examples:
 9. Reusable WebView Bridge (Fallback Shell)
 10. Profile & Notifications (Native)
 
-This order matches the hybrid architecture and gives users a usable read experience early while preserving the portal's existing write flows.
+This order gives users a usable read experience early while implementing complex write flows sequentially.

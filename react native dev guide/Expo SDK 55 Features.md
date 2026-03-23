@@ -1,4 +1,4 @@
-# Expo SDK 55 Features & Hybrid Protection
+# Expo SDK 55 Features 
 
 Expo SDK 55 (February 2026) is packed with game-changers for the PKN Portal app. Using SDK 55 as our foundation provides premium features that enhance performance, developer experience, and user interface.
 
@@ -21,7 +21,7 @@ The 4-tab bottom navigation (`Home`, `Events`, `Portal`, `Profile`) gets a nativ
 *   **Native Bottom Sheets:** Reliable `flex: 1` pinning to the bottom without layout jumps.
 
 ## ⚡ 4. The React 19 `<Activity>` Component (WebView Saver)
-Critical for our Hybrid Architecture.
+
 * **The Upgrade:** SDK 55 includes React 19's new `<Activity>` component. We can wrap our WebView in it: `<Activity mode="hidden">`.
 * **What it means for PKN:** When users tab away, the WebView is visually hidden but remains frozen in memory. Tabbing back instantly restores it exactly where they left off.
 
@@ -60,7 +60,7 @@ Implementing images in push notifications requires different platform strategies
 
 ---
 
-## 🏗️ SDK 55 Tab Layout Example (Hybrid Native)
+## 🏗️ SDK 55 Tab Layout Example (Native)
 using Expo Router v7 features:
 
 ```tsx

@@ -672,7 +672,7 @@ export function EventDetailScreen() {
             <Pressable
               onPress={() => {
                 if (!isAuthenticated) {
-                  router.push('/auth/hybrid-login');
+                  router.push('/auth/login');
                 } else {
                   // TODO: Navigate to registration form/webview
                   // For now, redirect to event website or show coming soon

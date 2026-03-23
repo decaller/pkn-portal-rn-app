@@ -15,9 +15,9 @@ This guide summarizes key development tips and modern native UI tricks shared by
 *   **The Tip:** Use `matchContents` instead of manually setting width and height for native host views.
 *   **Why:** This ensures the React Native "window" perfectly fits the underlying SwiftUI or Jetpack Compose content without trial-and-error styling.
 
-### 3. Hybrid Native Views
-*   **The Tip:** Use the **React Native Host View** component to embed standard React Native primitives (like a specific RN View) inside a native SwiftUI or Jetpack Compose layout.
-*   **Why:** Enables a "Write Hybrid" approach where complex native layouts can still host standard React Native components.
+### 3. Advanced Native Views
+
+*   **Why:** Enables complex native layouts that can still host standard React Native components.
 
 ### 4. Platform Extensions for UI
 *   **The Tip:** Organize code using `.ios.tsx` and `.android.tsx` extensions.

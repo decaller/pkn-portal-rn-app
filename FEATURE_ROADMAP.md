@@ -1,6 +1,6 @@
 # PKN Portal App - Feature Implementation Roadmap (MVP First)
 
-This roadmap prioritizes a "Public Access First" strategy, allowing users to browse events and news without logging in. The implementation follows the "Read Native, Write Hybrid" approach.
+This roadmap prioritizes a "Public Access First" strategy, allowing users to browse events and news without logging in. The implementation follows a fully native approach.
 
 ---
 
@@ -19,7 +19,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 
 - [x] **Welcome & Onboarding**
   - [x] Implement `src/app/index.tsx` as the high-fidelity Welcome Screen from mockups.
-  - [x] Handle "Get Started" (Guest access) and "Sign In" (Hybrid Login) transitions.
+  - [x] Handle "Get Started" (Guest access) and "Sign In" (Native Login) transitions.
 - [x] **Native Public Dashboard (Guest Mode)**
   - [x] Implement `GET /api/v1/mobile-dashboard` (Public version/endpoint).
   - [x] Build Guest Dashboard UI (`guest_dashboard_fresh_variant_2` mockup).
@@ -35,7 +35,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 
 ---
 
-## Phase 2: Hybrid Login & Identity
+## Phase 2: Native Login & Identity
 **Goal:** Introduce authentication to allow personalized features.
 
 - [ ] **Authentication Infrastructure**
@@ -43,9 +43,9 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
   - [ ] Update `useAppStore` or create `useAuthStore` for secure persistent token storage (`expo-secure-store` or `react-native-mmkv`).
   - [ ] **Deep Linking**: Configure `app.json` for `pknportal://` scheme and universal links.
 
-- [ ] **Hybrid Login Strategy**
-  - [ ] Implement `src/app/auth/hybrid-login.tsx` (WebView wrapper for `/user/login`).
-  - [ ] Implement token extraction logic from `/api/v1/auth/token-handoff`.
+- [ ] **Native Login Strategy**
+  - [ ] Implement `src/app/auth/login.tsx` (Native Login screen).
+  - [ ] Implement API login integration with Laravel Sanctum (`/api/v1/auth/login` or similar).
   - [ ] Handle logout and token revocation logic.
 - [ ] **Profile & Protected States**
   - [ ] Implement conditional UI for "Log In" prompts on restricted features (e.g., Register button).
@@ -69,10 +69,8 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 - [ ] **Infrastructure & Invoices**
   - [ ] Implement Native Invoice preview and status tracking within the registration flow.
   - [ ] Build detail views for linked participants and their metadata.
-- [ ] **Hybrid Fallback Mechanism**
-  - [ ] Implement `src/app/webview/bridge.tsx` as a reusable modal shell.
-  - [ ] Add "Open in Web Portal" fallback button on all registration screens.
-  - [ ] Detect success redirects from WebView and refresh native registration state.
+- [ ] **Direct Web Portal Link (Optional)**
+  - [ ] Add "Open in Web Portal" button for users preferring the web version.
 
 ---
 
@@ -84,7 +82,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
   - [ ] Show payment status badges (Unpaid, Pending, Paid).
 - [ ] **Midtrans Integration**
   - [ ] Implement "Pay Now" flow: fetch Snap token from backend.
-  - [ ] Integrate Midtrans Snap (WebView or SDK bridge).
+  - [ ] Integrate Midtrans Snap.
   - [ ] Implement automatic status refresh after payment.
 
 ---
@@ -101,7 +99,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 
 - [ ] **Organization Management**
   - [ ] Build Profile screen with organization context.
-  - [ ] Implement "Edit Profile" and "Manage Org" via WebView Bridge.
+  - [ ] Implement "Edit Profile" and "Manage Org" natively using API.
 
 ---
 
