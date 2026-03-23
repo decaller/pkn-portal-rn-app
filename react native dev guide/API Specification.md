@@ -23,9 +23,11 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 **Auth required:** no
 
 **Purpose:**
+
 - Authenticate a user via their phone number and password to receive a Sanctum Bearer Token.
 
 **Request Payload:**
+
 ```json
 {
     "phone_number": "08123456789",
@@ -34,6 +36,7 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 ```
 
 **Response:**
+
 ```json
 {
     "success": true,
@@ -46,12 +49,12 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 }
 ```
 
-
 ### `POST /auth/logout`
 
 **Auth required:** yes (Bearer Token)
 
 **Purpose:**
+
 - Revoke the current Sanctum token.
 
 ### `GET /auth/me`
@@ -59,11 +62,12 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 **Auth required:** yes (Bearer Token)
 
 **Purpose:**
+
 - Return the currently authenticated mobile user profile.
 
 ## 2. Deprecated (WebView bridge)
 
-*(The WebView bridge has been removed, as the app is fully native now.)*
+_(The WebView bridge has been removed, as the app is fully native now.)_
 
 ## 3. Home dashboard
 
@@ -142,33 +146,42 @@ Auth required: no
 
 Return article content plus absolute banner URLs.
 
+## 6. Registrations
+
 ### `POST /registrations`
+
 - **Auth required**: yes
 - **Purpose**: Create a new event registration natively.
 - **Payload**: `{ event_id, package_id, participants: [ { name, category, ... } ] }`
 
 ### `PUT /registrations/{id}`
+
 - **Auth required**: yes
 - **Purpose**: Update registration details (e.g., change package).
 
 ### `DELETE /registrations/{id}`
+
 - **Auth required**: yes
 - **Purpose**: Cancel a draft or unpaid registration.
 
 ## 7. Participants (Native CRUD)
 
 ### `GET /registrations/{id}/participants`
+
 - **Auth required**: yes
 
 ### `POST /registrations/{id}/participants`
+
 - **Auth required**: yes
 - **Purpose**: Add a new participant to an existing registration.
 
 ### `PUT /participants/{participant_id}`
+
 - **Auth required**: yes
 - **Purpose**: Update participant info.
 
 ### `DELETE /participants/{participant_id}`
+
 - **Auth required**: yes
 
 ## 8. Invoices
@@ -250,11 +263,13 @@ If profile editing is needed, make sure to implement standard API updates.
 **Auth required:** yes (Bearer Token)
 
 **Query params:**
+
 - `category`
 - `search`
 - `page`
 
 **Purpose:**
+
 - Return paginated documents available to the user.
 
 ### `GET /documents/{id}`
@@ -262,6 +277,7 @@ If profile editing is needed, make sure to implement standard API updates.
 **Auth required:** yes (Bearer Token)
 
 **Response:**
+
 ```json
 {
     "id": 1,
@@ -283,9 +299,11 @@ Organization creation, member management, and profile editing will be implemente
 **Auth required:** yes (Bearer Token)
 
 **Purpose:**
+
 - List organizations the current user belongs to.
 
 ### Native Updates:
+
 Native app uses standard REST API calls to fetch from, create, edit, or delete organizations instead of web views.
 
 ## 12. Formatting and safety rules
