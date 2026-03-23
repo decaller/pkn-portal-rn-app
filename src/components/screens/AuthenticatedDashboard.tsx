@@ -30,6 +30,9 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAuthStore } from '@/store/authStore';
 import { spacing, borderRadius, typography, shadows } from '@/theme';
 
+import { AlertBanner } from '@/components/ui/AlertBanner';
+import { Alert } from 'react-native';
+
 export function AuthenticatedDashboard() {
   const { t } = useTranslation();
   const router = useRouter();
@@ -43,7 +46,7 @@ export function AuthenticatedDashboard() {
     isError,
     refetch,
   } = useQuery<DashboardData>({
-    queryKey: ['dashboard'],
+    queryKey: ['dashboard', user?.id],
     queryFn: async () => {
       const resp = await api.get('/mobile-dashboard');
       return resp.data;
@@ -64,6 +67,21 @@ export function AuthenticatedDashboard() {
     }
   }, [refetch]);
 
+  const handleLogout = () => {
+    Alert.alert(
+      t('auth.logoutTitle', 'Logout'),
+      t('auth.logoutConfirm', 'Are you sure you want to sign out?'),
+      [
+        { text: t('common.cancel', 'Cancel'), style: 'cancel' },
+        { 
+          text: t('auth.logoutAction', 'Sign Out'), 
+          style: 'destructive',
+          onPress: () => signOut() 
+        },
+      ]
+    );
+  };
+
   const handleEventPress = (event: EventItem) => {
     router.push(`/events/${event.id}`);
   };
@@ -74,9 +92,9 @@ export function AuthenticatedDashboard() {
 
   const actions = [
     { id: 'events', icon: 'calendar', label: t('dashboard.myEvents'), route: '/(tabs)/events' },
+    { id: 'registrations', icon: 'ticket', label: t('dashboard.myRegistrations'), route: '/(tabs)/registrations' },
     { id: 'docs', icon: 'document-text', label: t('dashboard.myDocuments'), route: '/documents' },
     { id: 'profile', icon: 'person', label: t('dashboard.profile'), route: '/profile' },
-    { id: 'settings', icon: 'settings', label: t('dashboard.settings'), route: '/settings' },
   ];
 
   return (
@@ -100,10 +118,10 @@ export function AuthenticatedDashboard() {
           <Text style={styles.greeting}>
             {(t('dashboard.userGreeting', { name: user?.name || t('common.user') }) as string)}
           </Text>
-          <Text style={styles.subtitle}>{t('dashboard.userSubtitle') as string}</Text>
+          <Text style={styles.subtitle}>{user?.organization?.name || t('dashboard.userSubtitle')}</Text>
         </View>
         <Pressable
-          onPress={() => signOut()}
+          onPress={handleLogout}
           style={({ pressed }) => [
             styles.logoutButton,
             pressed && { opacity: 0.7 },
@@ -112,6 +130,21 @@ export function AuthenticatedDashboard() {
           <Ionicons name="log-out-outline" size={24} color={colors.status.danger} />
         </Pressable>
       </View>
+
+      {/* High-priority Alerts */}
+      {data.alerts && data.alerts.length > 0 && (
+        <View style={styles.alertsSection}>
+          {data.alerts.map((alert) => (
+            <AlertBanner
+              key={alert.id}
+              type={alert.type}
+              title={alert.title}
+              message={alert.message}
+              onPress={alert.action_route ? () => router.push(alert.action_route as any) : undefined}
+            />
+          ))}
+        </View>
+      )}
 
       {/* Quick Action Grid */}
       <View style={styles.actionGrid}>
@@ -133,15 +166,19 @@ export function AuthenticatedDashboard() {
         ))}
       </View>
 
-      {/* Stats/Summary Section (Mocked) */}
+      {/* Stats/Summary Section */}
       <View style={[styles.statsCard, shadows.md]}>
         <View style={styles.statItem}>
-          <Text style={styles.statValue}>12</Text>
+          <Text style={styles.statValue}>
+            {data.stats?.active_registrations ?? 0}
+          </Text>
           <Text style={styles.statLabel}>{t('dashboard.activeEvents')}</Text>
         </View>
         <View style={styles.divider} />
         <View style={styles.statItem}>
-          <Text style={styles.statValue}>4</Text>
+          <Text style={styles.statValue}>
+            {data.stats?.pending_payments ?? 0}
+          </Text>
           <Text style={styles.statLabel}>{t('dashboard.pendingPayments')}</Text>
         </View>
       </View>
@@ -221,6 +258,9 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   },
   headerContent: {
     flex: 1,
+  },
+  alertsSection: {
+    marginBottom: spacing.md,
   },
   greeting: {
     ...typography.title1,

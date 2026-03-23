@@ -20,4 +20,15 @@ export interface DashboardResponse {
     phone: string;
     whatsapp_url: string;
   };
+  alerts?: Array<{
+    id: string;
+    type: 'info' | 'warning' | 'danger' | 'success';
+    title: string;
+    message: string;
+    action_route?: string;
+  }>;
+  stats?: {
+    active_registrations: number;
+    pending_payments: number;
+  };
 }

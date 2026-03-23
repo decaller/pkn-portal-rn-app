@@ -6,6 +6,7 @@
 import { Testimonial } from './dashboard';
 
 export interface EventPackage {
+  id: number;
   name: string;
   price: number;
   max_quota: number | null;

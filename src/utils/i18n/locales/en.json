@@ -31,6 +31,7 @@
     "whyJoinDesc": "Access exclusive events, resources, and a professional community",
     "myEvents": "My Events",
     "myDocuments": "My Documents",
+    "myRegistrations": "My Registrations",
     "profile": "Profile",
     "settings": "Settings",
     "userGreeting": "Hi, {{name}}!",
@@ -106,6 +107,41 @@
     "noDocs": "No documents found",
     "noDocsDesc": "Try adjusting your search query"
   },
+  "registrations": {
+    "title": "My Registrations",
+    "searchPlaceholder": "Search by event or ID...",
+    "participants": "participants",
+    "noRegistrations": "No Registrations",
+    "noResults": "No registrations match your search.",
+    "emptyDescription": "You haven't registered for any events yet.",
+    "browseEvents": "Browse Events",
+    "detailTitle": "Registration Detail",
+    "eventInfo": "Event Information",
+    "paymentInfo": "Payment Information",
+    "invoiceNumber": "Invoice #",
+    "totalAmount": "Total Amount",
+    "payNow": "Pay Now",
+    "completeRegistration": "Complete Registration",
+    "step1Title": "Add Participants",
+    "step1Subtitle": "Enter details for all attendees.",
+    "step2Title": "Select Package",
+    "step2Subtitle": "Choose the best option for your group.",
+    "step3Title": "Review Summary",
+    "addParticipant": "Add Participant",
+    "fillAllFields": "Please fill all required fields.",
+    "minOneParticipant": "At least one participant is required.",
+    "selectPackage": "Please select a package.",
+    "event": "Event",
+    "package": "Package",
+    "submit": "Submit Registration",
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "awaiting_payment": "Awaiting Payment",
+      "confirmed": "Confirmed",
+      "cancelled": "Cancelled"
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "Something went wrong",
@@ -116,12 +152,20 @@
     "back": "Back",
     "cancel": "Cancel",
     "confirm": "Confirm",
+    "warning": "Warning",
     "signIn": "Sign In",
     "offline": "You are offline",
     "offlineAction": "Internet connection is required for this action",
     "days": "days",
     "contact": "Contact",
-    "user": "User"
+    "user": "User",
+    "name": "Full Name",
+    "email": "Email Address",
+    "phone": "Phone Number",
+    "add": "Add",
+    "next": "Next",
+    "seeDetails": "See Details",
+    "errorDesc": "An unexpected error occurred. Please try again."
   },
   "menu": {
     "language": "Language",
@@ -131,5 +175,10 @@
     "light": "Light",
     "dark": "Dark",
     "system": "Auto"
+  },
+  "auth": {
+    "logoutTitle": "Sign Out",
+    "logoutConfirm": "Are you sure you want to sign out?",
+    "logoutAction": "Sign Out"
   }
 }

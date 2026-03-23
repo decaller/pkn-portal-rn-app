@@ -31,6 +31,7 @@
     "whyJoinDesc": "Akses acara eksklusif, sumber daya, dan komunitas profesional",
     "myEvents": "Acara Saya",
     "myDocuments": "Dokumen Saya",
+    "myRegistrations": "Pendaftaran Saya",
     "profile": "Profil",
     "settings": "Pengaturan",
     "userGreeting": "Hai, {{name}}!",
@@ -106,6 +107,41 @@
     "noDocs": "Dokumen tidak ditemukan",
     "noDocsDesc": "Coba sesuaikan pencarian Anda"
   },
+  "registrations": {
+    "title": "Pendaftaran Saya",
+    "searchPlaceholder": "Cari berdasarkan acara atau ID...",
+    "participants": "peserta",
+    "noRegistrations": "Tidak ada Pendaftaran",
+    "noResults": "Tidak ada pendaftaran yang sesuai dengan pencarian Anda.",
+    "emptyDescription": "Anda belum mendaftar untuk acara apa pun.",
+    "browseEvents": "Telusuri Acara",
+    "detailTitle": "Detail Pendaftaran",
+    "eventInfo": "Informasi Acara",
+    "paymentInfo": "Informasi Pembayaran",
+    "invoiceNumber": "Nomor Invoice",
+    "totalAmount": "Total Pembayaran",
+    "payNow": "Bayar Sekarang",
+    "completeRegistration": "Selesaikan Pendaftaran",
+    "step1Title": "Tambah Peserta",
+    "step1Subtitle": "Masukkan detail untuk semua peserta.",
+    "step2Title": "Pilih Paket",
+    "step2Subtitle": "Pilih opsi terbaik untuk grup Anda.",
+    "step3Title": "Tinjau Ringkasan",
+    "addParticipant": "Tambah Peserta",
+    "fillAllFields": "Harap isi semua bidang yang diperlukan.",
+    "minOneParticipant": "Setidaknya satu peserta diperlukan.",
+    "selectPackage": "Harap pilih paket.",
+    "event": "Acara",
+    "package": "Paket",
+    "submit": "Kirim Pendaftaran",
+    "status": {
+      "draft": "Draf",
+      "submitted": "Terkirim",
+      "awaiting_payment": "Menunggu Pembayaran",
+      "confirmed": "Dikonfirmasi",
+      "cancelled": "Dibatalkan"
+    }
+  },
   "common": {
     "loading": "Memuat...",
     "error": "Terjadi kesalahan",
@@ -116,12 +152,20 @@
     "back": "Kembali",
     "cancel": "Batal",
     "confirm": "Konfirmasi",
+    "warning": "Peringatan",
     "signIn": "Masuk",
     "offline": "Anda sedang offline",
     "offlineAction": "Koneksi internet diperlukan untuk tindakan ini",
     "days": "hari",
     "contact": "Hubungi",
-    "user": "Pengguna"
+    "user": "Pengguna",
+    "name": "Nama Lengkap",
+    "email": "Alamat Email",
+    "phone": "Nomor Telepon",
+    "add": "Tambah",
+    "next": "Lanjut",
+    "seeDetails": "Lihat Detail",
+    "errorDesc": "Terjadi kesalahan yang tidak terduga. Silakan coba lagi."
   },
   "menu": {
     "language": "Bahasa",
@@ -131,5 +175,10 @@
     "light": "Terang",
     "dark": "Gelap",
     "system": "Otomatis"
+  },
+  "auth": {
+    "logoutTitle": "Keluar",
+    "logoutConfirm": "Apakah Anda yakin ingin keluar?",
+    "logoutAction": "Keluar"
   }
 }

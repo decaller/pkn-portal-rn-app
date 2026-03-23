@@ -39,22 +39,22 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 ## Phase 2: Native Login & Identity
 **Goal:** Introduce authentication to allow personalized features.
 
-- [ ] **Authentication Infrastructure**
-  - [ ] Configure `axios` interceptors for Sanctum tokens.
-  - [ ] Update `useAppStore` or create `useAuthStore` for secure persistent token storage (`expo-secure-store` or `react-native-mmkv`).
+- [x] **Authentication Infrastructure**
+  - [x] Configure `axios` interceptors for Sanctum tokens.
+  - [x] Update `useAuthStore` for secure persistent token storage.
   - [ ] **Deep Linking**: Configure `app.json` for `pknportal://` scheme and universal links.
 
-- [ ] **Native Login Strategy**
-  - [ ] Implement `src/app/auth/login.tsx` (Native Login screen).
-  - [ ] Implement API login integration with Laravel Sanctum (`/api/v1/auth/login` or similar).
-  - [ ] Handle logout and token revocation logic.
-- [ ] **Profile & Protected States**
-  - [ ] Implement conditional UI for "Log In" prompts on restricted features (e.g., Register button).
-  - [ ] **Refined Private Dashboard**: Implement the authenticated dashboard view (`refined_dashboard_screen` mockup) with user-specific alerts and action grid.
-- [ ] **Contextual Document Browsing**
-  - [ ] Implement document browser both as a separate menu item and integrated within Event detail screens.
-- [ ] **Native Look & Feel Audit (Auth)**
-  - [ ] Apply `android_ripple`, `Pressable` opacity, and `formSheet` presentation to all new screens.
+- [x] **Native Login Strategy**
+  - [x] Implement `src/app/auth/login.tsx` (Native Login screen).
+  - [x] Implement API login integration with Laravel Sanctum.
+  - [x] Handle logout and token revocation logic.
+- [x] **Profile & Protected States**
+  - [x] Implement conditional UI for "Log In" prompts on restricted features.
+  - [x] **Refined Private Dashboard**: Implement the authenticated dashboard view with user-specific alerts and action grid.
+- [x] **Contextual Document Browsing**
+  - [x] Implement document browser both as a separate menu item and integrated within Event detail screens.
+- [x] **Native Look & Feel Audit (Auth)**
+  - [x] Apply `android_ripple`, `Pressable` opacity, and `formSheet` presentation to all new screens.
 
 
 
@@ -63,13 +63,13 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 ## Phase 3: Native Registration & Participant Management
 **Goal:** Enable users to natively create and manage event registrations, with a fallback for complex edge cases.
 
-- [ ] **Native Registration Flows**
-  - [ ] Implement `POST /api/v1/registrations` for creating new registrations natively.
-  - [ ] Build Native Registration Management screen (Change package, Cancel registration).
-  - [ ] Implement Participant Management (Add/Edit/Remove participants natively).
-- [ ] **Infrastructure & Invoices**
-  - [ ] Implement Native Invoice preview and status tracking within the registration flow.
-  - [ ] Build detail views for linked participants and their metadata.
+- [x] **Native Registration Flows**
+  - [x] Implement `POST /api/v1/registrations` for creating new registrations natively.
+  - [x] Build Native Registration Management screen (Change package, Cancel registration).
+  - [x] Implement Participant Management (Add/Edit/Remove participants natively).
+- [x] **Infrastructure & Invoices**
+  - [x] Implement Native Invoice preview and status tracking within the registration flow.
+  - [x] Build detail views for linked participants and their metadata.
 - [ ] **Direct Web Portal Link (Optional)**
   - [ ] Add "Open in Web Portal" button for users preferring the web version.
 

@@ -672,13 +672,10 @@ export function EventDetailScreen() {
             <Pressable
               onPress={() => {
                 if (!isAuthenticated) {
-                  router.push('/auth/login');
+                  router.push("/auth/login");
                 } else {
-                  // TODO: Navigate to registration form/webview
-                  // For now, redirect to event website or show coming soon
-                  if (event.registration_url) {
-                    Linking.openURL(event.registration_url);
-                  }
+                  // Native Registration Flow
+                  router.push(`/events/${id}/register`);
                 }
               }}
               android_ripple={{ color: "rgba(255,255,255,0.2)" }}
