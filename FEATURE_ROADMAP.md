@@ -14,6 +14,7 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
   - [x] **i18n Setup**: Install `i18next` and `react-i18next`; configure `src/utils/i18n/index.ts`.
   - [x] **Theming Engine**: Install `react-native-paper` and `@material/material-color-utilities`.
   - [x] **Quality Control**: Set up Sentry, Jest, and `eslint-plugin-react-native-a11y`.
+  - [x] **E2E & Flow Testing**: Set up Maestro (Mobile) and Playwright (Web) for automated screenshot flows.
   - [x] **CI/CD**: Configure EAS Build and set up GitHub Actions for automated deployments.
   - [x] Set up `axios` instance for public APIs with proper environment variable handling.
 

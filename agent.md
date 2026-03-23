@@ -6,6 +6,10 @@ This document serves as the primary instruction set and guardrails for any AI ag
 
 ## 🛡️ Core Guardrails
 
+### 0. Master Rule: UX Flow Guide Compliance
+- **Policy**: The `UX Flow Guide.md` is the absolute source of truth for all screen structures, interaction patterns, and visual semantics.
+- **Action**: **Always cross-refer to the UX Flow Guide** before starting implementation, writing tests, or generating screenshots. Your work MUST align with the defined UX strategy (Native vs Hybrid) and interaction models described therein.
+
 ### 1. No "Hacks" - Consult First
 - **Policy**: Avoid non-standard workarounds, hidden dependencies, or complex "clever" logic that deviates from the project's architecture.
 - **Action**: If a task seems to require a "hack" or a significant departure from the established patterns (Read Native, Write Hybrid), **stop and consult the user/manual first**. Explain why the standard way isn't working and propose the alternative for approval.
@@ -44,6 +48,13 @@ Follow the [Official Expo Unit Testing Guide](https://docs.expo.dev/develop/unit
 - **Command**: `npm test` or `npx jest --watchAll`.
 - **Configuration**: Ensure `transformIgnorePatterns` is correctly set in `package.json` to transpile native modules.
 
+### UI & Flow Testing (Maestro & Playwright)
+- **Mobile Flows**: Use **Maestro** (`maestro test .maestro/`) for native iOS/Android end-to-end flow testing and automated screenshots.
+- **Web Flows**: Use **Playwright** (`take_web_screenshots.js`) for web fallback/PWA end-to-end flow testing and automated screenshots.
+- **Artifacts**: Store captured flow screenshots in the `screenshots/` directory and document them in `flow_screenshot.md`. **Refer to the `UX Flow Guide`** for the expected visual state and flow sequence.
+- **Comprehensive Coverage**: The flows must test **all pages**, including the complete login flow and all respective public/authenticated screens.
+- **Continuous Updates**: You MUST update the test scripts and screenshot documentation (`flow_screenshot.md`) to include new screenshots for **every new feature** or screen developed in new roadmap phases.
+
 ### Reference Manuals
 Always consult these live references when stuck or making architectural decisions:
 - [Expo LLM Guide (Detailed)](https://docs.expo.dev/llms-full.txt)
@@ -53,8 +64,8 @@ Always consult these live references when stuck or making architectural decision
 ---
 
 ## 📂 Project Context (Internal Guides)
-Refer to these local documents in `react native dev guide/`:
-- `UX Flow Guide.md`: Defines visual and interaction patterns.
+Refer to these local documents in `react native dev guide/` (MANDATORY REFERENCE):
+- `UX Flow Guide.md`: Defines visual and interaction patterns (IMPLEMENTATION & TEST REF).
 - `Critical Gotchas & Edge Cases.md`: History of solved and known issues.
 - `Hybrid Architecture Briefing.md`: Explanation of the Native/WebView split.
 - `FEATURE_ROADMAP.md`: The current implementation pulse.

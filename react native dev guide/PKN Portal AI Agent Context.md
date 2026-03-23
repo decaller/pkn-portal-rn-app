@@ -135,3 +135,9 @@ When generating code for this app:
 3. **BFF**: Use `GET /api/v1/mobile-dashboard` for the home screen to minimize round-trips.
 4. **URLs**: Ensure all image and file paths are absolute URLs returned by the API.
 5. **Flows**: Treat all flows as standard React Native stacks interacting with decoupled APIs.
+
+## Testing & Automation
+
+1. **E2E UI Testing (Mobile)**: Use **Maestro** tests (e.g., `.maestro/login_screenshot_flow.yaml`) to validate native application sequences and automatically capture visual workflows.
+2. **E2E UI Testing (Web)**: Use **Playwright** scripts (e.g., `take_web_screenshots.js`) for the web fallback testing.
+3. **Screenshots**: Always direct flow-extracted screenshots to the central `screenshots/` directory for unified documentation reference.

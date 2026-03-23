@@ -1,0 +1,72 @@
+appId: ${APP_ID:-host.exp.Exponent} # Default to Expo Go
+---
+- clearState
+- launchApp
+
+# 1. Greetings Page
+- takeScreenshot: "screenshots/01_Greetings_Page"
+- tapOn: "Get Started"
+
+# 2. Public Dashboard
+- assertVisible: "PKN Portal"
+- takeScreenshot: "screenshots/02_Public_Dashboard"
+
+# 3. Events List
+- tapOn: "Acara" # "Events" tab
+- takeScreenshot: "screenshots/03_Events_List"
+
+# 4. Event Detail
+# Tap the first event card (we assume standard components)
+- tapOn:
+    point: 50%, 30% # Tapping on the first item in the list approximately
+- takeScreenshot: "screenshots/04_Event_Detail"
+- back
+
+# 5. News List (Assuming News is reachable from Dashboard or a Tab)
+- tapOn: "Beranda" # Back to Dashboard
+- swipe:
+    direction: UP
+- tapOn: "Berita" # Assuming there's a News section or "Berita Terbaru"
+- takeScreenshot: "screenshots/05_News_List"
+
+# 6. News Detail
+- tapOn:
+    point: 50%, 40%
+- takeScreenshot: "screenshots/06_News_Detail"
+- back
+
+# 7. Documents List
+- tapOn: "Dokumen" # "Documents" tab
+- takeScreenshot: "screenshots/07_Documents_List"
+
+# 8. Registrations List (Guest)
+- tapOn: "Pendaftaran" # "Registrations" tab
+- takeScreenshot: "screenshots/08_Registrations_Guest"
+
+# Navigate to Login
+- tapOn: "Profil" # "Profile" tab should redirect to Login, or tap "Masuk"
+- takeScreenshot: "screenshots/09_Login_Screen"
+
+# 9. Login Flow
+- tapOn: "Phone Number"
+- inputText: "081100000002"
+- takeScreenshot: "screenshots/10_Phone_Input"
+
+- tapOn: "Password"
+- inputText: "password123"
+- takeScreenshot: "screenshots/11_Password_Input"
+
+- tapOn: "Sign In"
+- takeScreenshot: "screenshots/12_Login_Clicked"
+
+# 10. Authenticated Dashboard 
+- assertVisible: "Dashboard" 
+- takeScreenshot: "screenshots/13_Auth_Dashboard"
+
+# 11. Authenticated Registrations
+- tapOn: "Pendaftaran"
+- takeScreenshot: "screenshots/14_Registrations_Auth"
+
+# 12. Profile Screen
+- tapOn: "Profil"
+- takeScreenshot: "screenshots/15_Profile_Screen"
