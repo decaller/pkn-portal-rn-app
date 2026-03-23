@@ -12,9 +12,11 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '@/store/appStore';
+import { useAuthStore } from '@/store/authStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { borderRadius, spacing, typography, shadows } from '@/theme';
 import { BlurView } from 'expo-blur';
+import { Alert } from 'react-native';
 
 type MenuItem = {
   label: string;
@@ -33,6 +35,7 @@ export function HeaderMenu() {
   const { t, i18n } = useTranslation();
   const { colors, themeSetting, isDark } = useAppTheme();
   const { language, setLanguage, setTheme } = useAppStore();
+  const { isAuthenticated, signOut } = useAuthStore();
   const [visible, setVisible] = useState(false);
 
   const toggleModal = () => setVisible(!visible);
@@ -46,6 +49,22 @@ export function HeaderMenu() {
   const handleThemeChange = (theme: 'light' | 'dark' | 'system') => {
     setTheme(theme);
     setVisible(false);
+  };
+
+  const handleLogout = () => {
+    setVisible(false);
+    Alert.alert(
+      t('auth.logoutTitle', 'Logout'),
+      t('auth.logoutConfirm', 'Are you sure you want to sign out?'),
+      [
+        { text: t('common.cancel', 'Cancel'), style: 'cancel' },
+        { 
+          text: t('auth.logoutAction', 'Sign Out'), 
+          style: 'destructive',
+          onPress: () => signOut() 
+        },
+      ]
+    );
   };
 
   const menuItems: MenuSection[] = [
@@ -65,6 +84,21 @@ export function HeaderMenu() {
       ],
     },
   ];
+
+  if (isAuthenticated) {
+    menuItems.push({
+      label: t('dashboard.profile', 'Account') as string,
+      items: [
+        { 
+          label: t('auth.logoutAction', 'Sign Out') as string, 
+          value: 'logout', 
+          active: false, 
+          onPress: handleLogout, 
+          icon: 'log-out-outline' 
+        },
+      ],
+    });
+  }
 
   return (
     <View>

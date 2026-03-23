@@ -31,13 +31,12 @@ import { useAuthStore } from '@/store/authStore';
 import { spacing, borderRadius, typography, shadows } from '@/theme';
 
 import { AlertBanner } from '@/components/ui/AlertBanner';
-import { Alert } from 'react-native';
 
 export function AuthenticatedDashboard() {
   const { t } = useTranslation();
   const router = useRouter();
   const { colors, isDark } = useAppTheme();
-  const { user, signOut } = useAuthStore();
+  const { user } = useAuthStore();
   const styles = createStyles(colors, isDark);
 
   const {
@@ -67,20 +66,6 @@ export function AuthenticatedDashboard() {
     }
   }, [refetch]);
 
-  const handleLogout = () => {
-    Alert.alert(
-      t('auth.logoutTitle', 'Logout'),
-      t('auth.logoutConfirm', 'Are you sure you want to sign out?'),
-      [
-        { text: t('common.cancel', 'Cancel'), style: 'cancel' },
-        { 
-          text: t('auth.logoutAction', 'Sign Out'), 
-          style: 'destructive',
-          onPress: () => signOut() 
-        },
-      ]
-    );
-  };
 
   const handleEventPress = (event: EventItem) => {
     router.push(`/events/${event.id}`);
@@ -93,8 +78,6 @@ export function AuthenticatedDashboard() {
   const actions = [
     { id: 'events', icon: 'calendar', label: t('dashboard.myEvents'), route: '/(tabs)/events' },
     { id: 'registrations', icon: 'ticket', label: t('dashboard.myRegistrations'), route: '/(tabs)/registrations' },
-    { id: 'docs', icon: 'document-text', label: t('dashboard.myDocuments'), route: '/documents' },
-    { id: 'profile', icon: 'person', label: t('dashboard.profile'), route: '/profile' },
   ];
 
   return (
@@ -120,15 +103,6 @@ export function AuthenticatedDashboard() {
           </Text>
           <Text style={styles.subtitle}>{user?.organization?.name || t('dashboard.userSubtitle')}</Text>
         </View>
-        <Pressable
-          onPress={handleLogout}
-          style={({ pressed }) => [
-            styles.logoutButton,
-            pressed && { opacity: 0.7 },
-          ]}
-        >
-          <Ionicons name="log-out-outline" size={24} color={colors.status.danger} />
-        </Pressable>
       </View>
 
       {/* High-priority Alerts */}
@@ -270,16 +244,6 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     ...typography.subhead,
     color: colors.text.secondary,
     marginTop: 2,
-  },
-  logoutButton: {
-    width: 44,
-    height: 44,
-    borderRadius: borderRadius.md,
-    backgroundColor: colors.background.card,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.border.light,
   },
   actionGrid: {
     flexDirection: 'row',

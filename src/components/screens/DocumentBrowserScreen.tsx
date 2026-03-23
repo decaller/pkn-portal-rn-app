@@ -16,6 +16,8 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
+import { useRouter } from 'expo-router';
+import * as WebBrowser from 'expo-web-browser';
 import api from '@/services/api';
 
 import { SearchBar } from '@/components/ui/SearchBar';
@@ -29,7 +31,7 @@ import type { DocumentItem, DocumentsResponse } from '@/types';
 
 import { useAuthStore } from '@/store/authStore';
 
-function DocumentCard({ doc }: { doc: DocumentItem }) {
+function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (url: string) => void }) {
   const { isAuthenticated } = useAuthStore();
   const { colors, isDark } = useAppTheme();
   
@@ -68,6 +70,7 @@ function DocumentCard({ doc }: { doc: DocumentItem }) {
       </View>
       {isAuthenticated && (
         <Pressable
+          onPress={() => onDownload?.(doc.file_url)}
           style={({ pressed }) => [
             styles.downloadButton,
             Platform.OS === 'ios' && pressed ? { opacity: 0.7 } : {},
@@ -85,7 +88,9 @@ function DocumentCard({ doc }: { doc: DocumentItem }) {
 
 export function DocumentBrowserScreen() {
   const { t } = useTranslation();
+  const router = useRouter();
   const { colors, isDark } = useAppTheme();
+  const { isAuthenticated } = useAuthStore();
   const styles = createStyles(colors, isDark);
   const [search, setSearch] = useState('');
   const [refreshing, setRefreshing] = useState(false);
@@ -113,28 +118,36 @@ export function DocumentBrowserScreen() {
     setRefreshing(false);
   };
 
+  const handleDownload = async (url: string) => {
+    if (!url) return;
+    await WebBrowser.openBrowserAsync(url);
+  };
+
 
   return (
     <View style={styles.container}>
-      {/* Sign-In Prompt Banner */}
-      <View style={styles.signInBanner}>
-        <View style={styles.signInIcon}>
-          <Ionicons name="lock-closed" size={28} color={colors.brand.primary} />
+      {/* Sign-In Prompt Banner — Only show if not authenticated */}
+      {!isAuthenticated && (
+        <View style={styles.signInBanner}>
+          <View style={styles.signInIcon}>
+            <Ionicons name="lock-closed" size={28} color={colors.brand.primary} />
+          </View>
+          <Text style={styles.signInTitle}>{t('documents.signInPrompt')}</Text>
+          <Text style={styles.signInDesc}>{t('documents.signInDesc')}</Text>
+          <Pressable
+            onPress={() => router.push('/auth/login')}
+            style={({ pressed }) => [
+              styles.signInButton,
+              Platform.OS === 'ios' && pressed ? { opacity: 0.85 } : {},
+            ]}
+            android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
+            accessibilityRole="button"
+          >
+            <Ionicons name="log-in-outline" size={18} color={colors.text.inverse} />
+            <Text style={styles.signInButtonText}>{t('common.signIn')}</Text>
+          </Pressable>
         </View>
-        <Text style={styles.signInTitle}>{t('documents.signInPrompt')}</Text>
-        <Text style={styles.signInDesc}>{t('documents.signInDesc')}</Text>
-        <Pressable
-          style={({ pressed }) => [
-            styles.signInButton,
-            Platform.OS === 'ios' && pressed ? { opacity: 0.85 } : {},
-          ]}
-          android_ripple={{ color: 'rgba(255,255,255,0.2)' }}
-          accessibilityRole="button"
-        >
-          <Ionicons name="log-in-outline" size={18} color={colors.text.inverse} />
-          <Text style={styles.signInButtonText}>{t('common.signIn')}</Text>
-        </Pressable>
-      </View>
+      )}
 
       {/* Preview Section (mock data) */}
       <View style={styles.previewSection}>
@@ -151,7 +164,12 @@ export function DocumentBrowserScreen() {
       <FlatList
         data={filteredDocs}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <DocumentCard doc={item} />}
+        renderItem={({ item }) => (
+          <DocumentCard 
+            doc={item} 
+            onDownload={handleDownload}
+          />
+        )}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         refreshControl={

@@ -22,24 +22,43 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, typography, borderRadius, shadows } from '@/theme';
 import api from '@/services/api';
-import type { EventItem, EventPackage, Participant } from '@/types';
+import type { EventItem, EventPackage, Participant, Registration } from '@/types';
 
 interface RegistrationWizardProps {
   eventId: string;
+  regId?: string;
+  initialStep?: number;
 }
 
-export function RegistrationWizard({ eventId }: RegistrationWizardProps) {
+export function RegistrationWizard({ eventId, regId, initialStep = 1 }: RegistrationWizardProps) {
   const { t } = useTranslation();
   const { colors, isDark } = useAppTheme();
   const router = useRouter();
   const queryClient = useQueryClient();
   const styles = createStyles(colors, isDark);
 
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(initialStep);
   const [participants, setParticipants] = useState<Partial<Participant>[]>([]);
   const [selectedPackageId, setSelectedPackageId] = useState<number | null>(null);
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentParticipant, setCurrentParticipant] = useState<Partial<Participant>>({});
+
+  const { data: existingReg, isLoading: isLoadingReg } = useQuery<Registration>({
+    queryKey: ['registration', regId],
+    queryFn: async () => {
+      if (!regId) return null;
+      const resp = await api.get(`/registrations/${regId}`);
+      return resp.data;
+    },
+    enabled: !!regId,
+  });
+
+  React.useEffect(() => {
+    if (existingReg) {
+      setParticipants(existingReg.participants);
+      setSelectedPackageId(existingReg.package_id);
+    }
+  }, [existingReg]);
 
   const { data: event, isLoading } = useQuery<EventItem>({
     queryKey: ['event', eventId],
@@ -51,12 +70,22 @@ export function RegistrationWizard({ eventId }: RegistrationWizardProps) {
 
   const mutation = useMutation({
     mutationFn: async () => {
-      const resp = await api.post('/registrations', {
-        event_id: eventId,
-        package_id: selectedPackageId,
-        participants: participants,
-      });
-      return resp.data;
+      if (regId) {
+        // Update existing registration
+        const resp = await api.put(`/registrations/${regId}`, {
+          package_id: selectedPackageId,
+          participants: participants,
+        });
+        return resp.data;
+      } else {
+        // Create new registration
+        const resp = await api.post('/registrations', {
+          event_id: eventId,
+          package_id: selectedPackageId,
+          participants: participants,
+        });
+        return resp.data;
+      }
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['registrations'] });
@@ -93,7 +122,7 @@ export function RegistrationWizard({ eventId }: RegistrationWizardProps) {
     setStep(step + 1);
   };
 
-  if (isLoading) {
+  if (isLoading || isLoadingReg) {
     return (
       <View style={styles.centerContainer}>
         <ActivityIndicator size="large" color={colors.brand.primary} />
@@ -243,21 +272,21 @@ export function RegistrationWizard({ eventId }: RegistrationWizardProps) {
             <TextInput 
               placeholder={t('common.name', 'Full Name')}
               style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={currentParticipant.name}
+              value={currentParticipant.name || ''}
               onChangeText={(txt) => setCurrentParticipant({ ...currentParticipant, name: txt })}
             />
             <TextInput 
               placeholder={t('common.email', 'Email Address')}
               keyboardType="email-address"
               style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={currentParticipant.email}
+              value={currentParticipant.email || ''}
               onChangeText={(txt) => setCurrentParticipant({ ...currentParticipant, email: txt })}
             />
             <TextInput 
               placeholder={t('common.phone', 'Phone Number')}
               keyboardType="phone-pad"
               style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={currentParticipant.phone}
+              value={currentParticipant.phone || ''}
               onChangeText={(txt) => setCurrentParticipant({ ...currentParticipant, phone: txt })}
             />
 

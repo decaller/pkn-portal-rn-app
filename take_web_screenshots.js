@@ -108,17 +108,61 @@ const fs = require('fs');
     await page.screenshot({ path: 'screenshots/13_Auth_Dashboard.png' });
     console.log('Took 13_Auth_Dashboard.png');
 
-    // 14. Auth Registrations
-    await page.goto(url + '/registrations', { waitUntil: 'networkidle', timeout: 30000 });
-    await page.waitForTimeout(3000);
-    await page.screenshot({ path: 'screenshots/14_Registrations_Auth.png' });
-    console.log('Took 14_Registrations_Auth.png');
+    // 16. Registration Detail
+    console.log('Navigating to Registration Detail...');
+    const regLink = page.locator('a[href*="/registrations/"]').first();
+    if (await regLink.count() > 0) {
+      await regLink.click();
+      await page.waitForTimeout(3000);
+      await page.screenshot({ path: 'screenshots/16_Registration_Detail.png' });
+      console.log('Took 16_Registration_Detail.png');
 
-    // 15. Profile
-    await page.goto(url + '/profile', { waitUntil: 'networkidle', timeout: 30000 });
+      // 17. Cancel Dialog
+      const cancelBtn = page.locator('text="Cancel"').last(); // The one in the footer
+      if (await cancelBtn.count() > 0) {
+        await cancelBtn.click();
+        await page.waitForTimeout(1000);
+        await page.screenshot({ path: 'screenshots/17_Cancel_Dialog.png' });
+        console.log('Took 17_Cancel_Dialog.png');
+        // Close alert by clicking "Cancel" in the native-like dialog (this might vary if it's a browser alert)
+        // Since it's react-native-web + Alert.alert, it might be a window.confirm or a custom View.
+        // Assuming it's a View from our Modal/View logic or browser confirm.
+        await page.keyboard.press('Escape');
+        await page.waitForTimeout(500);
+      }
+
+      // 18. Change Package (Step 2 of Wizard)
+      const changeBtn = page.locator('text="Change"').first();
+      if (await changeBtn.count() > 0) {
+        await changeBtn.click();
+        await page.waitForTimeout(3000);
+        await page.screenshot({ path: 'screenshots/18_Change_Package.png' });
+        console.log('Took 18_Change_Package.png');
+        await page.goBack();
+        await page.waitForTimeout(2000);
+      }
+
+      // 19. Add Participant Modal
+      const addParticipantBtn = page.locator('text="Participants"').locator('..').locator('i, svg').first();
+      // Or search for the add icon
+      const addIcon = page.locator('[data-testid="add-participant-btn"]').first(); // I should have added testID
+      // Let's try to find it by the Ionicons name if rendered as svg or text
+      const addBtn = page.locator('text="Participants"').locator('..').locator('xpath=..').locator('i, svg, button').last();
+      
+      // Fallback: just try to click near the title
+      await page.click('text="Participants"', { position: { x: 300, y: 10 } }); 
+      await page.waitForTimeout(1000);
+      await page.screenshot({ path: 'screenshots/19_Add_Participant.png' });
+      console.log('Took 19_Add_Participant.png');
+      await page.keyboard.press('Escape');
+    }
+
+    // 20. Resume Wizard (via direct URL)
+    console.log('Testing Resume Wizard...');
+    await page.goto(url + '/events/1/register?step=3&regId=1', { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForTimeout(3000);
-    await page.screenshot({ path: 'screenshots/15_Profile_Screen.png' });
-    console.log('Took 15_Profile_Screen.png');
+    await page.screenshot({ path: 'screenshots/20_Resume_Wizard.png' });
+    console.log('Took 20_Resume_Wizard.png');
 
   } else {
     console.log('Could not find login inputs.');

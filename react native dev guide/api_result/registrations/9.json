@@ -1,0 +1,100 @@
+{
+    "data": {
+        "id": 9,
+        "event_id": 1,
+        "organization_id": 1,
+        "booker_user_id": 1,
+        "status": "draft",
+        "payment_status": "unpaid",
+        "total_amount": "100000.00",
+        "payment_proof_path": null,
+        "notes": null,
+        "verified_by_user_id": null,
+        "verified_at": null,
+        "created_at": "2026-03-21T18:33:19.000000Z",
+        "updated_at": "2026-03-21T18:33:19.000000Z",
+        "package_name": null,
+        "participant_count": 1,
+        "unit_price": "0.00",
+        "package_breakdown": [
+            {
+                "package_name": "Regular",
+                "participant_count": 1,
+                "unit_price": 100000,
+                "debug_log": "Total amount synced: 100000"
+            }
+        ],
+        "event": {
+            "id": 1,
+            "title": "PKN National Conference 2026",
+            "slug": "pkn-national-conference-2026",
+            "description": "<p>Annual national offline conference by PKN.</p>",
+            "event_date": "2026-06-04",
+            "cover_image": null,
+            "photos": null,
+            "files": null,
+            "rundown": [
+                {
+                    "type": "advanced",
+                    "data": {
+                        "title": "Ju",
+                        "date": null,
+                        "place": null,
+                        "start_time": null,
+                        "end_time": null,
+                        "speaker": null,
+                        "description": "<p></p>",
+                        "session_files": [
+                            "events/pkn-national-conference-2026/sessions/1. Mengembalikan Pendidikan ke asalnya.pdf",
+                            "events/pkn-national-conference-2026/sessions/1. Mengembalikan Pendidikan ke asalnya.pptx",
+                            "events/pkn-national-conference-2026/sessions/2. Menangani anak yang bermasalah.pdf",
+                            "events/pkn-national-conference-2026/sessions/2. Menangani anak yang bermasalah.pptx",
+                            "events/pkn-national-conference-2026/sessions/3. Pembelajaran Alamiyah.pdf",
+                            "events/pkn-national-conference-2026/sessions/3. Pembelajaran Alamiyah.pptx",
+                            "events/pkn-national-conference-2026/sessions/4. BAKAT - TB - 40.pdf",
+                            "events/pkn-national-conference-2026/sessions/4. BAKAT - TB - 40.pptx",
+                            "events/pkn-national-conference-2026/sessions/6. Tambal Sulam Pembelajaran.pptx",
+                            "events/pkn-national-conference-2026/sessions/6. Tambal Sulam Pembelajaran.pdf",
+                            "events/pkn-national-conference-2026/sessions/a. Lembar RENCANA PEMBELAJARAN KARAKTER (RPP).pdf",
+                            "events/pkn-national-conference-2026/sessions/b. Lembar PELAKSANAAN PEMBELAJARAN KARAKTER.pdf",
+                            "events/pkn-national-conference-2026/sessions/c.2. lembar OBSERVASI PERTUMBUHAN KARAKTER.pdf",
+                            "events/pkn-national-conference-2026/sessions/c.1. Lembar OBSERVASI PEMETAAN KARAKTER.pdf",
+                            "events/pkn-national-conference-2026/sessions/d. 40 DAFTAR KARAKTER - DEFINISI (ANAK).pdf"
+                        ],
+                        "links": []
+                    }
+                }
+            ],
+            "is_published": true,
+            "created_at": "2026-03-04T22:41:56.000000Z",
+            "updated_at": "2026-03-16T06:16:21.000000Z",
+            "allow_registration": true,
+            "registration_packages": [
+                {
+                    "name": "Regular",
+                    "price": 100000,
+                    "max_quota": null
+                },
+                {
+                    "name": "VIP",
+                    "price": 250000,
+                    "max_quota": null
+                }
+            ],
+            "event_type": "offline",
+            "max_capacity": null,
+            "place": null,
+            "proposal": null,
+            "documentation": [],
+            "survey_template_id": null,
+            "tags": [],
+            "city": null,
+            "province": null,
+            "nation": null,
+            "duration_days": null,
+            "google_maps_url": null,
+            "payment_instructions": "<p></p>"
+        },
+        "participants": []
+    }
+}

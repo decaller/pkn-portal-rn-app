@@ -1,121 +1,123 @@
 {
-  "data": {
-    "id": 2,
-    "title": "PKN Regional Workshop 2026",
-    "slug": "pkn-regional-workshop-2026",
-    "summary": null,
-    "description": "\u003Cp\u003EDengan terus menghadirkan rasa syukur kepada \u003Cstrong\u003ERabbunal Karim\u003C/strong\u003E, animo para pendidik muslim—khususnya di Indonesia—secara perlahan mulai bertambah dan meluas.\u003C/p\u003E\u003Cp\u003ESemangat tersebut terefleksi dari hadirnya beragam kajian pendidikan yang berupaya untuk mengembalikan pola pendidikan sesuai dengan keteladanan \u003Cstrong\u003ENabiyurrahman\u003C/strong\u003E.\u003C/p\u003E\u003Ch3\u003EIkhtiar Amal Sholih\u003C/h3\u003E\u003Cp\u003ESebagai bagian dari harapan untuk menjadikannya amal sholih, kami berikhtiar kembali menyelenggarakan forum workshop pendidikan bagi para pendidik:\u003C/p\u003E\u003Cblockquote\u003E\u003Cp\u003E\u003Cstrong\u003EAkademi Guru Pendidikan Karakter Nabawiyah (AKG – PKN)\u003C/strong\u003E\u003C/p\u003E\u003Cul\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EBatch V\u003C/strong\u003E\u003C/p\u003E\u003C/li\u003E\u003Cli\u003E\u003Cp\u003E\u003Cstrong\u003EBatch VI\u003C/strong\u003E\u003C/p\u003E\u003C/li\u003E\u003C/ul\u003E\u003C/blockquote\u003E",
-    "event_date": "2026-09-04",
-    "city": "Kabupaten Cikarang",
-    "province": "Jawa Barat",
-    "nation": "Indonesia",
-    "duration_days": 3,
-    "google_maps_url": "https://maps.app.goo.gl/xbW37bh5HdmLzjfX7",
-    "cover_image": "http://localhost/storage/event-covers/01KK1AQ3RZ1WHA58XT29YTGGBT.png",
-    "photos": [],
-    "files": [],
-    "documentation": [
-      "http://localhost/storage/event-documentation/01KM3C2DQ1YVAC2QRWZ78F4B5B.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ3K51NV8QKE04QG0BB.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R2.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R3.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ5959T798ETGJH7QHV.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MS.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MT.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MV.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E22.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E23.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VT.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VV.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQ9NYZM7DMTC3N5EWQP.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q84.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q85.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYD.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYE.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK19.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK1A.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CJ.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CK.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBX.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBY.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQF565Q7X136VYW012A.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC2.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC3.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC4.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDR.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDS.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6B.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6C.jpeg",
-      "http://localhost/storage/event-documentation/01KM3C2DQK9E0N9GVKMR6CCPDG.jpeg"
-    ],
-    "is_published": true,
-    "allow_registration": true,
-    "max_capacity": 50,
-    "available_spots": 50,
-    "is_full": false,
-    "registration_packages": [
-      {
-        "name": "Regular",
-        "price": 75000,
-        "max_quota": 30,
-        "description": "Penginapan bersama di kelas yang diubah menjadi tempat menginap dengan fasilitas 1 kasur dan 1 bantal."
-      },
-      {
-        "name": "VIP",
-        "price": 200000,
-        "max_quota": 20,
-        "description": "Penginapan khusus berdua di hotel terdekat."
-      }
-    ],
-    "rundown": [
-      {
-        "type": "advanced",
-        "data": {
-          "title": "Materi Sesi 1",
-          "date": "2026-01-02",
-          "place": "Kelas SMP IT Insan Taqwa",
-          "start_time": "08:00",
-          "end_time": "12:00",
-          "speaker": "Ustad Abdul Kholiq",
-          "description": "\u003Cp\u003EMateri Hari 1\u003C/p\u003E",
-          "session_files": [
-            "events/pkn-regional-workshop-2026/sessions/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
-            "events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
-            "events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
-            "events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pdf",
-            "events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
-            "events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pptx",
-            "events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
-            "events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
-            "events/pkn-regional-workshop-2026/sessions/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pdf",
-            "events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pptx",
-            "events/pkn-regional-workshop-2026/sessions/6. Implementasi Kurikulum PKN Pada  Persekolahan.pdf",
-            "events/pkn-regional-workshop-2026/sessions/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pptx",
-            "events/pkn-regional-workshop-2026/sessions/6. Implementasi Kurikulum PKN Pada  Persekolahan.pptx",
-            "events/pkn-regional-workshop-2026/sessions/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pdf",
-            "events/pkn-regional-workshop-2026/sessions/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pptx",
-            "events/pkn-regional-workshop-2026/sessions/PROGRAM PEMBELAJARAN 40 PILAR KARAKTER NABAWIYAH (1)-digabungkan.pdf"
-          ],
-          "links": []
-        }
-      },
-      {
-        "type": "advanced",
-        "data": {
-          "title": "Materi Sesi 2",
-          "date": "2026-03-27",
-          "place": "Lapangan SMP IT Insan Taqwa",
-          "start_time": null,
-          "end_time": null,
-          "speaker": "Ust. Bayu",
-          "description": "\u003Cp\u003EAcara Implementasi\u003C/p\u003E",
-          "session_files": [],
-          "links": []
-        }
-      }
-    ],
-    "tags": ["Akademi Guru"],
-    "proposal": "http://localhost/storage/event-proposals/01KKTMY5S0JMW99YD51YWK3YB7.pdf",
-    "testimonials": []
-  }
+    "data": {
+        "id": 2,
+        "title": "PKN Regional Workshop 2026",
+        "slug": "pkn-regional-workshop-2026",
+        "summary": null,
+        "description": "<p>Dengan terus menghadirkan rasa syukur kepada <strong>Rabbunal Karim</strong>, animo para pendidik muslim\u2014khususnya di Indonesia\u2014secara perlahan mulai bertambah dan meluas.</p><p>Semangat tersebut terefleksi dari hadirnya beragam kajian pendidikan yang berupaya untuk mengembalikan pola pendidikan sesuai dengan keteladanan <strong>Nabiyurrahman</strong>.</p><h3>Ikhtiar Amal Sholih</h3><p>Sebagai bagian dari harapan untuk menjadikannya amal sholih, kami berikhtiar kembali menyelenggarakan forum workshop pendidikan bagi para pendidik:</p><blockquote><p><strong>Akademi Guru Pendidikan Karakter Nabawiyah (AKG \u2013 PKN)</strong></p><ul><li><p><strong>Batch V</strong></p></li><li><p><strong>Batch VI</strong></p></li></ul></blockquote>",
+        "event_date": "2026-09-04",
+        "city": "Kabupaten Cikarang",
+        "province": "Jawa Barat",
+        "nation": "Indonesia",
+        "duration_days": 5,
+        "google_maps_url": "https://maps.app.goo.gl/xbW37bh5HdmLzjfX7",
+        "cover_image": "http://localhost/storage/event-covers/01KK1AQ3RZ1WHA58XT29YTGGBT.png",
+        "photos": [],
+        "files": [],
+        "documentation": [
+            "http://localhost/storage/event-documentation/01KM3C2DQ1YVAC2QRWZ78F4B5B.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ3K51NV8QKE04QG0BB.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R2.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ457FH4HZ15Z1G16R3.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ5959T798ETGJH7QHV.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MS.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MT.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ6M4EC06HH8D5YT8MV.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E22.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ71QZMN37RX0JW7E23.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VT.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ8ZZ75X0SRK263D9VV.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQ9NYZM7DMTC3N5EWQP.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q84.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQAEB0WETS2DSK17Q85.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYD.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQB7NF3C1J5Z3QZMFYE.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK19.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQC0Z6JM0XZDK25JK1A.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CJ.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQDEKX8NCBKRAVRF8CK.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBX.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQE259MZJW0R8TEKNBY.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQF565Q7X136VYW012A.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC2.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC3.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQGGPJGAPX4QC6PJVC4.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDR.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQHR0WJRA3PRT3AYDDS.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6B.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQJJX1C0JAP0YPTHH6C.jpeg",
+            "http://localhost/storage/event-documentation/01KM3C2DQK9E0N9GVKMR6CCPDG.jpeg"
+        ],
+        "is_published": true,
+        "allow_registration": true,
+        "max_capacity": 50,
+        "available_spots": 50,
+        "is_full": false,
+        "registration_packages": [
+            {
+                "name": "Regular",
+                "price": 75000,
+                "max_quota": 30,
+                "description": "Penginapan bersama di kelas yang diubah menjadi tempat menginap dengan fasilitas 1 kasur dan 1 bantal."
+            },
+            {
+                "name": "VIP",
+                "price": 200000,
+                "max_quota": 20,
+                "description": "Penginapan khusus berdua di hotel terdekat."
+            }
+        ],
+        "rundown": [
+            {
+                "type": "advanced",
+                "data": {
+                    "title": "Materi Sesi 1",
+                    "date": "2026-01-02",
+                    "place": "Kelas SMP IT Insan Taqwa",
+                    "start_time": "08:00",
+                    "end_time": "12:00",
+                    "speaker": "Ustad Abdul Kholiq",
+                    "description": "<p>Materi Hari 1</p>",
+                    "session_files": [
+                        "events/pkn-regional-workshop-2026/sessions/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                        "events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/6. Implementasi Kurikulum PKN Pada  Persekolahan.pdf",
+                        "events/pkn-regional-workshop-2026/sessions/5. Menyibak Pondasi Pendidikan Yang Tak Tersentuh.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/6. Implementasi Kurikulum PKN Pada  Persekolahan.pptx",
+                        "events/pkn-regional-workshop-2026/sessions/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pdf",
+                        "events/pkn-regional-workshop-2026/sessions/7._Evaluasi__Pendidikan_Karakter_Nabawiyah[1].pptx",
+                        "events/pkn-regional-workshop-2026/sessions/PROGRAM PEMBELAJARAN 40 PILAR KARAKTER NABAWIYAH (1)-digabungkan.pdf"
+                    ],
+                    "links": []
+                }
+            },
+            {
+                "type": "advanced",
+                "data": {
+                    "title": "Materi Sesi 2",
+                    "date": "2026-03-27",
+                    "place": "Lapangan SMP IT Insan Taqwa",
+                    "start_time": null,
+                    "end_time": null,
+                    "speaker": "Ust. Bayu",
+                    "description": "<p>Acara Implementasi</p>",
+                    "session_files": [],
+                    "links": []
+                }
+            }
+        ],
+        "tags": [
+            "Akademi Guru"
+        ],
+        "proposal": "http://localhost/storage/event-proposals/01KKTMY5S0JMW99YD51YWK3YB7.pdf",
+        "testimonials": []
+    }
 }

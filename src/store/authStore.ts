@@ -7,6 +7,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import * as SecureStore from 'expo-secure-store';
 import { Platform } from 'react-native';
 import { User } from '../types';
+import { queryClient } from '../services/queryClient';
 
 interface AuthState {
   user: User | null;
@@ -55,6 +56,7 @@ export const useAuthStore = create<AuthState>()(
       signOut: async () => {
         // Here we could call API logout if needed:
         // try { await api.post('/auth/logout'); } catch(e) {}
+        queryClient.clear();
         set({ user: null, token: null, isAuthenticated: false });
       },
       updateUser: (userData) =>

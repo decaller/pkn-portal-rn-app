@@ -140,7 +140,15 @@
       "awaiting_payment": "Awaiting Payment",
       "confirmed": "Confirmed",
       "cancelled": "Cancelled"
-    }
+    },
+    "openInWeb": "Open in Web Portal",
+    "cancelRegistration": "Cancel Registration",
+    "changePackage": "Change Package",
+    "confirmCancelTitle": "Cancel Registration?",
+    "confirmCancelMessage": "Are you sure you want to cancel this registration? This action cannot be undone.",
+    "editParticipant": "Edit Participant",
+    "removeParticipant": "Remove Participant",
+    "confirmRemoveParticipant": "Remove this participant?"
   },
   "common": {
     "loading": "Loading...",

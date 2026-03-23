@@ -70,8 +70,8 @@ This roadmap prioritizes a "Public Access First" strategy, allowing users to bro
 - [x] **Infrastructure & Invoices**
   - [x] Implement Native Invoice preview and status tracking within the registration flow.
   - [x] Build detail views for linked participants and their metadata.
-- [ ] **Direct Web Portal Link (Optional)**
-  - [ ] Add "Open in Web Portal" button for users preferring the web version.
+- [x] **Direct Web Portal Link (Optional)**
+  - [x] Add "Open in Web Portal" button for users preferring the web version.
 
 ---
 

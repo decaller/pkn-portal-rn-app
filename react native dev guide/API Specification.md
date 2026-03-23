@@ -30,8 +30,8 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 
 ```json
 {
-    "phone_number": "08123456789",
-    "password": "secretpassword"
+  "phone_number": "08123456789",
+  "password": "secretpassword"
 }
 ```
 
@@ -39,13 +39,13 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 
 ```json
 {
-    "success": true,
-    "token": "plain-text-token",
-    "user": {
-        "id": 1,
-        "name": "User Name",
-        "phone_number": "08123456789"
-    }
+  "success": true,
+  "token": "plain-text-token",
+  "user": {
+    "id": 1,
+    "name": "User Name",
+    "phone_number": "08123456789"
+  }
 }
 ```
 
@@ -83,9 +83,9 @@ Suggested payload:
 
 ```json
 {
-    "featured_events": [],
-    "latest_news": [],
-    "testimonials": []
+  "featured_events": [],
+  "latest_news": [],
+  "testimonials": []
 }
 ```
 
@@ -148,6 +148,17 @@ Return article content plus absolute banner URLs.
 
 ## 6. Registrations
 
+### `GET /registrations`
+
+- **Auth required**: yes
+- **Purpose**: List event registrations for the authenticated user.
+- **Query Params**: `per_page` (default 15)
+
+### `GET /registrations/{id}`
+
+- **Auth required**: yes
+- **Purpose**: Get details of a specific registration.
+
 ### `POST /registrations`
 
 - **Auth required**: yes
@@ -194,13 +205,36 @@ Purpose:
 
 - list invoices for registrations visible to the current user
 
+Recommended fields per invoice item:
+
+- `id`, `invoice_number`, `registration_id`
+- `status` (enum: `unpaid`, `pending`, `paid`, `expired`, `cancelled`)
+- `gross_amount`, `due_date`, `created_at`
+
 ### `GET /invoices/{id}`
 
 Auth required: yes
 
 Purpose:
 
-- show invoice line items, amounts, due date, and status
+- show invoice line items, amounts, due date, and payment status
+
+Recommended response:
+
+```json
+{
+  "id": 1,
+  "invoice_number": "INV-2024-0001",
+  "registration_id": 5,
+  "status": "unpaid",
+  "gross_amount": 500000,
+  "due_date": "2024-04-30T23:59:59Z",
+  "items": [
+    { "description": "Event Package A", "quantity": 1, "price": 500000 }
+  ],
+  "created_at": "2024-04-01T10:00:00Z"
+}
+```
 
 ### `GET /invoices/{id}/download`
 
@@ -210,7 +244,7 @@ Recommended response:
 
 ```json
 {
-    "download_url": "https://your-domain.com/temporary/invoice.pdf"
+  "download_url": "https://your-domain.com/temporary/invoice.pdf"
 }
 ```
 
@@ -218,7 +252,97 @@ Alternative:
 
 - stream the PDF directly if you prefer
 
-## 8. Notifications
+---
+
+## 9. Payments (Midtrans Snap)
+
+> These endpoints power the **Pay Now** flow. The app fetches a Midtrans `redirect_url` and loads it inside a native `WebView`.
+
+### `POST /payments/charge`
+
+**Auth required:** yes (Bearer Token)
+
+**Purpose:**
+
+- Accepts an `invoice_id`, calls the Midtrans Snap API on the backend using the `Server Key`, and returns a Snap `redirect_url` for the mobile WebView to load.
+
+**Request Payload:**
+
+```json
+{
+  "invoice_id": 1
+}
+```
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "redirect_url": "https://app.sandbox.midtrans.com/snap/v4/redirection/TOKEN",
+  "token": "MIDTRANS_SNAP_TOKEN"
+}
+```
+
+**Error response (invoice already paid or not found):**
+
+```json
+{
+  "success": false,
+  "message": "Invoice is already paid or does not exist."
+}
+```
+
+---
+
+### `POST /payments/webhook`
+
+**Auth required:** no (Midtrans calls this endpoint directly. Validate the signature using `SignatureKey`.)
+
+**Purpose:**
+
+- Receive HTTP notification from Midtrans after a payment event (settlement, expire, cancel, deny).
+- Update the local `Invoice` status accordingly.
+- This endpoint must be registered in the Midtrans Merchant Administration Portal (MAP) under `Settings > Configuration > Payment Notification URL`.
+
+**Midtrans Notification Payload (example):**
+
+```json
+{
+  "transaction_id": "abc-123",
+  "order_id": "INV-2024-0001",
+  "gross_amount": "500000.00",
+  "payment_type": "bank_transfer",
+  "transaction_status": "settlement",
+  "fraud_status": "accept",
+  "signature_key": "..."
+}
+```
+
+**Validation logic (Laravel):**
+
+```php
+// Validate the signature before processing:
+$signatureKey = hash('sha512', $orderId . $statusCode . $grossAmount . config('midtrans.server_key'));
+if ($signatureKey !== $request->signature_key) {
+    return response()->json(['message' => 'Invalid signature'], 403);
+}
+```
+
+**Status mapping:**
+
+| Midtrans `transaction_status` | Local Invoice `status` |
+| ----------------------------- | ---------------------- |
+| `settlement`                  | `paid`                 |
+| `pending`                     | `pending`              |
+| `expire`                      | `expired`              |
+| `cancel` / `deny`             | `cancelled`            |
+
+**Response:** always return HTTP `200 OK` to acknowledge receipt.
+
+---
+
+## 10. Notifications
 
 ### `GET /notifications`
 
@@ -280,13 +404,13 @@ If profile editing is needed, make sure to implement standard API updates.
 
 ```json
 {
-    "id": 1,
-    "title": "Document Title",
-    "description": "Short description",
-    "file_url": "https://your-domain.com/storage/docs/file.pdf",
-    "file_size": "2.1 MB",
-    "file_type": "PDF",
-    "created_at": "2024-03-18T12:00:00Z"
+  "id": 1,
+  "title": "Document Title",
+  "description": "Short description",
+  "file_url": "https://your-domain.com/storage/docs/file.pdf",
+  "file_size": "2.1 MB",
+  "file_type": "PDF",
+  "created_at": "2024-03-18T12:00:00Z"
 }
 ```
 

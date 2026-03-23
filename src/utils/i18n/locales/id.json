@@ -140,7 +140,15 @@
       "awaiting_payment": "Menunggu Pembayaran",
       "confirmed": "Dikonfirmasi",
       "cancelled": "Dibatalkan"
-    }
+    },
+    "openInWeb": "Buka di Web Portal",
+    "cancelRegistration": "Batalkan Pendaftaran",
+    "changePackage": "Ganti Paket",
+    "confirmCancelTitle": "Batalkan Pendaftaran?",
+    "confirmCancelMessage": "Apakah Anda yakin ingin membatalkan pendaftaran ini? Tindakan ini tidak dapat dibatalkan.",
+    "editParticipant": "Edit Peserta",
+    "removeParticipant": "Hapus Peserta",
+    "confirmRemoveParticipant": "Hapus peserta ini?"
   },
   "common": {
     "loading": "Memuat...",

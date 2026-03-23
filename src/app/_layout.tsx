@@ -16,17 +16,8 @@ import { StatusBar } from 'expo-status-bar';
 import { useAppStore } from '@/store/appStore';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5, // 5 minutes
-      retry: 2,
-      gcTime: 1000 * 60 * 60 * 24, // 24 hours (for native cache)
-    },
-  },
-});
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/services/queryClient';
 
 // Prevent splash screen from auto-hiding
 SplashScreen.preventAutoHideAsync();
