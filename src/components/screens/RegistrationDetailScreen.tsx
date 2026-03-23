@@ -24,7 +24,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, typography, borderRadius, shadows } from '@/theme';
 import { Badge } from '@/components/ui/Badge';
 import api from '@/services/api';
-import type { Registration, Participant, DashboardResponse } from '@/types';
+import { extractRegistration, type Registration, type Participant, type DashboardResponse } from '@/types';
 
 export function RegistrationDetailScreen() {
   const { id } = useLocalSearchParams();
@@ -42,7 +42,11 @@ export function RegistrationDetailScreen() {
     queryKey: ['registration', id],
     queryFn: async () => {
       const resp = await api.get(`/registrations/${id}`);
-      return resp.data;
+      const registration = extractRegistration(resp.data);
+      if (!registration) {
+        throw new Error('Invalid registration response');
+      }
+      return registration;
     },
   });
 

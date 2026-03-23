@@ -23,7 +23,7 @@ import { SearchBar } from '@/components/ui/SearchBar';
 import { Badge } from '@/components/ui/Badge';
 import { EmptyState } from '@/components/ui/EmptyState';
 import api from '@/services/api';
-import type { Registration } from '@/types';
+import { extractRegistrations, type Registration } from '@/types';
 
 export function RegistrationsScreen() {
   const { t, i18n } = useTranslation();
@@ -37,7 +37,7 @@ export function RegistrationsScreen() {
     queryKey: ['registrations'],
     queryFn: async () => {
       const resp = await api.get('/registrations');
-      return resp.data;
+      return extractRegistrations(resp.data);
     },
   });
 
@@ -47,7 +47,7 @@ export function RegistrationsScreen() {
     
     const query = searchQuery.toLowerCase();
     return registrations.filter(reg => 
-      reg.event?.title.toLowerCase().includes(query) || 
+      (reg.event?.title ?? '').toLowerCase().includes(query) || 
       reg.registration_number.toLowerCase().includes(query)
     );
   }, [registrations, searchQuery]);
@@ -142,6 +142,7 @@ export function RegistrationsScreen() {
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         contentContainerStyle={styles.listContent}
+        showsVerticalScrollIndicator={false}
         refreshControl={
           <RefreshControl 
             refreshing={isLoading} 

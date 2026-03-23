@@ -22,7 +22,7 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, typography, borderRadius, shadows } from '@/theme';
 import api from '@/services/api';
-import type { EventItem, EventPackage, Participant, Registration } from '@/types';
+import { extractRegistration, type EventItem, type EventPackage, type Participant, type Registration } from '@/types';
 
 interface RegistrationWizardProps {
   eventId: string;
@@ -43,12 +43,12 @@ export function RegistrationWizard({ eventId, regId, initialStep = 1 }: Registra
   const [isModalVisible, setModalVisible] = useState(false);
   const [currentParticipant, setCurrentParticipant] = useState<Partial<Participant>>({});
 
-  const { data: existingReg, isLoading: isLoadingReg } = useQuery<Registration>({
+  const { data: existingReg, isLoading: isLoadingReg } = useQuery<Registration | null>({
     queryKey: ['registration', regId],
     queryFn: async () => {
       if (!regId) return null;
       const resp = await api.get(`/registrations/${regId}`);
-      return resp.data;
+      return extractRegistration(resp.data);
     },
     enabled: !!regId,
   });
@@ -56,7 +56,7 @@ export function RegistrationWizard({ eventId, regId, initialStep = 1 }: Registra
   React.useEffect(() => {
     if (existingReg) {
       setParticipants(existingReg.participants);
-      setSelectedPackageId(existingReg.package_id);
+      setSelectedPackageId(existingReg.package_id ?? null);
     }
   }, [existingReg]);
 
@@ -76,7 +76,11 @@ export function RegistrationWizard({ eventId, regId, initialStep = 1 }: Registra
           package_id: selectedPackageId,
           participants: participants,
         });
-        return resp.data;
+        const registration = extractRegistration(resp.data);
+        if (!registration) {
+          throw new Error('Invalid registration response');
+        }
+        return registration;
       } else {
         // Create new registration
         const resp = await api.post('/registrations', {
@@ -84,7 +88,11 @@ export function RegistrationWizard({ eventId, regId, initialStep = 1 }: Registra
           package_id: selectedPackageId,
           participants: participants,
         });
-        return resp.data;
+        const registration = extractRegistration(resp.data);
+        if (!registration) {
+          throw new Error('Invalid registration response');
+        }
+        return registration;
       }
     },
     onSuccess: (data) => {
