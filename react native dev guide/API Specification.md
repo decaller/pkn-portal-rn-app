@@ -57,6 +57,28 @@ The mobile app uses a **Native Login Strategy**. The app sends credentials direc
 
 - Revoke the current Sanctum token.
 
+### `GET /auth/token-handoff`
+
+**Auth required:** yes (Web Session)
+
+**Purpose:**
+
+- Exchange a valid web session for a Sanctum Bearer Token. This is used in the **Hybrid Login Flow** after a successful WebView login.
+
+**Response:**
+
+```json
+{
+  "success": true,
+  "token": "plain-text-token",
+  "user": {
+    "id": 1,
+    "name": "User Name",
+    "phone_number": "08123456789"
+  }
+}
+```
+
 ### `GET /auth/me`
 
 **Auth required:** yes (Bearer Token)

@@ -37,7 +37,9 @@
     "userGreeting": "Hai, {{name}}!",
     "userSubtitle": "Siap untuk pencapaian profesional Anda berikutnya?",
     "activeEvents": "Acara Aktif",
-    "pendingPayments": "Pembayaran Tertunda"
+    "pendingPayments": "Pembayaran Tertunda",
+    "featuredDocument": "Dokumen Unggulan",
+    "featured": "Unggulan"
   },
   "events": {
     "title": "Acara",

@@ -14,24 +14,28 @@ export interface DocumentItem {
   description: string | null;
   tags: string[] | null;
   is_active: boolean;
+  is_featured: boolean;
   event_id: number | null;
 }
 
 export interface DocumentsResponse {
-  data: DocumentItem[];
-  links: {
-    first: string;
-    last: string;
-    prev: string | null;
-    next: string | null;
-  };
-  meta: {
-    current_page: number;
-    from: number;
-    last_page: number;
-    per_page: number;
-    to: number;
-    total: number;
-    path: string;
+  featured: DocumentItem[];
+  documents: {
+    data: DocumentItem[];
+    links: {
+      first: string;
+      last: string;
+      prev: string | null;
+      next: string | null;
+    };
+    meta: {
+      current_page: number;
+      from: number;
+      last_page: number;
+      per_page: number;
+      to: number;
+      total: number;
+      path: string;
+    };
   };
 }

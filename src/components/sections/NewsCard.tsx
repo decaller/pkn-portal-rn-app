@@ -4,6 +4,7 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import { Image } from 'expo-image';
+import { Ionicons } from '@expo/vector-icons';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, borderRadius, shadows, typography } from '@/theme';
 import type { NewsItem } from '@/types';
@@ -11,7 +12,7 @@ import type { NewsItem } from '@/types';
 interface NewsCardProps {
   article: NewsItem;
   onPress: () => void;
-  variant?: 'featured' | 'compact';
+  variant?: 'featured' | 'compact' | 'horizontal';
 }
 
 function formatDate(dateStr: string) {
@@ -28,7 +29,41 @@ export function NewsCard({ article, onPress, variant = 'compact' }: NewsCardProp
   const styles = createStyles(colors, isDark);
   const imageUrl = article.thumbnail;
 
+  if (variant === 'horizontal') {
+    return (
+      <Pressable
+        onPress={onPress}
+        android_ripple={{ color: 'rgba(0,0,0,0.08)' }}
+        style={({ pressed }) => [
+          styles.horizontalCard,
+          shadows.md,
+          Platform.OS === 'ios' && pressed ? { opacity: 0.85 } : {},
+        ]}
+        accessibilityRole="button"
+        accessibilityLabel={article.title}
+      >
+        <Image
+          source={{ uri: imageUrl ?? undefined }}
+          style={styles.horizontalImage}
+          contentFit="cover"
+          placeholder={{ blurhash: 'L6PZfSi_.AyE_3t7t7R**0o#DgR4' }}
+          transition={300}
+        />
+        <View style={styles.horizontalContent}>
+          <Text style={styles.horizontalTitle} numberOfLines={2}>
+            {article.title}
+          </Text>
+          <View style={styles.metaRow}>
+            <Ionicons name="calendar-outline" size={12} color={colors.text.tertiary} />
+            <Text style={styles.metaText}>{formatDate(article.created_at)}</Text>
+          </View>
+        </View>
+      </Pressable>
+    );
+  }
+
   if (variant === 'featured') {
+// ... existing code ...
     return (
       <Pressable
         onPress={onPress}
@@ -169,6 +204,39 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   },
   compactDate: {
     ...typography.caption2,
+    color: colors.text.tertiary,
+  },
+  // Horizontal variant (matching EventCard)
+  horizontalCard: {
+    backgroundColor: colors.background.card,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
+    width: 260,
+    marginRight: spacing.md,
+    borderWidth: isDark ? 1 : 0,
+    borderColor: colors.border.light,
+  },
+  horizontalImage: {
+    width: '100%',
+    height: 130,
+  },
+  horizontalContent: {
+    padding: spacing.md,
+    gap: spacing.xs,
+  },
+  horizontalTitle: {
+    ...typography.callout,
+    fontWeight: '600',
+    color: colors.text.primary,
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    marginTop: 2,
+  },
+  metaText: {
+    ...typography.caption1,
     color: colors.text.tertiary,
   },
 });

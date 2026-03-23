@@ -24,6 +24,7 @@ import { SearchBar } from '@/components/ui/SearchBar';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
 import { EmptyState } from '@/components/ui/EmptyState';
+import { DocumentCarousel } from '@/components/sections/DocumentCarousel';
 
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, borderRadius, typography, shadows } from '@/theme';
@@ -32,6 +33,7 @@ import type { DocumentItem, DocumentsResponse } from '@/types';
 import { useAuthStore } from '@/store/authStore';
 
 function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (url: string) => void }) {
+  const { t } = useTranslation();
   const { isAuthenticated } = useAuthStore();
   const { colors, isDark } = useAppTheme();
   
@@ -56,9 +58,17 @@ function DocumentCard({ doc, onDownload }: { doc: DocumentItem, onDownload?: (ur
         <Ionicons name={info.icon} size={22} color={colors.text.inverse} />
       </View>
       <View style={styles.docContent}>
-        <Text style={styles.docTitle} numberOfLines={2}>
-          {doc.title}
-        </Text>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: spacing.xs, flexWrap: 'wrap' }}>
+          <Text style={styles.docTitle} numberOfLines={2}>
+            {doc.title}
+          </Text>
+          {doc.is_featured && (
+            <View style={styles.featuredBadge}>
+              <Ionicons name="star" size={10} color={colors.status.warning} />
+              <Text style={styles.featuredBadgeText}>{t('dashboard.featured')}</Text>
+            </View>
+          )}
+        </View>
         <Text style={styles.docDesc} numberOfLines={1}>
           {doc.description || doc.original_filename}
         </Text>
@@ -107,8 +117,9 @@ export function DocumentBrowserScreen() {
     },
   });
 
-  const allDocs = docsData?.data || [];
-  const filteredDocs = allDocs.filter((doc) =>
+  const featuredDocs = docsData?.featured || [];
+  const regularDocs = docsData?.documents?.data || [];
+  const filteredDocs = regularDocs.filter((doc) =>
     doc.title.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -149,9 +160,8 @@ export function DocumentBrowserScreen() {
         </View>
       )}
 
-      {/* Preview Section (mock data) */}
-      <View style={styles.previewSection}>
-        <Text style={styles.previewLabel}>Preview</Text>
+      {/* Search Bar section */}
+      <View style={styles.searchSection}>
         <SearchBar
           value={search}
           onChangeText={setSearch}
@@ -159,10 +169,18 @@ export function DocumentBrowserScreen() {
         />
       </View>
 
+      {/* Featured Documents Carousel */}
+      {featuredDocs.length > 0 && !search && (
+        <>
+          <SectionHeader title={t('documents.featured')} />
+          <DocumentCarousel documents={featuredDocs} />
+        </>
+      )}
+
       <SectionHeader title={t('documents.allDocuments')} />
 
       <FlatList
-        data={filteredDocs}
+        data={search ? filteredDocs : regularDocs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <DocumentCard 
@@ -254,6 +272,23 @@ const createCardStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  featuredBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: isDark ? 'rgba(241, 196, 15, 0.15)' : '#FEF9E7',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    borderRadius: borderRadius.sm,
+    borderWidth: 1,
+    borderColor: isDark ? 'rgba(241, 196, 15, 0.3)' : '#F9E79F',
+  },
+  featuredBadgeText: {
+    fontSize: 10,
+    fontWeight: '700',
+    color: '#D4AC0D',
+    textTransform: 'uppercase',
+  },
 });
 
 const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
@@ -305,7 +340,7 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     fontSize: 15,
     fontWeight: '600',
   },
-  previewSection: {
+  searchSection: {
     paddingHorizontal: spacing.lg,
     gap: spacing.sm,
   },

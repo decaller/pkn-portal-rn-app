@@ -37,7 +37,9 @@
     "userGreeting": "Hi, {{name}}!",
     "userSubtitle": "Ready for your next professional milestone?",
     "activeEvents": "Active Events",
-    "pendingPayments": "Pending Payments"
+    "pendingPayments": "Pending Payments",
+    "featuredDocument": "Featured Document",
+    "featured": "Featured"
   },
   "events": {
     "title": "Events",

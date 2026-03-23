@@ -1,117 +1,5 @@
 {
-    "data": [
-        {
-            "id": 42,
-            "title": "3. PEMBELAJARAN BERBASIS PROJEK.pptx",
-            "slug": "pkn-regional-workshop-2026-dno9f",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
-            "original_filename": "3. PEMBELAJARAN BERBASIS PROJEK.pptx",
-            "cover_image": null,
-            "mime_type": null,
-            "description": "Auto-extracted from manual_upload: 3. PEMBELAJARAN BERBASIS PROJEK.pptx",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 41,
-            "title": "4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
-            "slug": "pkn-regional-workshop-2026-tn6dl",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
-            "original_filename": "4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
-            "cover_image": null,
-            "mime_type": null,
-            "description": "Auto-extracted from manual_upload: 4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 39,
-            "title": "3. PEMBELAJARAN BERBASIS PROJEK.pdf",
-            "slug": "pkn-regional-workshop-2026-u65py",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
-            "original_filename": "3. PEMBELAJARAN BERBASIS PROJEK.pdf",
-            "cover_image": null,
-            "mime_type": null,
-            "description": "Auto-extracted from manual_upload: 3. PEMBELAJARAN BERBASIS PROJEK.pdf",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 40,
-            "title": "2. BAKAT - TB - 40.pptx",
-            "slug": "pkn-regional-workshop-2026-z6q2l",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pptx",
-            "original_filename": "2. BAKAT - TB - 40.pptx",
-            "cover_image": null,
-            "mime_type": null,
-            "description": "Auto-extracted from manual_upload: 2. BAKAT - TB - 40.pptx",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 38,
-            "title": "2. BAKAT - TB - 40.pdf",
-            "slug": "pkn-regional-workshop-2026-oypcj",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pdf",
-            "original_filename": "2. BAKAT - TB - 40.pdf",
-            "cover_image": null,
-            "mime_type": null,
-            "description": "Auto-extracted from manual_upload: 2. BAKAT - TB - 40.pdf",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 37,
-            "title": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
-            "slug": "pkn-regional-workshop-2026-uyeo7",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
-            "original_filename": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
-            "cover_image": null,
-            "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            "description": "Auto-extracted from session: Materi Sesi 1",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 36,
-            "title": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
-            "slug": "pkn-regional-workshop-2026-0arow",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
-            "original_filename": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
-            "cover_image": "http://localhost/storage/document-covers/36-pkn-regional-workshop-2026-0arow.png",
-            "mime_type": "application/pdf",
-            "description": "Auto-extracted from session: Materi Sesi 1",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
-        {
-            "id": 35,
-            "title": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
-            "slug": "pkn-regional-workshop-2026-2w84x",
-            "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
-            "original_filename": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
-            "cover_image": "http://localhost/storage/document-covers/35-pkn-regional-workshop-2026-2w84x.png",
-            "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-            "description": "Auto-extracted from session: Materi Sesi 1",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 2
-        },
+    "featured": [
         {
             "id": 34,
             "title": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
@@ -125,7 +13,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -141,21 +29,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
-            "event_id": null
-        },
-        {
-            "id": 32,
-            "title": "0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
-            "slug": "doc-faran",
-            "file_url": "http://localhost/storage/manual-uploads/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
-            "original_filename": "0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
-            "cover_image": "http://localhost/storage/document-covers/32-doc-faran.png",
-            "mime_type": "application/pdf",
-            "description": "Auto-extracted from manual_upload: Manual Upload",
-            "tags": [],
-            "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -171,7 +45,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -187,7 +61,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -203,7 +77,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -219,7 +93,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -235,7 +109,7 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
@@ -251,91 +125,365 @@
                 "featured"
             ],
             "is_active": true,
-            "is_featured": false,
+            "is_featured": true,
             "event_id": null
         },
         {
-            "id": 25,
-            "title": "Invoice-1659264.pdf",
-            "slug": "test-lagi-invoice-386cm",
-            "file_url": "http://localhost/storage/manual-uploads/Invoice-1659264.pdf",
-            "original_filename": "Invoice-1659264.pdf",
-            "cover_image": "http://localhost/storage/document-covers/25-test-lagi-invoice-386cm.png",
+            "id": 2,
+            "title": "1. Mengembalikan Pendidikan ke asalnya.pdf",
+            "slug": "pkn-national-conference-2026-89zyp",
+            "file_url": "http://localhost/storage/events/pkn-national-conference-2026/sessions/1. Mengembalikan Pendidikan ke asalnya.pdf",
+            "original_filename": "1. Mengembalikan Pendidikan ke asalnya.pdf",
+            "cover_image": "http://localhost/storage/document-covers/2-pkn-national-conference-2026-89zyp.png",
             "mime_type": "application/pdf",
-            "description": "Auto-extracted from manual_upload: test lagi invoice",
-            "tags": [],
+            "description": "Auto-extracted from session: Ju",
+            "tags": [
+                "featured"
+            ],
             "is_active": true,
-            "is_featured": false,
-            "event_id": null
-        },
-        {
-            "id": 21,
-            "title": "4. Pembelajaran Alamiah.pptx",
-            "slug": "pkn-mini-summit-2024-lehai",
-            "file_url": "http://localhost/storage/events/pkn-mini-summit-2024/sessions/4. Pembelajaran Alamiah.pptx",
-            "original_filename": "4. Pembelajaran Alamiah.pptx",
-            "cover_image": "http://localhost/storage/document-covers/21-pkn-mini-summit-2024-lehai.png",
-            "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            "description": "Auto-extracted from session: hh",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 4
-        },
-        {
-            "id": 20,
-            "title": "3. TAFSIR BAKAT TB-40.pptx",
-            "slug": "pkn-mini-summit-2024-gt21b",
-            "file_url": "http://localhost/storage/events/pkn-mini-summit-2024/sessions/3. TAFSIR BAKAT TB-40.pptx",
-            "original_filename": "3. TAFSIR BAKAT TB-40.pptx",
-            "cover_image": "http://localhost/storage/document-covers/20-pkn-mini-summit-2024-gt21b.png",
-            "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
-            "description": "Auto-extracted from session: hh",
-            "tags": null,
-            "is_active": true,
-            "is_featured": false,
-            "event_id": 4
+            "is_featured": true,
+            "event_id": 1
         }
     ],
-    "links": {
-        "first": "http://localhost/api/v1/documents?page=1",
-        "last": "http://localhost/api/v1/documents?page=2",
-        "prev": null,
-        "next": "http://localhost/api/v1/documents?page=2"
-    },
-    "meta": {
-        "current_page": 1,
-        "from": 1,
-        "last_page": 2,
-        "links": [
+    "documents": {
+        "data": [
             {
-                "url": null,
-                "label": "&laquo; Sebelumnya",
-                "page": null,
-                "active": false
+                "id": 42,
+                "title": "3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+                "slug": "pkn-regional-workshop-2026-dno9f",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+                "original_filename": "3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+                "cover_image": null,
+                "mime_type": null,
+                "description": "Auto-extracted from manual_upload: 3. PEMBELAJARAN BERBASIS PROJEK.pptx",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
             },
             {
-                "url": "http://localhost/api/v1/documents?page=1",
-                "label": "1",
-                "page": 1,
-                "active": true
+                "id": 41,
+                "title": "4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+                "slug": "pkn-regional-workshop-2026-tn6dl",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+                "original_filename": "4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+                "cover_image": null,
+                "mime_type": null,
+                "description": "Auto-extracted from manual_upload: 4. METODE PENDIDIKAN KARAKTER NABAWIYAH.pdf",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
             },
             {
-                "url": "http://localhost/api/v1/documents?page=2",
-                "label": "2",
-                "page": 2,
-                "active": false
+                "id": 39,
+                "title": "3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+                "slug": "pkn-regional-workshop-2026-u65py",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+                "original_filename": "3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+                "cover_image": null,
+                "mime_type": null,
+                "description": "Auto-extracted from manual_upload: 3. PEMBELAJARAN BERBASIS PROJEK.pdf",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
             },
             {
-                "url": "http://localhost/api/v1/documents?page=2",
-                "label": "Berikutnya &raquo;",
-                "page": 2,
-                "active": false
+                "id": 40,
+                "title": "2. BAKAT - TB - 40.pptx",
+                "slug": "pkn-regional-workshop-2026-z6q2l",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pptx",
+                "original_filename": "2. BAKAT - TB - 40.pptx",
+                "cover_image": null,
+                "mime_type": null,
+                "description": "Auto-extracted from manual_upload: 2. BAKAT - TB - 40.pptx",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
+            },
+            {
+                "id": 38,
+                "title": "2. BAKAT - TB - 40.pdf",
+                "slug": "pkn-regional-workshop-2026-oypcj",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/2. BAKAT - TB - 40.pdf",
+                "original_filename": "2. BAKAT - TB - 40.pdf",
+                "cover_image": null,
+                "mime_type": null,
+                "description": "Auto-extracted from manual_upload: 2. BAKAT - TB - 40.pdf",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
+            },
+            {
+                "id": 37,
+                "title": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+                "slug": "pkn-regional-workshop-2026-uyeo7",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+                "original_filename": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pptx",
+                "cover_image": null,
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from session: Materi Sesi 1",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
+            },
+            {
+                "id": 36,
+                "title": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+                "slug": "pkn-regional-workshop-2026-0arow",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+                "original_filename": "1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf",
+                "cover_image": "http://localhost/storage/document-covers/36-pkn-regional-workshop-2026-0arow.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from session: Materi Sesi 1",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
+            },
+            {
+                "id": 35,
+                "title": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "slug": "pkn-regional-workshop-2026-2w84x",
+                "file_url": "http://localhost/storage/events/pkn-regional-workshop-2026/sessions/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "original_filename": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "cover_image": "http://localhost/storage/document-covers/35-pkn-regional-workshop-2026-2w84x.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "description": "Auto-extracted from session: Materi Sesi 1",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 2
+            },
+            {
+                "id": 34,
+                "title": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "slug": "doc-pnxci",
+                "file_url": "http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "original_filename": "0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx",
+                "cover_image": "http://localhost/storage/document-covers/34-doc-pnxci.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 33,
+                "title": "0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf",
+                "slug": "doc-seqg5",
+                "file_url": "http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf",
+                "original_filename": "0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf",
+                "cover_image": "http://localhost/storage/document-covers/33-doc-seqg5.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 32,
+                "title": "0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
+                "slug": "doc-faran",
+                "file_url": "http://localhost/storage/manual-uploads/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
+                "original_filename": "0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf",
+                "cover_image": "http://localhost/storage/document-covers/32-doc-faran.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [],
+                "is_active": true,
+                "is_featured": false,
+                "event_id": null
+            },
+            {
+                "id": 31,
+                "title": "3. Pembelajaran Alamiyah.pptx",
+                "slug": "doc-tqtyz",
+                "file_url": "http://localhost/storage/manual-uploads/3. Pembelajaran Alamiyah.pptx",
+                "original_filename": "3. Pembelajaran Alamiyah.pptx",
+                "cover_image": "http://localhost/storage/document-covers/31-doc-tqtyz.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 30,
+                "title": "4. BAKAT - TB - 40.pptx",
+                "slug": "doc-pvpme",
+                "file_url": "http://localhost/storage/manual-uploads/4. BAKAT - TB - 40.pptx",
+                "original_filename": "4. BAKAT - TB - 40.pptx",
+                "cover_image": "http://localhost/storage/document-covers/30-doc-pvpme.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 29,
+                "title": "6. Tambal Sulam Pembelajaran.pptx",
+                "slug": "doc-qzxs5",
+                "file_url": "http://localhost/storage/manual-uploads/6. Tambal Sulam Pembelajaran.pptx",
+                "original_filename": "6. Tambal Sulam Pembelajaran.pptx",
+                "cover_image": "http://localhost/storage/document-covers/29-doc-qzxs5.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 28,
+                "title": "2. Menangani anak yang bermasalah.pdf",
+                "slug": "doc-5jny4",
+                "file_url": "http://localhost/storage/manual-uploads/2. Menangani anak yang bermasalah.pdf",
+                "original_filename": "2. Menangani anak yang bermasalah.pdf",
+                "cover_image": "http://localhost/storage/document-covers/28-doc-5jny4.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 27,
+                "title": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+                "slug": "doc-a7z0y",
+                "file_url": "http://localhost/storage/manual-uploads/1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+                "original_filename": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+                "cover_image": "http://localhost/storage/document-covers/27-doc-a7z0y.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 26,
+                "title": "2. Mendidik Sesuai Fase Perkembangan Anak.pptx",
+                "slug": "doc-ih877",
+                "file_url": "http://localhost/storage/manual-uploads/2. Mendidik Sesuai Fase Perkembangan Anak.pptx",
+                "original_filename": "2. Mendidik Sesuai Fase Perkembangan Anak.pptx",
+                "cover_image": "http://localhost/storage/document-covers/26-doc-ih877.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from manual_upload: Manual Upload",
+                "tags": [
+                    "featured"
+                ],
+                "is_active": true,
+                "is_featured": true,
+                "event_id": null
+            },
+            {
+                "id": 25,
+                "title": "Invoice-1659264.pdf",
+                "slug": "test-lagi-invoice-386cm",
+                "file_url": "http://localhost/storage/manual-uploads/Invoice-1659264.pdf",
+                "original_filename": "Invoice-1659264.pdf",
+                "cover_image": "http://localhost/storage/document-covers/25-test-lagi-invoice-386cm.png",
+                "mime_type": "application/pdf",
+                "description": "Auto-extracted from manual_upload: test lagi invoice",
+                "tags": [],
+                "is_active": true,
+                "is_featured": false,
+                "event_id": null
+            },
+            {
+                "id": 21,
+                "title": "4. Pembelajaran Alamiah.pptx",
+                "slug": "pkn-mini-summit-2024-lehai",
+                "file_url": "http://localhost/storage/events/pkn-mini-summit-2024/sessions/4. Pembelajaran Alamiah.pptx",
+                "original_filename": "4. Pembelajaran Alamiah.pptx",
+                "cover_image": "http://localhost/storage/document-covers/21-pkn-mini-summit-2024-lehai.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from session: hh",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 4
+            },
+            {
+                "id": 20,
+                "title": "3. TAFSIR BAKAT TB-40.pptx",
+                "slug": "pkn-mini-summit-2024-gt21b",
+                "file_url": "http://localhost/storage/events/pkn-mini-summit-2024/sessions/3. TAFSIR BAKAT TB-40.pptx",
+                "original_filename": "3. TAFSIR BAKAT TB-40.pptx",
+                "cover_image": "http://localhost/storage/document-covers/20-pkn-mini-summit-2024-gt21b.png",
+                "mime_type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+                "description": "Auto-extracted from session: hh",
+                "tags": null,
+                "is_active": true,
+                "is_featured": false,
+                "event_id": 4
             }
         ],
-        "path": "http://localhost/api/v1/documents",
-        "per_page": 20,
-        "to": 20,
-        "total": 38
+        "links": {
+            "first": "http://localhost/api/v1/documents?page=1",
+            "last": "http://localhost/api/v1/documents?page=2",
+            "prev": null,
+            "next": "http://localhost/api/v1/documents?page=2"
+        },
+        "meta": {
+            "current_page": 1,
+            "from": 1,
+            "last_page": 2,
+            "links": [
+                {
+                    "url": null,
+                    "label": "&laquo; Sebelumnya",
+                    "page": null,
+                    "active": false
+                },
+                {
+                    "url": "http://localhost/api/v1/documents?page=1",
+                    "label": "1",
+                    "page": 1,
+                    "active": true
+                },
+                {
+                    "url": "http://localhost/api/v1/documents?page=2",
+                    "label": "2",
+                    "page": 2,
+                    "active": false
+                },
+                {
+                    "url": "http://localhost/api/v1/documents?page=2",
+                    "label": "Berikutnya &raquo;",
+                    "page": 2,
+                    "active": false
+                }
+            ],
+            "path": "http://localhost/api/v1/documents",
+            "per_page": 20,
+            "to": 20,
+            "total": 38
+        }
     }
 }

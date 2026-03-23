@@ -2,6 +2,30 @@
 
 This document outlines the API endpoints and features that need to be implemented or verified on the Laravel backend to support the mobile app's native features.
 
+## Phase 1: Public Content & Read-only APIs
+
+- [ ] **Dashboard API**
+    - Implement `GET /api/v1/mobile-dashboard` to aggregate content for the home screen.
+    - Response should include:
+        - `featured_events`: Array of published events.
+        - `latest_news`: Array of recent news articles.
+        - `featured_documents`: Array of documents flagged as featured.
+        - `testimonials`: Array of user testimonials.
+        - `contact_info`: `{ phone, whatsapp_url }`.
+        - `alerts`: Array of system alerts `{ id, type, title, message, action_route }`.
+        - `stats`: `{ active_registrations, pending_payments }` (filtered for authenticated user if token present).
+
+- [ ] **Events Discovery API**
+    - Implement `GET /api/v1/events` with pagination, search, category, and status filtering.
+    - Implement `GET /api/v1/events/{id}` for full event details (including registration packages).
+    - Implement `GET /api/v1/events/{id}/similar` to return related events.
+
+- [ ] **News/Articles API**
+    - Implement `GET /api/v1/news` for paginated news list with absolute thumbnail URLs.
+    - Implement `GET /api/v1/news/{id}` for full article content.
+
+---
+
 ## Phase 2: Native Login & Identity
 
 _The mobile app is now using a fully native login flow instead of a WebView bridge._
@@ -16,9 +40,16 @@ _The mobile app is now using a fully native login flow instead of a WebView brid
     - Implement `GET /api/v1/user/profile` to fetch profile summary and linked organizations.
     - Implement `PUT /api/v1/user/profile` for lightweight profile edits.
 
-- [x] **Documents API (Authenticated)**
+- [ ] **Notifications API**
+    - Implement `GET /api/v1/notifications` to list database notifications.
+    - Implement `POST /api/v1/notifications/{id}/mark-read`.
+    - Implement `POST /api/v1/notifications/mark-all-read`.
+
+- [ ] **Documents API (Authenticated)**
     - Implement `GET /api/v1/documents` with pagination, search, and category filtering.
-    - Implement `GET /api/v1/documents/{id}` to fetch document details and secure file URLs.
+    - **Requirement**: Return a `featured` array (most recent/flagged) alongside the paginated `documents` object.
+    - Implement `GET /api/v1/documents/{id}` to fetch document details.
+    - **Requirement**: Ensure items include `is_featured: boolean` and `file_url`.
 
 ## Phase 3: Native Registration & Participant Management
 

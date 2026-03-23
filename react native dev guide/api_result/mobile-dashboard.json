@@ -335,7 +335,22 @@
         }
     ],
     "testimonials": [],
-    "featured_document": null,
+    "featured_document": {
+        "id": 27,
+        "title": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+        "slug": "doc-a7z0y",
+        "file_url": "http://localhost/storage/manual-uploads/1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+        "original_filename": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+        "cover_image": "http://localhost/storage/document-covers/27-doc-a7z0y.png",
+        "mime_type": "application/pdf",
+        "description": "Auto-extracted from manual_upload: Manual Upload",
+        "tags": [
+            "featured"
+        ],
+        "is_active": true,
+        "is_featured": true,
+        "event_id": null
+    },
     "contact_info": {
         "phone": "628111729896",
         "whatsapp_url": "https://wa.me/628111729896"

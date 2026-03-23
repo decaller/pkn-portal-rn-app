@@ -3,6 +3,7 @@
  */
 import { EventItem } from './event';
 import { NewsItem } from './news';
+import { DocumentItem } from './document';
 
 export interface Testimonial {
   id: number;
@@ -15,7 +16,9 @@ export interface Testimonial {
 export interface DashboardResponse {
   featured_events: EventItem[];
   latest_news: NewsItem[];
-  testimonials: Testimonial[];
+  featured_document?: DocumentItem | null; // From mobile-dashboard.json
+  featured_documents?: DocumentItem[];     // Expanded for carousel
+  testimonials?: Testimonial[];
   contact_info: {
     phone: string;
     whatsapp_url: string;

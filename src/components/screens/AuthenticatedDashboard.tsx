@@ -23,6 +23,7 @@ import { EventCard } from '@/components/sections/EventCard';
 import { NewsCard } from '@/components/sections/NewsCard';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
+import { DocumentCarousel } from '@/components/sections/DocumentCarousel';
 import { MOCK_DASHBOARD } from '@/services/mockData';
 import api from '@/services/api';
 import type { EventItem, NewsItem, DashboardResponse as DashboardData } from '@/types';
@@ -157,6 +158,23 @@ export function AuthenticatedDashboard() {
         </View>
       </View>
 
+      {/* Featured Document Carousel */}
+      {(() => {
+        const featuredDocs = data.featured_documents || (data.featured_document ? [data.featured_document] : []);
+        if (featuredDocs.length === 0) return null;
+
+        return (
+          <>
+            <SectionHeader
+              title={t('dashboard.featuredDocument')}
+              actionLabel={t('dashboard.viewAll')}
+              onAction={() => router.push('/(tabs)/documents')}
+            />
+            <DocumentCarousel documents={featuredDocs} />
+          </>
+        );
+      })()}
+
       {/* Featured Events */}
       <SectionHeader
         title={t('dashboard.featuredEvents')}
@@ -193,21 +211,20 @@ export function AuthenticatedDashboard() {
         onAction={() => router.push('/news')}
       />
       {data.latest_news.length > 0 && (
-        <View style={styles.newsSection}>
-          <NewsCard
-            article={data.latest_news[0]}
-            onPress={() => handleNewsPress(data.latest_news[0])}
-            variant="featured"
-          />
-          {data.latest_news.slice(1).map((article) => (
+        <FlatList
+          data={data.latest_news}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
             <NewsCard
-              key={article.id}
-              article={article}
-              onPress={() => handleNewsPress(article)}
-              variant="compact"
+              article={item}
+              onPress={() => handleNewsPress(item)}
+              variant="horizontal"
             />
-          ))}
-        </View>
+          )}
+        />
       )}
 
       <View style={styles.bottomSpacer} />
@@ -305,15 +322,6 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   horizontalList: {
     paddingHorizontal: spacing.lg,
     paddingBottom: spacing.sm,
-  },
-  newsSection: {
-    marginHorizontal: spacing.lg,
-    backgroundColor: colors.background.card,
-    borderRadius: borderRadius.lg,
-    overflow: 'hidden',
-    marginBottom: spacing.xl,
-    borderWidth: isDark ? 1 : 0,
-    borderColor: colors.border.light,
   },
   bottomSpacer: {
     height: Platform.OS === 'ios' ? 100 : 80,

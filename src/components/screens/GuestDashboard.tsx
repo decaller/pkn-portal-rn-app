@@ -23,6 +23,7 @@ import { EventCard } from '@/components/sections/EventCard';
 import { NewsCard } from '@/components/sections/NewsCard';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { SkeletonCard } from '@/components/ui/SkeletonLoader';
+import { DocumentCarousel } from '@/components/sections/DocumentCarousel';
 import { MOCK_DASHBOARD } from '@/services/mockData';
 import api from '@/services/api';
 import type { EventItem, NewsItem, DashboardResponse as DashboardData } from '@/types';
@@ -97,9 +98,9 @@ export function GuestDashboard() {
           <SkeletonCard style={{ width: 280 }} />
         </View>
         <SectionHeader title={t('dashboard.latestNews')} />
-        <View style={{ marginHorizontal: spacing.lg }}>
-          <SkeletonCard style={{ width: '100%', marginBottom: spacing.md }} />
-          <SkeletonCard style={{ width: '100%' }} />
+        <View style={{ paddingLeft: spacing.lg, flexDirection: 'row', gap: spacing.md }}>
+          <SkeletonCard style={{ width: 260 }} />
+          <SkeletonCard style={{ width: 260 }} />
         </View>
       </ScrollView>
     );
@@ -184,6 +185,23 @@ export function GuestDashboard() {
         />
       )}
 
+      {/* Featured Document Carousel */}
+      {(() => {
+        const featuredDocs = data.featured_documents || (data.featured_document ? [data.featured_document] : []);
+        if (featuredDocs.length === 0) return null;
+
+        return (
+          <>
+            <SectionHeader
+              title={t('dashboard.featuredDocument')}
+              actionLabel={t('dashboard.viewAll')}
+              onAction={() => router.push('/(tabs)/documents')}
+            />
+            <DocumentCarousel documents={featuredDocs} />
+          </>
+        );
+      })()}
+
       {/* Why Join PKN? */}
       <View style={[styles.whyJoinCard, shadows.md]}>
         <Ionicons name="people" size={32} color={colors.brand.primary} />
@@ -210,21 +228,20 @@ export function GuestDashboard() {
         onAction={() => router.push('/news')}
       />
       {data.latest_news.length > 0 && (
-        <View style={styles.newsSection}>
-          <NewsCard
-            article={data.latest_news[0]}
-            onPress={() => handleNewsPress(data.latest_news[0])}
-            variant="featured"
-          />
-          {data.latest_news.slice(1).map((article) => (
+        <FlatList
+          data={data.latest_news}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalList}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={({ item }) => (
             <NewsCard
-              key={article.id}
-              article={article}
-              onPress={() => handleNewsPress(article)}
-              variant="compact"
+              article={item}
+              onPress={() => handleNewsPress(item)}
+              variant="horizontal"
             />
-          ))}
-        </View>
+          )}
+        />
       )}
 
       {/* Testimonials */}
@@ -338,15 +355,6 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     fontWeight: '600',
     color: colors.text.inverse,
   },
-  newsSection: {
-    marginHorizontal: spacing.lg,
-    backgroundColor: colors.background.card,
-    borderRadius: borderRadius.lg,
-    overflow: 'hidden',
-    marginBottom: spacing.sm,
-    borderWidth: isDark ? 1 : 0,
-    borderColor: colors.border.light,
-  },
   testimonialCard: {
     width: 280,
     backgroundColor: colors.background.card,
@@ -395,4 +403,3 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     height: Platform.OS === 'ios' ? 100 : 80,
   },
 });
-
