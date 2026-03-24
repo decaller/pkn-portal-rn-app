@@ -1,0 +1,3814 @@
+openapi: 3.0.3
+info:
+  title: 'Laravel API Documentation'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Endpoints
+    description: ''
+paths:
+  /api/auth/login:
+    post:
+      summary: Login
+      operationId: login
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: gbailey@example.net
+                password:
+                  type: string
+                  description: ''
+                  example: architecto
+              required:
+                - email
+                - password
+      security: []
+  /api/auth/logout:
+    post:
+      summary: Logout
+      operationId: logout
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/mobile-dashboard:
+    get:
+      summary: 'Get aggregated content for the mobile home screen.'
+      operationId: getAggregatedContentForTheMobileHomeScreen
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  featured_events:
+                    -
+                      id: 2
+                      title: 'PKN Regional Workshop 2026'
+                      slug: pkn-regional-workshop-2026
+                      summary: null
+                      description: '<p>Workshop discussion.</p>'
+                      event_date: '2026-09-04'
+                      city: 'Kabupaten Cikarang'
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: 5
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: 50
+                      available_spots: 48
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 75000
+                          max_quota: 30
+                        -
+                          id: 2
+                          name: VIP
+                          price: 200000
+                          max_quota: 20
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: 'Materi Sesi 1'
+                            speaker: 'Ustad Abdul Kholiq'
+                            session_files:
+                              - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                              - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 1
+                      title: 'PKN National Conference 2026'
+                      slug: pkn-national-conference-2026
+                      summary: null
+                      description: '<p>Annual national offline conference by PKN.</p>'
+                      event_date: '2026-06-04'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 100000
+                        -
+                          id: 2
+                          name: VIP
+                          price: 250000
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: Ju
+                            session_files:
+                              - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                              - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 5
+                      title: 'Sed quas officiis suscipit.'
+                      slug: numquam-sit-doloribus-est-natus
+                      summary: null
+                      description: null
+                      event_date: '2026-04-22'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 4
+                      title: 'PKN Mini Summit 2024'
+                      slug: pkn-mini-summit-2024
+                      summary: null
+                      description: null
+                      event_date: '2025-07-04'
+                      city: Bandung
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: false
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 3
+                      title: 'PKN Recap 2023'
+                      slug: pkn-recap-2023
+                      summary: null
+                      description: null
+                      event_date: '2025-03-04'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: false
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                  latest_news:
+                    -
+                      id: 1
+                      title: 'Registration Open: PKN National Conference 2026'
+                      content: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                      thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                      is_published: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 2
+                      title: 'Registration Open: PKN Regional Workshop 2026'
+                      content: '<p>Registration is now open for PKN Regional Workshop 2026.</p>'
+                      thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg'
+                      is_published: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                  testimonials: []
+                  featured_documents:
+                    -
+                      id: 27
+                      title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                      slug: doc-a7z0y
+                      file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                      mime_type: application/pdf
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 34
+                      title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      slug: doc-pnxci
+                      file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 31
+                      title: '3. Pembelajaran Alamiyah.pptx'
+                      slug: doc-tqtyz
+                      file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 30
+                      title: '4. BAKAT - TB - 40.pptx'
+                      slug: doc-pvpme
+                      file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                  contact_info:
+                    phone: null
+                    whatsapp_url: null
+                  alerts: []
+                  stats:
+                    active_registrations: 10
+                    pending_payments: 8
+                properties:
+                  featured_events:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        title: 'PKN Regional Workshop 2026'
+                        slug: pkn-regional-workshop-2026
+                        summary: null
+                        description: '<p>Workshop discussion.</p>'
+                        event_date: '2026-09-04'
+                        city: 'Kabupaten Cikarang'
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: 5
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: 50
+                        available_spots: 48
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 75000
+                            max_quota: 30
+                          -
+                            id: 2
+                            name: VIP
+                            price: 200000
+                            max_quota: 20
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: 'Materi Sesi 1'
+                              speaker: 'Ustad Abdul Kholiq'
+                              session_files:
+                                - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 1
+                        title: 'PKN National Conference 2026'
+                        slug: pkn-national-conference-2026
+                        summary: null
+                        description: '<p>Annual national offline conference by PKN.</p>'
+                        event_date: '2026-06-04'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 100000
+                          -
+                            id: 2
+                            name: VIP
+                            price: 250000
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: Ju
+                              session_files:
+                                - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                                - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 5
+                        title: 'Sed quas officiis suscipit.'
+                        slug: numquam-sit-doloribus-est-natus
+                        summary: null
+                        description: null
+                        event_date: '2026-04-22'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 4
+                        title: 'PKN Mini Summit 2024'
+                        slug: pkn-mini-summit-2024
+                        summary: null
+                        description: null
+                        event_date: '2025-07-04'
+                        city: Bandung
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: false
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 3
+                        title: 'PKN Recap 2023'
+                        slug: pkn-recap-2023
+                        summary: null
+                        description: null
+                        event_date: '2025-03-04'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: false
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        title:
+                          type: string
+                          example: 'PKN Regional Workshop 2026'
+                        slug:
+                          type: string
+                          example: pkn-regional-workshop-2026
+                        summary:
+                          type: string
+                          example: null
+                          nullable: true
+                        description:
+                          type: string
+                          example: '<p>Workshop discussion.</p>'
+                        event_date:
+                          type: string
+                          example: '2026-09-04'
+                        city:
+                          type: string
+                          example: 'Kabupaten Cikarang'
+                        province:
+                          type: string
+                          example: 'Jawa Barat'
+                        nation:
+                          type: string
+                          example: Indonesia
+                        duration_days:
+                          type: integer
+                          example: 5
+                        google_maps_url:
+                          type: string
+                          example: null
+                          nullable: true
+                        cover_image:
+                          type: string
+                          example: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos:
+                          type: array
+                          example: []
+                        files:
+                          type: array
+                          example: []
+                        documentation:
+                          type: array
+                          example:
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                          items:
+                            type: string
+                        is_published:
+                          type: boolean
+                          example: true
+                        allow_registration:
+                          type: boolean
+                          example: true
+                        max_capacity:
+                          type: integer
+                          example: 50
+                        available_spots:
+                          type: integer
+                          example: 48
+                        is_full:
+                          type: boolean
+                          example: false
+                        registration_packages:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              name: Regular
+                              price: 75000
+                              max_quota: 30
+                            -
+                              id: 2
+                              name: VIP
+                              price: 200000
+                              max_quota: 20
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Regular
+                              price:
+                                type: integer
+                                example: 75000
+                              max_quota:
+                                type: integer
+                                example: 30
+                        rundown:
+                          type: array
+                          example:
+                            -
+                              type: advanced
+                              data:
+                                title: 'Materi Sesi 1'
+                                speaker: 'Ustad Abdul Kholiq'
+                                session_files:
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: advanced
+                              data:
+                                type: object
+                                properties:
+                                  title:
+                                    type: string
+                                    example: 'Materi Sesi 1'
+                                  speaker:
+                                    type: string
+                                    example: 'Ustad Abdul Kholiq'
+                                  session_files:
+                                    type: array
+                                    example:
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                                    items:
+                                      type: string
+                        tags:
+                          type: string
+                          example: null
+                          nullable: true
+                        proposal:
+                          type: string
+                          example: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2026-03-24T06:18:58.000000Z'
+                        event_type:
+                          type: string
+                          example: offline
+                        survey_template_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        place:
+                          type: string
+                          example: null
+                          nullable: true
+                        payment_instructions:
+                          type: string
+                          example: null
+                          nullable: true
+                  latest_news:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        title: 'Registration Open: PKN National Conference 2026'
+                        content: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                        thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                        is_published: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 2
+                        title: 'Registration Open: PKN Regional Workshop 2026'
+                        content: '<p>Registration is now open for PKN Regional Workshop 2026.</p>'
+                        thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg'
+                        is_published: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        title:
+                          type: string
+                          example: 'Registration Open: PKN National Conference 2026'
+                        content:
+                          type: string
+                          example: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                        thumbnail:
+                          type: string
+                          example: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                        is_published:
+                          type: boolean
+                          example: true
+                        event_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52+00:00'
+                  testimonials:
+                    type: array
+                    example: []
+                  featured_documents:
+                    type: array
+                    example:
+                      -
+                        id: 27
+                        title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                        slug: doc-a7z0y
+                        file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                        mime_type: application/pdf
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 34
+                        title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        slug: doc-pnxci
+                        file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 31
+                        title: '3. Pembelajaran Alamiyah.pptx'
+                        slug: doc-tqtyz
+                        file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 30
+                        title: '4. BAKAT - TB - 40.pptx'
+                        slug: doc-pvpme
+                        file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 27
+                        title:
+                          type: string
+                          example: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                        slug:
+                          type: string
+                          example: doc-a7z0y
+                        file_url:
+                          type: string
+                          example: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        original_filename:
+                          type: string
+                          example: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        cover_image:
+                          type: string
+                          example: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                        mime_type:
+                          type: string
+                          example: application/pdf
+                        description:
+                          type: string
+                          example: null
+                          nullable: true
+                        tags:
+                          type: array
+                          example:
+                            - featured
+                          items:
+                            type: string
+                        is_active:
+                          type: boolean
+                          example: true
+                        is_featured:
+                          type: boolean
+                          example: true
+                        event_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52+00:00'
+                  contact_info:
+                    type: object
+                    properties:
+                      phone:
+                        type: string
+                        example: null
+                        nullable: true
+                      whatsapp_url:
+                        type: string
+                        example: null
+                        nullable: true
+                  alerts:
+                    type: array
+                    example: []
+                  stats:
+                    type: object
+                    properties:
+                      active_registrations:
+                        type: integer
+                        example: 10
+                      pending_payments:
+                        type: integer
+                        example: 8
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/events:
+    get:
+      summary: 'List all published events.'
+      operationId: listAllPublishedEvents
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 2
+                      title: 'PKN Regional Workshop 2026'
+                      slug: pkn-regional-workshop-2026
+                      summary: null
+                      description: '<p>Workshop discussion.</p>'
+                      event_date: '2026-09-04'
+                      city: 'Kabupaten Cikarang'
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: 5
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: 50
+                      available_spots: 48
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 75000
+                          max_quota: 30
+                        -
+                          id: 2
+                          name: VIP
+                          price: 200000
+                          max_quota: 20
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: 'Materi Sesi 1'
+                            speaker: 'Ustad Abdul Kholiq'
+                            session_files:
+                              - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                              - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 1
+                      title: 'PKN National Conference 2026'
+                      slug: pkn-national-conference-2026
+                      summary: null
+                      description: '<p>Annual national offline conference by PKN.</p>'
+                      event_date: '2026-06-04'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 100000
+                        -
+                          id: 2
+                          name: VIP
+                          price: 250000
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: Ju
+                            session_files:
+                              - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                              - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 5
+                      title: 'Sed quas officiis suscipit.'
+                      slug: numquam-sit-doloribus-est-natus
+                      summary: null
+                      description: null
+                      event_date: '2026-04-22'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 4
+                      title: 'PKN Mini Summit 2024'
+                      slug: pkn-mini-summit-2024
+                      summary: null
+                      description: null
+                      event_date: '2025-07-04'
+                      city: Bandung
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: false
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 3
+                      title: 'PKN Recap 2023'
+                      slug: pkn-recap-2023
+                      summary: null
+                      description: null
+                      event_date: '2025-03-04'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: false
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                  links:
+                    first: 'http://localhost/api/v1/events?page=1'
+                    last: 'http://localhost/api/v1/events?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        page: null
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/events?page=1'
+                        label: '1'
+                        page: 1
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        page: null
+                        active: false
+                    path: 'http://localhost/api/v1/events'
+                    per_page: 15
+                    to: 5
+                    total: 5
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        title: 'PKN Regional Workshop 2026'
+                        slug: pkn-regional-workshop-2026
+                        summary: null
+                        description: '<p>Workshop discussion.</p>'
+                        event_date: '2026-09-04'
+                        city: 'Kabupaten Cikarang'
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: 5
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: 50
+                        available_spots: 48
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 75000
+                            max_quota: 30
+                          -
+                            id: 2
+                            name: VIP
+                            price: 200000
+                            max_quota: 20
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: 'Materi Sesi 1'
+                              speaker: 'Ustad Abdul Kholiq'
+                              session_files:
+                                - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 1
+                        title: 'PKN National Conference 2026'
+                        slug: pkn-national-conference-2026
+                        summary: null
+                        description: '<p>Annual national offline conference by PKN.</p>'
+                        event_date: '2026-06-04'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 100000
+                          -
+                            id: 2
+                            name: VIP
+                            price: 250000
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: Ju
+                              session_files:
+                                - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                                - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 5
+                        title: 'Sed quas officiis suscipit.'
+                        slug: numquam-sit-doloribus-est-natus
+                        summary: null
+                        description: null
+                        event_date: '2026-04-22'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 4
+                        title: 'PKN Mini Summit 2024'
+                        slug: pkn-mini-summit-2024
+                        summary: null
+                        description: null
+                        event_date: '2025-07-04'
+                        city: Bandung
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: false
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 3
+                        title: 'PKN Recap 2023'
+                        slug: pkn-recap-2023
+                        summary: null
+                        description: null
+                        event_date: '2025-03-04'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: false
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        title:
+                          type: string
+                          example: 'PKN Regional Workshop 2026'
+                        slug:
+                          type: string
+                          example: pkn-regional-workshop-2026
+                        summary:
+                          type: string
+                          example: null
+                          nullable: true
+                        description:
+                          type: string
+                          example: '<p>Workshop discussion.</p>'
+                        event_date:
+                          type: string
+                          example: '2026-09-04'
+                        city:
+                          type: string
+                          example: 'Kabupaten Cikarang'
+                        province:
+                          type: string
+                          example: 'Jawa Barat'
+                        nation:
+                          type: string
+                          example: Indonesia
+                        duration_days:
+                          type: integer
+                          example: 5
+                        google_maps_url:
+                          type: string
+                          example: null
+                          nullable: true
+                        cover_image:
+                          type: string
+                          example: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos:
+                          type: array
+                          example: []
+                        files:
+                          type: array
+                          example: []
+                        documentation:
+                          type: array
+                          example:
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                          items:
+                            type: string
+                        is_published:
+                          type: boolean
+                          example: true
+                        allow_registration:
+                          type: boolean
+                          example: true
+                        max_capacity:
+                          type: integer
+                          example: 50
+                        available_spots:
+                          type: integer
+                          example: 48
+                        is_full:
+                          type: boolean
+                          example: false
+                        registration_packages:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              name: Regular
+                              price: 75000
+                              max_quota: 30
+                            -
+                              id: 2
+                              name: VIP
+                              price: 200000
+                              max_quota: 20
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Regular
+                              price:
+                                type: integer
+                                example: 75000
+                              max_quota:
+                                type: integer
+                                example: 30
+                        rundown:
+                          type: array
+                          example:
+                            -
+                              type: advanced
+                              data:
+                                title: 'Materi Sesi 1'
+                                speaker: 'Ustad Abdul Kholiq'
+                                session_files:
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: advanced
+                              data:
+                                type: object
+                                properties:
+                                  title:
+                                    type: string
+                                    example: 'Materi Sesi 1'
+                                  speaker:
+                                    type: string
+                                    example: 'Ustad Abdul Kholiq'
+                                  session_files:
+                                    type: array
+                                    example:
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                                    items:
+                                      type: string
+                        tags:
+                          type: string
+                          example: null
+                          nullable: true
+                        proposal:
+                          type: string
+                          example: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2026-03-24T06:18:58.000000Z'
+                        event_type:
+                          type: string
+                          example: offline
+                        survey_template_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        place:
+                          type: string
+                          example: null
+                          nullable: true
+                        payment_instructions:
+                          type: string
+                          example: null
+                          nullable: true
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/v1/events?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/v1/events?page=1'
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            page: null
+                            active: false
+                          -
+                            url: 'http://localhost/api/v1/events?page=1'
+                            label: '1'
+                            page: 1
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            page: null
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                              nullable: true
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            page:
+                              type: string
+                              example: null
+                              nullable: true
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/v1/events'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 5
+                      total:
+                        type: integer
+                        example: 5
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/events/{event_id}':
+    get:
+      summary: 'Show a specific event.'
+      operationId: showASpecificEvent
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 3
+                    title: 'PKN Recap 2023'
+                    slug: pkn-recap-2023
+                    summary: null
+                    description: null
+                    event_date: '2025-03-04'
+                    city: null
+                    province: null
+                    nation: null
+                    duration_days: null
+                    google_maps_url: null
+                    cover_image: null
+                    photos: []
+                    files: []
+                    documentation: []
+                    is_published: true
+                    allow_registration: false
+                    max_capacity: null
+                    available_spots: null
+                    is_full: false
+                    registration_packages: []
+                    rundown: null
+                    tags: null
+                    proposal: null
+                    created_at: '2026-03-24T01:18:52.000000Z'
+                    updated_at: '2026-03-24T01:18:52.000000Z'
+                    event_type: offline
+                    survey_template_id: null
+                    place: null
+                    payment_instructions: null
+                    testimonials: []
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 3
+                      title:
+                        type: string
+                        example: 'PKN Recap 2023'
+                      slug:
+                        type: string
+                        example: pkn-recap-2023
+                      summary:
+                        type: string
+                        example: null
+                        nullable: true
+                      description:
+                        type: string
+                        example: null
+                        nullable: true
+                      event_date:
+                        type: string
+                        example: '2025-03-04'
+                      city:
+                        type: string
+                        example: null
+                        nullable: true
+                      province:
+                        type: string
+                        example: null
+                        nullable: true
+                      nation:
+                        type: string
+                        example: null
+                        nullable: true
+                      duration_days:
+                        type: string
+                        example: null
+                        nullable: true
+                      google_maps_url:
+                        type: string
+                        example: null
+                        nullable: true
+                      cover_image:
+                        type: string
+                        example: null
+                        nullable: true
+                      photos:
+                        type: array
+                        example: []
+                      files:
+                        type: array
+                        example: []
+                      documentation:
+                        type: array
+                        example: []
+                      is_published:
+                        type: boolean
+                        example: true
+                      allow_registration:
+                        type: boolean
+                        example: false
+                      max_capacity:
+                        type: string
+                        example: null
+                        nullable: true
+                      available_spots:
+                        type: string
+                        example: null
+                        nullable: true
+                      is_full:
+                        type: boolean
+                        example: false
+                      registration_packages:
+                        type: array
+                        example: []
+                      rundown:
+                        type: string
+                        example: null
+                        nullable: true
+                      tags:
+                        type: string
+                        example: null
+                        nullable: true
+                      proposal:
+                        type: string
+                        example: null
+                        nullable: true
+                      created_at:
+                        type: string
+                        example: '2026-03-24T01:18:52.000000Z'
+                      updated_at:
+                        type: string
+                        example: '2026-03-24T01:18:52.000000Z'
+                      event_type:
+                        type: string
+                        example: offline
+                      survey_template_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      place:
+                        type: string
+                        example: null
+                        nullable: true
+                      payment_instructions:
+                        type: string
+                        example: null
+                        nullable: true
+                      testimonials:
+                        type: array
+                        example: []
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  '/api/v1/events/{event_id}/similar':
+    get:
+      summary: 'Show similar events.'
+      operationId: showSimilarEvents
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 2
+                      title: 'PKN Regional Workshop 2026'
+                      slug: pkn-regional-workshop-2026
+                      summary: null
+                      description: '<p>Workshop discussion.</p>'
+                      event_date: '2026-09-04'
+                      city: 'Kabupaten Cikarang'
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: 5
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: 50
+                      available_spots: 48
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 75000
+                          max_quota: 30
+                        -
+                          id: 2
+                          name: VIP
+                          price: 200000
+                          max_quota: 20
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: 'Materi Sesi 1'
+                            speaker: 'Ustad Abdul Kholiq'
+                            session_files:
+                              - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                              - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 1
+                      title: 'PKN National Conference 2026'
+                      slug: pkn-national-conference-2026
+                      summary: null
+                      description: '<p>Annual national offline conference by PKN.</p>'
+                      event_date: '2026-06-04'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                      photos: []
+                      files: []
+                      documentation:
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                        - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages:
+                        -
+                          id: 1
+                          name: Regular
+                          price: 100000
+                        -
+                          id: 2
+                          name: VIP
+                          price: 250000
+                      rundown:
+                        -
+                          type: advanced
+                          data:
+                            title: Ju
+                            session_files:
+                              - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                              - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      tags: null
+                      proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T06:18:58.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 5
+                      title: 'Sed quas officiis suscipit.'
+                      slug: numquam-sit-doloribus-est-natus
+                      summary: null
+                      description: null
+                      event_date: '2026-04-22'
+                      city: null
+                      province: null
+                      nation: null
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: true
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                    -
+                      id: 4
+                      title: 'PKN Mini Summit 2024'
+                      slug: pkn-mini-summit-2024
+                      summary: null
+                      description: null
+                      event_date: '2025-07-04'
+                      city: Bandung
+                      province: 'Jawa Barat'
+                      nation: Indonesia
+                      duration_days: null
+                      google_maps_url: null
+                      cover_image: null
+                      photos: []
+                      files: []
+                      documentation: []
+                      is_published: true
+                      allow_registration: false
+                      max_capacity: null
+                      available_spots: null
+                      is_full: false
+                      registration_packages: []
+                      rundown: null
+                      tags: null
+                      proposal: null
+                      created_at: '2026-03-24T01:18:52.000000Z'
+                      updated_at: '2026-03-24T01:18:52.000000Z'
+                      event_type: offline
+                      survey_template_id: null
+                      place: null
+                      payment_instructions: null
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 2
+                        title: 'PKN Regional Workshop 2026'
+                        slug: pkn-regional-workshop-2026
+                        summary: null
+                        description: '<p>Workshop discussion.</p>'
+                        event_date: '2026-09-04'
+                        city: 'Kabupaten Cikarang'
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: 5
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: 50
+                        available_spots: 48
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 75000
+                            max_quota: 30
+                          -
+                            id: 2
+                            name: VIP
+                            price: 200000
+                            max_quota: 20
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: 'Materi Sesi 1'
+                              speaker: 'Ustad Abdul Kholiq'
+                              session_files:
+                                - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 1
+                        title: 'PKN National Conference 2026'
+                        slug: pkn-national-conference-2026
+                        summary: null
+                        description: '<p>Annual national offline conference by PKN.</p>'
+                        event_date: '2026-06-04'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: 'http://localhost/storage/event-covers/Flyer + Booklet AKG PKN Batch V.png'
+                        photos: []
+                        files: []
+                        documentation:
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg'
+                          - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg'
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages:
+                          -
+                            id: 1
+                            name: Regular
+                            price: 100000
+                          -
+                            id: 2
+                            name: VIP
+                            price: 250000
+                        rundown:
+                          -
+                            type: advanced
+                            data:
+                              title: Ju
+                              session_files:
+                                - 'events/pkn-national-conference-2026/sessions/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                                - 'events/pkn-national-conference-2026/sessions/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        tags: null
+                        proposal: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN VI.pdf'
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T06:18:58.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 5
+                        title: 'Sed quas officiis suscipit.'
+                        slug: numquam-sit-doloribus-est-natus
+                        summary: null
+                        description: null
+                        event_date: '2026-04-22'
+                        city: null
+                        province: null
+                        nation: null
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: true
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                      -
+                        id: 4
+                        title: 'PKN Mini Summit 2024'
+                        slug: pkn-mini-summit-2024
+                        summary: null
+                        description: null
+                        event_date: '2025-07-04'
+                        city: Bandung
+                        province: 'Jawa Barat'
+                        nation: Indonesia
+                        duration_days: null
+                        google_maps_url: null
+                        cover_image: null
+                        photos: []
+                        files: []
+                        documentation: []
+                        is_published: true
+                        allow_registration: false
+                        max_capacity: null
+                        available_spots: null
+                        is_full: false
+                        registration_packages: []
+                        rundown: null
+                        tags: null
+                        proposal: null
+                        created_at: '2026-03-24T01:18:52.000000Z'
+                        updated_at: '2026-03-24T01:18:52.000000Z'
+                        event_type: offline
+                        survey_template_id: null
+                        place: null
+                        payment_instructions: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 2
+                        title:
+                          type: string
+                          example: 'PKN Regional Workshop 2026'
+                        slug:
+                          type: string
+                          example: pkn-regional-workshop-2026
+                        summary:
+                          type: string
+                          example: null
+                          nullable: true
+                        description:
+                          type: string
+                          example: '<p>Workshop discussion.</p>'
+                        event_date:
+                          type: string
+                          example: '2026-09-04'
+                        city:
+                          type: string
+                          example: 'Kabupaten Cikarang'
+                        province:
+                          type: string
+                          example: 'Jawa Barat'
+                        nation:
+                          type: string
+                          example: Indonesia
+                        duration_days:
+                          type: integer
+                          example: 5
+                        google_maps_url:
+                          type: string
+                          example: null
+                          nullable: true
+                        cover_image:
+                          type: string
+                          example: 'http://localhost/storage/event-covers/FLYER-PANDUAN-IMPLEMENTASI-1.png'
+                        photos:
+                          type: array
+                          example: []
+                        files:
+                          type: array
+                          example: []
+                        documentation:
+                          type: array
+                          example:
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg'
+                            - 'http://localhost/storage/event-documentation/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg'
+                          items:
+                            type: string
+                        is_published:
+                          type: boolean
+                          example: true
+                        allow_registration:
+                          type: boolean
+                          example: true
+                        max_capacity:
+                          type: integer
+                          example: 50
+                        available_spots:
+                          type: integer
+                          example: 48
+                        is_full:
+                          type: boolean
+                          example: false
+                        registration_packages:
+                          type: array
+                          example:
+                            -
+                              id: 1
+                              name: Regular
+                              price: 75000
+                              max_quota: 30
+                            -
+                              id: 2
+                              name: VIP
+                              price: 200000
+                              max_quota: 20
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                                example: 1
+                              name:
+                                type: string
+                                example: Regular
+                              price:
+                                type: integer
+                                example: 75000
+                              max_quota:
+                                type: integer
+                                example: 30
+                        rundown:
+                          type: array
+                          example:
+                            -
+                              type: advanced
+                              data:
+                                title: 'Materi Sesi 1'
+                                speaker: 'Ustad Abdul Kholiq'
+                                session_files:
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                  - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                          items:
+                            type: object
+                            properties:
+                              type:
+                                type: string
+                                example: advanced
+                              data:
+                                type: object
+                                properties:
+                                  title:
+                                    type: string
+                                    example: 'Materi Sesi 1'
+                                  speaker:
+                                    type: string
+                                    example: 'Ustad Abdul Kholiq'
+                                  session_files:
+                                    type: array
+                                    example:
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf'
+                                      - 'events/pkn-regional-workshop-2026/sessions/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf'
+                                    items:
+                                      type: string
+                        tags:
+                          type: string
+                          example: null
+                          nullable: true
+                        proposal:
+                          type: string
+                          example: 'http://localhost/storage/event-proposals/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf'
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2026-03-24T06:18:58.000000Z'
+                        event_type:
+                          type: string
+                          example: offline
+                        survey_template_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        place:
+                          type: string
+                          example: null
+                          nullable: true
+                        payment_instructions:
+                          type: string
+                          example: null
+                          nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: event_id
+        description: 'The ID of the event.'
+        example: 3
+        required: true
+        schema:
+          type: integer
+  /api/v1/news:
+    get:
+      summary: 'List all published news.'
+      operationId: listAllPublishedNews
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      id: 1
+                      title: 'Registration Open: PKN National Conference 2026'
+                      content: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                      thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                      is_published: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 2
+                      title: 'Registration Open: PKN Regional Workshop 2026'
+                      content: '<p>Registration is now open for PKN Regional Workshop 2026.</p>'
+                      thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg'
+                      is_published: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                  links:
+                    first: 'http://localhost/api/v1/news?page=1'
+                    last: 'http://localhost/api/v1/news?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: 1
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        page: null
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/news?page=1'
+                        label: '1'
+                        page: 1
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        page: null
+                        active: false
+                    path: 'http://localhost/api/v1/news'
+                    per_page: 15
+                    to: 2
+                    total: 2
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        title: 'Registration Open: PKN National Conference 2026'
+                        content: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                        thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                        is_published: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 2
+                        title: 'Registration Open: PKN Regional Workshop 2026'
+                        content: '<p>Registration is now open for PKN Regional Workshop 2026.</p>'
+                        thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg'
+                        is_published: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        title:
+                          type: string
+                          example: 'Registration Open: PKN National Conference 2026'
+                        content:
+                          type: string
+                          example: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                        thumbnail:
+                          type: string
+                          example: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                        is_published:
+                          type: boolean
+                          example: true
+                        event_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52+00:00'
+                  links:
+                    type: object
+                    properties:
+                      first:
+                        type: string
+                        example: 'http://localhost/api/v1/news?page=1'
+                      last:
+                        type: string
+                        example: 'http://localhost/api/v1/news?page=1'
+                      prev:
+                        type: string
+                        example: null
+                        nullable: true
+                      next:
+                        type: string
+                        example: null
+                        nullable: true
+                  meta:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 1
+                      from:
+                        type: integer
+                        example: 1
+                      last_page:
+                        type: integer
+                        example: 1
+                      links:
+                        type: array
+                        example:
+                          -
+                            url: null
+                            label: '&laquo; Previous'
+                            page: null
+                            active: false
+                          -
+                            url: 'http://localhost/api/v1/news?page=1'
+                            label: '1'
+                            page: 1
+                            active: true
+                          -
+                            url: null
+                            label: 'Next &raquo;'
+                            page: null
+                            active: false
+                        items:
+                          type: object
+                          properties:
+                            url:
+                              type: string
+                              example: null
+                              nullable: true
+                            label:
+                              type: string
+                              example: '&laquo; Previous'
+                            page:
+                              type: string
+                              example: null
+                              nullable: true
+                            active:
+                              type: boolean
+                              example: false
+                      path:
+                        type: string
+                        example: 'http://localhost/api/v1/news'
+                      per_page:
+                        type: integer
+                        example: 15
+                      to:
+                        type: integer
+                        example: 2
+                      total:
+                        type: integer
+                        example: 2
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/news/{news_id}':
+    get:
+      summary: 'Show a specific news article.'
+      operationId: showASpecificNewsArticle
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    title: 'Registration Open: PKN National Conference 2026'
+                    content: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                    thumbnail: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                    is_published: true
+                    event_id: null
+                    created_at: '2026-03-24T01:18:52+00:00'
+                    event: null
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      title:
+                        type: string
+                        example: 'Registration Open: PKN National Conference 2026'
+                      content:
+                        type: string
+                        example: '<p>Registration is now open for PKN National Conference 2026.</p>'
+                      thumbnail:
+                        type: string
+                        example: 'http://localhost/storage/news-thumbnails/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg'
+                      is_published:
+                        type: boolean
+                        example: true
+                      event_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      created_at:
+                        type: string
+                        example: '2026-03-24T01:18:52+00:00'
+                      event:
+                        type: string
+                        example: null
+                        nullable: true
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: news_id
+        description: 'The ID of the news.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/documents:
+    get:
+      summary: 'List all active documents.'
+      operationId: listAllActiveDocuments
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  featured_documents:
+                    -
+                      id: 27
+                      title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                      slug: doc-a7z0y
+                      file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                      mime_type: application/pdf
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 34
+                      title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      slug: doc-pnxci
+                      file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 30
+                      title: '4. BAKAT - TB - 40.pptx'
+                      slug: doc-pvpme
+                      file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                    -
+                      id: 31
+                      title: '3. Pembelajaran Alamiyah.pptx'
+                      slug: doc-tqtyz
+                      file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                      cover_image: null
+                      mime_type: null
+                      description: null
+                      tags:
+                        - featured
+                      is_active: true
+                      is_featured: true
+                      event_id: null
+                      created_at: '2026-03-24T01:18:52+00:00'
+                  documents:
+                    data:
+                      -
+                        id: 27
+                        title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                        slug: doc-a7z0y
+                        file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                        mime_type: application/pdf
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 34
+                        title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        slug: doc-pnxci
+                        file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 30
+                        title: '4. BAKAT - TB - 40.pptx'
+                        slug: doc-pvpme
+                        file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 31
+                        title: '3. Pembelajaran Alamiyah.pptx'
+                        slug: doc-tqtyz
+                        file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                    links:
+                      first: 'http://localhost/api/v1/documents?page=1'
+                      last: 'http://localhost/api/v1/documents?page=1'
+                      prev: null
+                      next: null
+                    meta:
+                      current_page: 1
+                      from: 1
+                      last_page: 1
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          page: null
+                          active: false
+                        -
+                          url: 'http://localhost/api/v1/documents?page=1'
+                          label: '1'
+                          page: 1
+                          active: true
+                        -
+                          url: null
+                          label: 'Next &raquo;'
+                          page: null
+                          active: false
+                      path: 'http://localhost/api/v1/documents'
+                      per_page: 20
+                      to: 4
+                      total: 4
+                properties:
+                  featured_documents:
+                    type: array
+                    example:
+                      -
+                        id: 27
+                        title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                        slug: doc-a7z0y
+                        file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                        mime_type: application/pdf
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 34
+                        title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        slug: doc-pnxci
+                        file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 30
+                        title: '4. BAKAT - TB - 40.pptx'
+                        slug: doc-pvpme
+                        file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                      -
+                        id: 31
+                        title: '3. Pembelajaran Alamiyah.pptx'
+                        slug: doc-tqtyz
+                        file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                        cover_image: null
+                        mime_type: null
+                        description: null
+                        tags:
+                          - featured
+                        is_active: true
+                        is_featured: true
+                        event_id: null
+                        created_at: '2026-03-24T01:18:52+00:00'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 27
+                        title:
+                          type: string
+                          example: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                        slug:
+                          type: string
+                          example: doc-a7z0y
+                        file_url:
+                          type: string
+                          example: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        original_filename:
+                          type: string
+                          example: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        cover_image:
+                          type: string
+                          example: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                        mime_type:
+                          type: string
+                          example: application/pdf
+                        description:
+                          type: string
+                          example: null
+                          nullable: true
+                        tags:
+                          type: array
+                          example:
+                            - featured
+                          items:
+                            type: string
+                        is_active:
+                          type: boolean
+                          example: true
+                        is_featured:
+                          type: boolean
+                          example: true
+                        event_id:
+                          type: string
+                          example: null
+                          nullable: true
+                        created_at:
+                          type: string
+                          example: '2026-03-24T01:18:52+00:00'
+                  documents:
+                    type: object
+                    properties:
+                      data:
+                        type: array
+                        example:
+                          -
+                            id: 27
+                            title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                            slug: doc-a7z0y
+                            file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                            original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                            cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                            mime_type: application/pdf
+                            description: null
+                            tags:
+                              - featured
+                            is_active: true
+                            is_featured: true
+                            event_id: null
+                            created_at: '2026-03-24T01:18:52+00:00'
+                          -
+                            id: 34
+                            title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                            slug: doc-pnxci
+                            file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                            original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                            cover_image: null
+                            mime_type: null
+                            description: null
+                            tags:
+                              - featured
+                            is_active: true
+                            is_featured: true
+                            event_id: null
+                            created_at: '2026-03-24T01:18:52+00:00'
+                          -
+                            id: 30
+                            title: '4. BAKAT - TB - 40.pptx'
+                            slug: doc-pvpme
+                            file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                            original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                            cover_image: null
+                            mime_type: null
+                            description: null
+                            tags:
+                              - featured
+                            is_active: true
+                            is_featured: true
+                            event_id: null
+                            created_at: '2026-03-24T01:18:52+00:00'
+                          -
+                            id: 31
+                            title: '3. Pembelajaran Alamiyah.pptx'
+                            slug: doc-tqtyz
+                            file_url: 'http://localhost/storage/manual-uploads/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                            original_filename: '0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf'
+                            cover_image: null
+                            mime_type: null
+                            description: null
+                            tags:
+                              - featured
+                            is_active: true
+                            is_featured: true
+                            event_id: null
+                            created_at: '2026-03-24T01:18:52+00:00'
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 27
+                            title:
+                              type: string
+                              example: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                            slug:
+                              type: string
+                              example: doc-a7z0y
+                            file_url:
+                              type: string
+                              example: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                            original_filename:
+                              type: string
+                              example: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                            cover_image:
+                              type: string
+                              example: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                            mime_type:
+                              type: string
+                              example: application/pdf
+                            description:
+                              type: string
+                              example: null
+                              nullable: true
+                            tags:
+                              type: array
+                              example:
+                                - featured
+                              items:
+                                type: string
+                            is_active:
+                              type: boolean
+                              example: true
+                            is_featured:
+                              type: boolean
+                              example: true
+                            event_id:
+                              type: string
+                              example: null
+                              nullable: true
+                            created_at:
+                              type: string
+                              example: '2026-03-24T01:18:52+00:00'
+                      links:
+                        type: object
+                        properties:
+                          first:
+                            type: string
+                            example: 'http://localhost/api/v1/documents?page=1'
+                          last:
+                            type: string
+                            example: 'http://localhost/api/v1/documents?page=1'
+                          prev:
+                            type: string
+                            example: null
+                            nullable: true
+                          next:
+                            type: string
+                            example: null
+                            nullable: true
+                      meta:
+                        type: object
+                        properties:
+                          current_page:
+                            type: integer
+                            example: 1
+                          from:
+                            type: integer
+                            example: 1
+                          last_page:
+                            type: integer
+                            example: 1
+                          links:
+                            type: array
+                            example:
+                              -
+                                url: null
+                                label: '&laquo; Previous'
+                                page: null
+                                active: false
+                              -
+                                url: 'http://localhost/api/v1/documents?page=1'
+                                label: '1'
+                                page: 1
+                                active: true
+                              -
+                                url: null
+                                label: 'Next &raquo;'
+                                page: null
+                                active: false
+                            items:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                label:
+                                  type: string
+                                  example: '&laquo; Previous'
+                                page:
+                                  type: string
+                                  example: null
+                                  nullable: true
+                                active:
+                                  type: boolean
+                                  example: false
+                          path:
+                            type: string
+                            example: 'http://localhost/api/v1/documents'
+                          per_page:
+                            type: integer
+                            example: 20
+                          to:
+                            type: integer
+                            example: 4
+                          total:
+                            type: integer
+                            example: 4
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/documents/{document_id}':
+    get:
+      summary: 'Show a specific document.'
+      operationId: showASpecificDocument
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 27
+                    title: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                    slug: doc-a7z0y
+                    file_url: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                    original_filename: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                    cover_image: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                    mime_type: application/pdf
+                    description: null
+                    tags:
+                      - featured
+                    is_active: true
+                    is_featured: true
+                    event_id: null
+                    created_at: '2026-03-24T01:18:52+00:00'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 27
+                      title:
+                        type: string
+                        example: '1. Mengembalikan Pendidikan ke asalnya-1.pdf'
+                      slug:
+                        type: string
+                        example: doc-a7z0y
+                      file_url:
+                        type: string
+                        example: 'http://localhost/storage/manual-uploads/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      original_filename:
+                        type: string
+                        example: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      cover_image:
+                        type: string
+                        example: 'http://localhost/storage/document-covers/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg'
+                      mime_type:
+                        type: string
+                        example: application/pdf
+                      description:
+                        type: string
+                        example: null
+                        nullable: true
+                      tags:
+                        type: array
+                        example:
+                          - featured
+                        items:
+                          type: string
+                      is_active:
+                        type: boolean
+                        example: true
+                      is_featured:
+                        type: boolean
+                        example: true
+                      event_id:
+                        type: string
+                        example: null
+                        nullable: true
+                      created_at:
+                        type: string
+                        example: '2026-03-24T01:18:52+00:00'
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: document_id
+        description: 'The ID of the document.'
+        example: 27
+        required: true
+        schema:
+          type: integer
+  /api/v1/auth/register:
+    post:
+      summary: ''
+      operationId: postApiV1AuthRegister
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                phone_number:
+                  type: string
+                  description: 'Must not be greater than 20 characters.'
+                  example: ngzmiyvdljnikhwa
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: breitenberg.gilbert@example.com
+                  nullable: true
+                password:
+                  type: string
+                  description: 'Must be at least 8 characters.'
+                  example: kXaz<m
+              required:
+                - name
+                - phone_number
+                - password
+      security: []
+  /api/v1/auth/login:
+    post:
+      summary: 'Authenticate a user via their phone number and password.'
+      operationId: authenticateAUserViaTheirPhoneNumberAndPassword
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                phone_number:
+                  type: string
+                  description: ''
+                  example: architecto
+                password:
+                  type: string
+                  description: ''
+                  example: '|]|{+-'
+              required:
+                - phone_number
+                - password
+      security: []
+  /api/v1/payments/webhook:
+    post:
+      summary: ''
+      operationId: postApiV1PaymentsWebhook
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: string
+                  description: ''
+                  example: architecto
+                status_code:
+                  type: string
+                  description: ''
+                  example: architecto
+                gross_amount:
+                  type: string
+                  description: ''
+                  example: architecto
+                signature_key:
+                  type: string
+                  description: ''
+                  example: architecto
+                transaction_status:
+                  type: string
+                  description: ''
+                  example: architecto
+                transaction_id:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                payment_type:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                fraud_status:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+              required:
+                - order_id
+                - status_code
+                - gross_amount
+                - signature_key
+                - transaction_status
+      security: []
+  /api/v1/auth/me:
+    get:
+      summary: 'Get the authenticated user.'
+      operationId: getTheAuthenticatedUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/user:
+    get:
+      summary: 'Get the authenticated user.'
+      operationId: getTheAuthenticatedUser
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/auth/logout:
+    post:
+      summary: 'Revoke the current token.'
+      operationId: revokeTheCurrentToken
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/user/profile:
+    get:
+      summary: ''
+      operationId: getApiV1UserProfile
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1UserProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: zbailey@example.net
+                phone_number:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: i
+                  nullable: true
+              required:
+                - name
+                - email
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1UserProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/organizations:
+    get:
+      summary: ''
+      operationId: getApiV1Organizations
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Organizations
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                logo:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+              required:
+                - name
+      security: []
+  '/api/v1/organizations/{id}':
+    put:
+      summary: ''
+      operationId: putApiV1OrganizationsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: b
+                logo:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1OrganizationsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the organization.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/notifications:
+    get:
+      summary: ''
+      operationId: getApiV1Notifications
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/notifications/unread-count:
+    get:
+      summary: ''
+      operationId: getApiV1NotificationsUnreadCount
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/notifications/mark-all-read:
+    post:
+      summary: ''
+      operationId: postApiV1NotificationsMarkAllRead
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/notifications/{id}/mark-read':
+    post:
+      summary: ''
+      operationId: postApiV1NotificationsIdMarkRead
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the notification.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  /api/v1/registrations:
+    get:
+      summary: ''
+      operationId: getApiV1Registrations
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1Registrations
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                event_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the events table.'
+                  example: architecto
+                organization_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the organizations table.'
+                  example: null
+                  nullable: true
+                packages:
+                  type: array
+                  description: 'Must have at least 1 items.'
+                  example:
+                    - []
+                  items:
+                    type: object
+                    properties:
+                      package_id:
+                        type: string
+                        description: ''
+                        example: architecto
+                      count:
+                        type: integer
+                        description: 'Must be at least 1.'
+                        example: 22
+                    required:
+                      - package_id
+                      - count
+              required:
+                - event_id
+                - packages
+      security: []
+  '/api/v1/registrations/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1RegistrationsId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1RegistrationsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                organization_id:
+                  type: string
+                  description: 'The <code>id</code> of an existing record in the organizations table.'
+                  example: null
+                  nullable: true
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1RegistrationsId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the registration.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/registrations/{registration_id}/participants':
+    get:
+      summary: ''
+      operationId: getApiV1RegistrationsRegistration_idParticipants
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1RegistrationsRegistration_idParticipants
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: architecto
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: zbailey@example.net
+                  nullable: true
+                phone:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                notes:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+              required:
+                - name
+      security: []
+    parameters:
+      -
+        in: path
+        name: registration_id
+        description: 'The ID of the registration.'
+        example: architecto
+        required: true
+        schema:
+          type: string
+  '/api/v1/participants/{participant_id}':
+    put:
+      summary: ''
+      operationId: putApiV1ParticipantsParticipant_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: architecto
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: zbailey@example.net
+                  nullable: true
+                phone:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+                notes:
+                  type: string
+                  description: ''
+                  example: architecto
+                  nullable: true
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1ParticipantsParticipant_id
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: participant_id
+        description: 'The ID of the participant.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/invoices:
+    get:
+      summary: ''
+      operationId: getApiV1Invoices
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/invoices/{invoice_id}':
+    get:
+      summary: ''
+      operationId: getApiV1InvoicesInvoice_id
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: invoice_id
+        description: 'The ID of the invoice.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/invoices/{invoice_id}/download':
+    get:
+      summary: ''
+      operationId: getApiV1InvoicesInvoice_idDownload
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: invoice_id
+        description: 'The ID of the invoice.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  /api/v1/payments/charge:
+    post:
+      summary: ''
+      operationId: postApiV1PaymentsCharge
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                invoice_id:
+                  type: integer
+                  description: 'The <code>id</code> of an existing record in the invoices table.'
+                  example: 16
+              required:
+                - invoice_id
+      security: []

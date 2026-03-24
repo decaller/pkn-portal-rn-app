@@ -2,26 +2,31 @@
  * RegistrationWizard — Single-step registration flow.
  * Reference: UX Flow Guide § 4.H
  */
-import React, { useState } from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Stack, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  Alert,
   ActivityIndicator,
-} from 'react-native';
-import { useRouter, Stack } from 'expo-router';
-import { useTranslation } from 'react-i18next';
-import { Ionicons } from '@expo/vector-icons';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View
+} from "react-native";
 
-import { useAppTheme } from '@/hooks/useAppTheme';
-import { spacing, typography, borderRadius, shadows } from '@/theme';
-import api from '@/services/api';
-import { extractRegistration, type EventItem, type Participant, type Registration, type SingleEventResponse } from '@/types';
-import { AlertBanner } from '@/components/ui/AlertBanner';
+import { AlertBanner } from "@/components/ui/AlertBanner";
+import { useAppTheme } from "@/hooks/useAppTheme";
+import api from "@/services/api";
+import { borderRadius, shadows, spacing, typography } from "@/theme";
+import {
+  extractRegistration,
+  type EventItem,
+  type Participant,
+  type Registration,
+  type SingleEventResponse,
+} from "@/types";
 
 interface RegistrationWizardProps {
   eventId: string;
@@ -32,41 +37,52 @@ interface RegistrationWizardProps {
 type PackageCountMap = Record<string, number>;
 
 const formatCurrency = (amount: number) =>
-  new Intl.NumberFormat('id-ID', {
-    style: 'currency',
-    currency: 'IDR',
+  new Intl.NumberFormat("id-ID", {
+    style: "currency",
+    currency: "IDR",
     minimumFractionDigits: 0,
   }).format(amount);
 
-const getPackageKey = (pkg: EventItem['registration_packages'][number], index: number) =>
-  `${pkg.id ?? 'no-id'}:${pkg.name ?? 'package'}:${index}`;
+const getPackageKey = (
+  pkg: EventItem["registration_packages"][number],
+  index: number,
+) => `${pkg.id ?? "no-id"}:${pkg.name ?? "package"}:${index}`;
 
 const getApiErrorMessage = (error: any) => {
   const responseData = error?.response?.data ?? error?.data ?? error;
   const validationErrors = responseData?.errors;
 
-  if (validationErrors && typeof validationErrors === 'object') {
+  if (validationErrors && typeof validationErrors === "object") {
     const firstValidationMessage = Object.values(validationErrors)
       .flatMap((value) => (Array.isArray(value) ? value : [value]))
-      .find((value) => typeof value === 'string');
+      .find((value) => typeof value === "string");
 
-    if (typeof firstValidationMessage === 'string' && firstValidationMessage.trim().length > 0) {
+    if (
+      typeof firstValidationMessage === "string" &&
+      firstValidationMessage.trim().length > 0
+    ) {
       return firstValidationMessage;
     }
   }
 
-  if (typeof responseData?.message === 'string' && responseData.message.trim().length > 0) {
+  if (
+    typeof responseData?.message === "string" &&
+    responseData.message.trim().length > 0
+  ) {
     return responseData.message;
   }
 
-  if (typeof error?.message === 'string' && error.message.trim().length > 0) {
+  if (typeof error?.message === "string" && error.message.trim().length > 0) {
     return error.message;
   }
 
   return null;
 };
 
-export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) {
+export function RegistrationWizard({
+  eventId,
+  regId,
+}: RegistrationWizardProps) {
   const { t } = useTranslation();
   const { colors, isDark } = useAppTheme();
   const router = useRouter();
@@ -77,22 +93,23 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const hydratedRegistrationKeyRef = React.useRef<string | null>(null);
 
-  const { data: existingReg, isLoading: isLoadingReg } = useQuery<Registration | null>({
-    queryKey: ['registration', regId],
-    queryFn: async () => {
-      if (!regId) return null;
-      const resp = await api.get(`/registrations/${regId}`);
-      return extractRegistration(resp.data);
-    },
-    enabled: !!regId,
-  });
+  const { data: existingReg, isLoading: isLoadingReg } =
+    useQuery<Registration | null>({
+      queryKey: ["registration", regId],
+      queryFn: async () => {
+        if (!regId) return null;
+        const resp = await api.get(`/registrations/${regId}`);
+        return extractRegistration(resp.data);
+      },
+      enabled: !!regId,
+    });
 
   const { data: event, isLoading } = useQuery<EventItem>({
-    queryKey: ['event', eventId],
+    queryKey: ["event", eventId],
     queryFn: async () => {
       const resp = await api.get(`/events/${eventId}`);
       const payload = resp.data as EventItem | SingleEventResponse;
-      const eventData = 'data' in payload ? payload.data : payload;
+      const eventData = "data" in payload ? payload.data : payload;
 
       return {
         ...eventData,
@@ -111,23 +128,31 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
   React.useEffect(() => {
     if (!existingReg || registrationPackages.length === 0) return;
 
-    const hydrationKey = `${existingReg.id}:${registrationPackages.map((pkg) => pkg.id).join(',')}`;
+    const hydrationKey = `${existingReg.id}:${registrationPackages.map((pkg) => pkg.id).join(",")}`;
     if (hydratedRegistrationKeyRef.current === hydrationKey) return;
 
     const nextCounts: PackageCountMap = {};
 
     if (existingReg.package_breakdown.length > 0) {
       existingReg.package_breakdown.forEach((item) => {
-        const matchedIndex = registrationPackages.findIndex((pkg) => pkg.name === item.package_name);
-        const matchedPackage = matchedIndex >= 0 ? registrationPackages[matchedIndex] : null;
+        const matchedIndex = registrationPackages.findIndex(
+          (pkg) => pkg.name === item.package_name,
+        );
+        const matchedPackage =
+          matchedIndex >= 0 ? registrationPackages[matchedIndex] : null;
         if (matchedPackage) {
-          nextCounts[getPackageKey(matchedPackage, matchedIndex)] = item.participant_count;
+          nextCounts[getPackageKey(matchedPackage, matchedIndex)] =
+            item.participant_count;
         }
       });
     } else if (existingReg.package_id) {
-      const matchedIndex = registrationPackages.findIndex((pkg) => pkg.id === existingReg.package_id);
+      const matchedIndex = registrationPackages.findIndex(
+        (pkg) => pkg.id === existingReg.package_id,
+      );
       if (matchedIndex >= 0) {
-        nextCounts[getPackageKey(registrationPackages[matchedIndex], matchedIndex)] = existingReg.participant_count;
+        nextCounts[
+          getPackageKey(registrationPackages[matchedIndex], matchedIndex)
+        ] = existingReg.participant_count;
       }
     }
 
@@ -145,25 +170,35 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
     }))
     .filter((item) => item.participant_count > 0);
 
-  const totalParticipants = packageBreakdown.reduce((sum, item) => sum + item.participant_count, 0);
+  const totalParticipants = packageBreakdown.reduce(
+    (sum, item) => sum + item.participant_count,
+    0,
+  );
   const totalAmount = packageBreakdown.reduce(
     (sum, item) => sum + item.participant_count * item.unit_price,
     0,
   );
   const primaryPackageId = packageBreakdown[0]?.package_id ?? null;
-  const hasSelectedPackagesWithoutIds = packageBreakdown.some((item) => item.package_id == null);
+  const hasSelectedPackagesWithoutIds = packageBreakdown.some(
+    (item) => item.package_id == null,
+  );
 
   const mutation = useMutation({
     mutationFn: async () => {
       if (packageBreakdown.length === 0) {
-        throw new Error(t('registrations.minOneParticipant', 'At least one participant is required.'));
+        throw new Error(
+          t(
+            "registrations.minOneParticipant",
+            "At least one participant is required.",
+          ),
+        );
       }
 
       if (hasSelectedPackagesWithoutIds) {
         throw new Error(
           t(
-            'registrations.packageConfigUnavailable',
-            'This event cannot be registered from the app yet because the API does not return registration package IDs.',
+            "registrations.packageConfigUnavailable",
+            "This event cannot be registered from the app yet because the API does not return registration package IDs.",
           ),
         );
       }
@@ -171,6 +206,10 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
       const payload = {
         event_id: eventId,
         package_id: primaryPackageId,
+        packages: packageBreakdown.map((item) => ({
+          package_id: JSON.stringify(item.package_id),
+          count: item.participant_count,
+        })),
         participants: [] as Partial<Participant>[],
       };
 
@@ -178,25 +217,25 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
         const resp = await api.put(`/registrations/${regId}`, payload);
         const registration = extractRegistration(resp.data);
         if (!registration) {
-          throw new Error('Invalid registration response');
+          throw new Error("Invalid registration response");
         }
         return registration;
       }
 
-      const resp = await api.post('/registrations', payload);
+      const resp = await api.post("/registrations", payload);
       const registration = extractRegistration(resp.data);
       if (!registration) {
-        throw new Error('Invalid registration response');
+        throw new Error("Invalid registration response");
       }
       return registration;
     },
     onSuccess: (data) => {
-      queryClient.invalidateQueries({ queryKey: ['registrations'] });
-      queryClient.invalidateQueries({ queryKey: ['registration', data.id] });
+      queryClient.invalidateQueries({ queryKey: ["registrations"] });
+      queryClient.invalidateQueries({ queryKey: ["registration", data.id] });
       router.replace(`/registrations/${data.id}`);
     },
     onError: (error: any) => {
-      setErrorMessage(getApiErrorMessage(error) || t('common.errorDesc'));
+      setErrorMessage(getApiErrorMessage(error) || t("common.errorDesc"));
     },
   });
 
@@ -218,9 +257,11 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
 
   return (
     <View style={styles.container}>
-      <Stack.Screen options={{ title: t('events.registration', 'Registration') }} />
+      <Stack.Screen
+        options={{ title: t("events.registration", "Registration") }}
+      />
 
-      <ScrollView 
+      <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={styles.scrollContent}
       >
@@ -228,16 +269,21 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
           {errorMessage && (
             <AlertBanner
               type="danger"
-              title={t('common.error')}
+              title={t("common.error")}
               message={errorMessage}
               style={{ marginHorizontal: 0, marginBottom: spacing.lg }}
               onPress={() => setErrorMessage(null)}
             />
           )}
 
-          <Text style={styles.stepTitle}>{t('registrations.step1Title', 'Set Package Counts')}</Text>
+          <Text style={styles.stepTitle}>
+            {t("registrations.step1Title", "Set Package Counts")}
+          </Text>
           <Text style={styles.stepSubtitle}>
-            {t('registrations.step1Subtitle', 'Set participant count for each package. You only need to review the total here.')}
+            {t(
+              "registrations.step1Subtitle",
+              "Set participant count for each package. You only need to review the total here.",
+            )}
           </Text>
 
           {registrationPackages.map((pkg, index) => {
@@ -250,14 +296,20 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
                 <View style={styles.packageHeader}>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.packageName}>{pkg.name}</Text>
-                    {pkg.description ? <Text style={styles.packageDesc}>{pkg.description}</Text> : null}
+                    {pkg.description ? (
+                      <Text style={styles.packageDesc}>{pkg.description}</Text>
+                    ) : null}
                   </View>
-                  <Text style={styles.packagePrice}>{formatCurrency(pkg.price)}</Text>
+                  <Text style={styles.packagePrice}>
+                    {formatCurrency(pkg.price)}
+                  </Text>
                 </View>
 
                 <View style={styles.counterRow}>
                   <View>
-                    <Text style={styles.counterLabel}>{t('registrations.participantCount', 'Participant count')}</Text>
+                    <Text style={styles.counterLabel}>
+                      {t("registrations.participantCount", "Participant count")}
+                    </Text>
                     <Text style={styles.counterHint}>
                       {count} x {formatCurrency(pkg.price)}
                     </Text>
@@ -272,21 +324,40 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
                       ]}
                       disabled={count <= 0}
                     >
-                      <Ionicons name="remove" size={18} color={count <= 0 ? colors.text.tertiary : colors.text.primary} />
+                      <Ionicons
+                        name="remove"
+                        size={18}
+                        color={
+                          count <= 0
+                            ? colors.text.tertiary
+                            : colors.text.primary
+                        }
+                      />
                     </Pressable>
                     <Text style={styles.counterValue}>{count}</Text>
                     <Pressable
                       onPress={() => updatePackageCount(packageKey, count + 1)}
-                      style={({ pressed }) => [styles.counterButton, pressed && { opacity: 0.8 }]}
+                      style={({ pressed }) => [
+                        styles.counterButton,
+                        pressed && { opacity: 0.8 },
+                      ]}
                     >
-                      <Ionicons name="add" size={18} color={colors.text.primary} />
+                      <Ionicons
+                        name="add"
+                        size={18}
+                        color={colors.text.primary}
+                      />
                     </Pressable>
                   </View>
                 </View>
 
                 <View style={styles.packageFooter}>
-                  <Text style={styles.packageFooterLabel}>{t('registrations.estimatedPayment', 'Estimated payment')}</Text>
-                  <Text style={styles.packageFooterValue}>{formatCurrency(itemTotal)}</Text>
+                  <Text style={styles.packageFooterLabel}>
+                    {t("registrations.estimatedPayment", "Estimated payment")}
+                  </Text>
+                  <Text style={styles.packageFooterValue}>
+                    {formatCurrency(itemTotal)}
+                  </Text>
                 </View>
               </View>
             );
@@ -294,26 +365,38 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
 
           <View style={[styles.summaryCard, shadows.md]}>
             <View style={styles.summaryRow}>
-              <Text style={styles.summaryLabel}>{t('registrations.totalPackages', 'Selected packages')}</Text>
+              <Text style={styles.summaryLabel}>
+                {t("registrations.totalPackages", "Selected packages")}
+              </Text>
               <Text style={styles.summaryValue}>{packageBreakdown.length}</Text>
             </View>
             <View style={styles.summaryRow}>
-              <Text style={styles.summaryLabel}>{t('registrations.participantCount', 'Participant count')}</Text>
+              <Text style={styles.summaryLabel}>
+                {t("registrations.participantCount", "Participant count")}
+              </Text>
               <Text style={styles.summaryValue}>{totalParticipants}</Text>
             </View>
             <View style={styles.summaryDivider} />
             <View style={styles.summaryRow}>
-              <Text style={styles.totalLabel}>{t('registrations.totalAmount', 'Total')}</Text>
-              <Text style={styles.totalValue}>{formatCurrency(totalAmount)}</Text>
+              <Text style={styles.totalLabel}>
+                {t("registrations.totalAmount", "Total")}
+              </Text>
+              <Text style={styles.totalValue}>
+                {formatCurrency(totalAmount)}
+              </Text>
             </View>
           </View>
 
           <View style={[styles.noteCard, shadows.sm]}>
-            <Ionicons name="information-circle-outline" size={20} color={colors.brand.primary} />
+            <Ionicons
+              name="information-circle-outline"
+              size={20}
+              color={colors.brand.primary}
+            />
             <Text style={styles.noteText}>
               {t(
-                'registrations.countNote',
-                'Participant details will be added after payment, and the participant count can still be changed before payment.',
+                "registrations.countNote",
+                "Participant details will be added after payment, and the participant count can still be changed before payment.",
               )}
             </Text>
           </View>
@@ -323,19 +406,21 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
       <View style={styles.footer}>
         <Pressable
           onPress={() => {
-            console.log('RegistrationWizard: Submit button pressed');
+            console.log("RegistrationWizard: Submit button pressed");
             mutation.mutate();
           }}
           style={({ pressed }) => [
             styles.nextBtn,
-            (mutation.isPending || pressed) && { opacity: 0.7 }
+            (mutation.isPending || pressed) && { opacity: 0.7 },
           ]}
           disabled={mutation.isPending}
         >
           {mutation.isPending ? (
             <ActivityIndicator color={colors.text.inverse} />
           ) : (
-            <Text style={styles.nextBtnText}>{t('registrations.submit', 'Submit Registration')}</Text>
+            <Text style={styles.nextBtnText}>
+              {t("registrations.submit", "Submit Registration")}
+            </Text>
           )}
         </Pressable>
       </View>
@@ -343,188 +428,189 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
   );
 }
 
-const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.background.secondary,
-  },
-  centerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.background.secondary,
-  },
-  scrollContent: {
-    padding: spacing.lg,
-  },
-  stepContent: {
-    flex: 1,
-  },
-  stepTitle: {
-    ...typography.title2,
-    color: colors.text.primary,
-    marginBottom: 4,
-  },
-  stepSubtitle: {
-    ...typography.body,
-    color: colors.text.secondary,
-    marginBottom: spacing.xl,
-  },
-  packageCard: {
-    backgroundColor: colors.background.primary,
-    padding: spacing.lg,
-    borderRadius: borderRadius.lg,
-    marginBottom: spacing.md,
-    borderWidth: 1,
-    borderColor: colors.border.light,
-  },
-  packageHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    gap: spacing.md,
-  },
-  packageName: {
-    ...typography.headline,
-    color: colors.text.primary,
-    marginBottom: 4,
-  },
-  packageDesc: {
-    ...typography.caption1,
-    color: colors.text.secondary,
-  },
-  packagePrice: {
-    ...typography.headline,
-    color: colors.brand.primary,
-  },
-  counterRow: {
-    marginTop: spacing.lg,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: spacing.md,
-  },
-  counterLabel: {
-    ...typography.body,
-    color: colors.text.primary,
-    fontWeight: '600',
-  },
-  counterHint: {
-    ...typography.caption1,
-    color: colors.text.secondary,
-    marginTop: 4,
-  },
-  counterControls: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.sm,
-  },
-  counterButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    backgroundColor: colors.background.secondary,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: colors.border.light,
-  },
-  counterButtonDisabled: {
-    opacity: 0.55,
-  },
-  counterValue: {
-    ...typography.title3,
-    color: colors.text.primary,
-    minWidth: 24,
-    textAlign: 'center',
-    fontWeight: '700',
-  },
-  packageFooter: {
-    marginTop: spacing.md,
-    paddingTop: spacing.md,
-    borderTopWidth: 1,
-    borderTopColor: colors.border.light,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  packageFooterLabel: {
-    ...typography.caption1,
-    color: colors.text.secondary,
-  },
-  packageFooterValue: {
-    ...typography.body,
-    color: colors.text.primary,
-    fontWeight: '700',
-  },
-  summaryCard: {
-    backgroundColor: isDark ? colors.background.primary : '#F6FBFF',
-    padding: spacing.xl,
-    borderRadius: borderRadius.xl,
-    marginTop: spacing.sm,
-  },
-  summaryRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: spacing.md,
-  },
-  summaryLabel: {
-    ...typography.body,
-    color: colors.text.secondary,
-  },
-  summaryValue: {
-    ...typography.body,
-    color: colors.text.primary,
-    fontWeight: '700',
-  },
-  summaryDivider: {
-    height: 1,
-    backgroundColor: colors.border.light,
-    marginVertical: spacing.md,
-  },
-  totalLabel: {
-    ...typography.title3,
-    color: colors.text.primary,
-  },
-  totalValue: {
-    ...typography.title3,
-    color: colors.brand.primary,
-    fontWeight: '700',
-  },
-  noteCard: {
-    backgroundColor: colors.background.primary,
-    padding: spacing.lg,
-    borderRadius: borderRadius.lg,
-    flexDirection: 'row',
-    gap: spacing.sm,
-    alignItems: 'flex-start',
-    marginTop: spacing.md,
-  },
-  noteText: {
-    ...typography.caption1,
-    color: colors.text.secondary,
-    flex: 1,
-    lineHeight: 20,
-  },
-  footer: {
-    padding: spacing.lg,
-    paddingBottom: spacing.xl,
-    backgroundColor: colors.background.primary,
-    borderTopWidth: 1,
-    borderTopColor: colors.border.light,
-    zIndex: 10,
-  },
-  nextBtn: {
-    backgroundColor: colors.brand.primary,
-    padding: spacing.md,
-    borderRadius: borderRadius.md,
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-  },
-  nextBtnText: {
-    color: colors.text.inverse,
-    fontSize: 16,
-    fontWeight: '600',
-  },
-});
+const createStyles = (colors: any, isDark: boolean) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background.secondary,
+    },
+    centerContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: colors.background.secondary,
+    },
+    scrollContent: {
+      padding: spacing.lg,
+    },
+    stepContent: {
+      flex: 1,
+    },
+    stepTitle: {
+      ...typography.title2,
+      color: colors.text.primary,
+      marginBottom: 4,
+    },
+    stepSubtitle: {
+      ...typography.body,
+      color: colors.text.secondary,
+      marginBottom: spacing.xl,
+    },
+    packageCard: {
+      backgroundColor: colors.background.primary,
+      padding: spacing.lg,
+      borderRadius: borderRadius.lg,
+      marginBottom: spacing.md,
+      borderWidth: 1,
+      borderColor: colors.border.light,
+    },
+    packageHeader: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      gap: spacing.md,
+    },
+    packageName: {
+      ...typography.headline,
+      color: colors.text.primary,
+      marginBottom: 4,
+    },
+    packageDesc: {
+      ...typography.caption1,
+      color: colors.text.secondary,
+    },
+    packagePrice: {
+      ...typography.headline,
+      color: colors.brand.primary,
+    },
+    counterRow: {
+      marginTop: spacing.lg,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: spacing.md,
+    },
+    counterLabel: {
+      ...typography.body,
+      color: colors.text.primary,
+      fontWeight: "600",
+    },
+    counterHint: {
+      ...typography.caption1,
+      color: colors.text.secondary,
+      marginTop: 4,
+    },
+    counterControls: {
+      flexDirection: "row",
+      alignItems: "center",
+      gap: spacing.sm,
+    },
+    counterButton: {
+      width: 36,
+      height: 36,
+      borderRadius: 18,
+      backgroundColor: colors.background.secondary,
+      justifyContent: "center",
+      alignItems: "center",
+      borderWidth: 1,
+      borderColor: colors.border.light,
+    },
+    counterButtonDisabled: {
+      opacity: 0.55,
+    },
+    counterValue: {
+      ...typography.title3,
+      color: colors.text.primary,
+      minWidth: 24,
+      textAlign: "center",
+      fontWeight: "700",
+    },
+    packageFooter: {
+      marginTop: spacing.md,
+      paddingTop: spacing.md,
+      borderTopWidth: 1,
+      borderTopColor: colors.border.light,
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+    },
+    packageFooterLabel: {
+      ...typography.caption1,
+      color: colors.text.secondary,
+    },
+    packageFooterValue: {
+      ...typography.body,
+      color: colors.text.primary,
+      fontWeight: "700",
+    },
+    summaryCard: {
+      backgroundColor: isDark ? colors.background.primary : "#F6FBFF",
+      padding: spacing.xl,
+      borderRadius: borderRadius.xl,
+      marginTop: spacing.sm,
+    },
+    summaryRow: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      gap: spacing.md,
+    },
+    summaryLabel: {
+      ...typography.body,
+      color: colors.text.secondary,
+    },
+    summaryValue: {
+      ...typography.body,
+      color: colors.text.primary,
+      fontWeight: "700",
+    },
+    summaryDivider: {
+      height: 1,
+      backgroundColor: colors.border.light,
+      marginVertical: spacing.md,
+    },
+    totalLabel: {
+      ...typography.title3,
+      color: colors.text.primary,
+    },
+    totalValue: {
+      ...typography.title3,
+      color: colors.brand.primary,
+      fontWeight: "700",
+    },
+    noteCard: {
+      backgroundColor: colors.background.primary,
+      padding: spacing.lg,
+      borderRadius: borderRadius.lg,
+      flexDirection: "row",
+      gap: spacing.sm,
+      alignItems: "flex-start",
+      marginTop: spacing.md,
+    },
+    noteText: {
+      ...typography.caption1,
+      color: colors.text.secondary,
+      flex: 1,
+      lineHeight: 20,
+    },
+    footer: {
+      padding: spacing.lg,
+      paddingBottom: spacing.xl,
+      backgroundColor: colors.background.primary,
+      borderTopWidth: 1,
+      borderTopColor: colors.border.light,
+      zIndex: 10,
+    },
+    nextBtn: {
+      backgroundColor: colors.brand.primary,
+      padding: spacing.md,
+      borderRadius: borderRadius.md,
+      alignItems: "center",
+      justifyContent: "center",
+      cursor: "pointer",
+    },
+    nextBtnText: {
+      color: colors.text.inverse,
+      fontSize: 16,
+      fontWeight: "600",
+    },
+  });

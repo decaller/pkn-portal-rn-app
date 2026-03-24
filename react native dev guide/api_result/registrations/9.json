@@ -18,10 +18,11 @@
         "unit_price": "0.00",
         "package_breakdown": [
             {
-                "package_name": "Regular",
-                "participant_count": 1,
-                "unit_price": 100000,
-                "debug_log": "Total amount synced: 100000"
+                "package_id": 1,
+                "name": "Regular",
+                "count": 1,
+                "price": 100000,
+                "subtotal": 100000
             }
         ],
         "event": {

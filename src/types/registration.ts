@@ -41,11 +41,12 @@ export interface Registration {
   package_name?: string | null;
   participant_count: number;
   package_breakdown: RegistrationPackageBreakdown[];
-  status: 'draft' | 'submitted' | 'confirmed' | 'cancelled' | 'awaiting_payment';
+  status: 'draft' | 'submitted' | 'confirmed' | 'cancelled' | 'awaiting_payment' | 'closed';
   total_amount: number;
   created_at: string;
   participants: Participant[];
   invoice?: Invoice;
+  invoices?: Invoice[];
 }
 
 type ApiEnvelope<T> = {
@@ -93,6 +94,7 @@ export const normalizeRegistration = (value: unknown): Registration | null => {
     created_at: typeof value.created_at === 'string' ? value.created_at : '',
     participants,
     invoice: isObject(value.invoice) ? value.invoice as Invoice : undefined,
+    invoices: Array.isArray(value.invoices) ? (value.invoices as Invoice[]) : [],
   };
 };
 

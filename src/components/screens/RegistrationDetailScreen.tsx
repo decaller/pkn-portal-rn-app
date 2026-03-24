@@ -192,6 +192,16 @@ export function RegistrationDetailScreen() {
         .map((item) => `${item.package_name} x${item.participant_count}`)
         .join(', ')
     : registration.package_name;
+  
+  const isDraft = registration.status === 'draft';
+  const isPendingPayment = registration.status === 'awaiting_payment' || registration.status === 'submitted';
+  const isPaid = registration.status === 'confirmed';
+  const isCancelled = registration.status === 'cancelled';
+  const isClosed = registration.status === 'closed';
+
+  const invoicesToShow = registration.invoices && registration.invoices.length > 0 
+    ? registration.invoices 
+    : (registration.invoice ? [registration.invoice] : []);
 
   return (
     <View style={styles.container}>
@@ -233,7 +243,7 @@ export function RegistrationDetailScreen() {
               <Text style={styles.label}>{t('registrations.package', 'Package')}</Text>
               <Text style={styles.packageName}>{packageSummary || '-'}</Text>
             </View>
-            {registration.status !== 'cancelled' && (
+            {!isCancelled && !isPendingPayment && !isPaid && (
               <Pressable 
                 onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
                 style={styles.changePackageBtn}
@@ -250,7 +260,7 @@ export function RegistrationDetailScreen() {
             <Text style={styles.sectionTitle}>
               {t('registrations.participants', 'Participants')} ({registration.participant_count})
             </Text>
-            {registration.status !== 'cancelled' && (
+            {!isCancelled && !isPendingPayment && (
               <Pressable 
                 onPress={() => {
                   setEditingParticipant(null);
@@ -275,7 +285,7 @@ export function RegistrationDetailScreen() {
                 <Text style={styles.participantDetail}>{p.email} • {p.phone}</Text>
               </View>
               <View style={styles.participantActions}>
-                {registration.status !== 'cancelled' && (
+                {(!isCancelled && !isPendingPayment) && (
                   <>
                     <Pressable 
                       onPress={() => {
@@ -295,6 +305,18 @@ export function RegistrationDetailScreen() {
                     </Pressable>
                   </>
                 )}
+                {isPaid && (
+                   <Pressable 
+                      onPress={() => {
+                        setEditingParticipant(p);
+                        setParticipantForm(p);
+                        setParticipantModalVisible(true);
+                      }}
+                      style={styles.iconBtn}
+                    >
+                      <Ionicons name="create-outline" size={20} color={colors.brand.primary} />
+                    </Pressable>
+                )}
                 {p.category && (
                   <View style={styles.categoryBadge}>
                     <Text style={styles.categoryText}>{p.category}</Text>
@@ -303,32 +325,55 @@ export function RegistrationDetailScreen() {
               </View>
             </View>
           ))}
+
+          {/* Contact Support Item moved from footer */}
+          <Pressable 
+            onPress={handleContactSupport}
+            style={styles.contactSupportItem}
+          >
+            <View style={styles.contactIconCircle}>
+              <Ionicons name="logo-whatsapp" size={16} color={colors.brand.primary} />
+            </View>
+            <Text style={styles.contactSupportText}>{t('common.contactSupport', 'Contact Support via WhatsApp')}</Text>
+            <Ionicons name="chevron-forward" size={16} color={colors.text.tertiary} style={{ marginLeft: 'auto' }} />
+          </Pressable>
         </View>
 
         {/* Payment/Invoice Section */}
-        {registration.invoice && (
+        {invoicesToShow.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{t('registrations.paymentInfo', 'Payment Information')}</Text>
-            <View style={styles.invoiceRow}>
-              <Text style={styles.invoiceLabel}>{t('registrations.invoiceNumber', 'Invoice #')}</Text>
-              <Text style={styles.invoiceValue}>{registration.invoice.invoice_number}</Text>
-            </View>
-            <View style={styles.invoiceRow}>
-              <Text style={styles.invoiceLabel}>{t('registrations.totalAmount', 'Total Amount')}</Text>
-              <Text style={styles.totalValue}>
-                {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(registration.total_amount)}
-              </Text>
-            </View>
-            
-            {registration.status === 'awaiting_payment' && registration.invoice.snap_token && (
-              <Pressable 
-                onPress={handlePayment}
-                style={({ pressed }) => [styles.payButton, pressed && { opacity: 0.8 }]}
-              >
-                <Ionicons name="card-outline" size={20} color={colors.text.inverse} />
-                <Text style={styles.payButtonText}>{t('registrations.payNow', 'Pay Now')}</Text>
-              </Pressable>
-            )}
+            {invoicesToShow.map((inv, idx) => (
+              <View key={inv.id} style={[styles.invoiceItem, idx > 0 && { marginTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border.light, paddingTop: spacing.md }]}>
+                <View style={styles.invoiceRow}>
+                  <Text style={styles.invoiceLabel}>{t('registrations.invoiceNumber', 'Invoice #')}</Text>
+                  <Text style={styles.invoiceValue}>{inv.invoice_number}</Text>
+                </View>
+                <View style={[styles.invoiceRow, { marginBottom: 0 }]}>
+                    <Text style={styles.invoiceLabel}>{t('common.status', 'Status')}</Text>
+                    <Badge label={t(`registrations.invoiceStatus.${inv.status}`, inv.status)} variant={inv.status === 'paid' ? 'success' : 'warning'} />
+                </View>
+                <View style={styles.invoiceRow}>
+                  <Text style={styles.invoiceLabel}>{t('registrations.totalAmount', 'Total Amount')}</Text>
+                  <Text style={idx === 0 ? styles.totalValue : styles.invoiceValue}>
+                    {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(inv.amount)}
+                  </Text>
+                </View>
+                
+                {(isDraft || isPendingPayment) && inv.status !== 'paid' && inv.snap_token && (
+                  <Pressable 
+                    onPress={() => {
+                        console.log('Opening payment for token:', inv.snap_token);
+                        // handlePayment logic inlined or called if it supports token
+                    }}
+                    style={({ pressed }) => [styles.payButton, pressed && { opacity: 0.8 }, { marginTop: spacing.sm }]}
+                  >
+                    <Ionicons name="card-outline" size={20} color={colors.text.inverse} />
+                    <Text style={styles.payButtonText}>{t('registrations.payNow', 'Pay Now')}</Text>
+                  </Pressable>
+                )}
+              </View>
+            ))}
           </View>
         )}
 
@@ -337,7 +382,7 @@ export function RegistrationDetailScreen() {
 
       {/* Sticky Actions */}
       <View style={[styles.stickyFooter, shadows.lg]}>
-        {registration.status !== 'cancelled' ? (
+        {!isCancelled && !isClosed && !isPaid ? (
           <>
             <Pressable 
               onPress={handleCancel}
@@ -347,31 +392,39 @@ export function RegistrationDetailScreen() {
               <Text style={[styles.secondaryActionText, { color: colors.status.danger }]}>{t('common.cancel', 'Cancel')}</Text>
             </Pressable>
             
-            {registration.status === 'draft' ? (
+            {isDraft && (
               <Pressable 
                 onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
                 style={({ pressed }) => [styles.primaryAction, pressed && { opacity: 0.8 }]}
               >
                 <Text style={styles.primaryActionText}>{t('registrations.completeRegistration', 'Complete')}</Text>
               </Pressable>
-            ) : (
+            )}
+
+            {(isDraft || isPendingPayment) && (invoicesToShow.some(inv => inv.status !== 'paid' && inv.snap_token)) && (
               <Pressable 
-                onPress={handleContactSupport}
+                onPress={handlePayment}
                 style={({ pressed }) => [styles.primaryAction, pressed && { opacity: 0.8 }]}
               >
-                <Ionicons name="logo-whatsapp" size={20} color={colors.text.inverse} />
-                <Text style={styles.primaryActionText}>{t('common.contact', 'Contact')}</Text>
+                <Ionicons name="card-outline" size={20} color={colors.text.inverse} />
+                <Text style={styles.primaryActionText}>{t('registrations.payNow', 'Pay Now')}</Text>
               </Pressable>
             )}
           </>
+        ) : isPaid ? (
+           <View style={styles.paidAction}>
+              <View style={styles.paidBadge}>
+                <Ionicons name="checkmark-circle" size={24} color={colors.status.success} />
+                <Text style={styles.paidBadgeText}>{t('registrations.fullyPaid', 'Fully Paid')}</Text>
+              </View>
+              <Text style={styles.paidNote}>{t('registrations.fillParticipantDetailsNote', 'Please ensure all participant details are completed.')}</Text>
+           </View>
         ) : (
-          <Pressable 
-            onPress={handleContactSupport}
-            style={({ pressed }) => [styles.fullWidthAction, pressed && { opacity: 0.8 }]}
-          >
-            <Ionicons name="logo-whatsapp" size={20} color={colors.text.inverse} />
-            <Text style={styles.primaryActionText}>{t('common.contact', 'Contact Support')}</Text>
-          </Pressable>
+          <View style={styles.cancelledNote}>
+            <Text style={styles.cancelledNoteText}>
+              {isClosed ? t('registrations.closedRegistrationInfo', 'This event has been closed.') : t('registrations.cancelledRegistrationInfo', 'This registration has been cancelled.')}
+            </Text>
+          </View>
         )}
       </View>
 
@@ -606,6 +659,40 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     paddingHorizontal: spacing.md,
     marginBottom: spacing.md,
   },
+  contactSupportItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.border.light,
+    marginTop: spacing.sm,
+  },
+  contactIconCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    backgroundColor: colors.background.secondary,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: spacing.sm,
+  },
+  contactSupportText: {
+    ...typography.body,
+    fontSize: 14,
+    color: colors.text.primary,
+    fontWeight: '500',
+  },
+  cancelledNote: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: spacing.md,
+  },
+  cancelledNoteText: {
+    ...typography.caption1,
+    color: colors.text.tertiary,
+    fontStyle: 'italic',
+  },
   modalActions: {
     flexDirection: 'row',
     gap: spacing.md,
@@ -633,7 +720,30 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   invoiceRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: spacing.sm,
+  },
+  invoiceItem: {
+    marginBottom: spacing.xs,
+  },
+  paidAction: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paidBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
+  paidBadgeText: {
+    ...typography.headline,
+    color: colors.status.success,
+  },
+  paidNote: {
+    ...typography.caption1,
+    color: colors.text.secondary,
   },
   invoiceLabel: {
     ...typography.body,

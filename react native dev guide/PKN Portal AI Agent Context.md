@@ -163,3 +163,7 @@ When generating code for this app:
 1. **E2E UI Testing (Mobile)**: Use **Maestro** tests (e.g., `.maestro/login_screenshot_flow.yaml`) to validate native application sequences and automatically capture visual workflows.
 2. **E2E UI Testing (Web)**: Use **Playwright** scripts (e.g., `take_web_screenshots.js`) for the web fallback testing.
 3. **Screenshots**: Always direct flow-extracted screenshots to the central `screenshots/` directory for unified documentation reference.
+4. **API Documentation**: After any backend API change, regenerate documentation so it reflects in the mobile app's reference docs:
+   ```bash
+   vendor/bin/sail artisan scribe:generate
+   ```

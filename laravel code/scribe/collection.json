@@ -1,0 +1,2112 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Laravel API Documentation",
+        "_postman_id": "aa505647-9e80-4a5f-aef2-02f6e381a246",
+        "description": "",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "Login",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"gbailey@example.net\",\"password\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get aggregated content for the mobile home screen.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/mobile-dashboard",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/mobile-dashboard"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"featured_events\":[{\"id\":2,\"title\":\"PKN Regional Workshop 2026\",\"slug\":\"pkn-regional-workshop-2026\",\"summary\":null,\"description\":\"<p>Workshop discussion.<\\\/p>\",\"event_date\":\"2026-09-04\",\"city\":\"Kabupaten Cikarang\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":5,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/FLYER-PANDUAN-IMPLEMENTASI-1.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":50,\"available_spots\":48,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":75000,\"max_quota\":30},{\"id\":2,\"name\":\"VIP\",\"price\":200000,\"max_quota\":20}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Materi Sesi 1\",\"speaker\":\"Ustad Abdul Kholiq\",\"session_files\":[\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf\",\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":1,\"title\":\"PKN National Conference 2026\",\"slug\":\"pkn-national-conference-2026\",\"summary\":null,\"description\":\"<p>Annual national offline conference by PKN.<\\\/p>\",\"event_date\":\"2026-06-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/Flyer + Booklet AKG PKN Batch V.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":100000},{\"id\":2,\"name\":\"VIP\",\"price\":250000}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Ju\",\"session_files\":[\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN VI.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":5,\"title\":\"Sed quas officiis suscipit.\",\"slug\":\"numquam-sit-doloribus-est-natus\",\"summary\":null,\"description\":null,\"event_date\":\"2026-04-22\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":4,\"title\":\"PKN Mini Summit 2024\",\"slug\":\"pkn-mini-summit-2024\",\"summary\":null,\"description\":null,\"event_date\":\"2025-07-04\",\"city\":\"Bandung\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":3,\"title\":\"PKN Recap 2023\",\"slug\":\"pkn-recap-2023\",\"summary\":null,\"description\":null,\"event_date\":\"2025-03-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null}],\"latest_news\":[{\"id\":1,\"title\":\"Registration Open: PKN National Conference 2026\",\"content\":\"<p>Registration is now open for PKN National Conference 2026.<\\\/p>\",\"thumbnail\":\"http:\\\/\\\/localhost\\\/storage\\\/news-thumbnails\\\/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg\",\"is_published\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":2,\"title\":\"Registration Open: PKN Regional Workshop 2026\",\"content\":\"<p>Registration is now open for PKN Regional Workshop 2026.<\\\/p>\",\"thumbnail\":\"http:\\\/\\\/localhost\\\/storage\\\/news-thumbnails\\\/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg\",\"is_published\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}],\"testimonials\":[],\"featured_documents\":[{\"id\":27,\"title\":\"1. Mengembalikan Pendidikan ke asalnya-1.pdf\",\"slug\":\"doc-a7z0y\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"original_filename\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/document-covers\\\/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg\",\"mime_type\":\"application\\\/pdf\",\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":34,\"title\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"slug\":\"doc-pnxci\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"original_filename\":\"1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":31,\"title\":\"3. Pembelajaran Alamiyah.pptx\",\"slug\":\"doc-tqtyz\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"original_filename\":\"0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":30,\"title\":\"4. BAKAT - TB - 40.pptx\",\"slug\":\"doc-pvpme\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"original_filename\":\"0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}],\"contact_info\":{\"phone\":null,\"whatsapp_url\":null},\"alerts\":[],\"stats\":{\"active_registrations\":10,\"pending_payments\":8}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List all published events.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/events",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/events"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":2,\"title\":\"PKN Regional Workshop 2026\",\"slug\":\"pkn-regional-workshop-2026\",\"summary\":null,\"description\":\"<p>Workshop discussion.<\\\/p>\",\"event_date\":\"2026-09-04\",\"city\":\"Kabupaten Cikarang\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":5,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/FLYER-PANDUAN-IMPLEMENTASI-1.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":50,\"available_spots\":48,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":75000,\"max_quota\":30},{\"id\":2,\"name\":\"VIP\",\"price\":200000,\"max_quota\":20}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Materi Sesi 1\",\"speaker\":\"Ustad Abdul Kholiq\",\"session_files\":[\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf\",\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":1,\"title\":\"PKN National Conference 2026\",\"slug\":\"pkn-national-conference-2026\",\"summary\":null,\"description\":\"<p>Annual national offline conference by PKN.<\\\/p>\",\"event_date\":\"2026-06-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/Flyer + Booklet AKG PKN Batch V.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":100000},{\"id\":2,\"name\":\"VIP\",\"price\":250000}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Ju\",\"session_files\":[\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN VI.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":5,\"title\":\"Sed quas officiis suscipit.\",\"slug\":\"numquam-sit-doloribus-est-natus\",\"summary\":null,\"description\":null,\"event_date\":\"2026-04-22\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":4,\"title\":\"PKN Mini Summit 2024\",\"slug\":\"pkn-mini-summit-2024\",\"summary\":null,\"description\":null,\"event_date\":\"2025-07-04\",\"city\":\"Bandung\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":3,\"title\":\"PKN Recap 2023\",\"slug\":\"pkn-recap-2023\",\"summary\":null,\"description\":null,\"event_date\":\"2025-03-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/events?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/events?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/events?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/events\",\"per_page\":15,\"to\":5,\"total\":5}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show a specific event.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/events\/:event_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/events\/:event_id",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "3",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":3,\"title\":\"PKN Recap 2023\",\"slug\":\"pkn-recap-2023\",\"summary\":null,\"description\":null,\"event_date\":\"2025-03-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null,\"testimonials\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show similar events.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/events\/:event_id\/similar",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/events\/:event_id\/similar",
+                            "variable": [
+                                {
+                                    "id": "event_id",
+                                    "key": "event_id",
+                                    "value": "3",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":2,\"title\":\"PKN Regional Workshop 2026\",\"slug\":\"pkn-regional-workshop-2026\",\"summary\":null,\"description\":\"<p>Workshop discussion.<\\\/p>\",\"event_date\":\"2026-09-04\",\"city\":\"Kabupaten Cikarang\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":5,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/FLYER-PANDUAN-IMPLEMENTASI-1.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.16 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-11 at 8.37.17 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":50,\"available_spots\":48,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":75000,\"max_quota\":30},{\"id\":2,\"name\":\"VIP\",\"price\":200000,\"max_quota\":20}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Materi Sesi 1\",\"speaker\":\"Ustad Abdul Kholiq\",\"session_files\":[\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 2-PEMETAAN KARAKTER.pdf\",\"events\\\/pkn-regional-workshop-2026\\\/sessions\\\/0. OBSERVASI HARIAN 40 PILAR (CONTOH ISIAN).pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN 4_20231221_132330_0000.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":1,\"title\":\"PKN National Conference 2026\",\"slug\":\"pkn-national-conference-2026\",\"summary\":null,\"description\":\"<p>Annual national offline conference by PKN.<\\\/p>\",\"event_date\":\"2026-06-04\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/event-covers\\\/Flyer + Booklet AKG PKN Batch V.png\",\"photos\":[],\"files\":[],\"documentation\":[\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.52 PM.jpeg\",\"http:\\\/\\\/localhost\\\/storage\\\/event-documentation\\\/WhatsApp Image 2024-07-10 at 3.04.53 PM (1).jpeg\"],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[{\"id\":1,\"name\":\"Regular\",\"price\":100000},{\"id\":2,\"name\":\"VIP\",\"price\":250000}],\"rundown\":[{\"type\":\"advanced\",\"data\":{\"title\":\"Ju\",\"session_files\":[\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"events\\\/pkn-national-conference-2026\\\/sessions\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\"]}}],\"tags\":null,\"proposal\":\"http:\\\/\\\/localhost\\\/storage\\\/event-proposals\\\/BOOKLET AKADEMI GURU PKN VI.pdf\",\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T06:18:58.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":5,\"title\":\"Sed quas officiis suscipit.\",\"slug\":\"numquam-sit-doloribus-est-natus\",\"summary\":null,\"description\":null,\"event_date\":\"2026-04-22\",\"city\":null,\"province\":null,\"nation\":null,\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":true,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null},{\"id\":4,\"title\":\"PKN Mini Summit 2024\",\"slug\":\"pkn-mini-summit-2024\",\"summary\":null,\"description\":null,\"event_date\":\"2025-07-04\",\"city\":\"Bandung\",\"province\":\"Jawa Barat\",\"nation\":\"Indonesia\",\"duration_days\":null,\"google_maps_url\":null,\"cover_image\":null,\"photos\":[],\"files\":[],\"documentation\":[],\"is_published\":true,\"allow_registration\":false,\"max_capacity\":null,\"available_spots\":null,\"is_full\":false,\"registration_packages\":[],\"rundown\":null,\"tags\":null,\"proposal\":null,\"created_at\":\"2026-03-24T01:18:52.000000Z\",\"updated_at\":\"2026-03-24T01:18:52.000000Z\",\"event_type\":\"offline\",\"survey_template_id\":null,\"place\":null,\"payment_instructions\":null}]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List all published news.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/news",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/news"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"title\":\"Registration Open: PKN National Conference 2026\",\"content\":\"<p>Registration is now open for PKN National Conference 2026.<\\\/p>\",\"thumbnail\":\"http:\\\/\\\/localhost\\\/storage\\\/news-thumbnails\\\/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg\",\"is_published\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":2,\"title\":\"Registration Open: PKN Regional Workshop 2026\",\"content\":\"<p>Registration is now open for PKN Regional Workshop 2026.<\\\/p>\",\"thumbnail\":\"http:\\\/\\\/localhost\\\/storage\\\/news-thumbnails\\\/WhatsApp Image 2026-03-12 at 1.14.07 PM.jpeg\",\"is_published\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/news?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/news?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/news?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/news\",\"per_page\":15,\"to\":2,\"total\":2}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show a specific news article.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/news\/:news_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/news\/:news_id",
+                            "variable": [
+                                {
+                                    "id": "news_id",
+                                    "key": "news_id",
+                                    "value": "1",
+                                    "description": "The ID of the news."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":1,\"title\":\"Registration Open: PKN National Conference 2026\",\"content\":\"<p>Registration is now open for PKN National Conference 2026.<\\\/p>\",\"thumbnail\":\"http:\\\/\\\/localhost\\\/storage\\\/news-thumbnails\\\/WhatsApp Image 2026-03-12 at 1.14.05 PM.jpeg\",\"is_published\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\",\"event\":null}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "List all active documents.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/documents",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/documents"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"featured_documents\":[{\"id\":27,\"title\":\"1. Mengembalikan Pendidikan ke asalnya-1.pdf\",\"slug\":\"doc-a7z0y\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"original_filename\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/document-covers\\\/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg\",\"mime_type\":\"application\\\/pdf\",\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":34,\"title\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"slug\":\"doc-pnxci\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"original_filename\":\"1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":30,\"title\":\"4. BAKAT - TB - 40.pptx\",\"slug\":\"doc-pvpme\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"original_filename\":\"0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":31,\"title\":\"3. Pembelajaran Alamiyah.pptx\",\"slug\":\"doc-tqtyz\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"original_filename\":\"0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}],\"documents\":{\"data\":[{\"id\":27,\"title\":\"1. Mengembalikan Pendidikan ke asalnya-1.pdf\",\"slug\":\"doc-a7z0y\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"original_filename\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/document-covers\\\/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg\",\"mime_type\":\"application\\\/pdf\",\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":34,\"title\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"slug\":\"doc-pnxci\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"original_filename\":\"1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":30,\"title\":\"4. BAKAT - TB - 40.pptx\",\"slug\":\"doc-pvpme\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"original_filename\":\"0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"},{\"id\":31,\"title\":\"3. Pembelajaran Alamiyah.pptx\",\"slug\":\"doc-tqtyz\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"original_filename\":\"0. LEMBAR OBSERVASI 1-PERTUMBUHAN KARAKTER.pdf\",\"cover_image\":null,\"mime_type\":null,\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/documents?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/documents?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"page\":null,\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/documents?page=1\",\"label\":\"1\",\"page\":1,\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"page\":null,\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/v1\\\/documents\",\"per_page\":20,\"to\":4,\"total\":4}}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Show a specific document.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/documents\/:document_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/documents\/:document_id",
+                            "variable": [
+                                {
+                                    "id": "document_id",
+                                    "key": "document_id",
+                                    "value": "27",
+                                    "description": "The ID of the document."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":{\"id\":27,\"title\":\"1. Mengembalikan Pendidikan ke asalnya-1.pdf\",\"slug\":\"doc-a7z0y\",\"file_url\":\"http:\\\/\\\/localhost\\\/storage\\\/manual-uploads\\\/0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"original_filename\":\"0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx\",\"cover_image\":\"http:\\\/\\\/localhost\\\/storage\\\/document-covers\\\/WhatsApp Image 2026-03-12 at 1.49.09 PM(1).jpeg\",\"mime_type\":\"application\\\/pdf\",\"description\":null,\"tags\":[\"featured\"],\"is_active\":true,\"is_featured\":true,\"event_id\":null,\"created_at\":\"2026-03-24T01:18:52+00:00\"}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/auth\/register",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/register",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/register"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"phone_number\":\"ngzmiyvdljnikhwa\",\"email\":\"breitenberg.gilbert@example.com\",\"password\":\"kXaz<m\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Authenticate a user via their phone number and password.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"phone_number\":\"architecto\",\"password\":\"|]|{+-\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/payments\/webhook",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/payments\/webhook",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/payments\/webhook"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"order_id\":\"architecto\",\"status_code\":\"architecto\",\"gross_amount\":\"architecto\",\"signature_key\":\"architecto\",\"transaction_status\":\"architecto\",\"transaction_id\":\"architecto\",\"payment_type\":\"architecto\",\"fraud_status\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get the authenticated user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/me",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Get the authenticated user.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Revoke the current token.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/logout"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/user\/profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/profile"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/user\/profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/profile"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"email\":\"zbailey@example.net\",\"phone_number\":\"i\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/user\/profile",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/user\/profile",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/user\/profile"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/organizations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/organizations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/organizations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/organizations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/organizations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/organizations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"logo\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/v1\/organizations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/organizations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/organizations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the organization."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"b\",\"logo\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/organizations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/organizations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/organizations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the organization."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/notifications",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notifications",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notifications"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/notifications\/unread-count",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notifications\/unread-count",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notifications\/unread-count"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/notifications\/mark-all-read",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notifications\/mark-all-read",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notifications\/mark-all-read"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "POST api\/v1\/notifications\/{id}\/mark-read",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/notifications\/:id\/mark-read",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/notifications\/:id\/mark-read",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "architecto",
+                                    "description": "The ID of the notification."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/registrations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/registrations",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"event_id\":\"architecto\",\"packages\":[{\"package_id\":\"architecto\",\"count\":22}]}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/registrations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the registration."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "PUT api\/v1\/registrations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the registration."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[]"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/registrations\/{id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the registration."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/registrations\/{registration_id}\/participants",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations\/:registration_id\/participants",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations\/:registration_id\/participants",
+                            "variable": [
+                                {
+                                    "id": "registration_id",
+                                    "key": "registration_id",
+                                    "value": "architecto",
+                                    "description": "The ID of the registration."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/registrations\/{registration_id}\/participants",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/registrations\/:registration_id\/participants",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/registrations\/:registration_id\/participants",
+                            "variable": [
+                                {
+                                    "id": "registration_id",
+                                    "key": "registration_id",
+                                    "value": "architecto",
+                                    "description": "The ID of the registration."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"architecto\",\"email\":\"zbailey@example.net\",\"phone\":\"architecto\",\"notes\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "PUT api\/v1\/participants\/{participant_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/participants\/:participant_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/participants\/:participant_id",
+                            "variable": [
+                                {
+                                    "id": "participant_id",
+                                    "key": "participant_id",
+                                    "value": "1",
+                                    "description": "The ID of the participant."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"architecto\",\"email\":\"zbailey@example.net\",\"phone\":\"architecto\",\"notes\":\"architecto\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "DELETE api\/v1\/participants\/{participant_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/participants\/:participant_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/participants\/:participant_id",
+                            "variable": [
+                                {
+                                    "id": "participant_id",
+                                    "key": "participant_id",
+                                    "value": "1",
+                                    "description": "The ID of the participant."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "GET api\/v1\/invoices",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/invoices",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/invoices"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/invoices\/{invoice_id}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/invoices\/:invoice_id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/invoices\/:invoice_id",
+                            "variable": [
+                                {
+                                    "id": "invoice_id",
+                                    "key": "invoice_id",
+                                    "value": "1",
+                                    "description": "The ID of the invoice."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "GET api\/v1\/invoices\/{invoice_id}\/download",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/invoices\/:invoice_id\/download",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/invoices\/:invoice_id\/download",
+                            "variable": [
+                                {
+                                    "id": "invoice_id",
+                                    "key": "invoice_id",
+                                    "value": "1",
+                                    "description": "The ID of the invoice."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-frame-options",
+                                    "value": "SAMEORIGIN"
+                                },
+                                {
+                                    "key": "x-content-type-options",
+                                    "value": "nosniff"
+                                },
+                                {
+                                    "key": "strict-transport-security",
+                                    "value": "max-age=31536000; includeSubDomains"
+                                },
+                                {
+                                    "key": "referrer-policy",
+                                    "value": "no-referrer-when-downgrade"
+                                },
+                                {
+                                    "key": "content-security-policy",
+                                    "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; style-src 'self' 'unsafe-inline' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; img-src 'self' data: https:\/\/*; font-src 'self' data: https:\/\/*; connect-src 'self' https:\/\/* http:\/\/localhost:* http:\/\/[::1]:* ws:\/\/localhost:* ws:\/\/[::1]:*; frame-src 'self' https:\/\/*"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "POST api\/v1\/payments\/charge",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/payments\/charge",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/payments\/charge"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"invoice_id\":16}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

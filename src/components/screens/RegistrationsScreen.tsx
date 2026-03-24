@@ -108,12 +108,25 @@ export function RegistrationsScreen() {
       </View>
 
       <View style={styles.cardFooter}>
-        <Text style={styles.amountText}>
-          {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.total_amount)}
-        </Text>
-        <View style={styles.actionLink}>
-          <Text style={styles.actionText}>{t('common.seeDetails', 'Details')}</Text>
-          <Ionicons name="chevron-forward" size={14} color={colors.brand.primary} />
+        <View style={styles.footerLeft}>
+          <Text style={styles.amountText}>
+            {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(item.total_amount)}
+          </Text>
+        </View>
+        <View style={styles.footerRight}>
+          {(item.status === 'awaiting_payment' || (item.status === 'draft' && (item.invoice || (item.invoices && item.invoices.length > 0)))) && (
+            <Pressable 
+              onPress={() => router.push(`/registrations/${item.id}`)}
+              style={({ pressed }) => [styles.payButton, pressed && { opacity: 0.8 }]}
+            >
+              <Ionicons name="card-outline" size={14} color={colors.text.inverse} />
+              <Text style={styles.payButtonText}>{t('registrations.payNow', 'Pay Now')}</Text>
+            </Pressable>
+          )}
+          <View style={styles.actionLink}>
+            <Text style={styles.actionText}>{t('common.seeDetails', 'Details')}</Text>
+            <Ionicons name="chevron-forward" size={14} color={colors.brand.primary} />
+          </View>
         </View>
       </View>
     </Pressable>
@@ -230,6 +243,28 @@ const createStyles = (colors: any) => StyleSheet.create({
   amountText: {
     ...typography.headline,
     color: colors.text.primary,
+  },
+  footerLeft: {
+    flex: 1,
+  },
+  footerRight: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  payButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: colors.brand.primary,
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: borderRadius.sm,
+    gap: 4,
+    marginRight: spacing.sm,
+  },
+  payButtonText: {
+    ...typography.caption1,
+    color: colors.text.inverse,
+    fontWeight: '600',
   },
   actionLink: {
     flexDirection: 'row',

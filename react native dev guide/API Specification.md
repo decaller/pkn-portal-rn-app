@@ -3,7 +3,7 @@
 Base URL: `https://your-domain.com/api/v1`
 
 > [!NOTE]
-> Updated API documentation from the backend is available at: http://localhost/docs
+> Updated API documentation from the backend is available in the [laravel code/scribe](file:///home/abuhafi/Project/pkn-portal/pkn-portal%20react-native/pkn-portal-rn-app/laravel%20code/scribe) directory.
 
 Authentication:
 
