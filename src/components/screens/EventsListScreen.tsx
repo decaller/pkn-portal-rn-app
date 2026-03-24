@@ -5,12 +5,12 @@
 import React, { useState, useCallback } from 'react';
 import {
   View,
-  FlatList,
   RefreshControl,
   StyleSheet,
   Platform,
   ScrollView,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { EventCard } from '@/components/sections/EventCard';
@@ -133,12 +133,13 @@ export function EventsListScreen() {
       </View>
 
       {/* Events List */}
-      <FlatList
+      <FlashList
         data={filteredEvents}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <EventCard event={item} onPress={() => handleEventPress(item)} />
         )}
+        estimatedItemSize={280}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         refreshControl={

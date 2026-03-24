@@ -4,6 +4,8 @@
 
 This mobile app is the React Native companion for the existing Laravel 12 + Filament 5 portal.
 
+> **Backend Database:** The backend uses **PostgreSQL exclusively** (via Laravel Sail's `pgsql` service). Never suggest SQLite for backend tasks. Tests also run against a dedicated PostgreSQL `testing` database.
+
 The backend already has strong web-side domain logic for:
 
 - phone-number login
@@ -48,8 +50,8 @@ The key distinction is:
 - State: Zustand with persist
 - Storage:
   - auth token in `expo-secure-store`
-  - cached app state in `react-native-mmkv` (preferred over AsyncStorage for 30x faster performance)
-- Styling: React Native `StyleSheet`
+  - cached app state in `react-native-mmkv` (**Standard**: synchronous, 30x faster than AsyncStorage).
+- Styling: React Native `StyleSheet` with platform-aware theme tokens (`@/theme/colors`).
 
 ## Environment constraints
 
@@ -60,17 +62,19 @@ Rules:
 2. Prefer packages that work with standard Expo workflows.
 3. Do not use `react-navigation` directly; use Expo Router patterns.
 
-## Authentication rule (Native Focus)
+## Authentication rule (Sanctum Implementation)
 
-Use a **Native Login Strategy**.
+Use a **Native Login Strategy** powered by Laravel Sanctum.
 
 ### Login Flow:
-1. Native app provides a typical Login form.
-2. User authenticates via API Call.
-3. Native app extracts the `token` from the JSON response.
+1. Native app provides a typical Login form (phone number + password).
+2. User authenticates via API Call to `POST /api/v1/auth/login`.
+3. Native app extracts the `plainTextToken` from the JSON response.
+4. The token is stored in `expo-secure-store` and sent as a `Bearer` token in the `Authorization` header.
 
 This ensures:
 - The app has a **Sanctum Bearer Token** for native API calls.
+- Old non-functional tokens are revoked on the server upon new login.
 
 ## APIs Only rule
 
@@ -108,33 +112,51 @@ pkn-portal-app/
 │   └── webview/
 │   │   └── bridge.tsx (For optional magic-link fallbacks)
 ├── src/
+│   ├── theme/
+│   │   └── colors.ts (Centralized Light/Dark theme tokens)
 │   ├── components/
 │   ├── services/
+│   │   ├── eventService.ts
+│   │   ├── registrationService.ts
+│   │   └── paymentService.ts
 │   ├── store/
-│   │   └── dashboardStore.ts (uses MMKV for 1ms cache loads)
+│   │   ├── appStore.ts (uses MMKV via zustandStorage)
+│   │   └── zustandStorage.ts (Unified adapter)
 │   └── types/
 
-## Performance & Scalability Tips
+## Architectural Standards
 
 1. **FlashList (instead of FlatList)**:
-   - Use Shopify's `<FlashList>` for rendering lists, specifically for the **Events Discovery** tab.
-   - It is significantly faster and prevents memory crashes when handling large datasets.
+   - **MANDATORY**: Use Shopify's `<FlashList>` for all lists (`Events`, `News`, `Registrations`, `Documents`, `Invoices`).
+   - Use `estimatedItemSize` to prevent blanking.
 
-2. **React Native MMKV (instead of AsyncStorage)**:
-   - Use `react-native-mmkv` for local storage; it is ~30x faster than standard `AsyncStorage`.
-   - It plugs directly into Zustand via a custom storage object.
-   - *Note*: MMKV requires a custom dev client (it does not work in standard Expo Go).
-```
+2. **React Native MMKV**:
+   - **MANDATORY**: Use `react-native-mmkv` for all local storage.
+   - Plug into Zustand via `src/store/zustandStorage.ts`.
+
+3. **Service Layer Pattern**:
+   - UI components must NOT call `api.get/post` directly. 
+   - Always use a service from `src/services/` (e.g., `eventService.getEvents()`).
+
+4. **Midtrans Payment Integration**:
+   - Use `react-native-webview` for Midtrans Snap.
+   - **Strategy**: Fetch `redirect_url` via `paymentService.charge(id)`, then render in a dedicated WebView screen.
+   - **Deep Links**: WebView must handle `gojek://`, `shopeepay://`, etc., via `Linking.openURL`.
+
+5. **SDK 55 & React 19 Activity**:
+   - Wrap the main tab layout in `<Activity mode="hidden">`.
+   - This keeps background screens preserved but inactive, significantly reducing memory pressure and re-render spikes.
 
 ## Coding directives
 
 When generating code for this app:
 
 1. **Auth**: Use the native login form. Do not build WebViews for this.
-2. **Types**: Use TypeScript interfaces for all API contracts.
-3. **BFF**: Use `GET /api/v1/mobile-dashboard` for the home screen to minimize round-trips.
-4. **URLs**: Ensure all image and file paths are absolute URLs returned by the API.
-5. **Flows**: Treat all flows as standard React Native stacks interacting with decoupled APIs.
+2. **Theming**: Use the `useAppTheme` hook to access colors. Never import `light` or `dark` directly into components.
+3. **Types**: Use TypeScript interfaces for all API contracts.
+4. **BFF**: Use `GET /api/v1/mobile-dashboard` for the home screen to minimize round-trips.
+5. **URLs**: Ensure all image and file paths are absolute URLs returned by the API.
+6. **Flows**: Treat all flows as standard React Native stacks interacting with decoupled APIs.
 
 ## Testing & Automation
 

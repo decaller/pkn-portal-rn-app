@@ -3,6 +3,7 @@
  * iOS: BlurView background (Liquid Glass), Android: Material 3 solid surface.
  * Reference: Expo SDK 55 Features.md, UX Flow Guide § 3
  */
+import React from 'react';
 import { Tabs } from 'expo-router';
 import { BlurView } from 'expo-blur';
 import { Platform, StyleSheet, View } from 'react-native';

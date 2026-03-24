@@ -7,11 +7,11 @@ import {
   View, 
   Text, 
   StyleSheet, 
-  FlatList, 
-  RefreshControl, 
   Pressable,
-  ActivityIndicator
+  ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -137,10 +137,11 @@ export function RegistrationsScreen() {
         />
       </View>
 
-      <FlatList
+      <FlashList
         data={filteredRegistrations}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
+        estimatedItemSize={140}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         refreshControl={

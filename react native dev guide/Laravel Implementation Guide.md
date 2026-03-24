@@ -2,20 +2,25 @@
 
 This document outlines the necessary changes and additions needed in the Laravel backend to support the PKN Portal Mobile Application (React Native).
 
-## 1. Authentication
+## 1. Authentication (Sanctum Implementation)
 
-Since the mobile app uses a **Native Login** strategy:
+The mobile app uses a **Native Login** strategy with Laravel Sanctum:
 
-1.  **Login Endpoint**: Implement `POST /api/v1/auth/login`.
-    *   This endpoint must accept phone number and password, and return a Sanctum token.
-    *   **Logic**: 
+- **Login Endpoint**: `POST /api/v1/auth/login`
+    - Accepts `phone_number` and `password`.
+    - Returns a `plainTextToken` labeled as `mobile-app`.
+    - **Implementation**:
         ```php
+        // AuthController@login
         if (Auth::attempt($credentials)) {
             $user = auth()->user();
+            $user->tokens()->where('name', 'mobile-app')->delete(); // Single-token restriction
             $token = $user->createToken('mobile-app')->plainTextToken;
-            return response()->json(['token' => $token, 'user' => $user]);
+            return response()->json(['token' => $token, 'user' => new UserResource($user)]);
         }
         ```
+- **Registration**: `POST /api/v1/auth/register` creates the user and immediately issues a Sanctum token.
+- **Logout**: `POST /api/v1/auth/logout` revokes the `currentAccessToken()`.
 
 ## 2. Deprecated (WebView Bridge)
 

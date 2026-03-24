@@ -3,7 +3,8 @@
  * Reference: UX Flow Guide § 4.H
  */
 import React, { useState, useCallback } from 'react';
-import { View, FlatList, RefreshControl, StyleSheet, Platform } from 'react-native';
+import { View, RefreshControl, StyleSheet, Platform } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { NewsCard } from '@/components/sections/NewsCard';
@@ -26,12 +27,13 @@ export function NewsListScreen() {
   };
 
   return (
-    <FlatList
+    <FlashList
       data={MOCK_NEWS}
       keyExtractor={(item) => item.id.toString()}
       style={styles.container}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
+      estimatedItemSize={120}
       refreshControl={
         <RefreshControl
           refreshing={refreshing}

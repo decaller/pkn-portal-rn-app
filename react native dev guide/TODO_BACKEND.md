@@ -32,7 +32,8 @@ _The mobile app is now using a fully native login flow instead of a WebView brid
 
 - [x] **Sanctum Authentication**
     - Ensure Laravel Sanctum is installed and configured for mobile token authentication.
-    - Implement `POST /api/v1/auth/login` returning a plaintext token and user profile.
+    - [x] Implement `POST /api/v1/auth/register` for new user registration.
+    - [x] Implement `POST /api/v1/auth/login` returning a plaintext token and user profile.
     - Implement `POST /api/v1/auth/logout` to revoke the token.
     - Implement `GET /api/v1/user` to get the authenticated user's details.
 

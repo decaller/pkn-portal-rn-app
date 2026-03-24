@@ -7,13 +7,13 @@ import React, { useState } from 'react';
 import {
   View,
   Text,
-  FlatList,
   Pressable,
   StyleSheet,
   Platform,
   RefreshControl,
   ScrollView,
 } from 'react-native';
+import { FlashList } from '@shopify/flash-list';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@tanstack/react-query';
@@ -146,7 +146,7 @@ export function DocumentBrowserScreen() {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      <FlashList
         data={search ? filteredDocs : regularDocs}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
@@ -155,6 +155,7 @@ export function DocumentBrowserScreen() {
             onDownload={handleDownload}
           />
         )}
+        estimatedItemSize={100}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
         refreshControl={

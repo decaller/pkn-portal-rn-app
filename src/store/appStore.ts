@@ -2,12 +2,11 @@
  * General app state store using Zustand.
  * Manages onboarding state and language preference.
  *
- * Persistence is enabled on Native only (iOS/Android).
- * Web (dev-only) uses a plain in-memory store to avoid Metro bundler
- * incompatibility with Zustand's ESM middleware (import.meta.env).
+ * Persistence is managed by zustandStorage (MMKV on Native, LocalStorage on Web).
  */
-import { Platform } from 'react-native';
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { zustandStorage } from './zustandStorage';
 
 interface AppState {
   hasSeenWelcome: boolean;
@@ -25,51 +24,28 @@ const initialState = {
   theme: 'system' as const,
 };
 
-function createStore() {
-  if (Platform.OS === 'web') {
-    // On web (dev only), skip persistence entirely — no import.meta.env issues
-    return create<AppState>()((set) => ({
+export const useAppStore = create<AppState>()(
+  persist(
+    (set) => ({
       ...initialState,
-      _hasHydrated: true, // immediately ready on web
+      _hasHydrated: false,
       setHasSeenWelcome: (value) => set({ hasSeenWelcome: value }),
       setLanguage: (lang) => set({ language: lang }),
       setTheme: (theme) => set({ theme }),
-    }));
-  }
-
-  // Native: use persist middleware with AsyncStorage
-  const { persist, createJSONStorage } = require('zustand/middleware');
-  const AsyncStorage = require('@react-native-async-storage/async-storage').default;
-
-  return create<AppState>()(
-    persist(
-      (set: (partial: Partial<AppState>) => void) => ({
-        ...initialState,
-        _hasHydrated: false,
-        setHasSeenWelcome: (value: boolean) => set({ hasSeenWelcome: value }),
-        setLanguage: (lang: 'en' | 'id') => set({ language: lang }),
-        setTheme: (theme: 'light' | 'dark' | 'system') => set({ theme }),
+    }),
+    {
+      name: 'pkn-app-storage',
+      storage: createJSONStorage(() => zustandStorage),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          state._hasHydrated = true;
+        }
+      },
+      partialize: (state) => ({
+        hasSeenWelcome: state.hasSeenWelcome,
+        language: state.language,
+        theme: state.theme,
       }),
-      {
-        name: 'pkn-app-storage',
-        storage: createJSONStorage(() => AsyncStorage),
-        skipHydration: true,
-        onRehydrateStorage: () => {
-          return () => {
-            useAppStore.setState({ _hasHydrated: true });
-          };
-        },
-        partialize: (state: AppState) => ({
-          hasSeenWelcome: state.hasSeenWelcome,
-          language: state.language,
-          theme: state.theme,
-        }),
-      }
-    )
-  );
-}
-
-export const useAppStore = createStore();
-
-
-
+    }
+  )
+);
