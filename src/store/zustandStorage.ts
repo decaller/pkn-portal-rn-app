@@ -6,15 +6,24 @@
  */
 import { Platform } from 'react-native';
 import { type StateStorage } from 'zustand/middleware';
-import { MMKV } from 'react-native-mmkv';
 
 /**
- * MMKV Instance for Native
+ * Lazy MMKV Instance for Native
  */
-const storage = new MMKV({
-  id: 'pkn-portal-storage',
-  encryptionKey: 'pkn-secret-key-123'
-});
+let mmkvStorage: any = null;
+
+const getMMKVStorage = () => {
+  if (Platform.OS === 'web') return null;
+  
+  if (!mmkvStorage) {
+    const { MMKV } = require('react-native-mmkv');
+    mmkvStorage = new MMKV({
+      id: 'pkn-portal-storage',
+      encryptionKey: 'pkn-secret-key-123'
+    });
+  }
+  return mmkvStorage;
+};
 
 /**
  * Web LocalStorage adapter
@@ -37,13 +46,16 @@ const webLocalStorage: StateStorage = {
  */
 const nativeMMKVStorage: StateStorage = {
   getItem: (name) => {
-    return storage.getString(name) ?? null;
+    const storage = getMMKVStorage();
+    return storage?.getString(name) ?? null;
   },
   setItem: (name, value) => {
-    storage.set(name, value);
+    const storage = getMMKVStorage();
+    storage?.set(name, value);
   },
   removeItem: (name) => {
-    storage.delete(name);
+    const storage = getMMKVStorage();
+    storage?.delete(name);
   },
 };
 
@@ -52,3 +64,4 @@ const nativeMMKVStorage: StateStorage = {
  */
 export const zustandStorage: StateStorage = 
   Platform.OS === 'web' ? webLocalStorage : nativeMMKVStorage;
+

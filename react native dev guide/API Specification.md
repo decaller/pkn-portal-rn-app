@@ -2,6 +2,9 @@
 
 Base URL: `https://your-domain.com/api/v1`
 
+> [!NOTE]
+> Updated API documentation from the backend is available at: http://localhost/docs
+
 Authentication:
 
 - Laravel Sanctum bearer tokens for the mobile app

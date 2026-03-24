@@ -21,6 +21,7 @@ import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, typography, borderRadius, shadows } from '@/theme';
 import api from '@/services/api';
 import { extractRegistration, type EventItem, type Participant, type Registration, type SingleEventResponse } from '@/types';
+import { AlertBanner } from '@/components/ui/AlertBanner';
 
 interface RegistrationWizardProps {
   eventId: string;
@@ -73,6 +74,7 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
   const styles = createStyles(colors, isDark);
 
   const [packageCounts, setPackageCounts] = useState<PackageCountMap>({});
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const hydratedRegistrationKeyRef = React.useRef<string | null>(null);
 
   const { data: existingReg, isLoading: isLoadingReg } = useQuery<Registration | null>({
@@ -194,14 +196,12 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
       router.replace(`/registrations/${data.id}`);
     },
     onError: (error: any) => {
-      Alert.alert(
-        t('common.error'),
-        getApiErrorMessage(error) || t('common.errorDesc'),
-      );
+      setErrorMessage(getApiErrorMessage(error) || t('common.errorDesc'));
     },
   });
 
   const updatePackageCount = (packageKey: string, nextValue: number) => {
+    setErrorMessage(null); // Clear error when user changes counts
     setPackageCounts((current) => ({
       ...current,
       [packageKey]: Math.max(0, nextValue),
@@ -220,8 +220,21 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
     <View style={styles.container}>
       <Stack.Screen options={{ title: t('events.registration', 'Registration') }} />
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView 
+        style={{ flex: 1 }}
+        contentContainerStyle={styles.scrollContent}
+      >
         <View style={styles.stepContent}>
+          {errorMessage && (
+            <AlertBanner
+              type="danger"
+              title={t('common.error')}
+              message={errorMessage}
+              style={{ marginHorizontal: 0, marginBottom: spacing.lg }}
+              onPress={() => setErrorMessage(null)}
+            />
+          )}
+
           <Text style={styles.stepTitle}>{t('registrations.step1Title', 'Set Package Counts')}</Text>
           <Text style={styles.stepSubtitle}>
             {t('registrations.step1Subtitle', 'Set participant count for each package. You only need to review the total here.')}
@@ -309,8 +322,14 @@ export function RegistrationWizard({ eventId, regId }: RegistrationWizardProps) 
 
       <View style={styles.footer}>
         <Pressable
-          onPress={() => mutation.mutate()}
-          style={[styles.nextBtn, mutation.isPending && { opacity: 0.7 }]}
+          onPress={() => {
+            console.log('RegistrationWizard: Submit button pressed');
+            mutation.mutate();
+          }}
+          style={({ pressed }) => [
+            styles.nextBtn,
+            (mutation.isPending || pressed) && { opacity: 0.7 }
+          ]}
           disabled={mutation.isPending}
         >
           {mutation.isPending ? (
@@ -493,6 +512,7 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     backgroundColor: colors.background.primary,
     borderTopWidth: 1,
     borderTopColor: colors.border.light,
+    zIndex: 10,
   },
   nextBtn: {
     backgroundColor: colors.brand.primary,
@@ -500,6 +520,7 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     borderRadius: borderRadius.md,
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
   },
   nextBtnText: {
     color: colors.text.inverse,

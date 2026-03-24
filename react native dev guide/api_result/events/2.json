@@ -55,12 +55,14 @@
         "is_full": false,
         "registration_packages": [
             {
+                "id": 1,
                 "name": "Regular",
                 "price": 75000,
                 "max_quota": 30,
                 "description": "Penginapan bersama di kelas yang diubah menjadi tempat menginap dengan fasilitas 1 kasur dan 1 bantal."
             },
             {
+                "id": 2,
                 "name": "VIP",
                 "price": 200000,
                 "max_quota": 20,

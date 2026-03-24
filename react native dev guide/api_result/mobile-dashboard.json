@@ -56,12 +56,14 @@
             "is_full": false,
             "registration_packages": [
                 {
+                    "id": 1,
                     "name": "Regular",
                     "price": 75000,
                     "max_quota": 30,
                     "description": "Penginapan bersama di kelas yang diubah menjadi tempat menginap dengan fasilitas 1 kasur dan 1 bantal."
                 },
                 {
+                    "id": 2,
                     "name": "VIP",
                     "price": 200000,
                     "max_quota": 20,
@@ -143,11 +145,13 @@
             "is_full": false,
             "registration_packages": [
                 {
+                    "id": 1,
                     "name": "Regular",
                     "price": 100000,
                     "max_quota": null
                 },
                 {
+                    "id": 2,
                     "name": "VIP",
                     "price": 250000,
                     "max_quota": null
@@ -237,12 +241,14 @@
             "is_full": false,
             "registration_packages": [
                 {
+                    "id": 1,
                     "name": "Regular",
                     "price": 75000,
                     "max_quota": 50,
                     "description": "Biasa aja"
                 },
                 {
+                    "id": 2,
                     "name": "VIP",
                     "price": 200000,
                     "max_quota": null,
@@ -297,12 +303,14 @@
             "is_full": false,
             "registration_packages": [
                 {
+                    "id": 1,
                     "name": "Regular",
                     "price": 100000,
                     "max_quota": null,
                     "description": null
                 },
                 {
+                    "id": 2,
                     "name": "VIP",
                     "price": 250000,
                     "max_quota": null,
@@ -335,22 +343,24 @@
         }
     ],
     "testimonials": [],
-    "featured_document": {
-        "id": 27,
-        "title": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
-        "slug": "doc-a7z0y",
-        "file_url": "http://localhost/storage/manual-uploads/1. Mengembalikan Pendidikan ke asalnya-1.pdf",
-        "original_filename": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
-        "cover_image": "http://localhost/storage/document-covers/27-doc-a7z0y.png",
-        "mime_type": "application/pdf",
-        "description": "Auto-extracted from manual_upload: Manual Upload",
-        "tags": [
-            "featured"
-        ],
-        "is_active": true,
-        "is_featured": true,
-        "event_id": null
-    },
+    "featured_documents": [
+        {
+            "id": 27,
+            "title": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+            "slug": "doc-a7z0y",
+            "file_url": "http://localhost/storage/manual-uploads/1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+            "original_filename": "1. Mengembalikan Pendidikan ke asalnya-1.pdf",
+            "cover_image": "http://localhost/storage/document-covers/27-doc-a7z0y.png",
+            "mime_type": "application/pdf",
+            "description": "Auto-extracted from manual_upload: Manual Upload",
+            "tags": [
+                "featured"
+            ],
+            "is_active": true,
+            "is_featured": true,
+            "event_id": null
+        }
+    ],
     "contact_info": {
         "phone": "628111729896",
         "whatsapp_url": "https://wa.me/628111729896"

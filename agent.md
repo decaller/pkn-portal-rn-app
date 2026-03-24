@@ -60,6 +60,7 @@ Always consult these live references when stuck or making architectural decision
 - [Expo LLM Guide (Detailed)](https://docs.expo.dev/llms-full.txt)
 - [Expo API Reference](https://docs.expo.dev/versions/latest/)
 - [React Native Official Docs](https://reactnative.dev/docs/getting-started)
+- [Backend API Documentation](http://localhost/docs) (Local environment)
 
 ---
 
