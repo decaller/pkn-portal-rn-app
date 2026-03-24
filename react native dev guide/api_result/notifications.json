@@ -1,38 +1,5 @@
 {
-    "data": [
-        {
-            "id": "a84aab2b-5753-4b5d-8164-75349d655164",
-            "type": "App\\Notifications\\PastEventPostedOrUpdatedNotification",
-            "notifiable_type": "App\\Models\\User",
-            "notifiable_id": 1,
-            "data": {
-                "type": "past_event_posted_or_updated",
-                "event_id": 3,
-                "event_title": "PKN Recap 2023",
-                "event_slug": "pkn-recap-2023",
-                "message": "Acara terdahulu PKN Recap 2023 telah diposting atau diperbarui."
-            },
-            "read_at": null,
-            "created_at": "2026-03-19T22:47:08.000000Z",
-            "updated_at": "2026-03-19T22:47:08.000000Z"
-        },
-        {
-            "id": "7bbc3c54-e52e-4491-9ff6-2c06c7f23d13",
-            "type": "App\\Notifications\\PastEventPostedOrUpdatedNotification",
-            "notifiable_type": "App\\Models\\User",
-            "notifiable_id": 1,
-            "data": {
-                "type": "past_event_posted_or_updated",
-                "event_id": 4,
-                "event_title": "PKN Mini Summit 2024",
-                "event_slug": "pkn-mini-summit-2024",
-                "message": "Past event PKN Mini Summit 2024 has been posted or updated."
-            },
-            "read_at": null,
-            "created_at": "2026-03-16T06:18:12.000000Z",
-            "updated_at": "2026-03-16T06:18:12.000000Z"
-        }
-    ],
+    "data": [],
     "links": {
         "first": "http://localhost/api/v1/notifications?page=1",
         "last": "http://localhost/api/v1/notifications?page=1",
@@ -41,12 +8,12 @@
     },
     "meta": {
         "current_page": 1,
-        "from": 1,
+        "from": null,
         "last_page": 1,
         "links": [
             {
                 "url": null,
-                "label": "&laquo; Sebelumnya",
+                "label": "&laquo; Previous",
                 "page": null,
                 "active": false
             },
@@ -58,14 +25,14 @@
             },
             {
                 "url": null,
-                "label": "Berikutnya &raquo;",
+                "label": "Next &raquo;",
                 "page": null,
                 "active": false
             }
         ],
         "path": "http://localhost/api/v1/notifications",
         "per_page": 15,
-        "to": 2,
-        "total": 2
+        "to": null,
+        "total": 0
     }
 }

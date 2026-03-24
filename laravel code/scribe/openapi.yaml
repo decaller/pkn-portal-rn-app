@@ -292,11 +292,11 @@ paths:
                       event_id: null
                       created_at: '2026-03-24T01:18:52+00:00'
                     -
-                      id: 34
-                      title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
-                      slug: doc-pnxci
-                      file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
-                      original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      id: 30
+                      title: '4. BAKAT - TB - 40.pptx'
+                      slug: doc-pvpme
+                      file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
                       cover_image: null
                       mime_type: null
                       description: null
@@ -322,11 +322,11 @@ paths:
                       event_id: null
                       created_at: '2026-03-24T01:18:52+00:00'
                     -
-                      id: 30
-                      title: '4. BAKAT - TB - 40.pptx'
-                      slug: doc-pvpme
-                      file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
-                      original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                      id: 34
+                      title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                      slug: doc-pnxci
+                      file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                      original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
                       cover_image: null
                       mime_type: null
                       description: null
@@ -341,8 +341,8 @@ paths:
                     whatsapp_url: null
                   alerts: []
                   stats:
-                    active_registrations: 10
-                    pending_payments: 8
+                    active_registrations: 11
+                    pending_payments: 9
                 properties:
                   featured_events:
                     type: array
@@ -765,11 +765,11 @@ paths:
                         event_id: null
                         created_at: '2026-03-24T01:18:52+00:00'
                       -
-                        id: 34
-                        title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
-                        slug: doc-pnxci
-                        file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
-                        original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        id: 30
+                        title: '4. BAKAT - TB - 40.pptx'
+                        slug: doc-pvpme
+                        file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
                         cover_image: null
                         mime_type: null
                         description: null
@@ -795,11 +795,11 @@ paths:
                         event_id: null
                         created_at: '2026-03-24T01:18:52+00:00'
                       -
-                        id: 30
-                        title: '4. BAKAT - TB - 40.pptx'
-                        slug: doc-pvpme
-                        file_url: 'http://localhost/storage/manual-uploads/0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
-                        original_filename: '0. FORM PERENCANAAN PROYEK PEMBELAJARAN.pdf'
+                        id: 34
+                        title: '0. PROGRAM PEMBELAJARAN 40 PILAR.xlsx'
+                        slug: doc-pnxci
+                        file_url: 'http://localhost/storage/manual-uploads/1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
+                        original_filename: '1. 40 PILAR KARAKTER diurai dalam KURIKULUM.pdf'
                         cover_image: null
                         mime_type: null
                         description: null
@@ -875,10 +875,10 @@ paths:
                     properties:
                       active_registrations:
                         type: integer
-                        example: 10
+                        example: 11
                       pending_payments:
                         type: integer
-                        example: 8
+                        example: 9
       tags:
         - Endpoints
       security: []
@@ -3224,6 +3224,16 @@ paths:
       tags:
         - Endpoints
       security: []
+  /api/v1/webview-ticket:
+    post:
+      summary: ''
+      operationId: postApiV1WebviewTicket
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
   /api/v1/user/profile:
     get:
       summary: ''
@@ -3579,128 +3589,6 @@ paths:
         in: path
         name: id
         description: 'The ID of the registration.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/v1/registrations/{registration_id}/participants':
-    get:
-      summary: ''
-      operationId: getApiV1RegistrationsRegistration_idParticipants
-      description: ''
-      parameters: []
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
-      tags:
-        - Endpoints
-      security: []
-    post:
-      summary: ''
-      operationId: postApiV1RegistrationsRegistration_idParticipants
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: ''
-                  example: architecto
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: zbailey@example.net
-                  nullable: true
-                phone:
-                  type: string
-                  description: ''
-                  example: architecto
-                  nullable: true
-                notes:
-                  type: string
-                  description: ''
-                  example: architecto
-                  nullable: true
-              required:
-                - name
-      security: []
-    parameters:
-      -
-        in: path
-        name: registration_id
-        description: 'The ID of the registration.'
-        example: architecto
-        required: true
-        schema:
-          type: string
-  '/api/v1/participants/{participant_id}':
-    put:
-      summary: ''
-      operationId: putApiV1ParticipantsParticipant_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: ''
-                  example: architecto
-                email:
-                  type: string
-                  description: 'Must be a valid email address.'
-                  example: zbailey@example.net
-                  nullable: true
-                phone:
-                  type: string
-                  description: ''
-                  example: architecto
-                  nullable: true
-                notes:
-                  type: string
-                  description: ''
-                  example: architecto
-                  nullable: true
-      security: []
-    delete:
-      summary: ''
-      operationId: deleteApiV1ParticipantsParticipant_id
-      description: ''
-      parameters: []
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: participant_id
-        description: 'The ID of the participant.'
         example: 1
         required: true
         schema:

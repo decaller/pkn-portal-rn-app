@@ -17,6 +17,7 @@ interface AuthState {
   clearAuth: () => void;
   signOut: () => Promise<void>;
   updateUser: (user: Partial<User>) => void;
+  switchOrganization: (orgSlug: string) => void;
 }
 
 /**
@@ -63,6 +64,15 @@ export const useAuthStore = create<AuthState>()(
         set((state) => ({
           user: state.user ? { ...state.user, ...userData } : null,
         })),
+      switchOrganization: (orgSlug) =>
+        set((state) => {
+          if (!state.user || !state.user.organizations) return state;
+          const newOrg = state.user.organizations.find((o) => o.slug === orgSlug);
+          if (!newOrg) return state;
+          return {
+            user: { ...state.user, organization: newOrg },
+          };
+        }),
     }),
     {
       name: 'pkn-auth-storage',

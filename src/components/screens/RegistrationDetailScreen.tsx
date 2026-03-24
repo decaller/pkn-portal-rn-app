@@ -11,9 +11,7 @@ import {
   Pressable,
   Alert,
   ActivityIndicator,
-  Linking,
-  Modal,
-  TextInput
+  Linking
 } from 'react-native';
 import { useLocalSearchParams, useRouter, Stack } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -23,7 +21,8 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { spacing, typography, borderRadius, shadows } from '@/theme';
 import { Badge } from '@/components/ui/Badge';
-import api from '@/services/api';
+import api, { PORTAL_BASE_URL, getWebviewTicket } from '@/services/api';
+import { useAuthStore } from '@/store/authStore';
 import { extractRegistration, type Registration, type Participant, type DashboardResponse } from '@/types';
 
 export function RegistrationDetailScreen() {
@@ -32,11 +31,10 @@ export function RegistrationDetailScreen() {
   const { colors, isDark } = useAppTheme();
   const router = useRouter();
   const queryClient = useQueryClient();
+  const { user } = useAuthStore();
+  const [isRequestingTicket, setIsRequestingTicket] = React.useState(false);
   const styles = createStyles(colors, isDark);
 
-  const [isParticipantModalVisible, setParticipantModalVisible] = React.useState(false);
-  const [editingParticipant, setEditingParticipant] = React.useState<Partial<Participant> | null>(null);
-  const [participantForm, setParticipantForm] = React.useState<Partial<Participant>>({});
 
   const { data: registration, isLoading, isError } = useQuery<Registration>({
     queryKey: ['registration', id],
@@ -73,33 +71,6 @@ export function RegistrationDetailScreen() {
     },
   });
 
-  const participantMutation = useMutation({
-    mutationFn: async (data: Partial<Participant>) => {
-      if (editingParticipant?.id) {
-        const resp = await api.put(`/registrations/${id}/participants/${editingParticipant.id}`, data);
-        return resp.data;
-      } else {
-        const resp = await api.post(`/registrations/${id}/participants`, data);
-        return resp.data;
-      }
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['registration', id] });
-      setParticipantModalVisible(false);
-      setEditingParticipant(null);
-      setParticipantForm({});
-    },
-  });
-
-  const removeParticipantMutation = useMutation({
-    mutationFn: async (pId: number) => {
-      const resp = await api.delete(`/registrations/${id}/participants/${pId}`);
-      return resp.data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['registration', id] });
-    },
-  });
 
   const getStatusVariant = (status: Registration['status']) => {
     switch (status) {
@@ -120,13 +91,6 @@ export function RegistrationDetailScreen() {
     });
   };
 
-  const handlePayment = () => {
-    if (registration?.invoice?.snap_token) {
-      // In a real app, we would open Midtrans SDK or WebView
-      // For now, let's assume we redirect to a payment page or show a placeholder
-      console.log('Opening payment for token:', registration.invoice.snap_token);
-    }
-  };
 
   const handleCancel = () => {
     Alert.alert(
@@ -139,8 +103,25 @@ export function RegistrationDetailScreen() {
     );
   };
 
-  const handleOpenWeb = () => {
-    Linking.openURL(`https://portal.pkn.or.id/registrations/${id}`);
+  const handleOpenWeb = async () => {
+    try {
+      setIsRequestingTicket(true);
+      const ticket = await getWebviewTicket();
+      const orgSlug = user?.organization?.slug;
+      
+      const targetPath = `/user/${orgSlug}/event-registrations/${id}`;
+      // Note: we encode the targetPath because it's a query parameter for /webview-login
+      const magicLink = `${PORTAL_BASE_URL}/webview-login?ticket=${ticket}&redirect=${encodeURIComponent(targetPath)}`;
+      
+      await Linking.openURL(magicLink);
+    } catch (error: any) {
+      Alert.alert(
+        t('common.error', 'Error'), 
+        error?.message || t('common.errorDesc', 'An error occurred while opening the portal.')
+      );
+    } finally {
+      setIsRequestingTicket(false);
+    }
   };
 
   const handleContactSupport = () => {
@@ -148,24 +129,6 @@ export function RegistrationDetailScreen() {
     Linking.openURL(whatsappUrl);
   };
 
-  const handleSaveParticipant = () => {
-    if (!participantForm.name || !participantForm.email || !participantForm.phone) {
-      Alert.alert(t('common.warning'), t('registrations.fillAllFields'));
-      return;
-    }
-    participantMutation.mutate(participantForm);
-  };
-
-  const confirmRemoveParticipant = (pId: number) => {
-    Alert.alert(
-      t('common.warning'),
-      t('registrations.confirmRemoveParticipant'),
-      [
-        { text: t('common.cancel'), style: 'cancel' },
-        { text: t('common.confirm'), style: 'destructive', onPress: () => removeParticipantMutation.mutate(pId) }
-      ]
-    );
-  };
 
   if (isLoading) {
     return (
@@ -211,19 +174,46 @@ export function RegistrationDetailScreen() {
         {/* Header Section */}
         <View style={[styles.section, styles.headerSection]}>
           <View style={styles.headerTop}>
-            <Text style={styles.registrationNumber}>{registration.registration_number}</Text>
-            <Pressable onPress={handleOpenWeb} style={styles.webButton}>
-              <Ionicons name="open-outline" size={20} color={colors.brand.primary} />
+            <View style={styles.headerLeft}>
+              <Pressable onPress={() => router.back()} style={styles.headerBackButton}>
+                <Ionicons name="arrow-back" size={24} color={colors.text.primary} />
+              </Pressable>
+              <View>
+                <Text style={styles.registrationNumber}>{registration.registration_number}</Text>
+                <Text style={styles.dateText}>{formatDate(registration.created_at)}</Text>
+              </View>
+              <Badge 
+                label={registration.status_label || t(`registrations.status.${registration.status}`, registration.status)} 
+                variant={getStatusVariant(registration.status)} 
+              />
+            </View>
+            <Pressable onPress={handleOpenWeb} style={styles.webButton} disabled={isRequestingTicket}>
+              {isRequestingTicket ? (
+                <ActivityIndicator color={colors.brand.primary} size="small" />
+              ) : (
+                <Ionicons name="open-outline" size={20} color={colors.brand.primary} />
+              )}
             </Pressable>
           </View>
-          <View style={styles.statusRow}>
-            <Badge 
-              label={t(`registrations.status.${registration.status}`, registration.status)} 
-              variant={getStatusVariant(registration.status)} 
-            />
-            <Text style={styles.dateText}>{formatDate(registration.created_at)}</Text>
-          </View>
         </View>
+
+        {/* Booker Information */}
+        {registration.booker && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>{t('registrations.bookerInfo', 'Booker Information')}</Text>
+            <View style={styles.infoRow}>
+              <Text style={styles.label}>{t('registrations.bookerName', 'Name')}</Text>
+              <Text style={styles.infoValue}>{registration.booker.name}</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Text style={styles.label}>{t('registrations.paymentStatus', 'Payment Status')}</Text>
+              <Badge 
+                label={registration.payment_status_label || registration.payment_status || 'unpaid'} 
+                variant={registration.payment_status === 'paid' ? 'success' : 'warning'} 
+              />
+            </View>
+          </View>
+        )}
 
         {/* Event & Package Summary */}
         <View style={styles.section}>
@@ -236,6 +226,23 @@ export function RegistrationDetailScreen() {
               <Ionicons name="chevron-forward" size={16} color={colors.text.tertiary} />
             </View>
             <Text style={styles.eventTitle}>{registration.event?.title}</Text>
+            
+            {registration.event && (
+              <View style={styles.eventDetails}>
+                <View style={styles.eventDetailItem}>
+                  <Ionicons name="calendar-outline" size={14} color={colors.text.tertiary} />
+                  <Text style={styles.eventDetailText}>
+                    {registration.event.event_date} ({registration.event.duration_days} {t('common.days', 'days')})
+                  </Text>
+                </View>
+                <View style={styles.eventDetailItem}>
+                  <Ionicons name="location-outline" size={14} color={colors.text.tertiary} />
+                  <Text style={styles.eventDetailText}>
+                    {registration.event.city}, {registration.event.province}
+                  </Text>
+                </View>
+              </View>
+            )}
           </Pressable>
           
           <View style={styles.packageRow}>
@@ -243,14 +250,6 @@ export function RegistrationDetailScreen() {
               <Text style={styles.label}>{t('registrations.package', 'Package')}</Text>
               <Text style={styles.packageName}>{packageSummary || '-'}</Text>
             </View>
-            {!isCancelled && !isPendingPayment && !isPaid && (
-              <Pressable 
-                onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
-                style={styles.changePackageBtn}
-              >
-                <Text style={styles.changePackageText}>{t('registrations.changePackage', 'Change')}</Text>
-              </Pressable>
-            )}
           </View>
         </View>
 
@@ -260,18 +259,6 @@ export function RegistrationDetailScreen() {
             <Text style={styles.sectionTitle}>
               {t('registrations.participants', 'Participants')} ({registration.participant_count})
             </Text>
-            {!isCancelled && !isPendingPayment && (
-              <Pressable 
-                onPress={() => {
-                  setEditingParticipant(null);
-                  setParticipantForm({});
-                  setParticipantModalVisible(true);
-                }}
-                style={styles.addSmallBtn}
-              >
-                <Ionicons name="add-circle" size={24} color={colors.brand.primary} />
-              </Pressable>
-            )}
           </View>
           {registration.participants.length === 0 && (
             <Text style={styles.emptyParticipantText}>
@@ -285,38 +272,6 @@ export function RegistrationDetailScreen() {
                 <Text style={styles.participantDetail}>{p.email} • {p.phone}</Text>
               </View>
               <View style={styles.participantActions}>
-                {(!isCancelled && !isPendingPayment) && (
-                  <>
-                    <Pressable 
-                      onPress={() => {
-                        setEditingParticipant(p);
-                        setParticipantForm(p);
-                        setParticipantModalVisible(true);
-                      }}
-                      style={styles.iconBtn}
-                    >
-                      <Ionicons name="pencil" size={18} color={colors.text.tertiary} />
-                    </Pressable>
-                    <Pressable 
-                      onPress={() => confirmRemoveParticipant(p.id)}
-                      style={styles.iconBtn}
-                    >
-                      <Ionicons name="trash" size={18} color={colors.status.danger} />
-                    </Pressable>
-                  </>
-                )}
-                {isPaid && (
-                   <Pressable 
-                      onPress={() => {
-                        setEditingParticipant(p);
-                        setParticipantForm(p);
-                        setParticipantModalVisible(true);
-                      }}
-                      style={styles.iconBtn}
-                    >
-                      <Ionicons name="create-outline" size={20} color={colors.brand.primary} />
-                    </Pressable>
-                )}
                 {p.category && (
                   <View style={styles.categoryBadge}>
                     <Text style={styles.categoryText}>{p.category}</Text>
@@ -340,38 +295,54 @@ export function RegistrationDetailScreen() {
         </View>
 
         {/* Payment/Invoice Section */}
-        {invoicesToShow.length > 0 && (
+        {(invoicesToShow.length > 0 || registration.latest_invoice) && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>{t('registrations.paymentInfo', 'Payment Information')}</Text>
+            
+            {/* Show latest invoice separately if available for download */}
+            {registration.latest_invoice && (
+              <View style={styles.latestInvoiceCard}>
+                <View style={styles.invoiceRow}>
+                  <Text style={styles.invoiceLabel}>{t('registrations.latestInvoice', 'Latest Invoice')}</Text>
+                  <Text style={styles.invoiceValue}>{registration.latest_invoice.invoice_number}</Text>
+                </View>
+                <View style={styles.invoiceRow}>
+                   <Text style={styles.invoiceLabel}>{t('registrations.amount', 'Amount')}</Text>
+                   <Text style={styles.totalValue}>
+                     {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(registration.latest_invoice.amount || registration.latest_invoice.total_amount || 0)}
+                   </Text>
+                </View>
+                {registration.latest_invoice.download_url && (
+                  <Pressable 
+                    onPress={() => Linking.openURL(registration.latest_invoice?.download_url || '')}
+                    style={styles.downloadButton}
+                  >
+                    <Ionicons name="download-outline" size={18} color={colors.brand.primary} />
+                    <Text style={styles.downloadButtonText}>{t('registrations.downloadInvoice', 'Download Invoice PDF')}</Text>
+                  </Pressable>
+                )}
+              </View>
+            )}
+
             {invoicesToShow.map((inv, idx) => (
-              <View key={inv.id} style={[styles.invoiceItem, idx > 0 && { marginTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border.light, paddingTop: spacing.md }]}>
+              <View key={inv.id} style={[styles.invoiceItem, (idx > 0 || registration.latest_invoice) && { marginTop: spacing.md, borderTopWidth: 1, borderTopColor: colors.border.light, paddingTop: spacing.md }]}>
                 <View style={styles.invoiceRow}>
                   <Text style={styles.invoiceLabel}>{t('registrations.invoiceNumber', 'Invoice #')}</Text>
                   <Text style={styles.invoiceValue}>{inv.invoice_number}</Text>
                 </View>
                 <View style={[styles.invoiceRow, { marginBottom: 0 }]}>
                     <Text style={styles.invoiceLabel}>{t('common.status', 'Status')}</Text>
-                    <Badge label={t(`registrations.invoiceStatus.${inv.status}`, inv.status)} variant={inv.status === 'paid' ? 'success' : 'warning'} />
+                    <Badge 
+                      label={inv.status_label || t(`registrations.invoiceStatus.${inv.status}`, inv.status)} 
+                      variant={inv.status === 'paid' ? 'success' : 'warning'} 
+                    />
                 </View>
                 <View style={styles.invoiceRow}>
                   <Text style={styles.invoiceLabel}>{t('registrations.totalAmount', 'Total Amount')}</Text>
-                  <Text style={idx === 0 ? styles.totalValue : styles.invoiceValue}>
+                  <Text style={idx === 0 && !registration.latest_invoice ? styles.totalValue : styles.invoiceValue}>
                     {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(inv.amount)}
                   </Text>
                 </View>
-                
-                {(isDraft || isPendingPayment) && inv.status !== 'paid' && inv.snap_token && (
-                  <Pressable 
-                    onPress={() => {
-                        console.log('Opening payment for token:', inv.snap_token);
-                        // handlePayment logic inlined or called if it supports token
-                    }}
-                    style={({ pressed }) => [styles.payButton, pressed && { opacity: 0.8 }, { marginTop: spacing.sm }]}
-                  >
-                    <Ionicons name="card-outline" size={20} color={colors.text.inverse} />
-                    <Text style={styles.payButtonText}>{t('registrations.payNow', 'Pay Now')}</Text>
-                  </Pressable>
-                )}
               </View>
             ))}
           </View>
@@ -382,43 +353,25 @@ export function RegistrationDetailScreen() {
 
       {/* Sticky Actions */}
       <View style={[styles.stickyFooter, shadows.lg]}>
-        {!isCancelled && !isClosed && !isPaid ? (
-          <>
-            <Pressable 
-              onPress={handleCancel}
-              style={({ pressed }) => [styles.secondaryAction, pressed && { opacity: 0.7 }]}
-            >
-              <Ionicons name="close-circle-outline" size={20} color={colors.status.danger} />
-              <Text style={[styles.secondaryActionText, { color: colors.status.danger }]}>{t('common.cancel', 'Cancel')}</Text>
-            </Pressable>
-            
-            {isDraft && (
-              <Pressable 
-                onPress={() => router.push(`/events/${registration.event_id}/register?regId=${id}`)}
-                style={({ pressed }) => [styles.primaryAction, pressed && { opacity: 0.8 }]}
-              >
-                <Text style={styles.primaryActionText}>{t('registrations.completeRegistration', 'Complete')}</Text>
-              </Pressable>
+        {!isCancelled && !isClosed ? (
+          <Pressable 
+              onPress={handleOpenWeb}
+              style={({ pressed }) => [
+                styles.primaryAction, 
+                { flex: 1 },
+                (pressed || isRequestingTicket) && { opacity: 0.8 }
+              ]}
+              disabled={isRequestingTicket}
+          >
+            {isRequestingTicket ? (
+              <ActivityIndicator color={colors.text.inverse} size="small" />
+            ) : (
+              <>
+                <Ionicons name="open-outline" size={20} color={colors.text.inverse} />
+                <Text style={styles.primaryActionText}>{t('registrations.manageInWeb', 'Manage Registration')}</Text>
+              </>
             )}
-
-            {(isDraft || isPendingPayment) && (invoicesToShow.some(inv => inv.status !== 'paid' && inv.snap_token)) && (
-              <Pressable 
-                onPress={handlePayment}
-                style={({ pressed }) => [styles.primaryAction, pressed && { opacity: 0.8 }]}
-              >
-                <Ionicons name="card-outline" size={20} color={colors.text.inverse} />
-                <Text style={styles.primaryActionText}>{t('registrations.payNow', 'Pay Now')}</Text>
-              </Pressable>
-            )}
-          </>
-        ) : isPaid ? (
-           <View style={styles.paidAction}>
-              <View style={styles.paidBadge}>
-                <Ionicons name="checkmark-circle" size={24} color={colors.status.success} />
-                <Text style={styles.paidBadgeText}>{t('registrations.fullyPaid', 'Fully Paid')}</Text>
-              </View>
-              <Text style={styles.paidNote}>{t('registrations.fillParticipantDetailsNote', 'Please ensure all participant details are completed.')}</Text>
-           </View>
+          </Pressable>
         ) : (
           <View style={styles.cancelledNote}>
             <Text style={styles.cancelledNoteText}>
@@ -427,55 +380,6 @@ export function RegistrationDetailScreen() {
           </View>
         )}
       </View>
-
-      {/* Participant Modal */}
-      <Modal visible={isParticipantModalVisible} animationType="slide" transparent>
-        <View style={styles.modalOverlay}>
-          <View style={[styles.modalContent, { backgroundColor: colors.background.primary }]}>
-            <Text style={styles.modalTitle}>
-              {editingParticipant ? t('registrations.editParticipant') : t('registrations.addParticipant')}
-            </Text>
-            
-            <TextInput 
-              placeholder={t('common.name', 'Full Name')}
-              style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={participantForm.name || ''}
-              onChangeText={(txt) => setParticipantForm({ ...participantForm, name: txt })}
-            />
-            <TextInput 
-              placeholder={t('common.email', 'Email Address')}
-              keyboardType="email-address"
-              style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={participantForm.email || ''}
-              onChangeText={(txt) => setParticipantForm({ ...participantForm, email: txt })}
-            />
-            <TextInput 
-              placeholder={t('common.phone', 'Phone Number')}
-              keyboardType="phone-pad"
-              style={[styles.input, { color: colors.text.primary, borderColor: colors.border.light }]}
-              value={participantForm.phone || ''}
-              onChangeText={(txt) => setParticipantForm({ ...participantForm, phone: txt })}
-            />
-
-            <View style={styles.modalActions}>
-              <Pressable onPress={() => setParticipantModalVisible(false)} style={styles.modalCancel}>
-                <Text style={styles.modalCancelText}>{t('common.cancel')}</Text>
-              </Pressable>
-              <Pressable 
-                onPress={handleSaveParticipant} 
-                style={[styles.modalConfirm, participantMutation.isPending && { opacity: 0.7 }]}
-                disabled={participantMutation.isPending}
-              >
-                {participantMutation.isPending ? (
-                  <ActivityIndicator color={colors.text.inverse} />
-                ) : (
-                  <Text style={styles.modalConfirmText}>{t('common.confirm')}</Text>
-                )}
-              </Pressable>
-            </View>
-          </View>
-        </View>
-      </Modal>
     </View>
   );
 }
@@ -509,6 +413,15 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: spacing.xs,
+  },
+  headerLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.sm,
+  },
+  headerBackButton: {
+    padding: spacing.xs,
+    marginLeft: -spacing.xs,
   },
   webButton: {
     padding: spacing.xs,
@@ -817,6 +730,51 @@ const createStyles = (colors: any, isDark: boolean) => StyleSheet.create({
   },
   footerSpacer: {
     height: 40,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  infoValue: {
+    ...typography.body,
+    fontWeight: '600',
+    color: colors.text.primary,
+  },
+  eventDetails: {
+    marginTop: spacing.sm,
+    gap: spacing.xs,
+  },
+  eventDetailItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: spacing.xs,
+  },
+  eventDetailText: {
+    ...typography.caption1,
+    color: colors.text.tertiary,
+  },
+  latestInvoiceCard: {
+    backgroundColor: colors.background.secondary,
+    padding: spacing.md,
+    borderRadius: borderRadius.md,
+    marginBottom: spacing.md,
+  },
+  downloadButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.xs,
+    paddingTop: spacing.md,
+    marginTop: spacing.md,
+    borderTopWidth: 1,
+    borderTopColor: colors.border.light,
+  },
+  downloadButtonText: {
+    ...typography.body,
+    color: colors.brand.primary,
+    fontWeight: '600',
   },
   errorText: {
     ...typography.body,

@@ -8,6 +8,8 @@ import { useAuthStore } from '../store/authStore';
 
 // Base URL configured via environment variables (.env files)
 const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'https://portal.pkn.or.id/api/v1';
+const PORTAL_BASE_URL = process.env.EXPO_PUBLIC_PORTAL_URL || 'https://portal.pkn.or.id';
+
 
 
 const api = axios.create({
@@ -51,5 +53,10 @@ api.interceptors.response.use(
   },
 );
 
-export { API_BASE_URL };
+export const getWebviewTicket = async (): Promise<string> => {
+  const { data } = await api.post<{ ticket: string }>('/webview-ticket');
+  return data.ticket;
+};
+
+export { API_BASE_URL, PORTAL_BASE_URL };
 export default api;

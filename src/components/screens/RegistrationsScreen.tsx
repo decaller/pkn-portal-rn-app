@@ -114,15 +114,6 @@ export function RegistrationsScreen() {
           </Text>
         </View>
         <View style={styles.footerRight}>
-          {(item.status === 'awaiting_payment' || (item.status === 'draft' && (item.invoice || (item.invoices && item.invoices.length > 0)))) && (
-            <Pressable 
-              onPress={() => router.push(`/registrations/${item.id}`)}
-              style={({ pressed }) => [styles.payButton, pressed && { opacity: 0.8 }]}
-            >
-              <Ionicons name="card-outline" size={14} color={colors.text.inverse} />
-              <Text style={styles.payButtonText}>{t('registrations.payNow', 'Pay Now')}</Text>
-            </Pressable>
-          )}
           <View style={styles.actionLink}>
             <Text style={styles.actionText}>{t('common.seeDetails', 'Details')}</Text>
             <Ionicons name="chevron-forward" size={14} color={colors.brand.primary} />
@@ -250,21 +241,6 @@ const createStyles = (colors: any) => StyleSheet.create({
   footerRight: {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  payButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: colors.brand.primary,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: borderRadius.sm,
-    gap: 4,
-    marginRight: spacing.sm,
-  },
-  payButtonText: {
-    ...typography.caption1,
-    color: colors.text.inverse,
-    fontWeight: '600',
   },
   actionLink: {
     flexDirection: 'row',

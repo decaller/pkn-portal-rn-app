@@ -13,13 +13,14 @@ import { spacing } from '@/theme';
 import { HeaderMenu } from '@/components/ui/HeaderMenu';
 import { HeaderReloadButton } from '@/components/ui/HeaderReloadButton';
 import { HeaderContactButton } from '@/components/ui/HeaderContactButton';
+import { OrgSelector } from '@/components/ui/OrgSelector';
 import { useAppTheme } from '@/hooks/useAppTheme';
 import { useAuthStore } from '@/store/authStore';
 
 export default function TabLayout() {
   const { t } = useTranslation();
   const { colors, isDark } = useAppTheme();
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
 
   return (
     <Tabs
@@ -31,6 +32,7 @@ export default function TabLayout() {
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingRight: spacing.md, gap: spacing.sm }}>
             <HeaderReloadButton />
             <HeaderContactButton />
+            {(isAuthenticated && user) && <OrgSelector />}
             <HeaderMenu />
           </View>
         ),

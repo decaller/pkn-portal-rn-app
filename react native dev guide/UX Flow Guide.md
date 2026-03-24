@@ -282,7 +282,7 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
 
 **Primary interactions:**
 - Tap registration card -> Registration Detail (Native).
-- Tap `Manage` -> Native Registration Edit (Change package/participants) with Web Fallback option.
+- Tap `Manage` -> Open WebView to update registration (Add participant details, manage packages, etc).
 
 ### G. Documents Browser Screen
 **Purpose:** Centralized access to event agendas, materials, and reports.
@@ -359,19 +359,18 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
   - `Contact Support`
 
 **Primary interactions:**
-- Tap `Pay Now` -> request Snap token -> open Midtrans Snap Modal (Native SDK or WebView)
+- Tap `Pay Now` -> open WebView to web portal for payment processing
 - Tap `Download PDF` -> open temp file URL
 
-#### [Slide] Invoice Payment Flow (Midtrans Snap)
+#### [Slide] Invoice Payment Flow (WebView)
 1. User opens Registrations tab.
 2. User taps a registration with `Unpaid` status.
 3. Registration Detail opens.
 4. User taps the linked invoice or `Pay Now` button.
-5. App requests Snap token from `/api/v1/invoices/{id}/snap-token`.
-6. App opens Midtrans Snap modal.
-7. User completes payment on Midtrans gateway.
-8. Midtrans sends webhook to backend.
-9. App detects completion (via listener or polling) and refreshes state.
+5. App opens WebView to the web portal invoice/payment page.
+6. User completes payment on Midtrans gateway within the WebView.
+7. Midtrans sends webhook to backend.
+8. Upon return from WebView or success redirect, app refreshes native state.
 **Purpose:** Give users a single place to review system updates and reminders.
 
 **Detailed UI elements:**
@@ -467,28 +466,26 @@ The app uses **Bottom Tab Navigation** for primary areas and **Stack Navigation*
    - News Detail
    - Registrations tab / Registration Detail
 
-### C. Event Registration Flow (Native-First)
+### C. Event Registration Flow (Hybrid)
 1. User opens Events tab (Public).
 2. User taps event card.
 3. Event Detail opens (Public).
 4. User taps `Register Now`.
 5. If unauthenticated, prompts Native Login screen.
 6. Once logged in, app opens Native Registration wizard:
-    - Step 1: Participant selection (Native list).
-    - Step 2: Package selection (Native list).
-    - Step 3: Summary and Submission. (POST to `/api/v1/registrations`).
-7. User sees success state and linked Invoice Detail.
+    - Create basic registration record (POST to `/api/v1/registrations`).
+7. App opens WebView redirect to Web Portal to Manage Registration (fill participant details, download invoice, make payment).
 8. **Alternative**: If user hits a snag, they tap `Manage in Web` -> opens WebView Bridge.
 
-### D. Invoice Payment Flow (Midtrans Snap)
+### D. Invoice Payment Flow (WebView)
 1. User opens Registrations tab.
 2. User taps a registration with unpaid or pending status.
 3. Registration Detail opens.
 4. User taps the linked invoice or 'Pay Now' button.
-5. App requests Snap token from Backend API.
-6. App opens Midtrans Snap modal (via Native SDK or WebView).
+5. App opens WebView directed to the Web Portal invoice page.
+6. User completes checkout using Midtrans Snap inside the WebView.
 7. On payment completion, Midtrans notifies the backend via webhook.
-8. App detects the completion (via listener or polling) and refreshes native state.
+8. App detects the completion upon WebView return and refreshes native state.
 9. Invoice Detail updates to `Paid`.
 
 ### E. Notification Deep-Link Flow

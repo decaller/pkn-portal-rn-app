@@ -205,55 +205,55 @@ Auth required: no
 
 Return article content plus absolute banner URLs.
 
+### 5.4. Generate Webview Ticket
+**Endpoint:** `POST /api/v1/webview-ticket`
+**Description:** Generates a one-time use ticket to seamlessly log the user into the web portal via a Webview.
+**Auth Required:** Yes (Sanctum Token)
+
+**Response (200 OK):**
+```json
+{
+  "ticket": "random_60_character_string_here"
+}
+```
+
+**Usage in Mobile App:**
+1. Call this endpoint to get the `ticket`.
+2. Open the Webview pointing to `https://your-domain.com/webview-login?ticket={ticket}`.
+3. The backend will consume the ticket, establish a secure web session cookie, and redirect to the dashboard.
+
+---
+
 ## 6. Registrations
 
 ### `GET /registrations`
 
 - **Auth required**: yes
-- **Purpose**: List event registrations for the authenticated user.
+- **Purpose**: List event registrations for the authenticated user. Information is formatted similarly to the Filament EventRegistrationsTable.
 - **Query Params**: `per_page` (default 15)
 
 ### `GET /registrations/{id}`
 
 - **Auth required**: yes
-- **Purpose**: Get details of a specific registration.
+- **Purpose**: Get full details of a specific registration. Information is formatted similarly to the Filament EventRegistrationInfolist.
 
 ### `POST /registrations`
 
 - **Auth required**: yes
 - **Purpose**: Create a new event registration natively.
 - **Payload**: `{ event_id, package_id, participants: [ { name, category, ... } ] }`
-- **Contract note**: `GET /events/{id}` must include a stable identifier for each `registration_packages` item if `package_id` is required here. If package IDs are not exposed, document and support an alternative create payload such as `package_name` or `package_breakdown`.
 
 ### `PUT /registrations/{id}`
 
-- **Auth required**: yes
-- **Purpose**: Update registration details (e.g., change package).
+*(Managed via WebView redirect to the web portal)*
 
 ### `DELETE /registrations/{id}`
 
-- **Auth required**: yes
-- **Purpose**: Cancel a draft or unpaid registration.
+*(Managed via WebView redirect to the web portal)*
 
-## 7. Participants (Native CRUD)
+## 7. Participants (Hybrid/WebView)
 
-### `GET /registrations/{id}/participants`
-
-- **Auth required**: yes
-
-### `POST /registrations/{id}/participants`
-
-- **Auth required**: yes
-- **Purpose**: Add a new participant to an existing registration.
-
-### `PUT /participants/{participant_id}`
-
-- **Auth required**: yes
-- **Purpose**: Update participant info.
-
-### `DELETE /participants/{participant_id}`
-
-- **Auth required**: yes
+*(Participant management (add, edit, delete) is handled exclusively via the WebView redirect to the web portal. Native CRUD endpoints for participants are deprecated.)*
 
 ## 8. Invoices
 
@@ -316,15 +316,11 @@ Alternative:
 
 ## 9. Payments (Midtrans Snap)
 
-> These endpoints power the **Pay Now** flow. The app fetches a Midtrans `redirect_url` and loads it inside a native `WebView`.
+> Payments are now initiated from the Web portal via a WebView redirect. The mobile app no longer calls endpoints to request the Midtrans Snap token directly.
 
 ### `POST /payments/charge`
 
-**Auth required:** yes (Bearer Token)
-
-**Purpose:**
-
-- Accepts an `invoice_id`, calls the Midtrans Snap API on the backend using the `Server Key`, and returns a Snap `redirect_url` for the mobile WebView to load.
+*(Deprecated: Payment initiation is handled via WebView redirect to the web portal where Midtrans Snap handles the checkout.)*
 
 **Request Payload:**
 

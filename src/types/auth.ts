@@ -14,6 +14,11 @@ export interface User {
     name: string;
     slug: string;
   };
+  organizations?: Array<{
+    id: number;
+    name: string;
+    slug: string;
+  }>;
 }
 
 export interface AuthState {

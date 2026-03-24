@@ -23,10 +23,17 @@ export interface Invoice {
   id: number;
   invoice_number: string;
   amount: number;
-  status: 'unpaid' | 'pending' | 'paid' | 'expired' | 'cancelled';
-  due_date: string;
+  status: string;
+  status_label?: string;
+  status_color?: string;
+  due_date?: string;
+  issued_at?: string;
+  download_url?: string;
+  can_pay_now?: boolean;
+  has_active_payment_attempt?: boolean;
+  total_amount?: number;
   snap_token?: string;
-  items: Array<{
+  items?: Array<{
     description: string;
     amount: number;
   }>;
@@ -42,11 +49,22 @@ export interface Registration {
   participant_count: number;
   package_breakdown: RegistrationPackageBreakdown[];
   status: 'draft' | 'submitted' | 'confirmed' | 'cancelled' | 'awaiting_payment' | 'closed';
+  status_label?: string;
+  status_color?: string;
+  payment_status?: string;
+  payment_status_label?: string;
+  payment_status_color?: string;
   total_amount: number;
   created_at: string;
   participants: Participant[];
   invoice?: Invoice;
   invoices?: Invoice[];
+  latest_invoice?: Invoice;
+  notes?: string | null;
+  booker?: {
+    id: number;
+    name: string;
+  };
 }
 
 type ApiEnvelope<T> = {
@@ -90,11 +108,19 @@ export const normalizeRegistration = (value: unknown): Registration | null => {
     participant_count: participantCount,
     package_breakdown: normalizedPackageBreakdown,
     status: (value.status ?? 'draft') as Registration['status'],
+    status_label: typeof value.status_label === 'string' ? value.status_label : undefined,
+    status_color: typeof value.status_color === 'string' ? value.status_color : undefined,
+    payment_status: typeof value.payment_status === 'string' ? value.payment_status : undefined,
+    payment_status_label: typeof value.payment_status_label === 'string' ? value.payment_status_label : undefined,
+    payment_status_color: typeof value.payment_status_color === 'string' ? value.payment_status_color : undefined,
     total_amount: Number(value.total_amount ?? 0),
     created_at: typeof value.created_at === 'string' ? value.created_at : '',
     participants,
     invoice: isObject(value.invoice) ? value.invoice as Invoice : undefined,
     invoices: Array.isArray(value.invoices) ? (value.invoices as Invoice[]) : [],
+    latest_invoice: isObject(value.latest_invoice) ? value.latest_invoice as Invoice : undefined,
+    notes: typeof value.notes === 'string' ? value.notes : null,
+    booker: isObject(value.booker) ? { id: Number(value.booker.id), name: String(value.booker.name) } : undefined,
   };
 };
 
